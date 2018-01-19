@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{F487D091-FE59-41B8-A523-68F48F06EBD0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{ED8E1FE8-CD49-4DAF-9049-CF781CA46A6A}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "QZXCLY.WeChat", "Presentation\QZXCLY.WeChat\", "{F733F4DB-0B8C-4FED-8F1B-A6E8A451607B}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_39108"
+		Debug.AspNetCompiler.PhysicalPath = "Presentation\QZXCLY.WeChat\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_39108\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_39108"
+		Release.AspNetCompiler.PhysicalPath = "Presentation\QZXCLY.WeChat\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_39108\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "39108"
+		SlnRelativePath = "Presentation\QZXCLY.WeChat\"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F733F4DB-0B8C-4FED-8F1B-A6E8A451607B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F733F4DB-0B8C-4FED-8F1B-A6E8A451607B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F733F4DB-0B8C-4FED-8F1B-A6E8A451607B} = {F487D091-FE59-41B8-A523-68F48F06EBD0}
+	EndGlobalSection
+EndGlobal
