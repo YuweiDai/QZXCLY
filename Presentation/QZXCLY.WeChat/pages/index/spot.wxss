@@ -1,0 +1,110 @@
+/* pages/index/spot.wxss */
+scroll-view
+{
+  min-height: 100vh;
+}
+.spot_title
+{
+  position: relative;
+}
+.spot_title,.spot_detail
+{
+  margin: 20rpx 0;
+  background: white;
+  padding: 20rpx;
+}
+.spot_title .name
+{
+
+  font-size: 50rpx;
+  font-weight: bolder;
+}
+.spot_title .distance,.spot_title .address
+{
+  font-size: 30rpx;
+  color: #8a8a8a;
+}
+.spot_title .star
+{
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+  color: #d71d49;
+  font-size: 40rpx;
+  font-weight: bolder;
+}
+.spot_detail .filters {
+	display: -webkit-flex;
+  margin-bottom: 20rpx;
+}
+.spot_detail .filters .filter {
+	-webkit-flex: 1;
+	text-align: center;
+	color: #696969;
+	font-size: 30rpx;
+	line-height: 3;
+}
+.spot_detail .filters .filter .v {
+	display: none;
+}
+.spot_detail .filters .filter.active {
+	color: #000;
+	font-weight: bold;
+  border-bottom: solid 2rpx #1296db;
+}
+.spot_detail .filters .filter.active .v {
+	display: inline-block;
+}
+
+.spot_detail .spot_detail_item
+{
+  background: white;
+  font-size: 30rpx;
+}
+
+
+.item {
+  display: flex;
+  padding: 20rpx;
+  border-bottom: 1rpx solid #eee;
+  cursor: pointer;
+  max-height: 170rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.item .poster {
+  width: 170rpx;
+  height: 170rpx;
+  margin-right: 20rpx;
+}
+
+.item .meta {
+  flex: 1;
+}
+
+.item .meta .title,
+.item .meta .sub-title {
+  display: block;
+  margin-bottom: 15rpx;
+}
+
+.item .meta .title {
+  font-size: 32rpx;
+}
+
+.item .meta .sub-title {
+  font-size: 25rpx;
+  color: #c0c0c0;
+}
+
+.item .meta .artists {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.item .rating {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #f74c31;
+}

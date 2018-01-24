@@ -1,0 +1,95 @@
+<view class="container">
+  <view class="map_section section" style='height:{{mapHeight}}px;'>
+    <map id="map" longitude="{{lon}}" latitude="{{lat}}" scale="{{level}}" controls="{{controls}}" bindmarkertap="bindmarkertap" markers="{{markers}}" show-location>
+      <cover-view hidden='{{showSingelSpot}}' class='search_section top_section'>
+        <cover-view class="search" bindtap="tapSearch">
+          <cover-image class="icon" src="/resources/images/index/icon_search.png"/>
+          <cover-view class="placeholder">搜索你想去的地方...</cover-view>
+        </cover-view>   
+      </cover-view>    
+
+      <cover-view hidden='{{!showSingelSpot}}' class='spotTitle_section top_section'>
+        <cover-view class='title'>
+          <cover-view class="placeholder">当前：寻觅乡愁 · 桃源七里</cover-view>    
+          <cover-image class='close' src="/resources/images/map/close.png" bindtap='returnToAll'></cover-image>      
+        </cover-view>
+      </cover-view>
+    </map>     
+  </view>  
+  <view wx:if='{{showSingelSpot}}' class="spotDetail_section section">
+    <view class='filters'>
+      	<view class="filter {{filterId==1?'active':''}}" data-id="1" bindtap="tapFilter">简介</view>
+				<view class="filter {{filterId==6?'active':''}}" data-id="6" bindtap="tapFilter">服务点</view>          
+				<view class="filter {{filterId==2?'active':''}}" data-id="2" bindtap="tapFilter">玩</view>
+				<view class="filter {{filterId==3?'active':''}}" data-id="3" bindtap="tapFilter">吃</view>  
+				<view class="filter {{filterId==4?'active':''}}" data-id="4" bindtap="tapFilter">住</view>
+				<view class="filter {{filterId==5?'active':''}}" data-id="5" bindtap="tapFilter">行</view>  
+
+    </view>
+    <scroll-view scroll-y="true" style='height:{{detailHeight}}px'>
+<view hidden="{{filterId!=1}}" class='spot_detail_item'>
+      桃源七里风景区，位于浙江省钱塘江源头的衢州市西北部七里乡，距市区30公里。
+桃源七里风景区东离杭州245公里，西距婺源140公里，南距武夷山270公里，北距黄山300公里。属亚热带季风气候区，常年平均气温在14.3C，四季分明、冬夏长春秋短、气候温和。区内平均海拔650米，面积60.45平方公里，森林覆盖率达98%，总人口5082人.。
+风景区内生态旅游资源丰富，有海拨1327米大谷坪山脉、海拨1151米的老鹰石、落差70余米的杨花瀑布、飞来石瀑布、治岭石林、红军墓、望穿洞等自然景点，共有千米以上高峰15座，七里香溪沿村伴山而过。黄土岭、杨坞、均良、上村、大头、治岭等许多保存良好的古村落，与青山绿水、粉墙黛瓦构成一幅幅恬静自如、天人合一的画卷。是一处独具山里农家风韵的新兴旅游景区，生态山水、农屋农饭、避暑纳凉、高山蔬菜、峡谷漂流和耕读文化是旅游区目前最大的旅游特色。素有“全国农业旅游示范点”、“全国环境优美乡镇”之称。
+      </view>
+      <view hidden="{{filterId!=2}}" class='spot_detail_item'>
+          <view class="item" wx:for="{{play_list}}">
+            <image class="poster" src="{{item.logo}}"></image>
+            <view class="meta">
+              <text class="title">{{item.title}}</text>
+              <text class="sub-title">{{item.descriptions}}</text>
+            </view>
+          </view>
+      </view>    
+      <view hidden="{{filterId!=3}}" class='spot_detail_item'>
+          <view class="item" wx:for="{{eat_list}}" wx:for-item="eat">
+            <image class="poster" src="{{eat.logo}}"></image>
+            <view class="meta">
+              <text class="title">{{eat.title}}</text>
+              <text class="sub-title">{{eat.descriptions}}</text>
+              <text class="sub-title" data-phone="{{eat.tel}}" bindtap='makePhoneCall'>{{eat.tel}}</text>
+              <text class="sub-title">{{eat.person}}</text>
+            </view>
+            <!-- >
+<!--             <view class="rating">
+              <text>{{eat.rating.average}}</text>
+            </view> -->
+          </view>      
+      </view> 
+      <view hidden="{{filterId!=4}}" class='spot_detail_item'>
+          <view class="item" wx:for="{{live_list}}">
+            <image class="poster" src="{{item.logo}}"></image>
+            <view class="meta">
+              <text class="title">{{item.title}}</text>
+              <text class="sub-title">{{item.descriptions}}</text>
+              <text class="sub-title" data-phone="{{item.tel}}" bindtap='makePhoneCall'>{{item.tel}}</text>
+              <text class="sub-title">{{item.person}}</text>
+            </view>
+<!--             <view class="rating">
+              <text>{{item.rating.average}}</text>
+            </view> -->
+          </view>      
+      </view> 
+      <view hidden="{{filterId!=5}}" class='spot_detail_item'>
+          <view class="item" wx:for="{{traffic_list}}">
+            <image class="poster" src="{{item.logo}}"></image>
+            <view class="meta">
+              <text class="title">{{item.title}}</text>
+              <text class="sub-title">{{item.descriptions}}</text>
+            </view>
+          </view>                
+      </view>     
+      <view hidden="{{filterId!=6}}" class='spot_detail_item'>
+          <view class="item" wx:for="{{service_list}}" bindtap="moveTo" data-lon="{{item.lon}}" data-lat="{{item.lat}}">
+            <image class="poster" src="{{item.logo}}"></image>
+            <view class="meta">
+              <text class="title">{{item.title}}</text>
+              <text class="sub-title">点击导航</text>
+            </view>
+          </view>                
+      </view>               
+    </scroll-view>
+  </view>
+
+  
+</view>

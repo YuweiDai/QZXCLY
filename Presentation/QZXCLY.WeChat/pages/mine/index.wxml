@@ -1,0 +1,17 @@
+<!--pages/mine/index.wxml-->
+<view class="container">
+	<view class="header">
+		<image class="avatar" src="{{userInfo.avatarUrl}}" />
+		<view class="nickname">{{userInfo.nickName}}</view>
+	</view>
+	<view class="section">
+		<view class="line judgement">我的收藏</view>
+	</view>
+	<view class="section">
+		<view class="line judgement">滴滴打车</view>
+		<view class="line judgement">美团外卖</view>
+	</view>
+	<view class="section">
+		<view class="line judgement">帮助与反馈</view>
+	</view>
+</view>

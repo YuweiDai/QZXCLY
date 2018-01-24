@@ -1,12 +1,51 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/map/index",
+    
+    
+    "pages/index/spot",
+    
+   
+      "pages/index/spots",
+    "pages/index/strategies",    
+    "pages/index/activities",   
+    "pages/mine/index", 
     "pages/logs/logs"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "衢州市电子地图",
     "navigationBarTextStyle":"black"
-  }
+  },
+  "tabBar": {
+      "color": "#8a8a8a",
+      "selectedColor": "#1296db",  
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath":"/resources/images/home.png",
+        "selectedIconPath":"/resources/images/home_s.png"
+      },
+      {
+        "pagePath": "pages/map/index",
+        "text": "地图",
+        "iconPath": "/resources/images/map.png",
+        "selectedIconPath": "/resources/images/map_s.png"        
+      },     
+      {
+        "pagePath": "pages/mine/index",
+        "text": "我的",
+        "iconPath": "/resources/images/mine.png",
+        "selectedIconPath": "/resources/images/mine_s.png"        
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true 
 }

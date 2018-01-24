@@ -1,0 +1,168 @@
+/* pages/map/index.wxss */
+.container
+{
+  position: relative;
+  overflow: hidden;
+  height:100vh;  
+}
+.container .section
+{
+  position: relative;
+  width: 100%;
+  background: white;
+}
+ 
+#map
+{
+  width: 100%;
+  height:100%;
+}
+
+.top_section {
+  height: 120rpx;
+  position: absolute;
+	display: -webkit-flex;
+	left: 0;
+	top: 0;
+	width: 100%;
+	padding: 20rpx;
+	box-sizing: border-box;
+	z-index: 1;
+	-webkit-transition: background 0.5s ease-in-out;
+}
+ 
+.search_section .search ,.spotTitle_section .title{
+  position: relative;
+  width: 100%;
+	border-radius: 8rpx;
+	background: #fff;
+  border: solid 1px #888;
+}
+
+.search_section .search .icon,.spotTitle_section .title .close {
+  position: absolute;
+  top: 10rpx;
+	width: 60rpx;
+	height: 60rpx;
+	vertical-align: middle;
+}
+
+.search_section .search .icon,
+{
+  left: 10rpx;
+
+}
+
+.search_section .search .placeholder {
+  position: absolute;
+  top: 10rpx;
+  left: 75rpx;
+	color: #888;
+	font-size: 35rpx;
+	line-height: 60rpx;  
+}
+
+.spotTitle_section .title .placeholder
+{
+  position: absolute;
+  top: 10rpx;
+  left: 10rpx;
+	font-size: 35rpx;
+	line-height: 60rpx;  
+}
+
+.spotTitle_section .title .close
+{
+  right: 10rpx;
+}
+
+.spotDetail_section
+{ 
+	width: 100%;
+	padding: 20rpx;
+	box-sizing: border-box;
+	z-index: 1;
+	-webkit-transition: background 0.5s ease-in-out;
+}
+/* 后期要整合 */
+.spotDetail_section .filters {
+	display: -webkit-flex;
+  margin-bottom: 20rpx;
+}
+.spotDetail_section .filters .filter {
+	-webkit-flex: 1;
+	text-align: center;
+	color: #696969;
+	font-size: 30rpx;
+	line-height: 3;
+}
+.spotDetail_section .filters .filter .v {
+	display: none;
+}
+.spotDetail_section .filters .filter.active {
+	color: #000;
+	font-weight: bold;
+  border-bottom: solid 2rpx #1296db;
+}
+.spotDetail_section .filters .filter.active .v {
+	display: inline-block;
+}
+
+.spotDetail_section scroll-view
+{
+  width:100%
+}
+
+/* 要整合的 */
+.spot_detail .spot_detail_item
+{
+  background: white;
+  font-size: 30rpx;
+}
+
+
+.item {
+  display: flex;
+  padding: 20rpx;
+  border-bottom: 1rpx solid #eee;
+  cursor: pointer;
+  max-height: 170rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.item .poster {
+  width: 170rpx;
+  height: 170rpx;
+  margin-right: 20rpx;
+}
+
+.item .meta {
+  flex: 1;
+}
+
+.item .meta .title,
+.item .meta .sub-title {
+  display: block;
+  margin-bottom: 15rpx;
+}
+
+.item .meta .title {
+  font-size: 32rpx;
+}
+
+.item .meta .sub-title {
+  font-size: 25rpx;
+  color: #c0c0c0;
+}
+
+.item .meta .artists {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.item .rating {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #f74c31;
+}

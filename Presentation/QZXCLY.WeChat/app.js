@@ -31,9 +31,41 @@ App({
           })
         }
       }
-    })
+    });
+
+    //获取手机信息
+    wx.getSystemInfo({
+      success: res => {
+        console.log(res);
+        // 可使用窗口宽度、高度
+        console.log('height=' + res.windowHeight);
+        console.log('width=' + res.windowWidth);
+        // 计算主体部分高度,单位为px
+
+        this.globalData.deviceSize = { width: res.windowWidth, height: res.windowHeight };
+
+        /* if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+          wx.getUserInfo({
+            success: res => {
+              // 可以将 res 发送给后台解码出 unionId
+              this.globalData.userInfo = res.userInfo
+
+              // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+              // 所以此处加入 callback 以防止这种情况
+              if (this.userInfoReadyCallback) {
+                this.userInfoReadyCallback(res)
+              }
+            }
+          })
+        } */
+      }
+    });    
+   
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    deviceSize:{height:667,width:375},
+     locationDetect:false
   }
 })

@@ -1,13 +1,42 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+
+<scroll-view scroll-y="true" scroll-into-view="{{scrollIntoView}}" bindscroll="onScroll">
+		<swiper class="banner" indicator-dots="true" autoplay="true" interval="3000" duration="500">
+			<block wx:for="{{banners}}" wx:key="id">
+				<swiper-item>
+					<image bindtap="tapBanner" data-id="{{index}}" src="{{item.img}}"/>
+				</swiper-item>
+			</block>
+		</swiper>
+
+    <view class='icons'>
+    	<view class="icon" wx:for="{{icons}}" wx:for-item="icon" wx:key="id" bindtap="toSpots" data-url="{{icon.url}}">
+          <image src="{{icon.img}}"/>
+					<text>{{icon.name}}</text>				
+			</view>
+    </view>
+
+		<view class="section section-big suggestion">
+			<view class="title">必玩·推荐</view>
+      <view class='content'>
+        <view class='item' wx:for="{{suggestions}}" wx:for-item="suggestion" bindtap='navToSpot'>      
+          <image src="{{suggestion.img}}"/>
+          <view class='item-name'>{{suggestion.name}}</view>  
+        </view>
+        <view class='more'><navigator url="/pages/index/spots" hover-class="navigator-hove">更多</navigator></view>        
+      </view>
+		</view>
+
+		<view class="section section-big strategy">
+			<view class="title">玩法·攻略</view>
+      <view class='content'>
+        <view class='item' wx:for="{{strategies}}" wx:for-item="strategy">      
+          <image src="{{strategy.img}}"/>
+          <view class='item-name'>{{strategy.name}}</view>  
+        </view>
+        <view class='more'><navigator url="/pages/map/index" hover-class="navigator-hove">更多</navigator></view>  
+      </view>      
+		</view>
+	</scroll-view>
 </view>
