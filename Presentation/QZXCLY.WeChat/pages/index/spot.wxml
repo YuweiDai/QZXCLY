@@ -65,7 +65,7 @@
           </view>      
       </view> 
       <view hidden="{{filterId!=5}}" class='spot_detail_item'>
-          <view class="item" wx:for="{{traffic_list}}">
+          <view class="item" wx:for="{{traffic_list}}" bindtap='navTo'>
             <image class="poster" src="{{item.logo}}"></image>
             <view class="meta">
               <text class="title">{{item.title}}</text>

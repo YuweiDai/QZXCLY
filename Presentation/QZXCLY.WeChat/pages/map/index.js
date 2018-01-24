@@ -297,6 +297,12 @@ if(marker.id==undefined|| marker.id==null) return;
       level:20
     });
   },
+  navTo:function(event)
+  {
+    wx.redirectTo({
+      url: 'nav',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

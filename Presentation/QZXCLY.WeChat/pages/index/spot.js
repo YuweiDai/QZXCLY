@@ -131,6 +131,11 @@ Page({
       phoneNumber: event.currentTarget.dataset.phone
     }); 
   },
+  navTo: function (event) {
+    wx.redirectTo({
+      url: '../map/nav',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

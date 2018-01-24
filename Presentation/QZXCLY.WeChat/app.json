@@ -1,8 +1,9 @@
 {
   "pages":[
+  
     "pages/index/index",
     "pages/map/index",
-    
+      "pages/map/nav",
     
     "pages/index/spot",
     
