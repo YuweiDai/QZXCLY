@@ -1,30 +1,40 @@
 <view class="container">
-  <scroll-view scroll-y="true" scroll-into-view="{{scrollIntoView}}" bindscroll="onScroll">
-		<swiper class="banner"  autoplay="true" interval="3000" duration="500">
-			<block wx:for="{{photos}}" wx:key="id">
-				<swiper-item>
-					<image data-id="{{index}}" src="{{item.img}}"/>
-				</swiper-item>
-			</block>
-		</swiper>
-    <view class='spot_title'>
-      <view class="name">寻觅乡愁 · 桃源七里</view>
-      <view class='address'><i class="iconfont icon-position"></i> 衢州市西北部七里乡，距离我30Km</view>
-      <view class='distance'><navigator url="/pages/map/index" open-type="switchTab" hover-class="navigator-hover"><i class="iconfont icon-msnui-map-locate"></i> 在地图中查看</navigator></view>
-      <view class="star"><i class="iconfont icon-shoucang1"></i> 100</view>  
+  <scroll-view scroll-y="true">
+    <view class='spot_photos relative'>
+      <swiper class="banner" autoplay="true" interval="3000" duration="500" bindchange="photoChange">
+        <block wx:for="{{spot.photos}}" wx:key="id">
+          <swiper-item>
+            <image data-id="{{index}}" src="{{item.img}}"/>
+          </swiper-item>
+        </block>
+      </swiper>
+      <view class="star absolute" bindtap='starSpot'><i class="iconfont {{spot.star?'icon-buoumaotubiao44':'icon-shoucang2'}}"></i></view>    
+      <view class="tipBg absolute"></view>        
+      <view class='photoTip absolute'><i class="iconfont icon-picture}}"></i> {{spot.current_photo}}/{{spot.photos.length}}张</view>
+    </view>
+    <view class='spot_detail relative'>
+      <view class="name line">{{spot.name}}</view>
+      <view class='address line flex'>
+        <view class='mapAnchor'><navigator class='ellipsis' url="/pages/map/index" open-type="switchTab" hover-class="navigator-hover"><i class="iconfont icon-position"></i> {{spot.address}}</navigator></view>
+        <view class='navAnchor' bindtap='navTo'>导航</view>
+      </view>
+      <view class='phone line' bindtap='makePhoneCall' data-phone="{{spot.phone}}"><i class="iconfont icon-dianhua"></i> {{spot.phone}}</view>      
+      <view class='opentime line'><i class="iconfont icon-shijian01"></i> 开放时间：{{spot.opentime}}</view>
+      <view class='desc_title line'><i class="iconfont icon-campaign"></i> 景区介绍</view>
+      <view class='desc'>
+        <scroll-view scroll-y="true" >
+          {{spot.desc}}
+        </scroll-view>
+      </view>
     </view>
     <view class='spot_detail'>
       <view class='filters'>
-      	<view class="filter {{filterId==1?'active':''}}" data-id="1" bindtap="tapFilter">景区介绍</view>
 				<view class="filter {{filterId==2?'active':''}}" data-id="2" bindtap="tapFilter">玩</view>
 				<view class="filter {{filterId==3?'active':''}}" data-id="3" bindtap="tapFilter">吃</view>  
 				<view class="filter {{filterId==4?'active':''}}" data-id="4" bindtap="tapFilter">住</view>
-				<view class="filter {{filterId==5?'active':''}}" data-id="5" bindtap="tapFilter">行</view>  
       </view>
       <view hidden="{{filterId!=1}}" class='spot_detail_item'>
-      桃源七里风景区，位于浙江省钱塘江源头的衢州市西北部七里乡，距市区30公里。
-桃源七里风景区东离杭州245公里，西距婺源140公里，南距武夷山270公里，北距黄山300公里。属亚热带季风气候区，常年平均气温在14.3C，四季分明、冬夏长春秋短、气候温和。区内平均海拔650米，面积60.45平方公里，森林覆盖率达98%，总人口5082人.。
-风景区内生态旅游资源丰富，有海拨1327米大谷坪山脉、海拨1151米的老鹰石、落差70余米的杨花瀑布、飞来石瀑布、治岭石林、红军墓、望穿洞等自然景点，共有千米以上高峰15座，七里香溪沿村伴山而过。黄土岭、杨坞、均良、上村、大头、治岭等许多保存良好的古村落，与青山绿水、粉墙黛瓦构成一幅幅恬静自如、天人合一的画卷。是一处独具山里农家风韵的新兴旅游景区，生态山水、农屋农饭、避暑纳凉、高山蔬菜、峡谷漂流和耕读文化是旅游区目前最大的旅游特色。素有“全国农业旅游示范点”、“全国环境优美乡镇”之称。
+
       </view>
       <view hidden="{{filterId!=2}}" class='spot_detail_item'>
           <view class="item" wx:for="{{play_list}}">
@@ -63,15 +73,6 @@
               <text>{{item.rating.average}}</text>
             </view> -->
           </view>      
-      </view> 
-      <view hidden="{{filterId!=5}}" class='spot_detail_item'>
-          <view class="item" wx:for="{{traffic_list}}" bindtap='navTo'>
-            <image class="poster" src="{{item.logo}}"></image>
-            <view class="meta">
-              <text class="title">{{item.title}}</text>
-              <text class="sub-title">{{item.descriptions}}</text>
-            </view>
-          </view>                
       </view>                     
     </view>
   </scroll-view>

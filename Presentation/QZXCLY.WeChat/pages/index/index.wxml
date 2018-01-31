@@ -24,7 +24,7 @@
           <image src="{{suggestion.img}}"/>
           <view class='item-name'>{{suggestion.name}}</view>  
         </view>
-        <view class='more'><navigator url="/pages/index/spots" hover-class="navigator-hove">更多</navigator></view>        
+        <!-- <view class='more'><navigator url="/pages/index/spots" hover-class="navigator-hove">更多</navigator></view>         -->
       </view>
 		</view>
 
@@ -35,7 +35,7 @@
           <image src="{{strategy.img}}"/>
           <view class='item-name'>{{strategy.name}}</view>  
         </view>
-        <view class='more'><navigator url="/pages/map/index" hover-class="navigator-hove">更多</navigator></view>  
+        <!-- <view class='more'><navigator url="/pages/map/index" hover-class="navigator-hove">更多</navigator></view>   -->
       </view>      
 		</view>
 	</scroll-view>

@@ -2,8 +2,11 @@
   "pages":[
     "pages/index/index",
     "pages/map/index",
-    "pages/index/spot",       
+    "pages/map/nav",
+    
     "pages/index/spots",
+    "pages/index/spot",
+    
     "pages/index/strategies",    
     "pages/index/activities",   
     "pages/mine/index", 

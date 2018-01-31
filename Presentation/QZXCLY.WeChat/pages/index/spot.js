@@ -5,27 +5,30 @@ Page({
    * 页面的初始数据
    */
   data: {
-    photos: [
-      {
-        id: 3,
-        img: '/resources/images/index/b1.png',
-        url: '',
-        name: '百亿巨惠任你抢'
-      },
-      {
-        id: 1,
-        img: '/resources/images/index/b2.png',
-        url: '',
-        name: '告别午高峰'
-      },
-      {
-        id: 2,
-        img: '/resources/images/index/b3.png',
-        url: '',
-        name: '金牌好店'
-      }
-    ],
-    filterId:1,
+    spot:{
+      name:"康养衢江· 隐柿东坪",      
+      address:'衢州市衢江区峡川镇驻地峡口村东北部13公里',
+      phone:'13705706658',
+      opentime:'9:00-16:00',
+      desc:'东坪村地处衢州市衢江区峡川镇驻地峡口村东北部13公里，距衢州市区38公里，东临龙游县塔石镇金村村、西与乌石坂村相交、南与大理、李泽村为界，北与高岭村相连，地理位置险要，村落分散，村坊两旁山高林密，仅有一条乡村公路和千年古道与外界相连，村坊后背山山峰最高点海拔610米，村坊位置海拔420米，属典型的山区古村落。东坪村村史悠久，至今已有一千年左右，据《李氏宗谱》记载，高宗七子李烨为避武则天残害宗室子弟，远途跋涉，隐居福建古田长汀麻团岭，后移居浙江衢之西邑，往返于东坪与石屏源（今李泽）之间。元朝元统年间（1333—1335年）正式创业于东坪，男耕女织、读书知礼、克勤克俭，延续至今。东坪村气候四季分明，雨量充沛，属亚热带季风性气候，适宜针、阔叶林等多种作物生长。红柿、竹笋、油茶、板栗、粮食、蔬菜是东坪村的主要物产，其中红柿又是东坪村的主打产品历史悠久，源于唐末，盛产至今，其中号称“柿王”的一棵柿树，年产量均在3000斤左右，因为这里海拔高，温差大，光照足，无污染，特别适应柿树的种植、生长，柿果个大味甘，极富营养，曾作为贡品进献朝廷。相传，广为衢北百姓传诵的明朝中后期的“李泽娘娘”就是东坪人，这位娘娘入宫后的第一个中秋，望月思乡，想起家乡父老，想起家中红柿。然而，吃遍了全国各地送来的红柿，娘娘皆不如意，故决定以后的每年中秋，由衢州进贡一篮东坪红柿进皇宫。久而久之，东坪红柿便得名“贡柿”。东坪红柿品种众多，有客柿、西瓜柿、牛奶柿、鸟柿、汤瓶柿、六柿等。柿干质地柔软、肉质细嫩、霜厚均匀，含有蛋白质、糖、胡萝卜素等丰富的营养及磷、铁、钙、碘等多种微量元素，具有很高的营养及药用价值。',
+      star:true,
+      photos: [
+        {
+          id: 3,
+          img: '/resources/images/index/dp.jpg',
+        },
+        {
+          id: 1,
+          img: '/resources/images/index/b2.png',
+        },
+        {
+          id: 2,
+          img: '/resources/images/index/b3.png',
+        }
+      ],
+      current_photo:1      
+    },
+    filterId:2,
     play_list:[
       {
         title:"浙江省农家乐示范村——黄土岭",
@@ -119,22 +122,56 @@ Page({
 
 
   },
-  tapFilter: function (e) {
-    
+  tapFilter: function (e) {    
     this.setData({
       filterId: e.target.dataset.id, 
     });
   },
   makePhoneCall:function(event){
-    console.log(event);
-     wx.makePhoneCall({
-      phoneNumber: event.currentTarget.dataset.phone
-    }); 
+    var phone = event.currentTarget.dataset.phone;
+     wx.showModal({
+      title: '提示',
+      content: '是否拨打电话 ' + phone+' ?',
+      success: function (res) {
+        if (res.confirm) {
+          wx.makePhoneCall({
+            phoneNumber: phone
+          }); 
+        }
+      }
+    })
   },
   navTo: function (event) {
     wx.redirectTo({
       url: '../map/nav',
     })
+  },
+  starSpot:function(event)
+  {
+    var spot=this.data.spot;
+    spot.star=!spot.star;
+    this.setData(
+      {
+        spot: spot
+      }
+    );
+    var title=spot.star?'收藏成功':'取消收藏';
+    wx.showToast({
+      title: title,
+      icon: 'none',
+      duration: 2000
+    })
+  },
+  photoChange:function(event)
+  {
+    var spot = this.data.spot;
+    spot.current_photo= event.detail.current+1;
+    this.setData(
+      {
+        spot: spot
+      }
+    );
+    console.log(event.detail);
   },
   /**
    * 生命周期函数--监听页面加载

@@ -22,10 +22,19 @@
 }
 
 .navigator-hover {
-    color:blue;
+    color:#a4dd4a;
 }
 .ellipsis {
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;
+}
+
+.absolute
+{
+  position: absolute;
+}
+.relative
+{
+  position: relative;
 }

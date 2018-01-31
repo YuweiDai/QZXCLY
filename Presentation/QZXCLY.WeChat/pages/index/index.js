@@ -7,9 +7,9 @@ Page({
     banners: [
       {
         id: 3,
-        img: '/resources/images/index/b1.png',
+        img: '/resources/images/index/b1.jpg',
         url: '',
-        name: '百亿巨惠任你抢'
+        name: '康养衢江·隐柿东坪'
       },
       {
         id: 1,
@@ -45,17 +45,16 @@ Page({
       }
     ],
     suggestions:[
-      { name: "七里", img: "/resources/images/index/ql.jpg" },
-      { name: "九华", img: "/resources/images/index/jh.gif" },
-      { name: "石梁", img: "/resources/images/index/sl.gif" },
+      { name: "康养衢江·隐柿东坪", img: "/resources/images/index/dp_1.jpg" },
+      { name: "寻梦乡愁·桃源七里", img: "/resources/images/index/jh.gif" },
+      { name: "七彩长虹", img: "/resources/images/index/sl.gif" },
       { name: "杨林", img: "/resources/images/index/yl.jpg" }                        
     ],
     strategies: [
-      { name: "玩转七里", img: "/resources/images/index/s1.png" },
-      { name: "九华心得", img: "/resources/images/index/s2.png" },
-      { name: "石梁体验", img: "/resources/images/index/s3.png" }
+      { name: "摘柿子，赏枫叶，走古道，东坪等你来！", img: "/resources/images/index/dp.jpg" },
+      { name: "桃源七里•图说2017", img: "/resources/images/index/ql.jpg" },
+      { name: "画里开化‖浙西乡村旅游的一个“引爆点”——七彩长虹！", img: "/resources/images/index/ch.jpg" }
     ], 
-    motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
@@ -85,18 +84,18 @@ Page({
     })
   },
   onLoad: function () {
-    wx.showModal({
-      title: '提示',
-      content: '检测到您正位于七里景区，是否前往景区地图？',
-      success: function (res) {
-        if (res.confirm) {
-          app.globalData.locationDetect=true;
-          wx.switchTab({
-            url: '../map/index',
-          })
-        }
-      }
-    })
+    // wx.showModal({
+    //   title: '提示',
+    //   content: '检测到您正位于东坪景区，是否前往景区地图？',
+    //   success: function (res) {
+    //     if (res.confirm) {
+    //       app.globalData.locationDetect=true;
+    //       wx.switchTab({
+    //         url: '../map/index',
+    //       })
+    //     }
+    //   }
+    // })
 
     if (app.globalData.userInfo) {
       this.setData({
