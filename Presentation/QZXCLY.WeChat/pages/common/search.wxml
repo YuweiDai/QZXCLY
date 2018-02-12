@@ -1,0 +1,8 @@
+<template name="searchBar">	
+  <view class="header {{scrollDown?'scrolled':''}}">		
+		<view class="search" bindtap="tapSearch">
+			<image class="icon" src="/resources/images/index/icon_search.png"/>
+			搜索你想去的地方...
+		</view>   
+	</view>
+</template>

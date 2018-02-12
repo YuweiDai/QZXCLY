@@ -21,7 +21,6 @@
   font-size: 30rpx;
   bottom: 20rpx;
   left: 20rpx;
-
   color: white;
   text-align: center;
 }
@@ -51,7 +50,23 @@
   padding: 25rpx 0;  
 }
 
-.spot_detail .address,.spot_detail .phone,.spot_detail .opentime,.spot_detail .desc_title
+.spot_detail .name .tags
+{
+  line-height: 22rpx;
+}
+
+.spot_detail .name .tags .tag
+{
+  display: inline-block;
+  border:1px solid green;
+  color:green;
+  font-size:24rpx;
+  padding:4rpx 8rpx;
+  border-radius: 8rpx;
+  margin-right: 8rpx;
+}
+
+.spot_detail .address,.spot_detail .phone,.spot_detail .price,.spot_detail .opentime,.spot_detail .desc_title
 {
   font-size: 30rpx;
   line-height: 50rpx;
@@ -66,7 +81,7 @@
 }
 .spot_detail .address .mapAnchor
 {
-  width: 610rpx;
+  width: 600rpx;
 }
 
 .spot_detail .address .navAnchor
@@ -89,7 +104,6 @@
 
 .spot_detail .desc scroll-view
 {
-
   height: 300rpx;
 }
 .spot_detail,.spot_detail

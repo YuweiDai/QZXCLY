@@ -234,7 +234,7 @@ if(marker.id==undefined|| marker.id==null) return;
 
     this.setData({
       showSingelSpot: true,
-      mapHeight: app.globalData.deviceSize.height - 276,
+      mapHeight: app.globalData.systemInfo.windowHeight - 276,
       detailHeight: 200,
     });
 
@@ -274,7 +274,7 @@ if(marker.id==undefined|| marker.id==null) return;
       level: 11,
       markers: markers,
       showSingelSpot: false,
-      mapHeight: app.globalData.deviceSize.height,
+      mapHeight: app.globalData.systemInfo.windowHeight,
       detailHeight: 0,      
     });
   },
@@ -329,7 +329,7 @@ if(marker.id==undefined|| marker.id==null) return;
     else
     {
       this.setData({
-        mapHeight: app.globalData.deviceSize.height,
+        mapHeight: app.globalData.systemInfo.windowHeight,
         detailHeight: 0,
       });
 

@@ -41,8 +41,8 @@ App({
         console.log('height=' + res.windowHeight);
         console.log('width=' + res.windowWidth);
         // 计算主体部分高度,单位为px
-
-        this.globalData.deviceSize = { width: res.windowWidth, height: res.windowHeight };
+        this.globalData.systemInfo=res;
+        this.globalData.deviceSize = { width: res.windowWidth, height: res.windowHeight, pixelRatio: res.pixelRatio };
 
         /* if (res.authSetting['scope.userInfo']) {
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
@@ -65,7 +65,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    deviceSize:{height:667,width:375},
-     locationDetect:false
+    systemInfo:null,
+    locationDetect:false
   }
 })

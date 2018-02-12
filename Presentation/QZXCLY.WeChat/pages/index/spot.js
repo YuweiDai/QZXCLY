@@ -7,6 +7,8 @@ Page({
   data: {
     spot:{
       name:"康养衢江· 隐柿东坪",      
+      tags: ["AAA级景区", "柿子节", "康养"],
+      price:"免费",
       address:'衢州市衢江区峡川镇驻地峡口村东北部13公里',
       phone:'13705706658',
       opentime:'9:00-16:00',
@@ -106,21 +108,6 @@ Page({
       logo: "/resources/images/index/l2.png"
     }    
   ],
-  traffic_list:[
-    {
-      title:"自驾路线（点击导航）",
-      descriptions:"自驾游客，在杭金衢高速公路衢州西高速入口下，下高速后，在第一个丁字入口往左拐",
-      logo:'/resources/images/index/icon_5.jpg'
-    },
-    {
-      title: "公交502路",
-      descriptions: "到衢州新火车站、衢州长途汽车站、衢州汽车南站后，乘坐7路公交或打的到衢州交警支队柯城大队站下，在街对面公交站牌处，乘坐502公交直达七里。502公交每隔40～50分钟一班。也可以乘坐其他公交线路或打的到斗潭站下，再向北步行220米左右，到达502公交乘坐处",
-      logo: '/resources/images/index/icon_12.jpg'
-    },
-        
-  ],
-
-
   },
   tapFilter: function (e) {    
     this.setData({
@@ -184,7 +171,10 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    var that=this;
+    wx.setNavigationBarTitle({
+      title: that.data.spot.name
+    });
   },
 
   /**

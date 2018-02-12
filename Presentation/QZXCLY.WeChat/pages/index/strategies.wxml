@@ -1,2 +1,15 @@
-<!--pages/index/strategies.wxml-->
-<text>pages/index/strategies.wxml</text>
+<import src="../common/strategy-list.wxml" />
+<import src="../common/search.wxml" />
+
+<view class="container">
+  <template is="searchBar" /> 
+  <view class='strategies'>
+    <scroll-view scroll-y="true" scroll-into-view="{{scrollIntoView}}"  style='height:{{strategiesHeight}}px'>	   
+      <view class="section section-big strategy">
+        <view class='content'>
+          <template is="strategy" data="{{item}}" wx:for="{{strategies}}" />
+        </view>      
+      </view>
+    </scroll-view>
+  </view>
+</view>

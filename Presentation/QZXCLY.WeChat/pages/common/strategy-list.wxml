@@ -1,0 +1,9 @@
+<!-- 攻略卡片 -->
+<template name="strategy">
+  <view class='item'>      
+    <navigator url='strategy?id={{item.id}}'>
+      <image src="{{item.img}}"/>
+      <view class='item-name'>{{item.title}}</view>  
+    </navigator>
+  </view>
+</template>

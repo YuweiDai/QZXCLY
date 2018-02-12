@@ -46,14 +46,14 @@ Page({
     ],
     suggestions:[
       { name: "康养衢江·隐柿东坪", img: "/resources/images/index/dp_1.jpg" },
-      { name: "寻梦乡愁·桃源七里", img: "/resources/images/index/jh.gif" },
-      { name: "七彩长虹", img: "/resources/images/index/sl.gif" },
-      { name: "杨林", img: "/resources/images/index/yl.jpg" }                        
+      { name: "寻梦乡愁·桃源七里", img: "/resources/images/index/ql.png" },
+      { name: "七彩长虹", img: "/resources/images/index/ch.png" },
+      { name: "廿八都古镇印象", img: "/resources/images/index/nbd.png" }                        
     ],
     strategies: [
-      { name: "摘柿子，赏枫叶，走古道，东坪等你来！", img: "/resources/images/index/dp.jpg" },
-      { name: "桃源七里•图说2017", img: "/resources/images/index/ql.jpg" },
-      { name: "画里开化‖浙西乡村旅游的一个“引爆点”——七彩长虹！", img: "/resources/images/index/ch.jpg" }
+      { id: 0,title: "摘柿子，赏枫叶，走古道，东坪等你来！", img: "/resources/images/index/dp.jpg" },
+      { id: 1,title: "桃源七里•图说2017", img: "/resources/images/index/ql.jpg" },
+      { id: 2,title: "画里开化‖浙西乡村旅游的一个“引爆点”——七彩长虹！", img: "/resources/images/index/ch.jpg" }
     ], 
     userInfo: {},
     hasUserInfo: false,

@@ -1,0 +1,16 @@
+<import src="../common/strategy-list.wxml" />
+<view class="container">
+
+<scroll-view scroll-y="true" scroll-into-view="{{scrollIntoView}}">
+
+
+	
+		<view class="section section-big strategy">
+			<view class="title">玩法·攻略</view>
+      <view class='content'>
+        <template is="strategy" data="{{item}}" wx:for="{{strategies}}" />
+        <!-- <view class='more'><navigator url="/pages/map/index" hover-class="navigator-hove">更多</navigator></view>   -->
+      </view>      
+		</view>
+	</scroll-view>
+</view>

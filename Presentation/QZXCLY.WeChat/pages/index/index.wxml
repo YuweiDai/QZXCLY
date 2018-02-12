@@ -1,7 +1,9 @@
+<import src="../common/strategy-list.wxml" />
+
 <!--index.wxml-->
 <view class="container">
 
-<scroll-view scroll-y="true" scroll-into-view="{{scrollIntoView}}" bindscroll="onScroll">
+<scroll-view scroll-y="true" scroll-into-view="{{scrollIntoView}}">
 		<swiper class="banner" indicator-dots="true" autoplay="true" interval="3000" duration="500">
 			<block wx:for="{{banners}}" wx:key="id">
 				<swiper-item>
@@ -31,10 +33,7 @@
 		<view class="section section-big strategy">
 			<view class="title">玩法·攻略</view>
       <view class='content'>
-        <view class='item' wx:for="{{strategies}}" wx:for-item="strategy">      
-          <image src="{{strategy.img}}"/>
-          <view class='item-name'>{{strategy.name}}</view>  
-        </view>
+        <template is="strategy" data="{{item}}" wx:for="{{strategies}}" />
         <!-- <view class='more'><navigator url="/pages/map/index" hover-class="navigator-hove">更多</navigator></view>   -->
       </view>      
 		</view>

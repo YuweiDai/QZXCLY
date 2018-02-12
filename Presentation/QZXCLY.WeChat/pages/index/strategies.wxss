@@ -1,1 +1,7 @@
 /* pages/index/strategies.wxss */
+.strategies
+{
+  margin-top: 98rpx;
+}
+
+ 
