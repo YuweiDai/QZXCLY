@@ -38,8 +38,8 @@ Page({
     var endPoint={
         iconPath: "../../resources/images/map/marker_checked.png",
       id: 0,
-      latitude: 29.1484507736,
-      longitude: 118.7620890141, 
+      latitude: 29.1851002329,
+      longitude: 119.0333890915,
       width: 24,
       height: 34
     };
@@ -48,7 +48,7 @@ Page({
 
         myAmapFun.getDrivingRoute({
           origin: longitude + ',' + latitude,
-          destination: '118.7620890141,29.1484507736',
+          destination: '119.0333890915,29.1851002329',
           success: function (data) {
             var points = [];
             if (data.paths && data.paths[0] && data.paths[0].steps) {
@@ -143,14 +143,14 @@ Page({
 
   goDetail: function () {
 wx.openLocation({
-  latitude: 29.1484507736,
-  longitude: 118.7620890141,
+  latitude:  29.1851002329,
+  longitude: 119.0333890915,
 });
   },
   goToCar: function (e) {
     myAmapFun.getDrivingRoute({
       origin: longitude + ',' + latitude,
-      destination: '118.7620890141,29.1484507736',
+      destination: '119.0333890915,29.1851002329',
       success: function (data) {
         var points = [];
         if (data.paths && data.paths[0] && data.paths[0].steps) {
@@ -193,7 +193,7 @@ wx.openLocation({
     var that = this;
     myAmapFun.getTransitRoute({
       origin: that.data.markers[0].longitude + ',' + that.data.markers[0].latitude,
-      destination: '118.7620890141,29.1484507736',
+      destination: '119.0333890915,29.1851002329',
       city:'衢州',
       strategy:0,
       success: function (data) {
@@ -239,7 +239,7 @@ wx.openLocation({
     var that = this;
     myAmapFun.getRidingRoute({
       origin: that.data.markers[0].longitude + ',' + that.data.markers[0].latitude,
-      destination: '118.7620890141,29.1484507736',
+      destination: '119.0333890915,29.1851002329',
       success: function (data) {
         var points = [];
         if (data.paths && data.paths[0] && data.paths[0].steps) {
@@ -284,7 +284,7 @@ wx.openLocation({
     var that=this;
     myAmapFun.getDrivingRoute({
       origin: that.data.markers[0].longitude + ',' + that.data.markers[0].latitude,
-      destination: '118.7620890141,29.1484507736',
+      destination: '119.0333890915,29.1851002329',
       success: function (data) {
         var points = [];
         if (data.paths && data.paths[0] && data.paths[0].steps) {

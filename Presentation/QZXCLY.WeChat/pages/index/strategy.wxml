@@ -1,456 +1,449 @@
 <!--pages/index/strategy.wxml-->
-<section>
-    <section class="KolEditor" data-tools-id="20186" style="position: relative;">
-        <section style="margin: 22px auto 10px; text-align: center; position: relative;">
-            <img src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/095844f3d135cdb134c3409fe8a72611c4c19b.jpg" alt="" data-tools-id="35232"/>
-        </section>
-    </section>
-    <section class="KolEditor" data-tools-id="22207" style="position: relative;">
-        <section style="margin:10px auto;background-image:url(http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/170331c7e9fcfccec75ea46e791ee76bc9b4ca.png);background-repeat:no-repeat;background-size:100% auto;background-position: left bottom;width:320px;height: 100px;">
-            <section style="width: 35px;margin: 0 auto;margin-top:25px;margin-left: 20px;float: left;">
-                <img src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/17033248e7453986d411f6bb328b11f8ada191.png" alt=""/>
-            </section>
-            <section style="float: left; margin-left: 60px; margin-top: 33px;">
-                <p style="margin:0px;color:#3cb8a0;font-size:18px;">
-                    康养衢州   隐柿东坪
-                </p>
-            </section>
-        </section>
-    </section>    <span style="font-size: 16px;">    <span style="font-size: 16px; color: rgb(0, 176, 240);">衢江区东坪村是省级3A级景区村庄、省级特色旅游村、衢州市最美乡村。东坪村有两件宝，最为人津津乐道。一是景区内一条始建于唐朝的东坪古道，二是东坪村熟于金秋的红柿子。</span></span>
-    <section class="KolEditor" data-tools-id="90889" style="position: relative;">
-        <section style="width:180px;margin:10px auto">
-            <img src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/170332885599a80e42ae7180826e73d386e996.png" style="vertical-align:top;"/>
-        </section>
-    </section>
-    <section class="KolEditor" data-tools-id="10445" style="position: relative;">
-        <section style="">
-            <section style="display:flex;justify-content:center;">
-                <p style="margin:0px;text-align:center;color:#fff;height:50px;line-height:50px;background-color:#3cb8a0;font-size:18px;padding:0px 30px;text-align:center;margin-bottom:-20px;">
-                    东坪古道
-                </p>
-            </section>
-            <section style="text-align:center;border:3px solid #3cb8a0;">
-                <section style="background-color:#fff;margin:0 auto;width:150px;display:inline-block;float:left">
-                    <img src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/170332e0839d39903c77db4525c36f5e27f7ce.png" style="vertical-align:top;"/>
-                </section>
-                <section style="background-color:#fff;margin:0 auto;width:150px;display:inline-block;float:right">
-                    <img src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/170332cc70dcddda8308d25d77c8c1288a96ed.png" style="vertical-align:top;"/>
-                </section>
-                <section style="clear:both;padding:20px;padding-top:0px;">
-                    <p style="margin:0px;text-align:left;font-size:16px;color:#666666;line-height:1.5;clear:none;">
-                        <span style="color: rgb(0, 176, 240);">       从东坪山脚下起，一条总长1500米，宽2米，共1144级的青石板古道蜿蜒盘曲伸向山顶，这便是有1300多年历史的东坪唐朝古道。据《衢县志》等史料记载，武则天在位时，为防武后残害，一批李家宗室外迁至东坪，随后便修建了此东坪古道。</span>
+<view class="KolEditor" style="border: 0px none; position: relative;" data-tools-id="58526">
+    <view>
+        <view class="KolEditor" data-tools-id="22207" style="position: relative; text-align:center;">
+          摘柿子，赏枫叶，走古道，东坪等你来！
+        </view>   
+        <view class="KolEditor" data-tools-id="22207" style="position: relative;">  
+         <span style="font-size: 16px; color: rgb(0, 176, 240);">衢江区东坪村是省级3A级景区村庄、省级特色旅游村、衢州市最美乡村。东坪村有两件宝，最为人津津乐道。一是景区内一条始建于唐朝的东坪古道，二是东坪村熟于金秋的红柿子。</span></view>
+        <view class="KolEditor" data-tools-id="90889" style="position: relative;">
+            <view style="width:180px;margin:10px auto">
+                <image src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/170332885599a80e42ae7180826e73d386e996.png" style="vertical-align:top;"/>
+            </view>
+        </view>
+        <view class="KolEditor" data-tools-id="10445" style="position: relative;">
+            <view style="">
+                <view style="display:flex;justify-content:center;">
+                    <p style="margin:0px;text-align:center;color:#fff;height:50px;line-height:50px;background-color:#3cb8a0;font-size:18px;padding:0px 30px;text-align:center;margin-bottom:-20px;">
+                        东坪古道
                     </p>
-                    <p style="margin:0px;text-align:left;font-size:16px;color:#666666;line-height:1.5;clear:none;">
-                        <span style="color: rgb(0, 176, 240);"></span>
+                </view>
+                <view style="text-align:center;border:3px solid #3cb8a0;">
+                    <view style="background-color:#fff;margin:0 auto;width:150px;display:inline-block;float:left">
+                        <image src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/170332e0839d39903c77db4525c36f5e27f7ce.png" style="vertical-align:top;"/>
+                    </view>
+                    <view style="background-color:#fff;margin:0 auto;width:150px;display:inline-block;float:right">
+                        <image src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/170332cc70dcddda8308d25d77c8c1288a96ed.png" style="vertical-align:top;"/>
+                    </view>
+                    <view style="clear:both;padding:20px;padding-top:0px;">
+                        <p style="margin:0px;text-align:left;font-size:16px;color:#666666;line-height:1.5;clear:none;">
+                            <span style="color: rgb(0, 176, 240);">       从东坪山脚下起，一条总长1500米，宽2米，共1144级的青石板古道蜿蜒盘曲伸向山顶，这便是有1300多年历史的东坪唐朝古道。据《衢县志》等史料记载，武则天在位时，为防武后残害，一批李家宗室外迁至东坪，随后便修建了此东坪古道。</span>
+                        </p>
+                        <p style="margin:0px;text-align:left;font-size:16px;color:#666666;line-height:1.5;clear:none;">
+                            <span style="color: rgb(0, 176, 240);"></span>
+                        </p>
+                        <view class="KolEditor" style="border: 0px none;text-align:center;">
+                            <image src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/1011166a3dc3d5d55bb407bb8a94baae4c3c91.jpg" style="margin:0px auto;max-width:100%;"/>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="KolEditor" style="position: relative;" data-tools-id="75926">
+            <view style="width: 100%; margin:60px auto 20px;">
+                <view style="text-align: center;margin-top: -44px;">
+                    <view style="display: inline-block; text-align: center;height: 55px;border: 2px solid #545d75;box-sizing: border-box;background-color: #fff;">
+                        <view style="width: 19px;height: 55px;background-image: url(http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/194644746a8670c4ac6ba057731935947ad8fe.png);background-repeat:no-repeat;background-size: cover;float: left;margin-left:-2px;margin-top: -2px;"></view>
+                        <view style="padding: 0 20px;float: left;line-height: 51px;">
+                            <p style="font-size: 18px;margin: 0;">
+                                东坪·红柿子
+                            </p>
+							
+                        </view>
+                        <view style="width: 19px;height: 55px;background-image: url(http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/19464475232ff33288101f7e21e27bd58f5975.png);background-repeat:no-repeat;background-size: cover;float: left;margin-right:-2px; transform: rotate(180deg);margin-top: -2px;"></view>
+                    </view>
+                    <view style="width: 100%;height: 2px;background-color: #545d75;margin-top: -19px;"></view>
+                </view>
+                <view style="padding: 0 12px;margin-top: -10px;">
+                    <view style="border: 2px solid #545d75;border-top: none; padding: 32px 15px 0;">
+                        <view style="width: 100%; text-align: center; position: relative;">
+                            <image src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/1012351879047f974cb558a0d17f7813f07385.jpg" style="width: 100%;" data-tools-id="38143"/>
+                        </view>
+                        <view style="text-align: center;margin-top: 5px;">
+                            <p style="margin: 0px; font-size: 18px; color: rgb(102, 102, 102); text-align: left;">
+                                红柿是东坪村的主打产品，历史悠久，源于唐末，盛产至今，因为这里海拔高，温差大，光照足，东坪红柿因此声名远扬，早在南宋时期就作为浙西贡品送入宫中。
+                            </p>
+                            <p style="margin: 0px; font-size: 18px; color: rgb(102, 102, 102); text-align: left;">
+                                柿子红了的时候也是村民最忙的时候，忙着收柿子，忙着削柿子，在庭院的前后，也总会摆放晾晒着一片片村民丰收的果实。
+                            </p>
+                            <p style="border: 0px none; text-align: center; position: relative;">
+                                <image src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/103726052e3fc15d008483785af9dac2423f64.jpg" style="margin:0px auto;max-width:100%;"/>
+                            </p>
+                            <p style="text-align: left;">
+                                古道老树红柿，东坪的秋天到了最美的时候
+                            </p>
+                            <p style="text-align: left;">
+                                赶着这浓浓的秋意
+                            </p>
+							
+                        </view>
+                        <view style="width: 100%;height: 19px;">
+                            <view style="background-image: url(http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/194644faf9e7051d9c0cbbb845a5701a9bef10.png); background-repeat: no-repeat;float: left;width: 19px;height: 19px;margin-left: -17px;margin-top: 2px;"></view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="KolEditor" style="margin-top: 20px; position: relative;" data-tools-id="48347">
+            <view style="display:flex;justify-content:space-between;">
+                <view style="width:35%;height:50px;border-top:2px solid rgb(43,52,122);border-left:2px solid rgb(43,52,122);"></view>
+                <view style="width:35%;height:50px;border-top:2px solid rgb(43,52,122);border-right:2px solid rgb(43,52,122);"></view>
+            </view>
+            <view style="width: 60%; border-radius: 100%; border: 2px dashed rgb(43, 52, 122); padding: 8px; margin: -40px auto 0px; position: relative;">
+                <image src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/10394684dd96f692d6ca92f819e0ce8c938b8b.jpg" style="width:100%;border-radius:100%;vertical-align:top" data-tools-id="59720"/>
+            </view>
+            <view style="text-align: center;">
+                <view style="margin-top:15px;padding:0 30px 10px 30px;border-bottom:2px solid rgb(43,52,122);display: inline-block;">
+                    <p class="title active" style="font-size:18px;font-weight:bold;color:rgb(43,52,122);min-width:1px;">
+                        2017年衢州市登山季暨东坪露营文化节
                     </p>
-                    <section class="KolEditor" style="border: 0px none;text-align:center;">
-                        <img src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/1011166a3dc3d5d55bb407bb8a94baae4c3c91.jpg" style="margin:0px auto;max-width:100%;"/>
-                    </section>
-                </section>
-            </section>
-        </section>
-    </section>
-    <section class="KolEditor" style="position: relative;" data-tools-id="75926">
-        <section style="width: 100%; margin:60px auto 20px;">
-            <section style="text-align: center;margin-top: -44px;">
-                <section style="display: inline-block; text-align: center;height: 55px;border: 2px solid #545d75;box-sizing: border-box;background-color: #fff;">
-                    <section style="width: 19px;height: 55px;background-image: url(http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/194644746a8670c4ac6ba057731935947ad8fe.png);background-repeat:no-repeat;background-size: cover;float: left;margin-left:-2px;margin-top: -2px;"></section>
-                    <section style="padding: 0 20px;float: left;line-height: 51px;">
-                        <p style="font-size: 18px;margin: 0;">
-                            东坪·红柿子
-                        </p>
-							
-                    </section>
-                    <section style="width: 19px;height: 55px;background-image: url(http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/19464475232ff33288101f7e21e27bd58f5975.png);background-repeat:no-repeat;background-size: cover;float: left;margin-right:-2px; transform: rotate(180deg);margin-top: -2px;"></section>
-                </section>
-                <section style="width: 100%;height: 2px;background-color: #545d75;margin-top: -19px;"></section>
-            </section>
-            <section style="padding: 0 12px;margin-top: -10px;">
-                <section style="border: 2px solid #545d75;border-top: none; padding: 32px 15px 0;">
-                    <section style="width: 100%; text-align: center; position: relative;">
-                        <img src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/1012351879047f974cb558a0d17f7813f07385.jpg" style="width: 100%;" data-tools-id="38143"/>
-                    </section>
-                    <section style="text-align: center;margin-top: 5px;">
-                        <p style="margin: 0px; font-size: 18px; color: rgb(102, 102, 102); text-align: left;">
-                            红柿是东坪村的主打产品，历史悠久，源于唐末，盛产至今，因为这里海拔高，温差大，光照足，东坪红柿因此声名远扬，早在南宋时期就作为浙西贡品送入宫中。
-                        </p>
-                        <p style="margin: 0px; font-size: 18px; color: rgb(102, 102, 102); text-align: left;">
-                            柿子红了的时候也是村民最忙的时候，忙着收柿子，忙着削柿子，在庭院的前后，也总会摆放晾晒着一片片村民丰收的果实。
-                        </p>
-                        <p style="border: 0px none; text-align: center; position: relative;">
-                            <img src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/103726052e3fc15d008483785af9dac2423f64.jpg" style="margin:0px auto;max-width:100%;"/>
-                        </p>
-                        <p style="text-align: left;">
-                            古道老树红柿，东坪的秋天到了最美的时候
-                        </p>
-                        <p style="text-align: left;">
-                            赶着这浓浓的秋意
-                        </p>
-							
-                    </section>
-                    <section style="width: 100%;height: 19px;">
-                        <section style="background-image: url(http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/194644faf9e7051d9c0cbbb845a5701a9bef10.png); background-repeat: no-repeat;float: left;width: 19px;height: 19px;margin-left: -17px;margin-top: 2px;"></section>
-                    </section>
-                </section>
-            </section>
-        </section>
-    </section>
-    <section class="KolEditor" style="margin-top: 20px; position: relative;" data-tools-id="34909">
-        <section style="display:flex;justify-content:space-between;">
-            <section style="width:35%;height:50px;border-top:2px solid rgb(43,52,122);border-left:2px solid rgb(43,52,122);"></section>
-            <section style="width:35%;height:50px;border-top:2px solid rgb(43,52,122);border-right:2px solid rgb(43,52,122);"></section>
-        </section>
-        <section style="width: 60%; border-radius: 100%; border: 2px dashed rgb(43, 52, 122); padding: 8px; margin: -40px auto 0px; position: relative;">
-            <img src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/10394684dd96f692d6ca92f819e0ce8c938b8b.jpg" style="width:100%;border-radius:100%;vertical-align:top" data-tools-id="59720"/>
-        </section>
-        <section style="text-align: center;">
-            <section style="margin-top:15px;padding:0 30px 10px 30px;border-bottom:2px solid rgb(43,52,122);display: inline-block;">
-                <p class="title active" style="font-size:18px;font-weight:bold;color:rgb(43,52,122);min-width:1px;">
-                    2017年衢州市登山季暨东坪露营文化节
+                </view>
+            </view>
+            <view style="width:10px;height:10px;background:rgb(43,52,122);transform: rotate(45deg);margin: -6px auto;"></view>
+            <view style="text-indent: 28px;padding:15px;">
+                <p>
+                    <span style="color: rgb(0, 176, 240);">文化节活动有趣多样，有音乐、有游戏、有派对，一起来看下，你最想参与哪个环节——</span>
                 </p>
-            </section>
-        </section>
-        <section style="width:10px;height:10px;background:rgb(43,52,122);transform: rotate(45deg);margin: -6px auto;"></section>
-        <section style="text-indent: 28px;padding:15px;">
-            <p>
-                <span style="color: rgb(0, 176, 240);">文化节活动有趣多样，有音乐、有游戏、有派对，一起来看下，你最想参与哪个环节——</span>
-            </p>
-            <p>
-                <span style="color: rgb(0, 176, 240);"></span>
-            </p>
-            <section class="KolEditor" style="position: relative;" data-tools-id="58411">
-                <section style="margin: 5px auto;text-align: center;">
-                    <section style="display: inline-block;">
-                        <section style="overflow: hidden;">
-                            <section style="width: 40px;float: left;margin-top: 3px;">
-                                <img src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/141529597154ebd628fc228ebd55e48f0424ba.png" style="width: 40px;"/>
-                            </section>
-                            <section style="border: 2px solid #de8130;border-radius: 3px;padding:0px 30px;color:#de8130;font-size: 18px;float: left;">
-                                <p style="margin: 0px auto;line-height: 37px;">
-                                    <span style="font-family: &quot;PingFang SC&quot;, Arial, &quot;\\5FAE软雅黑&quot;, &quot;\\5B8B体&quot;, simsun, sans-serif; font-variant-numeric: normal; font-variant-east-asian: normal; line-height: 41.04px; text-align: justify; widows: 1; font-size: 18px; color: rgb(255, 0, 0);">东坪喃语微音乐会</span>
-                                </p>
+                <p>
+                    <span style="color: rgb(0, 176, 240);"></span>
+                </p>
+                <view class="KolEditor" style="position: relative;" data-tools-id="58411">
+                    <view style="margin: 5px auto;text-align: center;">
+                        <view style="display: inline-block;">
+                            <view style="overflow: hidden;">
+                                <view style="width: 40px;float: left;margin-top: 3px;">
+                                    <image src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/141529597154ebd628fc228ebd55e48f0424ba.png" style="width: 40px;"/>
+                                </view>
+                                <view style="border: 2px solid #de8130;border-radius: 3px;padding:0px 30px;color:#de8130;font-size: 18px;float: left;">
+                                    <p style="margin: 0px auto;line-height: 37px;">
+                                        <span style="font-family: &quot;PingFang SC&quot;, Arial, &quot;\\5FAE软雅黑&quot;, &quot;\\5B8B体&quot;, simsun, sans-serif; font-variant-numeric: normal; font-variant-east-asian: normal; line-height: 41.04px; text-align: justify; widows: 1; font-size: 18px; color: rgb(255, 0, 0);">东坪喃语微音乐会</span>
+                                    </p>
 							
-                            </section>
-                            <section style="width: 40px;float: left;margin-top: 3px;">
-                                <img src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/1415296d116938f1e172ca3f05b463dad79a4e.png" style="width: 40px;"/>
-                            </section>
-                        </section>
-                    </section>
-                </section>
-            </section>
-            <section class="KolEditor" style="border: 0px none; text-align: left; position: relative;" data-tools-id="80718">
-                <img src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/113057df0265aa56ac172c662d5f792de250ac.jpg" style="margin:0px auto;max-width:100%;" data-tools-id="48402"/>
-            </section>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);">来一场乡村音乐会</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);">唱出城市与乡野之间割舍不断的乡愁</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);">以及那美好的青春记忆</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);">红柿采摘</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);"></span>
-            </p>
-            <section class="KolEditor" style="border: 0px none; text-align: center; position: relative;" data-tools-id="94200">
-                <img src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/113301a12b9236f1f1fb12dd06cbd20e9169bf.jpg" style="margin:0px auto;max-width:100%;" data-tools-id="93348"/>
-            </section>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);">唐朝时</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);">东坪的柿子是朝廷贡品</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);">看着这么多柿子</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);">想不想尝一尝</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);">品味一下当年贡品的味道？</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);"></span>
-            </p>
-            <section class="KolEditor" style="border: 0px none; text-align: center; position: relative;" data-tools-id="95424">
-                <img src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/11340483d59595e1237c22639f56d99b931283.jpg" style="margin:0px auto;max-width:100%;" data-tools-id="63358"/>
-            </section>
-            <p>
-                <br/>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(255, 0, 0);">柿界大爱公益游戏</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(255, 0, 0);">游戏一</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(255, 0, 0);">本轮游戏为竞猜“皇帝御赐”柿子礼盒准确价格</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(255, 0, 0);">最终准确猜价的来宾</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(255, 0, 0);">以该价格捐赠“柿界大爱”公益金</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(255, 0, 0);">即可获得该柿子礼盒一份</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(255, 0, 0);">柿子礼盒</span>
-            </p>
-            <p>
-                <span style="color: rgb(0, 176, 240);"></span>
-            </p>
-            <section class="KolEditor" style="border: 0px none;text-align:center;">
-                <img src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/1135044f04c11dd44c707aefd6c122af46dafa.jpg" style="margin:0px auto;max-width:100%;"/>
-            </section>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(255, 0, 0);">游戏二</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(255, 0, 0);">以助力方式获得星空帐篷一年期使用权；</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(255, 0, 0);">启动资金为3888元</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(255, 0, 0);">通过举手牌示意主持人进行公益助力</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(255, 0, 0);">价格最高的来宾，获得星空帐篷入住体验权（一年）</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(255, 0, 0);">星空帐篷</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(255, 0, 0);"></span>
-            </p>
-            <section class="KolEditor" style="border: 0px none;text-align:center;">
-                <img src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/11360386bef378d32a436c162d4283638acfd5.jpg" style="margin:0px auto;max-width:100%;"/>
-            </section>
-            <section class="KolEditor" style="border: 0px none;text-align:center;">
-                <img src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/1136307caa490ecb1669953141507299267cee.jpg" style="margin:0px auto;max-width:100%;"/>
-            </section>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(255, 0, 0);">游戏三</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(255, 0, 0);">以助力方式获得东坪民宿一年期使用权；</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(255, 0, 0);">启动资金为4888元</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(255, 0, 0);">通过举手牌示意主持人进行公益助力</span>
-            </p>
-            <p style="letter-spacing: 0px;">
-                <span style="color: rgb(255, 0, 0);">价格最高的来宾，获得东坪民宿入住体验权（一年期限）</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(255, 0, 0);"></span>
-            </p>
-            <section class="KolEditor" style="position: relative;" data-tools-id="37592">
-                <section style="margin: 5px auto;text-align: center;">
-                    <section style="display: inline-block;">
-                        <section style="overflow: hidden;">
-                            <section style="width: 40px;float: left;margin-top: 3px;">
-                                <img src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/141529597154ebd628fc228ebd55e48f0424ba.png" style="width: 40px;"/>
-                            </section>
-                            <section style="border: 2px solid #de8130;border-radius: 3px;padding:0px 30px;color:#de8130;font-size: 18px;float: left;">
-                                <p style="margin: 0px auto;line-height: 37px;">
-                                    东坪民宿
-                                </p>
+                                </view>
+                                <view style="width: 40px;float: left;margin-top: 3px;">
+                                    <image src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/1415296d116938f1e172ca3f05b463dad79a4e.png" style="width: 40px;"/>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="KolEditor" style="border: 0px none;text-align:center;">
+                    <image src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/113057df0265aa56ac172c662d5f792de250ac.jpg" style="margin:0px auto;max-width:100%;"/>
+                </view>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);">来一场乡村音乐会</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);">唱出城市与乡野之间割舍不断的乡愁</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);">以及那美好的青春记忆</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);">红柿采摘</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);"></span>
+                </p>
+                <view class="KolEditor" style="border: 0px none;text-align:center;">
+                    <image src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/113301a12b9236f1f1fb12dd06cbd20e9169bf.jpg" style="margin:0px auto;max-width:100%;"/>
+                </view>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);">唐朝时</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);">东坪的柿子是朝廷贡品</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);">看着这么多柿子</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);">想不想尝一尝</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);">品味一下当年贡品的味道？</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);"></span>
+                </p>
+                <view class="KolEditor" style="border: 0px none;text-align:center;">
+                    <image src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/11340483d59595e1237c22639f56d99b931283.jpg" style="margin:0px auto;max-width:100%;"/>
+                </view>
+                <p>
+                    <br/>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(255, 0, 0);">柿界大爱公益游戏</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(255, 0, 0);">游戏一</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(255, 0, 0);">本轮游戏为竞猜“皇帝御赐”柿子礼盒准确价格</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(255, 0, 0);">最终准确猜价的来宾</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(255, 0, 0);">以该价格捐赠“柿界大爱”公益金</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(255, 0, 0);">即可获得该柿子礼盒一份</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(255, 0, 0);">柿子礼盒</span>
+                </p>
+                <p>
+                    <span style="color: rgb(0, 176, 240);"></span>
+                </p>
+                <view class="KolEditor" style="border: 0px none;text-align:center;">
+                    <image src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/1135044f04c11dd44c707aefd6c122af46dafa.jpg" style="margin:0px auto;max-width:100%;"/>
+                </view>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(255, 0, 0);">游戏二</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(255, 0, 0);">以助力方式获得星空帐篷一年期使用权；</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(255, 0, 0);">启动资金为3888元</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(255, 0, 0);">通过举手牌示意主持人进行公益助力</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(255, 0, 0);">价格最高的来宾，获得星空帐篷入住体验权（一年）</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(255, 0, 0);">星空帐篷</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(255, 0, 0);"></span>
+                </p>
+                <view class="KolEditor" style="border: 0px none;text-align:center;">
+                    <image src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/11360386bef378d32a436c162d4283638acfd5.jpg" style="margin:0px auto;max-width:100%;"/>
+                </view>
+                <view class="KolEditor" style="border: 0px none;text-align:center;">
+                    <image src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/1136307caa490ecb1669953141507299267cee.jpg" style="margin:0px auto;max-width:100%;"/>
+                </view>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(255, 0, 0);">游戏三</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(255, 0, 0);">以助力方式获得东坪民宿一年期使用权；</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(255, 0, 0);">启动资金为4888元</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(255, 0, 0);">通过举手牌示意主持人进行公益助力</span>
+                </p>
+                <p style="letter-spacing: 0px;">
+                    <span style="color: rgb(255, 0, 0);">价格最高的来宾，获得东坪民宿入住体验权（一年期限）</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(255, 0, 0);"></span>
+                </p>
+                <view class="KolEditor" style="position: relative;" data-tools-id="37592">
+                    <view style="margin: 5px auto;text-align: center;">
+                        <view style="display: inline-block;">
+                            <view style="overflow: hidden;">
+                                <view style="width: 40px;float: left;margin-top: 3px;">
+                                    <image src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/141529597154ebd628fc228ebd55e48f0424ba.png" style="width: 40px;"/>
+                                </view>
+                                <view style="border: 2px solid #de8130;border-radius: 3px;padding:0px 30px;color:#de8130;font-size: 18px;float: left;">
+                                    <p style="margin: 0px auto;line-height: 37px;">
+                                        东坪民宿
+                                    </p>
 							
-                            </section>
-                            <section style="width: 40px;float: left;margin-top: 3px;">
-                                <img src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/1415296d116938f1e172ca3f05b463dad79a4e.png" style="width: 40px;"/>
-                            </section>
-                        </section>
-                    </section>
-                </section>
-            </section>
-            <section class="KolEditor" style="border: 0px none;text-align:center;">
-                <img src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/114040a26eed36e2605e79016117d3b1b8ef67.jpg" style="margin:0px auto;max-width:100%;"/>
-            </section>
-            <section class="KolEditor" style="border: 0px none;text-align:center;">
-                <img src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/1141060d6502a1a31b921c12294703601cce44.jpg" style="margin:0px auto;max-width:100%;"/>
-            </section>
-            <section class="KolEditor" style="border: 0px none;text-align:center;">
-                <img src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/11411246f2f4d116f790cd03719fbaea7b4089.jpg" style="margin:0px auto;max-width:100%;"/>
-            </section>
-            <p style="border: 0px none;text-align:center;">
-                <img src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/114118b031c03c6c72c344f1b39e62c9a3583a.jpg" style="margin:0px auto;max-width:100%;"/>
-            </p>
-            <p style="border: 0px none; text-align: left;">
-                <span style="color: rgb(0, 176, 240);">此轮游戏获得的爱心公益基金，将全部捐赠与亲青筹慈善基金用于贫困地区少年。</span>
-            </p>
-            <p style="border: 0px none; text-align: left;">
-                <span style="color: rgb(0, 176, 240);"></span>
-            </p>
-            <section class="KolEditor" style="position: relative;" data-tools-id="60753">
-                <section style="margin: 5px auto;text-align: center;">
-                    <section style="display: inline-block;">
-                        <section style="overflow: hidden;">
-                            <section style="width: 40px;float: left;margin-top: 3px;">
-                                <img src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/141529597154ebd628fc228ebd55e48f0424ba.png" style="width: 40px;"/>
-                            </section>
-                            <section style="border: 2px solid #de8130;border-radius: 3px;padding:0px 30px;color:#de8130;font-size: 18px;float: left;">
-                                <p style="margin: 0px auto;line-height: 37px;">
-                                    小隐于柿露天派对
-                                </p>
+                                </view>
+                                <view style="width: 40px;float: left;margin-top: 3px;">
+                                    <image src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/1415296d116938f1e172ca3f05b463dad79a4e.png" style="width: 40px;"/>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="KolEditor" style="border: 0px none;text-align:center;">
+                    <image src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/114040a26eed36e2605e79016117d3b1b8ef67.jpg" style="margin:0px auto;max-width:100%;"/>
+                </view>
+                <view class="KolEditor" style="border: 0px none;text-align:center;">
+                    <image src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/1141060d6502a1a31b921c12294703601cce44.jpg" style="margin:0px auto;max-width:100%;"/>
+                </view>
+                <view class="KolEditor" style="border: 0px none;text-align:center;">
+                    <image src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/11411246f2f4d116f790cd03719fbaea7b4089.jpg" style="margin:0px auto;max-width:100%;"/>
+                </view>
+                <p style="border: 0px none;text-align:center;">
+                    <image src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/114118b031c03c6c72c344f1b39e62c9a3583a.jpg" style="margin:0px auto;max-width:100%;"/>
+                </p>
+                <p style="border: 0px none; text-align: left;">
+                    <span style="color: rgb(0, 176, 240);">此轮游戏获得的爱心公益基金，将全部捐赠与亲青筹慈善基金用于贫困地区少年。</span>
+                </p>
+                <p style="border: 0px none; text-align: left;">
+                    <span style="color: rgb(0, 176, 240);"></span>
+                </p>
+                <view class="KolEditor" style="position: relative;" data-tools-id="60753">
+                    <view style="margin: 5px auto;text-align: center;">
+                        <view style="display: inline-block;">
+                            <view style="overflow: hidden;">
+                                <view style="width: 40px;float: left;margin-top: 3px;">
+                                    <image src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/141529597154ebd628fc228ebd55e48f0424ba.png" style="width: 40px;"/>
+                                </view>
+                                <view style="border: 2px solid #de8130;border-radius: 3px;padding:0px 30px;color:#de8130;font-size: 18px;float: left;">
+                                    <p style="margin: 0px auto;line-height: 37px;">
+                                        小隐于柿露天派对
+                                    </p>
 							
-                            </section>
-                            <section style="width: 40px; float: left; margin-top: 3px; position: relative;">
-                                <img src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/1415296d116938f1e172ca3f05b463dad79a4e.png" style="width: 40px;" data-tools-id="12800"/>
-                            </section>
-                        </section>
-                    </section>
-                </section>
-            </section>
-            <section class="KolEditor" style="border: 0px none;text-align:center;">
-                <img src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/120253b9a9c3869501a03c4a3b64662f5e122d.jpg" style="margin:0px auto;max-width:100%;"/>
-            </section>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);">在一棵百年柿子树旁边</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);">当地村民用竹子搭一个底盘用于保温</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);">再放一顶星空帐篷</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);">就成了最经济也是最美的民宿</span>
-            </p>
-            <p style="border: 0px none; text-align: left;">
-                <span style="color: rgb(0, 176, 240);"></span>
-            </p>
-            <section class="KolEditor" style="border: 0px none;text-align:center;">
-                <img src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/120615517b499925858547c08e7337893e532e.jpg" style="margin:0px auto;max-width:100%;"/>
-            </section>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);">夕阳西下</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);">霞光满天</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);">此情此景</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);">和心爱的人坐在帐篷里</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);">看着美丽的晚霞在眼前一点点地消散</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);">多么美好！</span>
-            </p>
-            <section class="KolEditor" style="border: 0px none;text-align:center;">
-                <img src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/121328baa978b66c73f5af191edc217708d010.jpg" style="margin:0px auto;max-width:100%;"/>
-            </section>
-            <section class="KolEditor" style="border: 0px none;text-align:center;">
-                <img src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/121328fe0270c53dfad71f15863edd23bd5873.jpg" style="margin:0px auto;max-width:100%;"/>
-            </section>
-            <section class="KolEditor" style="border: 0px none;text-align:center;">
-                <img src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/121328d02cf0aeeac1bdd08d4bd95b1397838c.jpg" style="margin:0px auto;max-width:100%;"/>
-            </section>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);">夜晚来临</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);">星空帐篷里发出的蓝色光亮</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);">仿佛一个个生灵在跳动</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);">和驴友一起说说心里话</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);">谈一谈年少时的理想</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);">当年的热血还在吗</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);">望一望满天的繁星</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);">你的征途是星辰和大海吗</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);">篝火晚会</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);">古老的村庄再次焕发出活力</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);">年轻的男男女女彼此交谈共舞</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);">一起谈谈情 说说爱吧</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);"></span>
-            </p>
-            <section class="KolEditor" style="border: 0px none;text-align:center;">
-                <img src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/1213285a9083a60b9c5bfd5176d9d5dd60dcb6.jpg" style="margin:0px auto;max-width:100%;"/>
-            </section>
-            <section class="KolEditor" style="position: relative;" data-tools-id="43551">
-                <section style="margin: 5px auto;text-align: center;">
-                    <section style="display: inline-block;">
-                        <section style="overflow: hidden;">
-                            <section style="width: 40px;float: left;margin-top: 3px;">
-                                <img src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/141529597154ebd628fc228ebd55e48f0424ba.png" style="width: 40px;"/>
-                            </section>
-                            <section style="border: 2px solid #de8130;border-radius: 3px;padding:0px 30px;color:#de8130;font-size: 18px;float: left;">
-                                <p style="margin: 0px auto;line-height: 37px;">
-                                    趣味长跑
-                                </p>
+                                </view>
+                                <view style="width: 40px; float: left; margin-top: 3px; position: relative;">
+                                    <image src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/1415296d116938f1e172ca3f05b463dad79a4e.png" style="width: 40px;" data-tools-id="12800"/>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="KolEditor" style="border: 0px none;text-align:center;">
+                    <image src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/120253b9a9c3869501a03c4a3b64662f5e122d.jpg" style="margin:0px auto;max-width:100%;"/>
+                </view>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);">在一棵百年柿子树旁边</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);">当地村民用竹子搭一个底盘用于保温</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);">再放一顶星空帐篷</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);">就成了最经济也是最美的民宿</span>
+                </p>
+                <p style="border: 0px none; text-align: left;">
+                    <span style="color: rgb(0, 176, 240);"></span>
+                </p>
+                <view class="KolEditor" style="border: 0px none;text-align:center;">
+                    <image src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/120615517b499925858547c08e7337893e532e.jpg" style="margin:0px auto;max-width:100%;"/>
+                </view>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);">夕阳西下</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);">霞光满天</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);">此情此景</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);">和心爱的人坐在帐篷里</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);">看着美丽的晚霞在眼前一点点地消散</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);">多么美好！</span>
+                </p>
+                <view class="KolEditor" style="border: 0px none;text-align:center;">
+                    <image src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/121328baa978b66c73f5af191edc217708d010.jpg" style="margin:0px auto;max-width:100%;"/>
+                </view>
+                <view class="KolEditor" style="border: 0px none;text-align:center;">
+                    <image src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/121328fe0270c53dfad71f15863edd23bd5873.jpg" style="margin:0px auto;max-width:100%;"/>
+                </view>
+                <view class="KolEditor" style="border: 0px none;text-align:center;">
+                    <image src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/121328d02cf0aeeac1bdd08d4bd95b1397838c.jpg" style="margin:0px auto;max-width:100%;"/>
+                </view>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);">夜晚来临</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);">星空帐篷里发出的蓝色光亮</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);">仿佛一个个生灵在跳动</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);">和驴友一起说说心里话</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);">谈一谈年少时的理想</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);">当年的热血还在吗</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);">望一望满天的繁星</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);">你的征途是星辰和大海吗</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);">篝火晚会</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);">古老的村庄再次焕发出活力</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);">年轻的男男女女彼此交谈共舞</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);">一起谈谈情 说说爱吧</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);"></span>
+                </p>
+                <view class="KolEditor" style="border: 0px none;text-align:center;">
+                    <image src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/1213285a9083a60b9c5bfd5176d9d5dd60dcb6.jpg" style="margin:0px auto;max-width:100%;"/>
+                </view>
+                <view class="KolEditor" style="position: relative;" data-tools-id="43551">
+                    <view style="margin: 5px auto;text-align: center;">
+                        <view style="display: inline-block;">
+                            <view style="overflow: hidden;">
+                                <view style="width: 40px;float: left;margin-top: 3px;">
+                                    <image src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/141529597154ebd628fc228ebd55e48f0424ba.png" style="width: 40px;"/>
+                                </view>
+                                <view style="border: 2px solid #de8130;border-radius: 3px;padding:0px 30px;color:#de8130;font-size: 18px;float: left;">
+                                    <p style="margin: 0px auto;line-height: 37px;">
+                                        趣味长跑
+                                    </p>
 							
-                            </section>
-                            <section style="width: 40px;float: left;margin-top: 3px;">
-                                <img src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/1415296d116938f1e172ca3f05b463dad79a4e.png" style="width: 40px;"/>
-                            </section>
-                        </section>
-                    </section>
-                </section>
-            </section>
-            <section class="KolEditor" style="border: 0px none;text-align:center;">
-                <img src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/121529188f1f51f25bbe508860b3e69747653c.jpg" style="margin:0px auto;max-width:100%;"/>
-            </section>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);">小伙伴们心动了吗</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);">赶紧约上你的那个Ta</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);">或是三五好友</span>
-            </p>
-            <p style="letter-spacing: 1px;">
-                <span style="color: rgb(0, 176, 240);">一起来嗨吧！</span>
-            </p>
-            <p class="brush active" style="font-size:14px;color:rgb(43,52,122);min-width:1px;">
-                <br/>
-            </p>
-        </section>
-        <section style="display:flex;justify-content: space-between;margin-top:-40px;">
-            <section style="width:35%;height:50px;border-bottom:2px solid rgb(43,52,122);border-left:2px solid rgb(43,52,122);"></section>
-            <section style="width:35%;height:50px;border-bottom:2px solid rgb(43,52,122);border-right:2px solid rgb(43,52,122);"></section>
-        </section>
-    </section>
-</section>
-<p>
-    <!--!doctype-->
-</p>
+                                </view>
+                                <view style="width: 40px;float: left;margin-top: 3px;">
+                                    <image src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/1415296d116938f1e172ca3f05b463dad79a4e.png" style="width: 40px;"/>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="KolEditor" style="border: 0px none;text-align:center;">
+                    <image src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/121529188f1f51f25bbe508860b3e69747653c.jpg" style="margin:0px auto;max-width:100%;"/>
+                </view>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);">小伙伴们心动了吗</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);">赶紧约上你的那个Ta</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);">或是三五好友</span>
+                </p>
+                <p style="letter-spacing: 1px;">
+                    <span style="color: rgb(0, 176, 240);">一起来嗨吧！</span>
+                </p>
+                <p class="brush active" style="font-size:14px;color:rgb(43,52,122);min-width:1px;">
+                    <br/>
+                </p>
+            </view>
+            <view style="display:flex;justify-content: space-between;margin-top:-40px;">
+                <view style="width:35%;height:50px;border-bottom:2px solid rgb(43,52,122);border-left:2px solid rgb(43,52,122);"></view>
+                <view style="width:35%;height:50px;border-bottom:2px solid rgb(43,52,122);border-right:2px solid rgb(43,52,122);"></view>
+            </view>
+        </view>
+    </view>
+    <p>
+        <!--!doctype-->
+    </p>
+    <p>
+        <br/>
+    </p>
+</view>
 <p>
     <br/>
 </p>
