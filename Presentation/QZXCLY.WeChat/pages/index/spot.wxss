@@ -37,12 +37,19 @@
   font-size: 30rpx;  
 }
 
+.spot_detail,spot_service
+{
+  margin: 20rpx 0;
+  background: white;
+  padding: 20rpx;
+}
 
 .spot_detail .line
 {
   border-bottom: solid #f0f0f0 1px;  
   padding: 20rpx 0;
 }
+
 .spot_detail .name
 {
   font-size: 50rpx;
@@ -106,42 +113,42 @@
 {
   height: 300rpx;
 }
-.spot_detail,.spot_detail
+
+.spot_services
 {
   margin: 20rpx 0;
   background: white;
-  padding: 20rpx;
+  padding: 20rpx;  
 }
 
-.spot_detail .filters {
+.spot_services .filters {
 	display: -webkit-flex;
   margin-bottom: 20rpx;
 }
-.spot_detail .filters .filter {
+.spot_services .filters .filter {
 	-webkit-flex: 1;
 	text-align: center;
 	color: #696969;
 	font-size: 30rpx;
 	line-height: 3;
 }
-.spot_detail .filters .filter .v {
+.spot_services .filters .filter .v {
 	display: none;
 }
-.spot_detail .filters .filter.active {
+.spot_services .filters .filter.active {
 	color: #000;
 	font-weight: bold;
-  border-bottom: solid 2rpx #1296db;
+  border-bottom: solid 2rpx #27c24c;
 }
-.spot_detail .filters .filter.active .v {
+.spot_services .filters .filter.active .v {
 	display: inline-block;
 }
 
-.spot_detail .spot_detail_item
+.spot_services .spot_detail_item
 {
   background: white;
   font-size: 30rpx;
 }
-
 
 .item {
   display: flex;

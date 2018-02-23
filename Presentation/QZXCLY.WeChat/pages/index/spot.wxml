@@ -23,7 +23,7 @@
         <view class='mapAnchor'><navigator class='ellipsis' url="/pages/map/index" open-type="switchTab" hover-class="navigator-hover"><i class="iconfont icon-position"></i> {{spot.address}}</navigator></view>
         <view class='navAnchor' bindtap='navTo'>导航</view>
       </view>
-      <view class='phone line' bindtap='makePhoneCall' data-phone="{{spot.phone}}"><i class="iconfont icon-dianhua"></i> 电话：{{spot.phone}}</view>      
+      <view class='phone line' bindtap='makePhoneCall' data-phone="{{spot.phone}}"><i class="iconfont icon-dianhua"></i> 联系电话：{{spot.phone}}</view>      
       <view class='opentime line'><i class="iconfont icon-shijian01"></i> 开放时间：{{spot.opentime}}</view>
       <view class='price line'><i class="iconfont icon-menpiao"></i> 景区门票：{{spot.price}}</view>    
       <view class='desc_title line'><i class="iconfont icon-campaign"></i> 景区介绍</view>
@@ -33,14 +33,11 @@
         </scroll-view>
       </view>
     </view>
-    <view class='spot_detail'>
+    <view class='spot_services'>
       <view class='filters'>
 				<view class="filter {{filterId==2?'active':''}}" data-id="2" bindtap="tapFilter">玩</view>
 				<view class="filter {{filterId==3?'active':''}}" data-id="3" bindtap="tapFilter">吃</view>  
 				<view class="filter {{filterId==4?'active':''}}" data-id="4" bindtap="tapFilter">住</view>
-      </view>
-      <view hidden="{{filterId!=1}}" class='spot_detail_item'>
-
       </view>
       <view hidden="{{filterId!=2}}" class='spot_detail_item'>
           <view class="item" wx:for="{{play_list}}">
