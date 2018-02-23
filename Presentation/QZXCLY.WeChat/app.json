@@ -12,6 +12,8 @@
     
     "pages/index/activities",   
     "pages/index/activity",
+
+    "pages/index/webview",    
     
     "pages/mine/index", 
     "pages/logs/logs"

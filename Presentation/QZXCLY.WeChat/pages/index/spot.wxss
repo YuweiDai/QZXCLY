@@ -116,7 +116,7 @@
 
 .spot_services
 {
-  margin: 20rpx 0;
+  margin: 20rpx 0 0 0;
   background: white;
   padding: 20rpx;  
 }
@@ -154,10 +154,7 @@
   display: flex;
   padding: 20rpx;
   border-bottom: 1rpx solid #eee;
-  cursor: pointer;
   max-height: 170rpx;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .item .poster {
@@ -173,25 +170,41 @@
 .item .meta .title,
 .item .meta .sub-title {
   display: block;
-  margin-bottom: 15rpx;
+  margin-bottom: 5rpx;
 }
 
 .item .meta .title {
   font-size: 32rpx;
+  height:50rpx;
+  line-height:50rpx;  
 }
 
 .item .meta .sub-title {
   font-size: 25rpx;
+  line-height: 35rpx;
   color: #c0c0c0;
+  height: 70rpx;
+  overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.item .meta .artists {
-  font-size: 26rpx;
-  color: #999;
+.item .meta .btns {
+  height: 40rpx;    
+  display: flex;
 }
 
-.item .rating {
-  font-size: 28rpx;
-  font-weight: bold;
-  color: #f74c31;
+.item .meta .btns .btn
+{
+  color: #27c24c;
+  font-size: 25rpx;
+  padding:0rpx 14rpx;
+  border-radius:8rpx;
+  margin-right:8rpx;
+  border:1px solid #27c24c;
+}
+
+.item .meta .btns .btn.selected
+{
+  color: white;
+  background-color: #27c24c;
 }

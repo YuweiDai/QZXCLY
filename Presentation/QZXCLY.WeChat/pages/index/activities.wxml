@@ -1,2 +1,2 @@
 <!--pages/index/activities.wxml-->
-<text>pages/index/activities.wxml</text>
+  <web-view src="http://qz-map.com/"></web-view>

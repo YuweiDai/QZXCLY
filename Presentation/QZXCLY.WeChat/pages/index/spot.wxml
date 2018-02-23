@@ -35,21 +35,26 @@
     </view>
     <view class='spot_services'>
       <view class='filters'>
-				<view class="filter {{filterId==2?'active':''}}" data-id="2" bindtap="tapFilter">玩</view>
-				<view class="filter {{filterId==3?'active':''}}" data-id="3" bindtap="tapFilter">吃</view>  
-				<view class="filter {{filterId==4?'active':''}}" data-id="4" bindtap="tapFilter">住</view>
+				<view class="filter {{filterId==0?'active':''}}" data-id="0" bindtap="tapFilter">景点</view>
+				<view class="filter {{filterId==1?'active':''}}" data-id="1" bindtap="tapFilter">美食</view>  
+				<view class="filter {{filterId==2?'active':''}}" data-id="2" bindtap="tapFilter">住宿</view>
       </view>
-      <view hidden="{{filterId!=2}}" class='spot_detail_item'>
-          <view class="item" wx:for="{{play_list}}">
+      <view hidden="{{filterId!=0}}" class='spot_detail_item'>
+          <view class="item" wx:for="{{spot.play_list}}">
             <image class="poster" src="{{item.logo}}"></image>
             <view class="meta">
               <text class="title">{{item.title}}</text>
               <text class="sub-title">{{item.descriptions}}</text>
+              <view class='btns'>
+                <view class='btn' hidden='{{item.panorama==undefined}}' bindtap='navToPanorama'><i class='iconfont icon-vr-m'></i> 全景</view>
+                <view class='btn {{audioPlayer.playing&&audioPlayer.current==item.audio?"selected":""}}' hidden='{{item.audio==undefined}}' bindtap='playAudio' data-audio='{{item.audio}}'><i class='iconfont icon-yuyin'></i> 语音讲解</view>
+                <view class='btn'><i class='iconfont icon-daohang1'></i> 导航</view>                  
+              </view>
             </view>
           </view>
       </view>    
-      <view hidden="{{filterId!=3}}" class='spot_detail_item'>
-          <view class="item" wx:for="{{eat_list}}" wx:for-item="eat">
+      <view hidden="{{filterId!=1}}" class='spot_detail_item'>
+          <view class="item" wx:for="{{spot.eat_list}}" wx:for-item="eat">
             <image class="poster" src="{{eat.logo}}"></image>
             <view class="meta">
               <text class="title">{{eat.title}}</text>
@@ -57,14 +62,10 @@
               <text class="sub-title" data-phone="{{eat.tel}}" bindtap='makePhoneCall'>{{eat.tel}}</text>
               <text class="sub-title">{{eat.person}}</text>
             </view>
-            <!-- >
-<!--             <view class="rating">
-              <text>{{eat.rating.average}}</text>
-            </view> -->
           </view>      
       </view> 
-      <view hidden="{{filterId!=4}}" class='spot_detail_item'>
-          <view class="item" wx:for="{{live_list}}">
+      <view hidden="{{filterId!=2}}" class='spot_detail_item'>
+          <view class="item" wx:for="{{spot.live_list}}">
             <image class="poster" src="{{item.logo}}"></image>
             <view class="meta">
               <text class="title">{{item.title}}</text>
@@ -72,9 +73,6 @@
               <text class="sub-title" data-phone="{{item.tel}}" bindtap='makePhoneCall'>{{item.tel}}</text>
               <text class="sub-title">{{item.person}}</text>
             </view>
-<!--             <view class="rating">
-              <text>{{item.rating.average}}</text>
-            </view> -->
           </view>      
       </view>                     
     </view>
