@@ -1,8 +1,6 @@
 // pages/index/spot.js
-const innerAudioContext = wx.createInnerAudioContext();
-
+var innerAudioContext = null;
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -33,6 +31,7 @@ Page({
       current_photo:1,
       play_list: [
         {
+          id:0,
           title: "千年古道",
           descriptions: "东坪千年古道位于衢州市峡川镇境内，距市区40公里。从东坪山脚下起，一条总长1500米，宽2米，共1144级的青石板古道蜿蜒盘曲伸向山顶，随着岁月的流逝，村民的脚步磨去了古道青石块的棱角而变得光滑。这就是相传具有1300多年历史的唐朝古道。",
           logo: "/resources/images/index/l1.jpg",
@@ -41,33 +40,39 @@ Page({
           photos: ""
         },
         {
+          id: 1,          
           title: "古道居",
           descriptions: "景点文字介绍",
           logo: "/resources/images/index/l2.png",
           audio:"http://sc1.111ttt.cn/2017/1/11/11/304112002493.mp3"
         },
         {
+          id: 2,          
           title: "豆腐坊",
           descriptions: "景点文字介绍",
           logo: "/resources/images/index/l1.jpg",
           audio: "http://sc1.111ttt.cn/2017/1/11/11/304112003137.mp3"
         },
         {
+          id: 3,          
           title: "华兰阁",
           descriptions: "景点文字介绍",
           logo: "/resources/images/index/l2.png"
         },
         {
+          id: 4,          
           title: "东坪院",
           descriptions: "景点文字介绍",
           logo: "/resources/images/index/l2.png"
         },
         {
+          id: 5,          
           title: "松青阁",
           descriptions: "景点文字介绍",
           logo: "/resources/images/index/l1.jpg"
         },
         {
+          id: 6,          
           title: "冬雪苑",
           descriptions: "景点文字介绍",
           logo: "/resources/images/index/l2.png"
@@ -76,6 +81,7 @@ Page({
       ],
       eat_list: [
         {
+          id: 0,          
           title: "米兰农庄",
           descriptions: "衢州市峡川镇东坪村",
           tel: "13362121222",
@@ -83,6 +89,7 @@ Page({
           logo: "/resources/images/index/l1.jpg"
         },
         {
+          id: 1,          
           title: "望乡楼",
           descriptions: "衢州市峡川镇东坪村",
           tel: "13812345678",
@@ -90,6 +97,7 @@ Page({
           logo: "/resources/images/index/l2.png"
         },
         {
+          id: 2,          
           title: "老陈饭店",
           descriptions: "衢州市峡川镇东坪村",
           tel: "13362121222",
@@ -97,6 +105,7 @@ Page({
           logo: "/resources/images/index/l1.jpg"
         },
         {
+          id: 3,          
           title: "老赵饭店",
           descriptions: "衢州市七里乡黄土岭村7号",
           tel: "13362121222",
@@ -106,6 +115,7 @@ Page({
       ],
       live_list: [
         {
+          id: 0,          
           title: "圃舍·源溪",
           descriptions: "柯城区九华乡新宅村大荫山下",
           tel: "13705706658",
@@ -113,6 +123,7 @@ Page({
           logo: "/resources/images/index/l1.jpg"
         },
         {
+          id: 1,          
           title: "庙源溪墅",
           descriptions: "九华乡茶铺村",
           tel: "18906708718",
@@ -120,6 +131,7 @@ Page({
           logo: "/resources/images/index/l2.png"
         },
         {
+          id: 2,          
           title: "关西山房",
           descriptions: "九华乡茶铺村",
           tel: "18906708718",
@@ -127,6 +139,7 @@ Page({
           logo: "/resources/images/index/l1.jpg"
         },
         {
+          id: 3,          
           title: "溢舍",
           descriptions: "九华乡茶铺村",
           tel: "18906708718",
@@ -136,9 +149,7 @@ Page({
       ],      
 
     },
-    filterId:0,
-    showPanorama:false,
-
+    filterId:0, 
     audioPlayer:{
       playing:false,
       current:""
@@ -168,6 +179,18 @@ Page({
       url: '../map/nav',
     })
   },
+  navToSpotSubItem:function(event){
+    var id=event.currentTarget.dataset.id;
+    console.log(id);
+    wx.navigateTo({
+      url: 'spot_play',
+    });
+  },
+  navToPanorama: function (event) {
+    wx.navigateTo({
+      url: 'webview?title=全景图&src=http://www.ipanocloud.com/tour/share/151029AEQ1O',
+    });
+  },
   starSpot:function(event)
   {
     var spot=this.data.spot;
@@ -193,12 +216,6 @@ Page({
         spot: spot
       }
     ); 
-  },
-  navToPanorama:function(event)
-  {
-    wx.navigateTo({
-      url: 'webview?title=全景图&src=http://www.ipanocloud.com/tour/share/151029AEQ1O',
-    })
   },
   playAudio:function(event)
   {   
@@ -230,51 +247,42 @@ Page({
         innerAudioContext.play();
        
       }
-
-      innerAudioContext.onPlay(() => {
-        console.log('开始播放');
-        page.setData({
-          audioPlayer: {
-            playing: true,
-            current: audioSrc
-          }
-        });
-      });
-      innerAudioContext.onStop(() => {
-        console.log('onStop');
-        page.setData({
-          audioPlayer: {
-            playing: false,
-            current: ""
-          }
-        });
-      })      
-      innerAudioContext.onPause(() => {
-        console.log('onPause');
-        page.setData({
-          audioPlayer: {
-            playing: false,
-            current: audioSrc
-          }
-        });
-      });
-      innerAudioContext.onEnded(() => {
-        console.log('onEnded');
-        page.setData({
-          audioPlayer: {
-            playing: false,
-            current: ""
-          }
-        });
-      });      
-
+     
     }    
+  },
+
+  updateAudioState: function (playing, audioSrc){ 
+    this.setData({
+      audioPlayer: {
+        playing: playing,
+        current: audioSrc
+      }
+    });
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var page=this;
+    if(innerAudioContext==null)
+      innerAudioContext = wx.createInnerAudioContext();
+
+    innerAudioContext.onPlay(() => {
+      console.log('开始播放');
+      page.updateAudioState(true, innerAudioContext.src);
+    });
+    innerAudioContext.onStop(() => {
+      console.log('onStop');
+      page.updateAudioState(false,"");
+    })
+    innerAudioContext.onPause(() => {
+      console.log('onPause');
+      page.updateAudioState(false, "");
+    });
+    innerAudioContext.onEnded(() => {
+      console.log('onEnded');
+      page.updateAudioState(false, "");
+    });      
   },
 
   /**
@@ -298,14 +306,16 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+    if(innerAudioContext!=null)
+      innerAudioContext.stop();  
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+    if (innerAudioContext != null)
+      innerAudioContext.stop(); 
   },
 
   /**

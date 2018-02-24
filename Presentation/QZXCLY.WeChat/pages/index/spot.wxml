@@ -40,15 +40,15 @@
 				<view class="filter {{filterId==2?'active':''}}" data-id="2" bindtap="tapFilter">住宿</view>
       </view>
       <view hidden="{{filterId!=0}}" class='spot_detail_item'>
-          <view class="item" wx:for="{{spot.play_list}}">
+          <view class="item" wx:for="{{spot.play_list}}" data-id='{{item.id}}' bindtap='navToSpotSubItem'>
             <image class="poster" src="{{item.logo}}"></image>
             <view class="meta">
               <text class="title">{{item.title}}</text>
               <text class="sub-title">{{item.descriptions}}</text>
               <view class='btns'>
-                <view class='btn' hidden='{{item.panorama==undefined}}' bindtap='navToPanorama'><i class='iconfont icon-vr-m'></i> 全景</view>
-                <view class='btn {{audioPlayer.playing&&audioPlayer.current==item.audio?"selected":""}}' hidden='{{item.audio==undefined}}' bindtap='playAudio' data-audio='{{item.audio}}'><i class='iconfont icon-yuyin'></i> 语音讲解</view>
-                <view class='btn'><i class='iconfont icon-daohang1'></i> 导航</view>                  
+                <view class='btn' hidden='{{item.panorama==undefined}}' catchtap='navToPanorama'><i class='iconfont icon-vr-m'></i> 全景</view>
+                <view class='btn {{audioPlayer.playing&&audioPlayer.current==item.audio?"selected":""}}' hidden='{{item.audio==undefined}}' catchtap='playAudio' data-audio='{{item.audio}}'><i class='iconfont icon-yuyin'></i> 讲解</view>
+                <view class='btn' catchtap='navTo'><i class='iconfont icon-daohang1'></i> 导航</view>
               </view>
             </view>
           </view>

@@ -6,6 +6,11 @@
     
     "pages/index/spots",
     "pages/index/spot",
+
+    "pages/index/spot_play",   
+    "pages/index/spot_eat",
+    "pages/index/spot_live",
+    
     
     "pages/index/strategies",    
     "pages/index/strategy",
