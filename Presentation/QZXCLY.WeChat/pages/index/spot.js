@@ -85,7 +85,7 @@ Page({
           title: "米兰农庄",
           descriptions: "衢州市峡川镇东坪村",
           tel: "13362121222",
-          person: "罗老板",
+          price: "45",
           logo: "/resources/images/index/l1.jpg"
         },
         {
@@ -93,7 +93,7 @@ Page({
           title: "望乡楼",
           descriptions: "衢州市峡川镇东坪村",
           tel: "13812345678",
-          person: "王老板",
+          price: "51",
           logo: "/resources/images/index/l2.png"
         },
         {
@@ -101,7 +101,7 @@ Page({
           title: "老陈饭店",
           descriptions: "衢州市峡川镇东坪村",
           tel: "13362121222",
-          person: "罗方剑",
+          price: "31",
           logo: "/resources/images/index/l1.jpg"
         },
         {
@@ -109,7 +109,7 @@ Page({
           title: "老赵饭店",
           descriptions: "衢州市七里乡黄土岭村7号",
           tel: "13362121222",
-          person: "罗方剑",
+          price: "44",
           logo: "/resources/images/index/l2.png"
         }
       ],
@@ -182,8 +182,21 @@ Page({
   navToSpotSubItem:function(event){
     var id=event.currentTarget.dataset.id;
     console.log(id);
+    var url="";
+    switch (this.data.filterId)
+    {
+      case "0":
+        url = "spot_play";
+        break;
+      case "1":
+        url = "spot_eat";
+        break;
+      case "2":
+        url = "spot_live";
+      break;
+    }
     wx.navigateTo({
-      url: 'spot_play',
+      url: url,
     });
   },
   navToPanorama: function (event) {

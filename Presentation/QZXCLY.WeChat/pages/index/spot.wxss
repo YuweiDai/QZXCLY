@@ -37,26 +37,6 @@
   font-size: 30rpx;  
 }
 
-.spot_detail,spot_service
-{
-  margin: 20rpx 0;
-  background: white;
-  padding: 20rpx;
-}
-
-.spot_detail .line
-{
-  border-bottom: solid #f0f0f0 1px;  
-  padding: 20rpx 0;
-}
-
-.spot_detail .name
-{
-  font-size: 50rpx;
-  font-weight: bolder;
-  padding: 25rpx 0;  
-}
-
 .spot_detail .name .tags
 {
   line-height: 22rpx;
@@ -144,7 +124,7 @@
 	display: inline-block;
 }
 
-.spot_services .spot_detail_item
+.spot_services .spot_service_item
 {
   background: white;
   font-size: 30rpx;
@@ -152,7 +132,7 @@
 
 .item {
   display: flex;
-  padding: 20rpx;
+  padding: 20rpx 0;
   border-bottom: 1rpx solid #eee;
   max-height: 170rpx;
 }
@@ -168,7 +148,8 @@
 }
 
 .item .meta .title,
-.item .meta .sub-title {
+.item .meta .sub-title,
+.item .meta .multi-info {
   display: block;
   margin-bottom: 5rpx;
 }
@@ -179,13 +160,23 @@
   line-height:50rpx;  
 }
 
-.item .meta .sub-title {
+.item .meta .sub-title,
+.item .meta .multi-info
+{
   font-size: 25rpx;
-  line-height: 35rpx;
+  line-height: 35rpx;  
   color: #c0c0c0;
-  height: 70rpx;
   overflow: hidden;
-    text-overflow: ellipsis;
+  text-overflow: ellipsis;  
+}
+
+.item .meta .sub-title {
+  height: 70rpx;
+}
+
+.item .meta .multi-info
+{
+  height: 40rpx;
 }
 
 .item .meta .btns {

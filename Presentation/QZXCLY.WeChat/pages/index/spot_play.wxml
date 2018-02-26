@@ -1,19 +1,26 @@
 <!--pages/index/spot_subitem.wxml-->
 <view class="container">
-  <scroll-view scroll-y="true">
-    <view class='section logo'>
-     <image mode="aspectFit" src="{{logo}}"></image>
+  <scroll-view scroll-y="true" class='spot_service'>
+    <view class='banner'>
+     <image src="{{logo}}"></image>
     </view>
-    <view class='section play_detail'>
-      <view class='title'>{{title}}</view>
-      <view class='detail'>{{descriptions}}</view>
-      <view class='btns'>
-            <button class="weui-btn mini-btn" type="primary" size="mini"><i class='iconfont icon-yuyin'></i> 讲解</button>
-            <button class="weui-btn mini-btn" type="primary" size="mini"><i class='iconfont icon-vr-m'></i> 全景</button>
-            <button class="weui-btn mini-btn" type="primary" size="mini"><i class='iconfont icon-daohang1'></i> 导航</button>
+    <view class='section'>
+      <view class='name line relative'>{{title}}
+       <view class='btns'>
+        <view class='btn {{playing?"selected":""}}' hidden='{{audio==undefined}}' bindtap='playAudio' data-audio='{{audio}}' title="讲解"><i class='iconfont icon-yuyin'></i></view>       
+        <view class='btn' hidden='{{panorama==undefined}}' bindtap='navToPanorama' title="全景"><i class='iconfont icon-vr-m'></i></view>
+        <view class='btn' bindtap='navTo' title="导航"><i class='iconfont icon-daohang1'></i></view>       
+       </view>
       </view>
+      <view class='description'>{{description}}</view>
     </view>
-    <view class='section photos'>
+    <view class='section'>
+      <view class='photos'>
+        <view class='photo' bindtap='previewImage' wx:for="{{photos}}" wx:for-item="photo" data-url="{{photo.img}}" data-index="{{index}}" >      
+          <image src="{{photo.img}}"/>
+          <view class='title'>{{photo.title}}</view>  
+        </view>      
+      </view>
 
     </view>
   </scroll-view>

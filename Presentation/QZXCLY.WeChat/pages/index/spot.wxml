@@ -12,7 +12,7 @@
       <view class="tipBg absolute"></view>        
       <view class='photoTip absolute'><i class="iconfont icon-picture}}"></i> {{spot.current_photo}}/{{spot.photos.length}}张</view>
     </view>
-    <view class='spot_detail relative'>
+    <view class='spot_detail section relative'>
       <view class="name line">
         {{spot.name}}
         <view class='tags'>
@@ -23,7 +23,7 @@
         <view class='mapAnchor'><navigator class='ellipsis' url="/pages/map/index" open-type="switchTab" hover-class="navigator-hover"><i class="iconfont icon-position"></i> {{spot.address}}</navigator></view>
         <view class='navAnchor' bindtap='navTo'>导航</view>
       </view>
-      <view class='phone line' bindtap='makePhoneCall' data-phone="{{spot.phone}}"><i class="iconfont icon-dianhua"></i> 联系电话：{{spot.phone}}</view>      
+      <view class='phone line' catchtap='makePhoneCall' data-phone="{{spot.phone}}"><i class="iconfont icon-dianhua"></i> 联系电话：{{spot.phone}}</view>      
       <view class='opentime line'><i class="iconfont icon-shijian01"></i> 开放时间：{{spot.opentime}}</view>
       <view class='price line'><i class="iconfont icon-menpiao"></i> 景区门票：{{spot.price}}</view>    
       <view class='desc_title line'><i class="iconfont icon-campaign"></i> 景区介绍</view>
@@ -39,7 +39,7 @@
 				<view class="filter {{filterId==1?'active':''}}" data-id="1" bindtap="tapFilter">美食</view>  
 				<view class="filter {{filterId==2?'active':''}}" data-id="2" bindtap="tapFilter">住宿</view>
       </view>
-      <view hidden="{{filterId!=0}}" class='spot_detail_item'>
+      <view hidden="{{filterId!=0}}" class='spot_service_item'>
           <view class="item" wx:for="{{spot.play_list}}" data-id='{{item.id}}' bindtap='navToSpotSubItem'>
             <image class="poster" src="{{item.logo}}"></image>
             <view class="meta">
@@ -53,25 +53,25 @@
             </view>
           </view>
       </view>    
-      <view hidden="{{filterId!=1}}" class='spot_detail_item'>
-          <view class="item" wx:for="{{spot.eat_list}}" wx:for-item="eat">
+      <view hidden="{{filterId!=1}}" class='spot_service_item'>
+          <view class="item" wx:for="{{spot.eat_list}}" wx:for-item="eat"  data-id='{{item.id}}' bindtap='navToSpotSubItem'>
             <image class="poster" src="{{eat.logo}}"></image>
             <view class="meta">
               <text class="title">{{eat.title}}</text>
-              <text class="sub-title">{{eat.descriptions}}</text>
-              <text class="sub-title" data-phone="{{eat.tel}}" bindtap='makePhoneCall'>{{eat.tel}}</text>
-              <text class="sub-title">{{eat.person}}</text>
+              <text class="multi-info">{{eat.descriptions}}</text>
+              <text class="multi-info" data-phone="{{eat.tel}}" catchtap='makePhoneCall'>联系电话：{{eat.tel}}</text>
+              <text class="multi-info">人均：{{eat.price}}元</text>
             </view>
           </view>      
       </view> 
-      <view hidden="{{filterId!=2}}" class='spot_detail_item'>
-          <view class="item" wx:for="{{spot.live_list}}">
+      <view hidden="{{filterId!=2}}" class='spot_service_item'>
+          <view class="item" wx:for="{{spot.live_list}}"  data-id='{{item.id}}' bindtap='navToSpotSubItem'>
             <image class="poster" src="{{item.logo}}"></image>
             <view class="meta">
               <text class="title">{{item.title}}</text>
-              <text class="sub-title">{{item.descriptions}}</text>
-              <text class="sub-title" data-phone="{{item.tel}}" bindtap='makePhoneCall'>{{item.tel}}</text>
-              <text class="sub-title">{{item.person}}</text>
+              <text class="multi-info">{{item.descriptions}}</text>
+              <text class="multi-info" data-phone="{{item.tel}}" catchtap='makePhoneCall'>联系电话：{{item.tel}}</text>
+              <text class="multi-info">联系电话：{{item.person}}</text>
             </view>
           </view>      
       </view>                     
