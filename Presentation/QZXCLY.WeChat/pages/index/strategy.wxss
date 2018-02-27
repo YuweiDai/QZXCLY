@@ -1,5 +1,21 @@
 /* pages/index/strategy.wxss */
-section.KolEditor
+.strategy-title
 {
-  width:100vh;
+  margin-top: 0;
+}
+
+.strategy-title .subTitle
+{
+	color: #696969;
+	font-size: 30rpx;
+}
+
+.strategy-title .subTitle .source
+{
+  float: left;
+}
+
+.strategy-title .subTitle .date
+{
+  right: 0;
 }

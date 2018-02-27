@@ -85,7 +85,6 @@
               <text class="title">{{item.title}}</text>
               <text class="multi-info">{{item.descriptions}}</text>
               <text class="multi-info" data-phone="{{item.tel}}" catchtap='makePhoneCall'>联系电话：{{item.tel}}</text>
-              <text class="multi-info">联系电话：{{item.person}}</text>
             </view>
           </view>      
       </view>                     
