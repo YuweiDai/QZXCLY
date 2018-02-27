@@ -1,1 +1,5 @@
 /* pages/index/spot_live.wxss */
+.section .description scroll-view
+{
+  height: 200rpx;
+}

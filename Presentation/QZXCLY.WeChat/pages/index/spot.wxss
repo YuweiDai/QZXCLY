@@ -94,6 +94,11 @@
   height: 300rpx;
 }
 
+.spot_strategies scroll-view
+{
+  height: 400rpx;
+}
+
 .spot_services
 {
   margin: 20rpx 0 0 0;
@@ -124,44 +129,44 @@
 	display: inline-block;
 }
 
-.spot_services .spot_service_item
+.spot_services .spot_service_group
 {
   background: white;
   font-size: 30rpx;
 }
 
-.item {
+.spot_service_item {
   display: flex;
   padding: 20rpx 0;
   border-bottom: 1rpx solid #eee;
   max-height: 170rpx;
 }
 
-.item .poster {
+.spot_service_item .poster {
   width: 170rpx;
   height: 170rpx;
   margin-right: 20rpx;
 }
 
-.item .meta {
+.spot_service_item .meta {
   flex: 1;
 }
 
-.item .meta .title,
-.item .meta .sub-title,
-.item .meta .multi-info {
+.spot_service_item .meta .title,
+.spot_service_item .meta .sub-title,
+.spot_service_item .meta .multi-info {
   display: block;
   margin-bottom: 5rpx;
 }
 
-.item .meta .title {
+.spot_service_item .meta .title {
   font-size: 32rpx;
   height:50rpx;
   line-height:50rpx;  
 }
 
-.item .meta .sub-title,
-.item .meta .multi-info
+.spot_service_item .meta .sub-title,
+.spot_service_item .meta .multi-info
 {
   font-size: 25rpx;
   line-height: 35rpx;  
@@ -170,21 +175,21 @@
   text-overflow: ellipsis;  
 }
 
-.item .meta .sub-title {
+.spot_service_item .meta .sub-title {
   height: 70rpx;
 }
 
-.item .meta .multi-info
+.spot_service_item .meta .multi-info
 {
   height: 40rpx;
 }
 
-.item .meta .btns {
+.spot_service_item .meta .btns {
   height: 40rpx;    
   display: flex;
 }
 
-.item .meta .btns .btn
+.spot_service_item .meta .btns .btn
 {
   color: #27c24c;
   font-size: 25rpx;
@@ -194,7 +199,7 @@
   border:1px solid #27c24c;
 }
 
-.item .meta .btns .btn.selected
+.spot_service_item .meta .btns .btn.selected
 {
   color: white;
   background-color: #27c24c;

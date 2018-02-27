@@ -154,6 +154,12 @@
   font-size:30rpx;  
 }
 
+.spot_service .section > .title
+{
+  font-size: 35rpx;
+  font-weight: bolder;
+}
+
 .spot_service .btns {
   height: 60rpx;    
   display: flex;
@@ -190,12 +196,14 @@
 	width: 100%;
   display: flex;
   flex-wrap: wrap;
+  margin-top: 20rpx;  
 }
 
 .spot_service .photos .photo
 {
-  width: 50%;
-  margin-bottom: 20rpx;
+  width:335rpx;
+  margin-bottom:20rpx;
+  padding:0 10rpx;
 }
 
 .spot_service .photos .photo image

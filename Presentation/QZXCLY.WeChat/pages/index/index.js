@@ -28,7 +28,7 @@ Page({
       {
         id: 1,
         img: '/resources/images/index/icon_12.jpg',
-        name: '景点',
+        name: '景区',
         url: 'spots'
       },
       {

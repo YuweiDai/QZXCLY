@@ -14,7 +14,7 @@ scroll-view {
 }
 
 .icons {
-	height: 210rpx;
+	height: 250rpx;
 	padding: 20rpx 10rpx;
 	padding-bottom: 0;
   background: white;
@@ -57,8 +57,9 @@ scroll-view {
 
 .suggestion .content .item
 {
-  width: 50%;
-  margin-bottom: 20rpx;
+  width:335rpx;
+  margin-bottom:20rpx;
+  padding:0 10rpx;
 }
 
 .suggestion .content .item image

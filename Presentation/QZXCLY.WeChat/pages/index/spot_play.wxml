@@ -15,6 +15,7 @@
       <view class='description'>{{description}}</view>
     </view>
     <view class='section'>
+      <view class='title relative'>景点图片</view>     
       <view class='photos'>
         <view class='photo' bindtap='previewImage' wx:for="{{photos}}" wx:for-item="photo" data-url="{{photo.img}}" data-index="{{index}}" >      
           <image src="{{photo.img}}"/>

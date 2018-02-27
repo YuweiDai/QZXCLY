@@ -1,3 +1,5 @@
+<import src="../common/strategy-list.wxml" />
+
 <view class="container">
   <scroll-view scroll-y="true">
     <view class='spot_photos relative'>
@@ -33,14 +35,26 @@
         </scroll-view>
       </view>
     </view>
+
+    <view class='spot_strategies section relative'>
+      <view class='title'>攻略{{spot.strategies.length>0?"("+spot.strategies.length+")":""}}</view>
+      <scroll-view scroll-y="true">	   
+        <view class="strategy">
+          <view class='content'>
+            <template is="strategy" data="{{item}}" wx:for="{{spot.strategies}}" />
+          </view>      
+        </view>
+      </scroll-view>
+    </view>
+
     <view class='spot_services'>
       <view class='filters'>
 				<view class="filter {{filterId==0?'active':''}}" data-id="0" bindtap="tapFilter">景点</view>
 				<view class="filter {{filterId==1?'active':''}}" data-id="1" bindtap="tapFilter">美食</view>  
 				<view class="filter {{filterId==2?'active':''}}" data-id="2" bindtap="tapFilter">住宿</view>
       </view>
-      <view hidden="{{filterId!=0}}" class='spot_service_item'>
-          <view class="item" wx:for="{{spot.play_list}}" data-id='{{item.id}}' bindtap='navToSpotSubItem'>
+      <view hidden="{{filterId!=0}}" class='spot_service_group'>
+          <view class="spot_service_item" wx:for="{{spot.play_list}}" data-id='{{item.id}}' bindtap='navToSpotSubItem'>
             <image class="poster" src="{{item.logo}}"></image>
             <view class="meta">
               <text class="title">{{item.title}}</text>
@@ -53,8 +67,8 @@
             </view>
           </view>
       </view>    
-      <view hidden="{{filterId!=1}}" class='spot_service_item'>
-          <view class="item" wx:for="{{spot.eat_list}}" wx:for-item="eat"  data-id='{{item.id}}' bindtap='navToSpotSubItem'>
+      <view hidden="{{filterId!=1}}" class='spot_service_group'>
+          <view class="spot_service_item" wx:for="{{spot.eat_list}}" wx:for-item="eat"  data-id='{{item.id}}' bindtap='navToSpotSubItem'>
             <image class="poster" src="{{eat.logo}}"></image>
             <view class="meta">
               <text class="title">{{eat.title}}</text>
@@ -64,8 +78,8 @@
             </view>
           </view>      
       </view> 
-      <view hidden="{{filterId!=2}}" class='spot_service_item'>
-          <view class="item" wx:for="{{spot.live_list}}"  data-id='{{item.id}}' bindtap='navToSpotSubItem'>
+      <view hidden="{{filterId!=2}}" class='spot_service_group'>
+          <view class="spot_service_item" wx:for="{{spot.live_list}}"  data-id='{{item.id}}' bindtap='navToSpotSubItem'>
             <image class="poster" src="{{item.logo}}"></image>
             <view class="meta">
               <text class="title">{{item.title}}</text>
