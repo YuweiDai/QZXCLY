@@ -71,7 +71,11 @@
           <view class="spot_service_item" wx:for="{{spot.eat_list}}" wx:for-item="eat"  data-id='{{item.id}}' bindtap='navToSpotSubItem'>
             <image class="poster" src="{{eat.logo}}"></image>
             <view class="meta">
-              <text class="title">{{eat.title}}</text>
+              <view class='title'>
+                <text class="">{{eat.title}}</text> 
+                <i class="iconfont icon-206 star" wx:for="{{eat.level}}"></i>
+                <i class="iconfont icon-hotfill hot" hidden="{{!hot}}"></i>                
+              </view>              
               <text class="multi-info">{{eat.descriptions}}</text>
               <text class="multi-info" data-phone="{{eat.tel}}" catchtap='makePhoneCall'>联系电话：{{eat.tel}}</text>
               <text class="multi-info">人均：{{eat.price}}元</text>
@@ -82,9 +86,13 @@
           <view class="spot_service_item" wx:for="{{spot.live_list}}"  data-id='{{item.id}}' bindtap='navToSpotSubItem'>
             <image class="poster" src="{{item.logo}}"></image>
             <view class="meta">
-              <text class="title">{{item.title}}</text>
+              <view class='title'>
+                <text class="">{{item.title}}</text> 
+                <i class="iconfont icon-hotfill hot" hidden="{{!hot}}"></i>                
+              </view>              
               <text class="multi-info">{{item.descriptions}}</text>
               <text class="multi-info" data-phone="{{item.tel}}" catchtap='makePhoneCall'>联系电话：{{item.tel}}</text>
+              <text class="multi-info">床位：{{item.bedCount}}</text>
             </view>
           </view>      
       </view>                     

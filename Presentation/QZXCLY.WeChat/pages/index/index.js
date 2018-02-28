@@ -7,19 +7,19 @@ Page({
     banners: [
       {
         id: 3,
-        img: '/resources/images/index/b1.jpg',
+        img: 'http://qzch.qz.gov.cn/qzxcly/resources/images/index/b1.jpg',
         url: '',
         name: '康养衢江·隐柿东坪'
       },
       {
         id: 1,
-        img: '/resources/images/index/b2.png',
+        img: 'http://qzch.qz.gov.cn/qzxcly/resources/images/index/b2.png',
         url: '',
         name: '告别午高峰'
       },
       {
         id: 2,
-        img: '/resources/images/index/b3.png',
+        img: 'http://qzch.qz.gov.cn/qzxcly/resources/images/index/b3.png',
         url: '',
         name: '金牌好店'
       }
@@ -27,28 +27,28 @@ Page({
     icons: [
       {
         id: 1,
-        img: '/resources/images/index/icon_12.jpg',
+        img: 'http://qzch.qz.gov.cn/qzxcly/resources/images/index/icon_12.jpg',
         name: '景区',
         url: 'spots'
       },
       {
         id: 2,
-        img: '/resources/images/index/icon_5.jpg',
+        img: 'http://qzch.qz.gov.cn/qzxcly/resources/images/index/icon_5.jpg',
         name: '攻略',
         url: 'strategies'
       },
       {
         id: 3,
-        img: '/resources/images/index/icon_9.jpg',
+        img: 'http://qzch.qz.gov.cn/qzxcly/resources/images/index/icon_9.jpg',
         name: '活动',
         url: 'activities'
       }
     ],
     suggestions:[
-      { name: "康养衢江·隐柿东坪", img: "/resources/images/index/dp_1.jpg" },
-      { name: "寻梦乡愁·桃源七里", img: "/resources/images/index/ql.png" },
-      { name: "七彩长虹", img: "/resources/images/index/ch.png" },
-      { name: "廿八都古镇印象", img: "/resources/images/index/nbd.png" }                        
+      { name: "康养衢江·隐柿东坪", img: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/dp_1.jpg" },
+      { name: "寻梦乡愁·桃源七里", img: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/ql.png" },
+      { name: "七彩长虹", img: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/ch.png" },
+      { name: "廿八都古镇印象", img: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/nbd.png" }                        
     ],
     strategies: [
       { id: 0, title: "摘柿子，赏枫叶，走古道，东坪等你来！", img: "/resources/images/index/dp.jpg", src: "https://m.sohu.com/a/199887818_99961751/?pvid=000115_3w_a" },

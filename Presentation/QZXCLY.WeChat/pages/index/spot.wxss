@@ -169,6 +169,12 @@
   line-height:50rpx;  
 }
 
+.spot_service_item .meta .title .star,
+.spot_service_item .meta .title .hot
+{
+  color: red;
+}
+
 .spot_service_item .meta .sub-title,
 .spot_service_item .meta .multi-info
 {
