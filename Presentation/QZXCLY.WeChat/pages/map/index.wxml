@@ -16,7 +16,6 @@
       </cover-view>
     </map>     
   </view>  
-  <view style='display:absolute;height:400px;width:375rpx;background:red'></view>
   <view wx:if='{{showSingelSpot}}' class="spotDetail_section section">
     <view class='filters'>
       	<view class="filter {{filterId==1?'active':''}}" data-id="1" bindtap="tapFilter">简介</view>

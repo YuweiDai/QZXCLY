@@ -46,8 +46,6 @@ scroll-view {
 	line-height: 2;
 }
 
-
-
 .suggestion .content {
 	width: 100%;
 	height: 568rpx;

@@ -1,5 +1,4 @@
 <import src="../common/strategy-list.wxml" />
-<import src="../common/search.wxml" />
 
 <view class="container">
   <template is="searchBar" /> 
