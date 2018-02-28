@@ -85,7 +85,7 @@ Page({
       eat_list: [
         {
           id: 0,          
-          title: "驴友之家",
+          title: "红枫堂",
           descriptions: "衢州市峡川镇东坪村",
           tel: "15372723626",
           price: "45",
@@ -93,7 +93,7 @@ Page({
         },
         {
           id: 1,          
-          title: "望乡楼",
+          title: "柿民客栈",
           descriptions: "衢州市峡川镇东坪村",
           tel: "13812345678",
           price: "51",
