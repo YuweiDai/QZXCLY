@@ -1,6 +1,7 @@
 <import src="../common/strategy-list.wxml" />
 
 <view class="container">
+  <video src="http://qzch.qz.gov.cn/qzxcly/resources/vedios/test.mp4" ></video>
   <scroll-view scroll-y="true">
     <view class='spot_photos relative'>
       <swiper class="banner" autoplay="true" interval="3000" duration="500" bindchange="photoChange">
