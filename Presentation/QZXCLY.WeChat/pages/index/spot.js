@@ -21,15 +21,15 @@ Page({
       photos: [
         {
           id: 3,
-          img: 'http://qzch.qz.gov.cn/qzxcly/resources/images/index/dp.jpg',
+          src: 'http://qzch.qz.gov.cn/qzxcly/resources/images/index/dp.jpg'
         },
         {
           id: 1,
-          img: 'http://qzch.qz.gov.cn/qzxcly/resources/images/index/b2.png',
+          src: 'http://qzch.qz.gov.cn/qzxcly/resources/images/index/b2.png',       
         },
         {
           id: 2,
-          img: 'http://qzch.qz.gov.cn/qzxcly/resources/images/index/b3.png',
+          src: 'http://qzch.qz.gov.cn/qzxcly/resources/images/index/b3.png',        
         }
       ],
       current_photo:1,

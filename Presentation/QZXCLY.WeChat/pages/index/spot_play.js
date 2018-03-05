@@ -11,7 +11,7 @@ Page({
     id: 0,
     title: "千年古道",
     description: "东坪千年古道位于衢州市峡川镇境内，距市区40公里。从东坪山脚下起，一条总长1500米，宽2米，共1144级的青石板古道蜿蜒盘曲伸向山顶，随着岁月的流逝，村民的脚步磨去了古道青石块的棱角而变得光滑。这就是相传具有1300多年历史的唐朝古道。",
-    logo: "/resources/images/index/l1.jpg",
+    logo: "http://qzch.qz.gov.cn/qzxcly//resources/images/index/l1.jpg",
     audio: "http://sc1.111ttt.cn/2017/1/11/11/304112004168.mp3",
     panorama: "",
     photos: [

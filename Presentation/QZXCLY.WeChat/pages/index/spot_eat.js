@@ -13,7 +13,7 @@ Page({
     descriptions:["周一至周日 10：00-20：00","内设WIFI"],
     phone: "13812345678",
     price: "51",
-    logo: "/resources/images/index/l2.png",    
+    logo: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/l2.png",    
     photos: [
       { title: "门口", img: "http://img8.blog.eastmoney.com/zl/zltkg/201505/20150530075406190.jpg" },
       { title: "大厅", img: "http://s9.rr.itc.cn/r/wapChange/20169_12_15/a29q5o2502122756352.jpg" },
