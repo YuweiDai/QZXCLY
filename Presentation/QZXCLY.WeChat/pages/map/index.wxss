@@ -1,17 +1,12 @@
 /* pages/map/index.wxss */
-.container
-{
-  position: relative;
-  overflow: hidden;
-  height:100vh;  
-}
-.container .section
-{
-  position: relative;
-  width: 100%;
-  background: white;
-}
- 
+
+
+ .map_section,.content_section
+ {
+   padding: 0;
+   margin: 0;
+   width: 100%;
+ }
 #map
 {
   width: 100%;
@@ -76,14 +71,104 @@
   right: 10rpx;
 }
 
+.map_section .arrow
+{
+  width:100rpx;
+  height:50rpx;
+  line-height: 50rpx;
+  text-align:center;
+  border:1px solid gray;
+  border-top-left-radius:10rpx;
+  border-top-right-radius:10rpx;
+  background:white;
+  color:gray;
+  border-bottom:none;
+  left: 50%;
+  bottom: 0;
+  margin-left: -50rpx;
+}
+.content_section
+{
+  /* border-top: solid 1px gray; */
+}
+.content_section scroll-view.spot_list
+{
+  height: 100%;
+  font-size: 30rpx;
+}
+
+.content_section .spot_list .spot
+{
+  display: flex;
+  padding: 20rpx;
+  border-bottom: 1rpx solid #eee;
+  max-height: 170rpx;  
+}
+
+.content_section .spot_list .spot .poster {
+  width: 170rpx;
+  height: 170rpx;
+  margin-right: 20rpx;
+}
+
+.content_section .spot_list .spot .meta {
+  flex: 1;
+}
+
+.content_section .spot_list .spot .meta .title,
+.content_section .spot_list .spot .meta .multi-info {
+  display: block;
+  margin-bottom: 5rpx;
+}
+
+.content_section .spot_list .spot .meta .title {
+  font-size: 40rpx;
+  height:65rpx;
+  line-height:65rpx;  
+}
+
+.content_section .spot_list .spot .meta .multi-info
+{
+  font-size:30rpx;
+  line-height:45rpx;
+  height: 45rpx;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.content_section .spot_list .spot .meta .tags .tag
+{
+  display:inline-block;
+  border:1px solid green;
+  color:green;
+  font-size:24rpx;
+  padding:4rpx 8rpx;
+  border-radius:8rpx;
+  margin-right:8rpx;
+}
+
+.content_section .spot_list .spot .selector
+{
+  width: 10rpx;
+  height: 170rpx;
+  z-index: 100;
+  left: 2rpx;
+}
+.content_section .spot_list .spot .selector.selected
+{
+  background-color: #27c24c;
+}
+
 .spotDetail_section
 { 
-	width: 100%;
-	padding: 20rpx;
-	box-sizing: border-box;
-	z-index: 1;
-	-webkit-transition: background 0.5s ease-in-out;
+  margin: 0;
+  width: 100%;
+  padding: 20rpx;
+  box-sizing: border-box;
+  z-index: 1;
+  -webkit-transition: background 0.5s ease-in-out;
 }
+
 /* 后期要整合 */
 .spotDetail_section .filters {
 	display: -webkit-flex;

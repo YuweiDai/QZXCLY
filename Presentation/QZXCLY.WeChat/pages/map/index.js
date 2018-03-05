@@ -1,5 +1,7 @@
 // pages/map/index.js
-var markers = [{
+var p=null;
+var markers = [
+  {
   iconPath: "/resources/others.png",
   id: 0,
   latitude: 29.1851002329, 
@@ -89,8 +91,55 @@ Page({
    * 页面的初始数据
    */
   data: {
-    mapHeight:600,
-    detailHeight: 0,    
+    mapHeight: 400,
+    contentHeight: 200,
+    layout: 0,    //0表示最底层 1表示中间 2表示最顶层
+    selectedSpot:0,
+    spots:[
+      {
+        id: 0,
+        title: "康养衢江·隐柿东坪",
+        address: "衢州市衢江区峡川镇驻地峡口村东北部13公里",
+        tags: ["AAA级景区", "柿子节", "康养"],
+        logo: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/j3.jpg",        
+        latitude: 29.1851002329,
+        longitude: 119.0333890915,
+        selected:true
+      },
+      {
+        id: 1,
+        title: "寻觅乡愁 · 桃源七里",
+        logo: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/j1.jpg",
+        latitude: 29.1484507736,
+        longitude: 118.7620890141,
+        selected: false
+      },
+      // {
+      //   id: 2,
+      //   title: "航埠镇",
+      //   logo: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/j1.jpg",
+      //   latitude: 29.1851002329,
+      //   longitude: 119.0333890915,
+      //   selected: false
+      // },
+      {
+        id: 3,
+        title: "全旺镇",
+        logo: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/j2.jpg",
+        latitude: 28.9240352884,
+        longitude: 119.0578079224,
+        selected: false
+      },
+      {
+        id: 4,
+        title: "江郎山",
+        logo: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/j3.jpg",
+        latitude: 28.5341631929,
+        longitude: 118.5649681091,
+        selected: false    
+      }
+    ],
+
     lon: 118.8594317436,
     lat: 28.9702076731,
     level: 11,
@@ -134,7 +183,6 @@ Page({
         logo: "/resources/images/index/l2.png"
       }
     ],
-
     eat_list: [
       {
         title: "米兰农庄",
@@ -244,12 +292,12 @@ Page({
     console.log(event);
     var marker = markers[0];// markers[event.markerId];
 
-if(marker.id==undefined|| marker.id==null) return;
+    if(marker.id==undefined|| marker.id==null) return;
 
     this.setData({
       showSingelSpot: true,
       mapHeight: app.globalData.systemInfo.windowHeight - 276,
-      detailHeight: 200,
+      contentHeight: 200,
     });
 
     var spotMarkers=[];
@@ -289,7 +337,7 @@ if(marker.id==undefined|| marker.id==null) return;
       markers: markers,
       showSingelSpot: false,
       mapHeight: app.globalData.systemInfo.windowHeight,
-      detailHeight: 0,      
+      contentHeight: 0,      
     });
   },
   tapFilter: function (e) {
@@ -317,38 +365,105 @@ if(marker.id==undefined|| marker.id==null) return;
       url: 'nav',
     })
   },
+
+  // 调整页面布局
+  modifyLayout:function(event){
+    var mapHeight = app.globalData.systemInfo.windowHeight * 0.7;
+    var contentHeight = app.globalData.systemInfo.windowHeight * 0.3;
+
+    var currentLayout=p.data.layout+1;
+    if(currentLayout==3) currentLayout=0;
+    switch (currentLayout)
+    {
+      case 1:
+        mapHeight = app.globalData.systemInfo.windowHeight * 0.5;
+        contentHeight = app.globalData.systemInfo.windowHeight * 0.5;
+        break;
+      case 2:
+        mapHeight = app.globalData.systemInfo.windowHeight * 0.3;
+        contentHeight = app.globalData.systemInfo.windowHeight * 0.7;
+        break;                
+    }
+
+    this.setData({
+      mapHeight: mapHeight,
+      contentHeight: contentHeight,
+      layout: currentLayout
+    });  
+  },
+
+  spotsOnScroll:function(event)
+  {
+    // console.log(event.detail);
+    var top=event.detail.scrollTop;
+    var i=0;
+    if(top>0)
+      i = parseInt(top / 106)+1;
+
+    // console.log(i);
+    var allSpots = p.data.spots;
+   allSpots[p.data.selectedSpot].selected=false;
+    allSpots[i].selected=true;
+    p.setData({
+      selectedSpot:i,
+      spots:allSpots
+    });
+  },
+  
   /**
    * 生命周期函数--监听页面加载
+   * 初始占20%
+   * 地图占80%
    */
   onLoad: function (options) {
-    var page = this;
+    if(p==null) p=this;
 
-    wx.getLocation({
-      type: 'wgs84',
-      success: function (res) {
-        var latitude = res.latitude
-        var longitude = res.longitude
-        var speed = res.speed
-        var accuracy = res.accuracy
+var markers=[];
+    for(var index in p.data.spots)
+    {
+      markers.push({
+        iconPath: p.data.spots[index].selected ?"/resources/images/map/marker.png":"/resources/images/map/spot.png",
+        id: 4,
+        latitude: p.data.spots[index].latitude,
+        longitude: p.data.spots[index].longitude,
+        width: 30,
+        height: p.data.spots[index].selected ? 45: 30,
+      });
+    }
 
-        // page.setData({ lon: longitude,lat:latitude });
-      }
+    this.setData({
+      mapHeight: app.globalData.systemInfo.windowHeight * 0.7,
+      contentHeight: app.globalData.systemInfo.windowHeight * 0.3,
+      markers: markers
     });
 
-    if (app.globalData.locationDetect)
-    {
-      page.bindmarkertap({ markerId:1});
-      app.globalData.locationDetect=false;
-    }
-    else
-    {
-      this.setData({
-        mapHeight: app.globalData.systemInfo.windowHeight,
-        detailHeight: 0,
-      });
 
-      console.log(this.data.mapHeight);
-    }
+    // wx.getLocation({
+    //   type: 'wgs84',
+    //   success: function (res) {
+    //     var latitude = res.latitude;
+    //     var longitude = res.longitude;
+    //     var speed = res.speed;
+    //     var accuracy = res.accuracy;
+
+    //     // page.setData({ lon: longitude,lat:latitude });
+    //   }
+    // });
+
+    // if (app.globalData.locationDetect)
+    // {
+    //   page.bindmarkertap({ markerId:1});
+    //   app.globalData.locationDetect=false;
+    // }
+    // else
+    // {
+    //   this.setData({
+    //     mapHeight: app.globalData.systemInfo.windowHeight,
+    //     contentHeight: 0,
+    //   });
+
+    //   console.log(this.data.mapHeight);
+    // }
 
   },
 
