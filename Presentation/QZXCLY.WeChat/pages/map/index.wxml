@@ -1,6 +1,6 @@
 <view class="container">
-  <view class="map_section section" style='height:{{mapHeight}}px;'>
-    <map id="map" longitude="{{lon}}" latitude="{{lat}}" scale="{{level}}" controls="{{controls}}" bindmarkertap="bindmarkertap" markers="{{markers}}" show-location>
+  <view class="map_section section">
+    <map id="map" longitude="{{lon}}" latitude="{{lat}}" scale="{{level}}" include-points="{{points}}" controls="{{controls}}" bindmarkertap="bindmarkertap" markers="{{spots}}" bindcontroltap="controltap" show-location>
       <!-- <cover-view hidden='{{showSingelSpot}}' class='search_section top_section'>
         <cover-view class="search" bindtap="tapSearch">
           <cover-image class="icon" src="/resources/images/index/icon_search.png"/>
@@ -14,102 +14,6 @@
           <cover-image class='close' src="http://qzch.qz.gov.cn/qzxcly/resources/images/map/close.png" bindtap='returnToAll'></cover-image>      
         </cover-view>
       </cover-view>
-
-      <cover-view class='absolute arrow arrow-up' bindtap='modifyLayout'>
-        <i class="iconfont {{layout==2?'icon-down2':'icon-up2'}}"></i>
-      </cover-view>
     </map>     
-  </view>  
-  <view class='content_section section' style='height:{{contentHeight}}px;'>
-    <scroll-view hidden='{{showSingelSpot}}' scroll-y="true" class='spot_list' bindscroll="spotsOnScroll" scroll-with-animation="true">
-      <view class='spot' wx:for="{{spots}}" wx:for-item="spot" bindtap='bindmarkertap'>     
-        <image class="poster" mode="center" src="{{spot.logo}}"></image>    
-        <view class='meta'>
-          <view class='title'>{{spot.title}}</view>
-          <view class='address multi-info'>{{spot.address}}</view>            
-          <view class='tags'>
-            <text class='tag' wx:for="{{spot.tags}}">{{item}}</text>
-          </view>
-        </view>
-        <view class='selector absolute {{spot.selected?"selected":""}}'></view>          
-      </view> 
-    </scroll-view>
-<view wx:if='{{showSingelSpot}}' class="spotDetail_section section">
-    <view class='filters'>
-      	<view class="filter {{filterId==1?'active':''}}" data-id="1" bindtap="tapFilter">简介</view>
-				<view class="filter {{filterId==6?'active':''}}" data-id="6" bindtap="tapFilter">服务点</view>          
-				<view class="filter {{filterId==2?'active':''}}" data-id="2" bindtap="tapFilter">玩</view>
-				<view class="filter {{filterId==3?'active':''}}" data-id="3" bindtap="tapFilter">吃</view>  
-				<view class="filter {{filterId==4?'active':''}}" data-id="4" bindtap="tapFilter">住</view>
-				<!-- <view class="filter {{filterId==5?'active':''}}" data-id="5" bindtap="tapFilter">行</view>   -->
-
-    </view>
-    <scroll-view scroll-y="true" style='height:{{contentHeight-49-33.2}}px'>
-<view hidden="{{filterId!=1}}" class='spot_detail_item'>
-      东坪村地处衢州市衢江区峡川镇驻地峡口村东北部13公里，距衢州市区38公里，东临龙游县塔石镇金村村、西与乌石坂村相交、南与大理、李泽村为界，北与高岭村相连，地理位置险要，村落分散，村坊两旁山高林密，仅有一条乡村公路和千年古道与外界相连，村坊后背山山峰最高点海拔610米，村坊位置海拔420米，属典型的山区古村落。东坪村村史悠久，至今已有一千年左右，据《李氏宗谱》记载，高宗七子李烨为避武则天残害宗室子弟，远途跋涉，隐居福建古田长汀麻团岭，后移居浙江衢之西邑，往返于东坪与石屏源（今李泽）之间。元朝元统年间（1333—1335年）正式创业于东坪，男耕女织、读书知礼、克勤克俭，延续至今。东坪村气候四季分明，雨量充沛，属亚热带季风性气候，适宜针、阔叶林等多种作物生长。红柿、竹笋、油茶、板栗、粮食、蔬菜是东坪村的主要物产，其中红柿又是东坪村的主打产品历史悠久，源于唐末，盛产至今，其中号称“柿王”的一棵柿树，年产量均在3000斤左右，因为这里海拔高，温差大，光照足，无污染，特别适应柿树的种植、生长，柿果个大味甘，极富营养，曾作为贡品进献朝廷。相传，广为衢北百姓传诵的明朝中后期的“李泽娘娘”就是东坪人，这位娘娘入宫后的第一个中秋，望月思乡，想起家乡父老，想起家中红柿。然而，吃遍了全国各地送来的红柿，娘娘皆不如意，故决定以后的每年中秋，由衢州进贡一篮东坪红柿进皇宫。久而久之，东坪红柿便得名“贡柿”。东坪红柿品种众多，有客柿、西瓜柿、牛奶柿、鸟柿、汤瓶柿、六柿等。柿干质地柔软、肉质细嫩、霜厚均匀，含有蛋白质、糖、胡萝卜素等丰富的营养及磷、铁、钙、碘等多种微量元素，具有很高的营养及药用价值。
-      </view>
-      <view hidden="{{filterId!=2}}" class='spot_detail_item'>
-          <view class="item" wx:for="{{play_list}}">
-            <image class="poster" src="{{item.logo}}"></image>
-            <view class="meta">
-              <text class="title">{{item.title}}</text>
-              <text class="sub-title">{{item.descriptions}}</text>
-            </view>
-          </view>
-      </view>    
-      <view hidden="{{filterId!=3}}" class='spot_detail_item'>
-          <view class="item" wx:for="{{eat_list}}" wx:for-item="eat">
-            <image class="poster" src="{{eat.logo}}"></image>
-            <view class="meta">
-              <text class="title">{{eat.title}}</text>
-              <text class="sub-title">{{eat.descriptions}}</text>
-              <text class="sub-title" data-phone="{{eat.tel}}" bindtap='makePhoneCall'>{{eat.tel}}</text>
-              <text class="sub-title">{{eat.person}}</text>
-            </view>
-            <!-- >
-<!--             <view class="rating">
-              <text>{{eat.rating.average}}</text>
-            </view> -->
-          </view>      
-      </view> 
-      <view hidden="{{filterId!=4}}" class='spot_detail_item'>
-          <view class="item" wx:for="{{live_list}}">
-            <image class="poster" src="{{item.logo}}"></image>
-            <view class="meta">
-              <text class="title">{{item.title}}</text>
-              <text class="sub-title">{{item.descriptions}}</text>
-              <text class="sub-title" data-phone="{{item.tel}}" bindtap='makePhoneCall'>{{item.tel}}</text>
-              <text class="sub-title">{{item.person}}</text>
-            </view>
-<!--             <view class="rating">
-              <text>{{item.rating.average}}</text>
-            </view> -->
-          </view>      
-      </view> 
-      <view hidden="{{filterId!=5}}" class='spot_detail_item'>
-          <view class="item" wx:for="{{traffic_list}}" bindtap="navTo">
-            <image class="poster" src="{{item.logo}}"></image>
-            <view class="meta">
-              <text class="title">{{item.title}}</text>
-              <text class="sub-title">{{item.descriptions}}</text>
-            </view>
-          </view>                
-      </view>     
-      <view hidden="{{filterId!=6}}" class='spot_detail_item'>
-          <view class="item" wx:for="{{service_list}}" bindtap="moveTo" data-lon="{{item.lon}}" data-lat="{{item.lat}}">
-            <image class="poster" src="{{item.logo}}"></image>
-            <view class="meta">
-              <text class="title">{{item.title}}</text>
-              <text class="sub-title">点击导航</text>
-            </view>
-          </view>                
-      </view>               
-    </scroll-view>
-  </view>
-
-  </view>
-
-
-
-  
+  </view>    
 </view>

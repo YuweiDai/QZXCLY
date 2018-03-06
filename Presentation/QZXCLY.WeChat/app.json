@@ -1,7 +1,7 @@
 {
   "pages":[
-    "pages/index/index",
     "pages/map/index",
+    "pages/index/index",
     "pages/map/nav",
     
     "pages/index/spots",
@@ -44,12 +44,6 @@
         "text": "地图",
         "iconPath": "/resources/images/map.png",
         "selectedIconPath": "/resources/images/map_s.png"        
-      },     
-      {
-        "pagePath": "pages/mine/index",
-        "text": "我的",
-        "iconPath": "/resources/images/mine.png",
-        "selectedIconPath": "/resources/images/mine_s.png"        
       }
     ]
   },
