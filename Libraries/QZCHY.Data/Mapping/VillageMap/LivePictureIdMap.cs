@@ -12,7 +12,7 @@ namespace QZCHY.Data.Mapping.VillageMap
 
         public LivePictureIdMap()
         {
-            this.ToTable("PlayPicture");
+            this.ToTable("LivePicture");
             this.HasKey(p => p.Id);
 
             this.HasRequired(p => p.Picture).WithMany().HasForeignKey(pp => pp.PictureId);

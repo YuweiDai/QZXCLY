@@ -8,16 +8,37 @@ namespace QZCHY.Data.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.GovernmentUnit",
+                "dbo.EatPicture",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 255),
-                        GovernmentType = c.Int(nullable: false),
-                        Address = c.String(),
-                        Person = c.String(nullable: false, maxLength: 255),
-                        Tel = c.String(nullable: false, maxLength: 255),
-                        ParentGovernmentId = c.Int(nullable: false),
+                        EatId = c.Int(nullable: false),
+                        PictureId = c.Int(nullable: false),
+                        IsLogo = c.Boolean(nullable: false),
+                        Deleted = c.Boolean(nullable: false),
+                        CreatedOn = c.DateTime(nullable: false),
+                        UpdatedOn = c.DateTime(nullable: false),
+                        VillageEat_Id = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Pictures", t => t.PictureId, cascadeDelete: true)
+                .ForeignKey("dbo.VillageEat", t => t.VillageEat_Id)
+                .ForeignKey("dbo.VillageEat", t => t.EatId, cascadeDelete: true)
+                .Index(t => t.EatId)
+                .Index(t => t.PictureId)
+                .Index(t => t.VillageEat_Id);
+            
+            CreateTable(
+                "dbo.Pictures",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        PictureBinary = c.Binary(),
+                        MimeType = c.String(),
+                        SeoFilename = c.String(),
+                        AltAttribute = c.String(),
+                        TitleAttribute = c.String(),
+                        IsNew = c.Boolean(nullable: false),
                         Deleted = c.Boolean(nullable: false),
                         CreatedOn = c.DateTime(nullable: false),
                         UpdatedOn = c.DateTime(nullable: false),
@@ -25,74 +46,134 @@ namespace QZCHY.Data.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.Property",
+                "dbo.VillageEat",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Title = c.String(nullable: false, maxLength: 255),
+                        Description = c.String(),
+                        Tel = c.String(),
+                        Person = c.String(),
+                        Deleted = c.Boolean(nullable: false),
+                        CreatedOn = c.DateTime(nullable: false),
+                        UpdatedOn = c.DateTime(nullable: false),
+                        Village_Id = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Village", t => t.Village_Id, cascadeDelete: true)
+                .Index(t => t.Village_Id);
+            
+            CreateTable(
+                "dbo.Village",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false, maxLength: 255),
-                        PropertyType = c.Int(nullable: false),
                         Address = c.String(),
-                        ConstructArea = c.Single(nullable: false),
-                        LandArea = c.Single(nullable: false),
-                        PropertyID = c.String(nullable: false, maxLength: 255),
-                        PropertyNature = c.Int(nullable: false),
-                        LandType = c.Int(nullable: false),
-                        Price = c.Single(nullable: false),
-                        GetedDate = c.DateTime(nullable: false),
-                        LifeTime = c.Int(nullable: false),
-                        UsedPeople = c.String(nullable: false, maxLength: 255),
-                        CurrentUsage = c.Int(nullable: false),
-                        NextStepUsage = c.Int(nullable: false),
-                        Location = c.Geography(nullable: false),
-                        Extent = c.Geography(),
-                        Deleted = c.Boolean(nullable: false),
-                        CreatedOn = c.DateTime(nullable: false),
-                        UpdatedOn = c.DateTime(nullable: false),
-                        Government_Id = c.Int(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.GovernmentUnit", t => t.Government_Id)
-                .Index(t => t.Government_Id);
-            
-            CreateTable(
-                "dbo.AccountUser",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        UserName = c.String(maxLength: 1000),
-                        Active = c.Boolean(nullable: false),
-                        AccountUserGuid = c.Guid(nullable: false),
-                        LastIpAddress = c.String(),
-                        LastActivityDate = c.DateTime(nullable: false),
-                        LastLoginDate = c.DateTime(),
-                        Password = c.String(),
-                        PasswordFormatId = c.Int(nullable: false),
-                        PasswordSalt = c.String(),
-                        IsSystemAccount = c.Boolean(nullable: false),
-                        SystemName = c.String(maxLength: 400),
-                        Deleted = c.Boolean(nullable: false),
-                        CreatedOn = c.DateTime(nullable: false),
-                        UpdatedOn = c.DateTime(nullable: false),
-                        Goverment_Id = c.Int(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.GovernmentUnit", t => t.Goverment_Id)
-                .Index(t => t.Goverment_Id);
-            
-            CreateTable(
-                "dbo.AccountUserRole",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 255),
-                        Active = c.Boolean(nullable: false),
-                        IsSystemRole = c.Boolean(nullable: false),
-                        SystemName = c.String(maxLength: 255),
+                        Phone = c.String(),
+                        OpenTime = c.String(),
+                        Desc = c.String(),
+                        Star = c.Boolean(nullable: false),
+                        Location = c.Geography(),
                         Deleted = c.Boolean(nullable: false),
                         CreatedOn = c.DateTime(nullable: false),
                         UpdatedOn = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.VillageLive",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Title = c.String(nullable: false, maxLength: 255),
+                        Description = c.String(),
+                        Tel = c.String(),
+                        Person = c.String(),
+                        Deleted = c.Boolean(nullable: false),
+                        CreatedOn = c.DateTime(nullable: false),
+                        UpdatedOn = c.DateTime(nullable: false),
+                        Village_Id = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Village", t => t.Village_Id, cascadeDelete: true)
+                .Index(t => t.Village_Id);
+            
+            CreateTable(
+                "dbo.LivePicture",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        LiveId = c.Int(nullable: false),
+                        PictureId = c.Int(nullable: false),
+                        IsLogo = c.Boolean(nullable: false),
+                        Deleted = c.Boolean(nullable: false),
+                        CreatedOn = c.DateTime(nullable: false),
+                        UpdatedOn = c.DateTime(nullable: false),
+                        VillageLive_Id = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Pictures", t => t.PictureId, cascadeDelete: true)
+                .ForeignKey("dbo.VillageLive", t => t.LiveId, cascadeDelete: true)
+                .ForeignKey("dbo.VillageLive", t => t.VillageLive_Id)
+                .Index(t => t.LiveId)
+                .Index(t => t.PictureId)
+                .Index(t => t.VillageLive_Id);
+            
+            CreateTable(
+                "dbo.VillagePlay",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Title = c.String(nullable: false, maxLength: 255),
+                        Description = c.String(),
+                        Deleted = c.Boolean(nullable: false),
+                        CreatedOn = c.DateTime(nullable: false),
+                        UpdatedOn = c.DateTime(nullable: false),
+                        Village_Id = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Village", t => t.Village_Id, cascadeDelete: true)
+                .Index(t => t.Village_Id);
+            
+            CreateTable(
+                "dbo.PlayPicture",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        PlayId = c.Int(nullable: false),
+                        PictureId = c.Int(nullable: false),
+                        IsLogo = c.Boolean(nullable: false),
+                        Deleted = c.Boolean(nullable: false),
+                        CreatedOn = c.DateTime(nullable: false),
+                        UpdatedOn = c.DateTime(nullable: false),
+                        VillagePlay_Id = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Pictures", t => t.PictureId, cascadeDelete: true)
+                .ForeignKey("dbo.VillagePlay", t => t.PlayId, cascadeDelete: true)
+                .ForeignKey("dbo.VillagePlay", t => t.VillagePlay_Id)
+                .Index(t => t.PlayId)
+                .Index(t => t.PictureId)
+                .Index(t => t.VillagePlay_Id);
+            
+            CreateTable(
+                "dbo.VillagePicture",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        VillageId = c.Int(nullable: false),
+                        PictureId = c.Int(nullable: false),
+                        IsLogo = c.Boolean(nullable: false),
+                        Deleted = c.Boolean(nullable: false),
+                        CreatedOn = c.DateTime(nullable: false),
+                        UpdatedOn = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Pictures", t => t.PictureId, cascadeDelete: true)
+                .ForeignKey("dbo.Village", t => t.VillageId, cascadeDelete: true)
+                .Index(t => t.VillageId)
+                .Index(t => t.PictureId);
             
             CreateTable(
                 "dbo.EmailAccount",
@@ -170,8 +251,8 @@ namespace QZCHY.Data.Migrations
                         ActivityLogTypeId = c.Int(nullable: false),
                         AccountUserId = c.Int(nullable: false),
                         Comment = c.String(nullable: false),
-                        CreatedOn = c.DateTime(nullable: false),
                         Deleted = c.Boolean(nullable: false),
+                        CreatedOn = c.DateTime(nullable: false),
                         UpdatedOn = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
@@ -179,6 +260,44 @@ namespace QZCHY.Data.Migrations
                 .ForeignKey("dbo.ActivityLogType", t => t.ActivityLogTypeId, cascadeDelete: true)
                 .Index(t => t.ActivityLogTypeId)
                 .Index(t => t.AccountUserId);
+            
+            CreateTable(
+                "dbo.AccountUser",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        UserName = c.String(maxLength: 1000),
+                        Active = c.Boolean(nullable: false),
+                        AccountUserGuid = c.Guid(nullable: false),
+                        LastIpAddress = c.String(),
+                        LastActivityDate = c.DateTime(),
+                        LastLoginDate = c.DateTime(),
+                        Password = c.String(),
+                        PasswordFormatId = c.Int(nullable: false),
+                        PasswordSalt = c.String(),
+                        IsSystemAccount = c.Boolean(nullable: false),
+                        SystemName = c.String(maxLength: 400),
+                        Remark = c.String(),
+                        Deleted = c.Boolean(nullable: false),
+                        CreatedOn = c.DateTime(nullable: false),
+                        UpdatedOn = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.AccountUserRole",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false, maxLength: 255),
+                        Active = c.Boolean(nullable: false),
+                        IsSystemRole = c.Boolean(nullable: false),
+                        SystemName = c.String(maxLength: 255),
+                        Deleted = c.Boolean(nullable: false),
+                        CreatedOn = c.DateTime(nullable: false),
+                        UpdatedOn = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.ActivityLogType",
@@ -279,33 +398,64 @@ namespace QZCHY.Data.Migrations
             DropForeignKey("dbo.Log", "CustomerId", "dbo.AccountUser");
             DropForeignKey("dbo.ActivityLog", "ActivityLogTypeId", "dbo.ActivityLogType");
             DropForeignKey("dbo.ActivityLog", "AccountUserId", "dbo.AccountUser");
-            DropForeignKey("dbo.QueuedEmail", "EmailAccountId", "dbo.EmailAccount");
-            DropForeignKey("dbo.AccountUser", "Goverment_Id", "dbo.GovernmentUnit");
             DropForeignKey("dbo.AccountUser_AccountUserRole_Mapping", "AccountUserRole_Id", "dbo.AccountUserRole");
             DropForeignKey("dbo.AccountUser_AccountUserRole_Mapping", "AccountUser_Id", "dbo.AccountUser");
-            DropForeignKey("dbo.Property", "Government_Id", "dbo.GovernmentUnit");
+            DropForeignKey("dbo.QueuedEmail", "EmailAccountId", "dbo.EmailAccount");
+            DropForeignKey("dbo.EatPicture", "EatId", "dbo.VillageEat");
+            DropForeignKey("dbo.VillagePicture", "VillageId", "dbo.Village");
+            DropForeignKey("dbo.VillagePicture", "PictureId", "dbo.Pictures");
+            DropForeignKey("dbo.VillagePlay", "Village_Id", "dbo.Village");
+            DropForeignKey("dbo.PlayPicture", "VillagePlay_Id", "dbo.VillagePlay");
+            DropForeignKey("dbo.PlayPicture", "PlayId", "dbo.VillagePlay");
+            DropForeignKey("dbo.PlayPicture", "PictureId", "dbo.Pictures");
+            DropForeignKey("dbo.VillageLive", "Village_Id", "dbo.Village");
+            DropForeignKey("dbo.LivePicture", "VillageLive_Id", "dbo.VillageLive");
+            DropForeignKey("dbo.LivePicture", "LiveId", "dbo.VillageLive");
+            DropForeignKey("dbo.LivePicture", "PictureId", "dbo.Pictures");
+            DropForeignKey("dbo.VillageEat", "Village_Id", "dbo.Village");
+            DropForeignKey("dbo.EatPicture", "VillageEat_Id", "dbo.VillageEat");
+            DropForeignKey("dbo.EatPicture", "PictureId", "dbo.Pictures");
             DropIndex("dbo.AccountUser_AccountUserRole_Mapping", new[] { "AccountUserRole_Id" });
             DropIndex("dbo.AccountUser_AccountUserRole_Mapping", new[] { "AccountUser_Id" });
             DropIndex("dbo.Log", new[] { "CustomerId" });
             DropIndex("dbo.ActivityLog", new[] { "AccountUserId" });
             DropIndex("dbo.ActivityLog", new[] { "ActivityLogTypeId" });
             DropIndex("dbo.QueuedEmail", new[] { "EmailAccountId" });
-            DropIndex("dbo.AccountUser", new[] { "Goverment_Id" });
-            DropIndex("dbo.Property", new[] { "Government_Id" });
+            DropIndex("dbo.VillagePicture", new[] { "PictureId" });
+            DropIndex("dbo.VillagePicture", new[] { "VillageId" });
+            DropIndex("dbo.PlayPicture", new[] { "VillagePlay_Id" });
+            DropIndex("dbo.PlayPicture", new[] { "PictureId" });
+            DropIndex("dbo.PlayPicture", new[] { "PlayId" });
+            DropIndex("dbo.VillagePlay", new[] { "Village_Id" });
+            DropIndex("dbo.LivePicture", new[] { "VillageLive_Id" });
+            DropIndex("dbo.LivePicture", new[] { "PictureId" });
+            DropIndex("dbo.LivePicture", new[] { "LiveId" });
+            DropIndex("dbo.VillageLive", new[] { "Village_Id" });
+            DropIndex("dbo.VillageEat", new[] { "Village_Id" });
+            DropIndex("dbo.EatPicture", new[] { "VillageEat_Id" });
+            DropIndex("dbo.EatPicture", new[] { "PictureId" });
+            DropIndex("dbo.EatPicture", new[] { "EatId" });
             DropTable("dbo.AccountUser_AccountUserRole_Mapping");
             DropTable("dbo.RefreshTokens");
             DropTable("dbo.GenericAttribute");
             DropTable("dbo.Setting");
             DropTable("dbo.Log");
             DropTable("dbo.ActivityLogType");
+            DropTable("dbo.AccountUserRole");
+            DropTable("dbo.AccountUser");
             DropTable("dbo.ActivityLog");
             DropTable("dbo.QueuedEmail");
             DropTable("dbo.MessageTemplate");
             DropTable("dbo.EmailAccount");
-            DropTable("dbo.AccountUserRole");
-            DropTable("dbo.AccountUser");
-            DropTable("dbo.Property");
-            DropTable("dbo.GovernmentUnit");
+            DropTable("dbo.VillagePicture");
+            DropTable("dbo.PlayPicture");
+            DropTable("dbo.VillagePlay");
+            DropTable("dbo.LivePicture");
+            DropTable("dbo.VillageLive");
+            DropTable("dbo.Village");
+            DropTable("dbo.VillageEat");
+            DropTable("dbo.Pictures");
+            DropTable("dbo.EatPicture");
         }
     }
 }

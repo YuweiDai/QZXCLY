@@ -1,6 +1,5 @@
 namespace QZCHY.Data.Migrations
 {
-    using Core.Domain.AccountUsers;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -11,7 +10,7 @@ namespace QZCHY.Data.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            AutomaticMigrationDataLossAllowed = true;
+            AutomaticMigrationDataLossAllowed= true;
         }
 
         protected override void Seed(QZCHY.Data.QZCHYObjectContext context)
@@ -28,12 +27,6 @@ namespace QZCHY.Data.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-
-
-            //context.Set<AccountUserRole>().Add(crAdministrators);
-            //context.Set<AccountUserRole>().Add(crRegistered);
-            //context.Set<AccountUserRole>().Add(crGuests);
-
         }
     }
 }
