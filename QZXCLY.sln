@@ -38,8 +38,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QZCHY.API", "Presentation\Q
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QZCHY.Web.Framework", "Presentation\QZCHY.Web.Framework\QZCHY.Web.Framework.csproj", "{27E1169A-FA0E-47E1-95AC-0B837C22D8AD}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "packages", "packages", "{E1E34E16-78CD-4CBD-BA9F-BA539F3658EB}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

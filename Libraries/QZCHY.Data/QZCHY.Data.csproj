@@ -90,21 +90,9 @@
     <Compile Include="Mapping\VillageMap\VillageMap.cs" />
     <Compile Include="Mapping\VillageMap\VillagePictureMap.cs" />
     <Compile Include="Mapping\VillageMap\VillagePlayMap.cs" />
-    <Compile Include="Migrations\201703140759048_initialCreate.cs" />
-    <Compile Include="Migrations\201703140759048_initialCreate.Designer.cs">
-      <DependentUpon>201703140759048_initialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703270846239_initialCreate1.cs" />
-    <Compile Include="Migrations\201703270846239_initialCreate1.Designer.cs">
-      <DependentUpon>201703270846239_initialCreate1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703270858328_initialCreate2.cs" />
-    <Compile Include="Migrations\201703270858328_initialCreate2.Designer.cs">
-      <DependentUpon>201703270858328_initialCreate2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705170812203_station1.cs" />
-    <Compile Include="Migrations\201705170812203_station1.Designer.cs">
-      <DependentUpon>201705170812203_station1.cs</DependentUpon>
+    <Compile Include="Migrations\201803041514364_initialCreate.cs" />
+    <Compile Include="Migrations\201803041514364_initialCreate.Designer.cs">
+      <DependentUpon>201803041514364_initialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -124,21 +112,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201703140759048_initialCreate.resx">
-      <DependentUpon>201703140759048_initialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703270846239_initialCreate1.resx">
-      <DependentUpon>201703270846239_initialCreate1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703270858328_initialCreate2.resx">
-      <DependentUpon>201703270858328_initialCreate2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705170812203_station1.resx">
-      <DependentUpon>201705170812203_station1.cs</DependentUpon>
-    </EmbeddedResource>
+    <Content Include="SqlServerTypes\readme.htm" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SqlServerTypes\readme.htm" />
+    <EmbeddedResource Include="Migrations\201803041514364_initialCreate.resx">
+      <DependentUpon>201803041514364_initialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
