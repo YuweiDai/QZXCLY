@@ -93,14 +93,22 @@
 {
   height: 300rpx;
 }
-.spot_strategies .title
+.spot_strategies .title,.spot_vedios .title
 {
   font-size: 40rpx;
 }
 
-.spot_strategies scroll-view
+.spot_strategies scroll-view,.spot_vedios scroll-view
 {
-  height: 400rpx;
+  /* height: 400rpx; */
+}
+.spot_vedios scroll-view .vedios
+{
+  height: 100%;
+}
+.spot_vedios scroll-view .vedio
+{
+  width: 100%;
 }
 
 .spot_services

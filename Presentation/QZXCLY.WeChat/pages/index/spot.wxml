@@ -1,13 +1,12 @@
 <import src="../common/strategy-list.wxml" />
 
-<view class="container">
-  <video src="http://qzch.qz.gov.cn/qzxcly/resources/vedios/test.mp4" ></video>
+<view class="container"> 
   <scroll-view scroll-y="true">
     <view class='spot_photos relative'>
-      <swiper class="banner" autoplay="true" interval="3000" duration="500" bindchange="photoChange">
+      <swiper class="banner" autoplay='true'  interval="3000" duration="500" bindchange="photoChange">
         <block wx:for="{{spot.photos}}" wx:key="id">
           <swiper-item>
-            <image data-id="{{index}}" src="{{item.img}}"/>
+            <image data-id="{{index}}" src="{{item.src}}"/>
           </swiper-item>
         </block>
       </swiper>
@@ -35,6 +34,15 @@
           {{spot.desc}}
         </scroll-view>
       </view>
+    </view>
+
+    <view class='spot_vedios section relative'>
+      <view class='title'>东坪喃语</view>
+      <scroll-view scroll-y="true">	   
+        <view class="vedios">     
+          <video class='vedio' src="http://qzch.qz.gov.cn/qzxcly/resources/vedios/test.mp4"></video>
+        </view>
+      </scroll-view>
     </view>
 
     <view class='spot_strategies section relative'>
