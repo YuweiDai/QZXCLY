@@ -84,106 +84,19 @@ Page({
     ],
     controls: []
   },
-  bindmarkertap: function (event) {
-  
-    console.log(event);
-    var marker = markers[0];// markers[event.markerId];
-
-    if(marker.id==undefined|| marker.id==null) return;
-
-    this.setData({
-      showSingelSpot: true,
-      // mapHeight: app.globalData.systemInfo.windowHeight - 276,
-      // contentHeight: 200,
-    });
-
-    var spotMarkers=[];
-    spotMarkers.push(marker);
-
-    this.data.service_list.forEach(function(item){
-      var m = {
-        iconPath: item.logo,
-        latitude: item.lat,
-        longitude: item.lon,
-        width: 20,
-        height: 20,
-        callout: {
-          content: item.title,
-          padding: 5,
-          color: "#ffffff",
-          bgColor: "#1296db",
-          textAlign: "center",
-          borderRadius: 5
-        }};
-
-        spotMarkers.push(m);
-    });
-
-    this.setData({
-      lon: marker.longitude,
-      lat: marker.latitude,
-      level: 18,
-      markers: spotMarkers
-    });
-  },
-  returnToAll:function(event){
-
-    var markers = [];
-    for (var index in p.data.spots) {
-      markers.push({
-        iconPath: p.data.spots[index].selected ? "/resources/images/map/marker.png" : "/resources/images/map/spot.png",
-        id: 4,
-        latitude: p.data.spots[index].latitude,
-        longitude: p.data.spots[index].longitude,
-        width: 30,
-        height: p.data.spots[index].selected ? 45 : 30,
-      });
-    }
-    this.setData({
-      lon: 118.8594317436,
-      lat: 28.9702076731,
-      level: 11,
-      markers: markers,
-      showSingelSpot: false,
-    });
-  },
-  tapFilter: function (e) {
-
-    this.setData({
-      filterId: e.target.dataset.id,
-    });
-  },  
-  moveTo:function(event)
-  {
-    var lon = event.currentTarget.dataset.lon;
-    var lat = event.currentTarget.dataset.lat;
-
-    if (lon == undefined || lat == null) return;
-
-    this.setData({
-      lon: lon,
-      lat: lat,
-      level:20
-    });
-  },
-  navTo:function(event)
-  {
-    wx.redirectTo({
-      url: 'nav',
-    })
-  },
   controltap:function(event)
   {
     var currentLevel = p.data.level;
-    console.log(event);
+    console.log("current:" + currentLevel);
     switch(event.controlId)
     {
       case "zoomInBtn":  
-        currentLevel++;
+        currentLevel=currentLevel+1;
         if (currentLevel == 19) currentLevel=18;
         p.setData({
           level:currentLevel
         });
+        console.log("now:" + p.data.level);
         break;
       case "zoomOutBtn":
         currentLevel--;
