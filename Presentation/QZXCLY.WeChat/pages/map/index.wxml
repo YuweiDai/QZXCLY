@@ -1,6 +1,6 @@
 <view class="container">
   <view class="map_section section">
-    <map id="map" longitude="{{lon}}" latitude="{{lat}}" scale="{{level}}" include-points="{{points}}" controls="{{controls}}" bindmarkertap="bindmarkertap" markers="{{spots}}" bindcontroltap="controltap" show-location>
+    <map id="map" longitude="{{lon}}" latitude="{{lat}}" scale="{{level}}" include-points="{{points}}" controls="{{currentControls}}" bindmarkertap="bindmarkertap" markers="{{spots}}" bindcontroltap="controltap" show-location>
       <!-- <cover-view hidden='{{showSingelSpot}}' class='search_section top_section'>
         <cover-view class="search" bindtap="tapSearch">
           <cover-image class="icon" src="/resources/images/index/icon_search.png"/>
@@ -14,6 +14,14 @@
           <cover-image class='close' src="http://qzch.qz.gov.cn/qzxcly/resources/images/map/close.png" bindtap='returnToAll'></cover-image>      
         </cover-view>
       </cover-view>
+      <cover-view hidden='{{!showSingelSpot}}' class='spotFilter_section  absolute'>
+        <cover-view class='filters'>
+          <cover-view class="filter {{filterId==6?'active':''}}" data-id="6" bindtap="tapFilter">服务点</cover-view>          
+          <cover-view class="filter {{filterId==2?'active':''}}}}" data-id="2" bindtap="tapFilter">景点</cover-view>
+          <cover-view class="filter {{filterId==3?'active':''}}" data-id="3" bindtap="tapFilter">美食</cover-view>  
+          <cover-view class="filter {{filterId==4?'active':''}}" data-id="4" bindtap="tapFilter">住宿</cover-view>
+        </cover-view>
+      </cover-view>      
     </map>     
   </view>    
 </view>

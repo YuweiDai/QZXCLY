@@ -74,3 +74,36 @@
 {
   right: 10rpx;
 }
+
+
+/* 后期要整合 */
+.spotFilter_section
+{
+  bottom: 0rpx;
+  padding: 20rpx;
+}
+
+.spotFilter_section .filters {  
+  width: 710rpx;  
+	display: -webkit-flex;
+  background-color: white;
+  border-radius: 15rpx;
+}
+.spotFilter_section .filters .filter {
+	-webkit-flex: 1;
+	text-align: center;
+	color: #696969;
+	font-size: 24rpx;
+	line-height: 60rpx;
+}
+.spotFilter_section .filters .filter .v {
+	display: none;
+}
+.spotFilter_section .filters .filter.active {
+	color: white;
+	font-weight: bold;
+  background-color: #1296db;  
+}
+.spotFilter_section .filters .filter.active .v {
+	display: inline-block;
+}

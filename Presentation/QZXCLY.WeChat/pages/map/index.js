@@ -1,7 +1,6 @@
 // pages/map/index.js
 var app = getApp();
 var p = null;
-var mapCtx=null;
 
 Page({
 
@@ -19,12 +18,11 @@ Page({
         logo: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/j3.jpg",        
         latitude: 29.1851002329,
         longitude: 119.0333890915,
-        selected:true
-      },
+      }, 
       {
         id: 1,
         title: "寻觅乡愁 · 桃源七里",
-        logo: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/j1.jpg",
+        logo: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/j1.jpg", 
         latitude: 29.1484507736,
         longitude: 118.7620890141,
         selected: false
@@ -32,7 +30,7 @@ Page({
       {
         id: 3,
         title: "七彩长虹",
-        logo: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/j2.jpg",
+        logo: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/j2.jpg",   
         latitude: 29.2773600000,
         longitude: 118.2112300000,
         selected: false
@@ -40,18 +38,17 @@ Page({
       {
         id: 4,
         title: "江郎山",
-        logo: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/j3.jpg",
+        logo: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/j3.jpg",       
         latitude: 28.5341631929,
         longitude: 118.5649681091,
         selected: false    
       }
     ],
+    lon: 118.62230954575,
+    lat: 28.906426976353366,
+    level: 12,
+    showSingelSpot: false, filterId: 6,
     points:[],
-    lon: 118.8594317436,
-    lat: 28.9702076731,
-    level: 11,
-    showSingelSpot: false,
- 
     service_list: [
       {
         title: "集散中心",
@@ -82,79 +79,162 @@ Page({
         lon: 118.9927589893,     
       },
     ],
-    controls: []
+    currentControls: [],
+    allControls: []    
   },
+  //控件事件实现
   controltap:function(event)
-  {
-    var currentLevel = p.data.level;
-    console.log("current:" + currentLevel);
+  {    
     switch(event.controlId)
     {
       case "zoomInBtn":  
-        currentLevel=currentLevel+1;
-        if (currentLevel == 19) currentLevel=18;
-        p.setData({
-          level:currentLevel
+        this.mapCtx.getScale ({
+          success: function (res) {
+            var currentLevel = res.scale+2;
+            console.log("current:" + currentLevel);
+            currentLevel=currentLevel+1;
+            if (currentLevel == 19) currentLevel=18;
+            p.setData({
+              level: currentLevel,
+            });
+            console.log("now:" + p.data.level);
+          },
+          fail:function(res)
+          {
+            wx.showToast({ title:"获取地图等级失败"});
+          }
         });
-        console.log("now:" + p.data.level);
         break;
       case "zoomOutBtn":
-        currentLevel--;
-        if (currentLevel == 4) currentLevel = 5;
-        p.setData({
-          level: currentLevel
-        });      
+        this.mapCtx.getScale({
+          success: function (res) {
+            var currentLevel = res.scale + 2;
+            console.log("current:" + currentLevel);
+            currentLevel--;
+            if (currentLevel == 4) currentLevel = 5;
+            p.setData({
+              level: currentLevel,
+            });
+          },
+          fail: function (res) {
+            wx.showToast({ title: "获取地图等级失败" });
+          }
+        });       
         break;
+      case "zoomAllBtn":
+        this.mapCtx.includePoints({
+          padding: [10],
+          points: p.data.points
+        });
+        break; 
       case "locateBtn":
-        mapCtx.moveToLocation();
+        this.mapCtx.moveToLocation();
         break;                
     }
   },
-  
+  //图钉点击事件
+  bindmarkertap: function (event) {
+
+    console.log(event);
+    var tappedMarkerId=event.markerId;
+    var markerType=tappedMarkerId.split('_')[0];
+    switch(markerType)
+    {
+      case "spot":
+        //景区点击事件
+        if (p.data.showSingelSpot) return;
+        var spot = p.data.spots[0];// markers[event.markerId];
+
+        if (spot.id == undefined || spot.id == null) return;
+        var spotMarkers = [];
+        // spotMarkers.push(marker);
+
+        //更新空间位置
+        var controls = p.data.allControls;
+        controls.splice(3, 1);
+        console.log(controls);
+        controls[0].position.top -= 60 / app.globalData.systemInfo.pixelRatio;        
+        controls[1].position.top += 100 / app.globalData.systemInfo.pixelRatio;
+        controls[2].position.top += 100 / app.globalData.systemInfo.pixelRatio;
+
+        this.setData({
+          showSingelSpot: true,
+          lon: spot.longitude,
+          lat: spot.latitude,
+          level: 18,
+          currentControls: controls
+        });
+        break;        
+    }    
+  },
+  returnToAll: function (event) {
+
+    // var markers = [];
+    // for (var index in p.data.spots) {
+    //   markers.push({
+    //     iconPath: p.data.spots[index].selected ? "/resources/images/map/marker.png" : "/resources/images/map/spot.png",
+    //     id: 4,
+    //     latitude: p.data.spots[index].latitude,
+    //     longitude: p.data.spots[index].longitude,
+    //     width: 30,
+    //     height: p.data.spots[index].selected ? 45 : 30,
+    //   });
+    // }
+    console.log(p.data.allControls);
+    this.setData({
+      // lon: 118.8594317436,
+      // lat: 28.9702076731,
+      // level: 11,
+      // markers: markers,
+      currentControls:p.data.allControls,
+      showSingelSpot: false,
+    });
+  },
+  tapFilter: function (e) {
+
+    this.setData({
+      filterId: e.target.dataset.id,
+    });
+  }, 
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     if(p==null) p=this;
-    if (mapCtx == null) mapCtx = wx.createMapContext('map');
+    this.mapCtx = wx.createMapContext('map');
     
     var controlSize =15 * app.globalData.systemInfo.pixelRatio;
+
     //设置地图控件
     var controls = [
       { id: "locateBtn", iconPath: '../../resources/images/map/locate.png', position: { left: controlSize / 2, top: app.globalData.systemInfo.windowHeight- 2*controlSize, width: controlSize, height: controlSize},clickable: true},
       { id: "zoomInBtn", iconPath: '../../resources/images/map/zoomIn.png', position: { left: controlSize / 2, top: controlSize / 2, width: controlSize, height: controlSize }, clickable: true },
-      { id: "zoomOutBtn", iconPath: '../../resources/images/map/zoomOut.png', position: { left: controlSize / 2, top: controlSize / 2 + controlSize, width: controlSize, height: controlSize }, clickable: true }];
+      { id: "zoomOutBtn", iconPath: '../../resources/images/map/zoomOut.png', position: { left: controlSize / 2, top: controlSize / 2 + controlSize, width: controlSize, height: controlSize }, clickable: true },
+      { id: "zoomAllBtn", iconPath: '../../resources/images/map/zoomAll.png', position: { left: controlSize / 2, top: controlSize / 2 + 2 * controlSize + controlSize / 2, width: controlSize, height: controlSize }, clickable: true }];
+
+    //设置初始景点图标及原始缩放位置
+    var points = [];
+    var spots=[];
+    for (var index in p.data.spots) {
+      var spot = p.data.spots[index];
+      points.push({ latitude: spot.latitude, longitude: spot.longitude });
+
+      spot.width = 30 * app.globalData.systemInfo.pixelRatio;
+      spot.height = 30 * app.globalData.systemInfo.pixelRatio;
+      spot.iconPath = "../../resources/images/map/spot.png";
+      spot.id="spot_"+spot.id;
+      spots.push(spot);
+    } 
 
 
-    //设置初始地图界面
-    var points=[];
-    for(var index in p.data.spots)
-    {
-      var spot=p.data.spots[index];
-      points.push({ latitude: spot.latitude, longitude: spot.longitude});
-    }
-    //mapCtx.includePoints(points,[10,10,10,10]);
+    //设置数据
     p.setData({
-      points:points,
-      controls: controls
-    });
-    // console.log("after");
-    // mapCtx.getScale ({
-    //   success: function (res) {
-    //     console.log(res)
-    //   }
-    // })
-    // wx.getLocation({
-    //   type: 'wgs84',
-    //   success: function (res) {
-    //     var latitude = res.latitude;
-    //     var longitude = res.longitude;
-    //     var speed = res.speed;
-    //     var accuracy = res.accuracy;
-
-    //     // page.setData({ lon: longitude,lat:latitude });
-    //   }
-    // });
+      spots: spots,
+      points: points,
+      currentControls: controls,
+      allControls:controls
+    });   
 
     // if (app.globalData.locationDetect)
     // {
