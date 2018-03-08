@@ -39,6 +39,11 @@
   position: relative;
 }
 
+.inline-block
+{
+  display: inline-block;
+}
+
 .section
 {
   margin: 20rpx 0;

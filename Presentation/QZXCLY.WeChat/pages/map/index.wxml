@@ -1,25 +1,39 @@
 <view class="container">
   <view class="map_section section">
-    <map id="map" longitude="{{lon}}" latitude="{{lat}}" scale="{{level}}" include-points="{{points}}" controls="{{currentControls}}" bindmarkertap="bindmarkertap" markers="{{spots}}" bindcontroltap="controltap" show-location>
+    <map id="map" longitude="{{lon}}" latitude="{{lat}}" scale="{{level}}" controls="{{currentControls}}" bindmarkertap="bindmarkertap" markers="{{markers}}" bindcontroltap="controltap" show-location>
       <!-- <cover-view hidden='{{showSingelSpot}}' class='search_section top_section'>
         <cover-view class="search" bindtap="tapSearch">
           <cover-image class="icon" src="/resources/images/index/icon_search.png"/>
           <cover-view class="placeholder">搜索你想去的地方...</cover-view>
-        </cover-view>   
+        </cover-view> 
       </cover-view>     -->
 
-      <cover-view hidden='{{!showSingelSpot}}' class='spotTitle_section top_section'>
-        <cover-view class='title'>
+      <cover-view hidden='{{!showSingelSpot}}'  class='spot_section top_section'>
+        <cover-view><cover-image class="avatar" src="{{currentSpot.logo}}" /></cover-view>
+        <cover-view class='content'>
+          <cover-view class='title'>{{currentSpot.title}}</cover-view>
+          <cover-view class='info'>
+            距离当前位置9.4km
+          </cover-view>   
+          <cover-view class='btns'>
+            <cover-view data-url="../index/spot" class='navigator inline-block' bindtap='nav'>详情</cover-view>
+            <cover-view class='navigator inline-block' bindtap='showImages'>图集</cover-view>     
+            <cover-view data-url="nav" class='navigator inline-block' bindtap='nav'>导航</cover-view>
+          </cover-view>
+        </cover-view>        
+        <cover-image class='close' src="/resources/images/map/close.png" bindtap='returnToAll'></cover-image>
+        <!-- <cover-view class='title'>
+        
           <cover-view class="placeholder">当前：康养衢江 · 隐柿东坪</cover-view>    
           <cover-image class='close' src="http://qzch.qz.gov.cn/qzxcly/resources/images/map/close.png" bindtap='returnToAll'></cover-image>      
-        </cover-view>
+        </cover-view> -->
       </cover-view>
       <cover-view hidden='{{!showSingelSpot}}' class='spotFilter_section  absolute'>
         <cover-view class='filters'>
-          <cover-view class="filter {{filterId==6?'active':''}}" data-id="6" bindtap="tapFilter">服务点</cover-view>          
-          <cover-view class="filter {{filterId==2?'active':''}}}}" data-id="2" bindtap="tapFilter">景点</cover-view>
-          <cover-view class="filter {{filterId==3?'active':''}}" data-id="3" bindtap="tapFilter">美食</cover-view>  
-          <cover-view class="filter {{filterId==4?'active':''}}" data-id="4" bindtap="tapFilter">住宿</cover-view>
+          <cover-view class="filter {{filterType=='service'?'active':''}}" data-id="service" bindtap="tapFilter">服务点</cover-view>          
+          <cover-view class="filter {{filterType=='play'?'active':''}}}}" data-id="play" bindtap="tapFilter">景点</cover-view>
+          <cover-view class="filter {{filterType=='eat'?'active':''}}" data-id="eat" bindtap="tapFilter">美食</cover-view>  
+          <cover-view class="filter {{filterType=='live'?'active':''}}" data-id="live" bindtap="tapFilter">住宿</cover-view>
         </cover-view>
       </cover-view>      
     </map>     

@@ -18,7 +18,7 @@
 }
 
 .top_section {
-  height: 120rpx;
+  height: 200rpx;
   position: absolute;
 	display: -webkit-flex;
 	left: 0;
@@ -29,50 +29,62 @@
 	z-index: 1;
 	-webkit-transition: background 0.5s ease-in-out;
 }
- 
-.search_section .search ,.spotTitle_section .title{
-  position: relative;
-  width: 100%;
-	border-radius: 8rpx;
+
+.spot_section
+{
 	background: #fff;
-  border: solid 1px #888;
+  padding: 20rpx 50rpx;
+  border-bottom: 1px solid #f0f0f0;
 }
 
-.search_section .search .icon,.spotTitle_section .title .close {
+.spot_section .avatar {
+	display: block;
+	margin: 0 auto;
+	width: 160rpx;
+	height: 160rpx;
+	border-radius:15rpx;
+}
+
+.spot_section .content
+{
+  margin-left: 50rpx;
+}
+
+.spot_section .content .title
+{
+  margin-bottom: 15rpx;
+  font-size: 40rpx;
+}
+
+.spot_section .content .info
+{
+  line-height: 35rpx;
+  margin-bottom:15rpx;  
+  font-size: 30rpx;
+  color: #8a8a8a;
+}
+
+
+.spot_section .content .btns .navigator
+{
+  display: inline-block;
+  margin-right: 25rpx;
+  font-size: 35rpx;
+  color: #27c24c;
+}
+
+.spot_section .close {
   position: absolute;
-  top: 10rpx;
+  bottom: 10rpx;
+  right: 10rpx;  
 	width: 60rpx;
 	height: 60rpx;
 	vertical-align: middle;
 }
 
-.search_section .search .icon,
+.spot_section .icon,
 {
   left: 10rpx;
-
-}
-
-.search_section .search .placeholder {
-  position: absolute;
-  top: 10rpx;
-  left: 75rpx;
-	color: #888;
-	font-size: 35rpx;
-	line-height: 60rpx;  
-}
-
-.spotTitle_section .title .placeholder
-{
-  position: absolute;
-  top: 10rpx;
-  left: 10rpx;
-	font-size: 35rpx;
-	line-height: 60rpx;  
-}
-
-.spotTitle_section .title .close
-{
-  right: 10rpx;
 }
 
 
@@ -102,7 +114,7 @@
 .spotFilter_section .filters .filter.active {
 	color: white;
 	font-weight: bold;
-  background-color: #1296db;  
+  background-color: #27c24c;  
 }
 .spotFilter_section .filters .filter.active .v {
 	display: inline-block;

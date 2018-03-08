@@ -84,18 +84,18 @@ Page({
     })
   },
   onLoad: function () {
-    // wx.showModal({
-    //   title: '提示',
-    //   content: '检测到您正位于东坪景区，是否前往景区地图？',
-    //   success: function (res) {
-    //     if (res.confirm) {
-    //       app.globalData.locationDetect=true;
-    //       wx.switchTab({
-    //         url: '../map/index',
-    //       })
-    //     }
-    //   }
-    // })
+    wx.showModal({
+      title: '提示',
+      content: '检测到您正位于东坪景区，是否前往景区地图？',
+      success: function (res) {
+        if (res.confirm) {
+          app.globalData.locationDetect=true;
+          wx.navigateTo({
+            url: 'spot',
+          })
+        }
+      }
+    })
 
     if (app.globalData.userInfo) {
       this.setData({

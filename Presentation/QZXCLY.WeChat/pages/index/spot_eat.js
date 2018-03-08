@@ -61,6 +61,8 @@ Page({
     for (var index in p.data.photos) {
       urls.push(p.data.photos[index].img);
     }
+
+    console.log(urls);
     p.setData({
       urls: urls
     });
