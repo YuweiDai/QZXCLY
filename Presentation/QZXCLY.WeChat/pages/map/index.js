@@ -2,12 +2,24 @@
 var app = getApp();
 var p = null;
 var rpx=2;
+var defaultCallout= {
+  padding: 5,
+  color: "#ffffff",
+  bgColor: "#1296db",
+  textAlign: "center",
+  display: "ALWAYS",
+  borderRadius: 5
+};
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    showModalStatus: false,    
+    animationData:null,
+
+
     selectedSpot:0,
     markers:[],
     spots:[
@@ -178,7 +190,7 @@ Page({
         selected: false
       },
       {
-        id: 3,
+        id: 2,
         title: "七彩长虹",
         logo: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/j2.jpg",   
         latitude: 29.2773600000,
@@ -186,8 +198,8 @@ Page({
         selected: false
       },
       {
-        id: 4,
-        title: "江郎山",
+        id: 3,
+        title: "廿八都古镇",
         logo: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/j3.jpg",       
         latitude: 28.5341631929,
         longitude: 118.5649681091,
@@ -295,9 +307,10 @@ Page({
         });
         break;    
       case "play":
-      wx.navigateTo({
-        url: '../index/spot_play',
-      });
+      // wx.navigateTo({
+      //   url: '../index/spot_play',
+      // });
+        p.powerDrawer();
         break;
       case "eat":
         wx.navigateTo({
@@ -327,7 +340,7 @@ Page({
 
       spot.width = 30 * rpx;
       spot.height = 30 * rpx;
-      spot.iconPath = "../../resources/images/map/spot.png";
+      spot.iconPath = "../../resources/images/map/"+spot.id+".png";
       spot.id = "spot_" + spot.id;
       spots.push(spot);
     }
@@ -369,7 +382,15 @@ Page({
             longitude: item.lon,
             height: 80 / rpx,
             width: 80 / rpx,
-            anchor: { x: 0.5, y: 0.5 }
+            callout: {
+              content: item.title,
+              padding: defaultCallout.padding,
+              color: defaultCallout.color,
+              bgColor: defaultCallout.bgColor,
+              textAlign: defaultCallout.textAlign,
+              display: defaultCallout.display,
+              borderRadius: defaultCallout.borderRadius,
+            }
           });
 
           newRegionPoints.push({ latitude: item.lat, longitude: item.lon });
@@ -381,12 +402,20 @@ Page({
           subMarkers.push({
             id: "play_" + item.id,
             title: item.title,
-            iconPath: "../../resources/images/map/t.png",
+            iconPath: "../../resources/images/map/play.png",
             latitude: item.latitude,
             longitude: item.longitude,
             height: 80 / rpx,
             width: 80 / rpx,
-            anchor: { x: 0.5, y: 0.5 }
+            callout: {
+              content: item.title,
+              padding: defaultCallout.padding,
+              color: defaultCallout.color,
+              bgColor: defaultCallout.bgColor,
+              textAlign: defaultCallout.textAlign,
+              display: defaultCallout.display,
+              borderRadius: defaultCallout.borderRadius,
+            }            
           });
 
           newRegionPoints.push({ latitude: item.latitude, longitude: item.longitude });
@@ -403,7 +432,15 @@ Page({
             longitude: item.longitude,
             height: 80 / rpx,
             width: 80 / rpx,
-            anchor: { x: 0.5, y: 0.5 }
+            callout: {
+              content: item.title,
+              padding: defaultCallout.padding,
+              color: defaultCallout.color,
+              bgColor: defaultCallout.bgColor,
+              textAlign: defaultCallout.textAlign,
+              display: defaultCallout.display,
+              borderRadius: defaultCallout.borderRadius,
+            }            
           });
 
           newRegionPoints.push({ latitude: item.latitude, longitude: item.longitude });
@@ -415,12 +452,20 @@ Page({
           subMarkers.push({
             id: "live_" + item.id,
             title: item.title,
-            iconPath: "../../resources/images/map/t.png",
+            iconPath: "../../resources/images/map/live.png",
             latitude: item.latitude,
             longitude: item.longitude,
             height: 80 / rpx,
             width: 80 / rpx,
-            anchor: { x: 0.5, y: 0.5 }
+            callout: {
+              content: item.title,
+              padding: defaultCallout.padding,
+              color: defaultCallout.color,
+              bgColor: defaultCallout.bgColor,
+              textAlign: defaultCallout.textAlign,
+              display: defaultCallout.display,
+              borderRadius: defaultCallout.borderRadius,
+            }            
           });
 
           newRegionPoints.push({ latitude: item.latitude, longitude: item.longitude });
@@ -460,6 +505,64 @@ Page({
     })
   },
 
+  powerDrawer: function (e) {
+    var currentStatu = "close";
+    if (e == undefined || e.currentTarget==undefined ) currentStatu = "open";
+    else currentStatu = e.currentTarget.dataset.statu;
+    this.util(currentStatu)
+  },
+  util: function (currentStatu) {
+    // 弹窗初始化
+    /* 动画部分 */
+    // 第1步：创建动画实例   
+    var animation = wx.createAnimation({
+      duration: 200,  //动画时长  
+      timingFunction: "linear", //线性  
+      delay: 0  //0则不延迟  
+    });
+
+    // 第2步：这个动画实例赋给当前的动画实例  
+    this.animation = animation;
+
+    // 第3步：执行第一组动画  
+    animation.opacity(0).rotateX(-100).step();
+
+    // 第4步：导出动画对象赋给数据对象储存  
+    this.setData({
+      animationData: animation.export()
+    })
+
+    // 第5步：设置定时器到指定时候后，执行第二组动画  
+    setTimeout(function () {
+      // 执行第二组动画  
+      animation.opacity(1).rotateX(0).step();
+      // 给数据对象储存的第一组动画，更替为执行完第二组动画的动画对象  
+      this.setData({
+        animationData: animation
+      })
+
+      //关闭  
+      if (currentStatu == "close") {
+        this.setData(
+          {
+            showModalStatus: false
+          }
+        );
+      }
+    }.bind(this), 200)
+
+    // 显示  
+    if (currentStatu == "open") {
+      this.setData(
+        {
+          showModalStatus: true
+        }
+      );
+    }
+
+  } ,
+
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -479,26 +582,44 @@ Page({
 
     //设置初始景点图标及原始缩放位置
     var points = [];
-    var spots=[];
+    var spotMarkers=[];
     for (var index in p.data.spots) {
       var spot = p.data.spots[index];
       points.push({ latitude: spot.latitude, longitude: spot.longitude });
 
-      spot.width = 30 * rpx;
-      spot.height = 30 * rpx;
-      spot.iconPath = "../../resources/images/map/spot.png";
-      spot.id="spot_"+spot.id;
-      spots.push(spot);
+      var callout= {
+        content: spot.title,
+        padding: defaultCallout.padding,
+        color: defaultCallout.color,
+        bgColor: defaultCallout.bgColor,
+        textAlign: defaultCallout.textAlign,
+        display: defaultCallout.display,
+        borderRadius: defaultCallout.borderRadius,
+      }; 
+
+      var spotMarker = {
+        id: "spot_" + spot.id,
+        title:spot.title,
+        width:40*rpx,
+        height:40*rpx,
+        iconPath: "../../resources/images/map/spot" + spot.id + ".png",
+        latitude: spot.latitude,
+        longitude: spot.longitude,
+        callout: callout
+      };
+
+      spotMarkers.push(spotMarker);
     } 
+
     this.mapCtx.includePoints({
       padding: [30],
       points: points
     }); 
-
+ 
     //设置数据
     p.setData({
-      markers:spots,
-      allSpotMarkers:spots,
+      markers: spotMarkers,
+      allSpotMarkers: spotMarkers,
       currentRegionPoints: points,
       currentControls: controls,
       allControls:controls

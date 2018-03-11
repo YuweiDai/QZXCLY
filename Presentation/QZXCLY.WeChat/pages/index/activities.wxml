@@ -1,6 +1,6 @@
 <!--pages/index/activities.wxml-->
  
-<view class="section">
+<!-- <view class="section">
   <view class="section__title">movable-view区域小于movable-area</view>
   <movable-area style="height: 200px;width: 200px;background: red;">
     <movable-view style="height: 50px; width: 50px; background: blue;" x="30" y="30" direction="all">
@@ -14,4 +14,5 @@
     <movable-view style="height: 200px; width: 200px; background: blue;">
     </movable-view>
   </movable-area>
-</view>
+</view> -->
+ <web-view src="https://www.luckyday.top/resources/panoramas/index.html"></web-view>

@@ -210,7 +210,6 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\VillageController.cs" />
-    <Compile Include="ESRI\ArcGIS\ArcMap\Document.cs" />
     <Compile Include="Infrastructure\AutoMapperStartupTask.cs" />
     <Compile Include="Infrastructure\DependencyRegistrar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

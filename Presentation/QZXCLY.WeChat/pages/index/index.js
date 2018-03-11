@@ -48,7 +48,7 @@ Page({
       { name: "康养衢江·隐柿东坪", img: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/dp_1.jpg" },
       { name: "寻梦乡愁·桃源七里", img: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/ql.png" },
       { name: "七彩长虹", img: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/ch.png" },
-      { name: "廿八都古镇印象", img: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/nbd.png" }                        
+      { name: "廿八都古镇印象", img: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/nbd.png" }        
     ],
     strategies: [
       { id: 0, title: "摘柿子，赏枫叶，走古道，东坪等你来！", img: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/dp.jpg", src: "https://m.sohu.com/a/199887818_99961751/?pvid=000115_3w_a" },
