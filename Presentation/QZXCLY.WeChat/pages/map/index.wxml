@@ -39,13 +39,13 @@
          <cover-view class="drawer_logo"><cover-image class="avatar" src="http://qzch.qz.gov.cn/qzxcly/resources/images/index/spots/dpgd_logo.jpg" /></cover-view>  
         <!--drawer content-->  
         <cover-view class="drawer_content">               
-          <cover-view class="drawer_title">千年古道</cover-view>
-          <cover-view class='drawer_detail'>东坪千年古道位于衢州市峡川镇境内，距市区40公里。从东坪山脚下起，一条总长1500米，宽2米，共1144级的青石板古道蜿蜒盘曲伸向山顶，随着岁月的流逝，村民的脚步磨去了古道青石块的棱角而变得光滑。这就是相传具有1300多年历史的唐朝古道。</cover-view>
-          <cover-view class='drawer_btns'>
-  
+          <cover-view class="drawer_title">{{drawerMarker.title}}</cover-view>
+          <cover-view class='drawer_detail' wx:if="{{filterType=='play'?'active':''}}">东坪千年古道位于衢州市峡川镇境内，距市区40公里。从东坪山脚下起，一条总长1500米，宽2米，共1144级的青石板古道蜿蜒盘曲伸向山顶，随着岁月的流逝，村民的脚步磨去了古道青石块的棱角而变得光滑。这就是相传具有1300多年历史的唐朝古道。</cover-view>
+          <cover-view class='drawer_btns'>  
             <cover-view data-url="../index/spot_play" class='navigator inline-block' bindtap='nav'>详情</cover-view>
             <cover-view class='navigator inline-block' bindtap='showImages'>图集</cover-view>     
-            <cover-view data-url="nav" class='navigator inline-block' bindtap='nav'>导航</cover-view>
+            <cover-view wx:if="{{drawerMarker.panoramaUrl}}" data-url="webview?src={{drawerMarker.panoramaUrl}}" class='navigator inline-block' bindtap='nav'>全景</cover-view>             
+            <cover-view data-url="nav" data-lon="{{drawerMarker.lon}}" data-lat="{{drawerMarker.lat}}" class='navigator inline-block' bindtap='nav'>导航</cover-view>
           </cover-view>
         </cover-view>         
         <cover-view class="btn_ok" bindtap="powerDrawer" data-statu="close">关闭</cover-view> 

@@ -53,6 +53,7 @@ Page({
         play_list: [
           {
             id: 0,
+            
             title: "千年古道",
             descriptions: "东坪千年古道位于衢州市峡川镇境内，距市区40公里。从东坪山脚下起，一条总长1500米，宽2米，共1144级的青石板古道蜿蜒盘曲伸向山顶，随着岁月的流逝，村民的脚步磨去了古道青石块的棱角而变得光滑。这就是相传具有1300多年历史的唐朝古道。",
             logo: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/spots/dpgd_logo.jpg",
@@ -274,6 +275,7 @@ Page({
     console.log(event);
     var tappedMarkerId=event.markerId;
     var markerType=tappedMarkerId.split('_')[0];
+    var markerId = tappedMarkerId.split('_')[1];
     switch(markerType)
     {
       case "spot":
@@ -324,6 +326,8 @@ Page({
         break;                
     }    
   },
+
+  //返回所有景点
   returnToAll: function (event) {
 
     var controls = p.data.allControls;
@@ -359,6 +363,8 @@ Page({
       showSingelSpot: false,
     });
   },
+
+  //切换吃喝玩乐
   tapFilter: function (e) {
 
     var currentSpot = p.data.currentSpot;
@@ -369,6 +375,7 @@ Page({
     });
   }, 
 
+  //设置吃喝玩乐
   setSubMarkers:function(currentSpot,filterType){
     var subMarkers = [];
     var newRegionPoints = [];
@@ -380,8 +387,8 @@ Page({
             iconPath: "../../resources/images/map/" + item.t + ".png",
             latitude: item.lat,
             longitude: item.lon,
-            height: 80 / rpx,
-            width: 80 / rpx,
+            height: 128 / rpx,
+            width: 88 / rpx,
             callout: {
               content: item.title,
               padding: defaultCallout.padding,
@@ -405,8 +412,8 @@ Page({
             iconPath: "../../resources/images/map/play.png",
             latitude: item.latitude,
             longitude: item.longitude,
-            height: 80 / rpx,
-            width: 80 / rpx,
+            height: 128 / rpx,
+            width: 88 / rpx,
             callout: {
               content: item.title,
               padding: defaultCallout.padding,
@@ -427,11 +434,11 @@ Page({
           subMarkers.push({
             id: "eat_" + item.id,
             title: item.title,
-            iconPath: "../../resources/images/map/eat.png",
+            iconPath: "../../resources/images/map/eat_1.png",
             latitude: item.latitude,
             longitude: item.longitude,
-            height: 80 / rpx,
-            width: 80 / rpx,
+            height: 128 / rpx,
+            width: 88 / rpx,
             callout: {
               content: item.title,
               padding: defaultCallout.padding,
@@ -455,8 +462,8 @@ Page({
             iconPath: "../../resources/images/map/live.png",
             latitude: item.latitude,
             longitude: item.longitude,
-            height: 80 / rpx,
-            width: 80 / rpx,
+            height: 128 / rpx,
+            width: 88 / rpx,
             callout: {
               content: item.title,
               padding: defaultCallout.padding,

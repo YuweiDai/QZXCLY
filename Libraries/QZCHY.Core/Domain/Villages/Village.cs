@@ -14,6 +14,7 @@ namespace QZCHY.Core.Domain.Villages
         private ICollection<VillageLive> _villageLives;
         private ICollection<VillageEat> _villageEats;
         private ICollection<VillagePicture> _villagePictures;
+
         /// <summary>
         /// 景点名称
         /// </summary>
@@ -35,13 +36,14 @@ namespace QZCHY.Core.Domain.Villages
         /// </summary>
         public string Desc { get; set; }
         /// <summary>
-        /// 是否星级
+        /// 景区标签
         /// </summary>
-        public bool Star { get; set; }
+        public string Tags { get; set; }
         /// <summary>
         /// 坐落位置
         /// </summary>
         public DbGeography Location { get; set; }
+
         public virtual ICollection<VillagePlay> Plays
         {
             get { return _villagePlays ?? (_villagePlays = new List<VillagePlay>()); }
@@ -60,7 +62,7 @@ namespace QZCHY.Core.Domain.Villages
             protected set { _villageEats = value; }
         }
 
-        public virtual ICollection<VillagePicture> villagePictures
+        public virtual ICollection<VillagePicture> VillagePictures
         {
             get { return _villagePictures ?? (_villagePictures = new List<VillagePicture>()); }
             protected set { _villagePictures = value; }

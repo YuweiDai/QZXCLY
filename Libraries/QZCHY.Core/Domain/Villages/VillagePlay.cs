@@ -18,10 +18,16 @@ namespace QZCHY.Core.Domain.Villages
         /// 描述
         /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// 全景id
+        /// </summary>
+        public int PanoramaId { get; set; }       
+
         /// <summary>
         /// 图片
         /// </summary>
-        public virtual ICollection<PlayPicture> playPictures
+        public virtual ICollection<PlayPicture> PlayPictures
         {
             get { return _playPictures ?? (_playPictures = new List<PlayPicture>()); }
             protected set { _playPictures = value; }
