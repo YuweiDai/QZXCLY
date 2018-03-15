@@ -1,54 +1,104 @@
 // pages/map/nav.js
 var amapFile = require('../../libs/amap-wx.js');//如：..­/..­/libs/amap-wx.js
 var myAmapFun=null;
+var p=null;
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    targetLon:0,
+    targetLat:0,
     markers: [],
     distance: '',
     cost: '',
     polyline: []
   },
 
+  //验证经纬度合法性
+  validateLonAndLat:function(lon,lat)
+  {
+    if (lon == undefined || lon == null) return false;
+    if (lat == undefined || lat == null) return false;
+
+    if(isNaN(lon) || isNaN(lat)) return false;
+
+    if (lon < -180 || lon > 180) return false;
+    if (lat < -90 || lat > 90) return false;
+  },
+
+  goDetail: function () {
+    console.log(p.data.targetLat);
+    wx.openLocation({
+      latitude: p.data.targetLat,
+      longitude: p.data.targetLon
+    });
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this; 
+    this.mapCtx = wx.createMapContext('navi_map');
+
+    if (p == null) p = this;
+    var targetLon = parseFloat(options.lon);
+    var targetLat = parseFloat(options.lat);
+    if (p.validateLonAndLat(targetLon, targetLat)) {
+      wx.showModal({
+        title: '无法计算路线',
+        content: '传入的经纬度数据错误',
+        showCancel: false,
+        success: function (res) {
+          if (res.confirm) {
+            wx.navigateBack();
+          };
+        }
+      });
+    }
+    p.setData({
+      targetLon: targetLon,
+      targetLat: targetLat,
+    });
+        
     myAmapFun = new amapFile.AMapWX({ key: '95d2ad325d43f19cdd3fb2eac8cceadc' });
 
     wx.getLocation({
-      success: function(res) {
+      success: function (res) {
         var latitude = res.latitude;
         var longitude = res.longitude;
         var speed = res.speed;
         var accuracy = res.accuracy;
 
-        var startPoint={
-      iconPath: "../../resources/images/map/marker.png",
-      id: 0,
-      latitude: latitude,
-      longitude: longitude,
-      width: 23,
-      height: 33
-    };
-    var endPoint={
-        iconPath: "../../resources/images/map/marker_checked.png",
-      id: 0,
-      latitude: 29.1851002329,
-      longitude: 119.0333890915,
-      width: 24,
-      height: 34
-    };
+        var startPoint = {
+          iconPath: "../../resources/images/map/marker.png",
+          id: 0,
+          latitude: latitude,
+          longitude: longitude,
+          width: 23,
+          height: 33
+        };
+        var endPoint = {
+          iconPath: "../../resources/images/map/marker_checked.png",
+          id: 1,
+          latitude: targetLat,
+          longitude: targetLon,
+          width: 24,
+          height: 34
+        };
 
-    that.setData({ markers: [startPoint, endPoint]});
+        p.setData({ markers: [startPoint, endPoint] });
+
+        p.mapCtx.includePoints({
+          padding: [30],
+          points: [{ latitude: latitude, longitude: longitude }, { latitude: p.data.targetLat, longitude: p.data.targetLon }]
+        }); 
 
         myAmapFun.getDrivingRoute({
           origin: longitude + ',' + latitude,
-          destination: '119.0333890915,29.1851002329',
+          destination: targetLon + ',' + targetLat,
           success: function (data) {
             var points = [];
             if (data.paths && data.paths[0] && data.paths[0].steps) {
@@ -63,7 +113,7 @@ Page({
                 }
               }
             }
-            that.setData({
+            p.setData({
               polyline: [{
                 points: points,
                 color: "#0091ff",
@@ -71,12 +121,12 @@ Page({
               }]
             });
             if (data.paths[0] && data.paths[0].distance) {
-              that.setData({
+              p.setData({
                 distance: data.paths[0].distance + '米'
               });
             }
             if (data.taxi_cost) {
-              that.setData({
+              p.setData({
                 cost: '打车约' + parseInt(data.taxi_cost) + '元'
               });
             }
@@ -87,9 +137,7 @@ Page({
           }
         })
       },
-    })
-
-    
+    })    
   },
 
   /**
@@ -139,188 +187,5 @@ Page({
    */
   onShareAppMessage: function () {
   
-  },
-
-  goDetail: function () {
-wx.openLocation({
-  latitude:  29.1851002329,
-  longitude: 119.0333890915,
-});
-  },
-  goToCar: function (e) {
-    myAmapFun.getDrivingRoute({
-      origin: longitude + ',' + latitude,
-      destination: '119.0333890915,29.1851002329',
-      success: function (data) {
-        var points = [];
-        if (data.paths && data.paths[0] && data.paths[0].steps) {
-          var steps = data.paths[0].steps;
-          for (var i = 0; i < steps.length; i++) {
-            var poLen = steps[i].polyline.split(';');
-            for (var j = 0; j < poLen.length; j++) {
-              points.push({
-                longitude: parseFloat(poLen[j].split(',')[0]),
-                latitude: parseFloat(poLen[j].split(',')[1])
-              })
-            }
-          }
-        }
-        that.setData({
-          polyline: [{
-            points: points,
-            color: "#0091ff",
-            width: 6
-          }]
-        });
-        if (data.paths[0] && data.paths[0].distance) {
-          that.setData({
-            distance: data.paths[0].distance + '米'
-          });
-        }
-        if (data.taxi_cost) {
-          that.setData({
-            cost: '打车约' + parseInt(data.taxi_cost) + '元'
-          });
-        }
-
-      },
-      fail: function (info) {
-
-      }
-    })
-  },
-  goToBus: function (e) {
-    var that = this;
-    myAmapFun.getTransitRoute({
-      origin: that.data.markers[0].longitude + ',' + that.data.markers[0].latitude,
-      destination: '119.0333890915,29.1851002329',
-      city:'衢州',
-      strategy:0,
-      success: function (data) {
-        var points = [];
-        if (data.paths && data.paths[0] && data.paths[0].steps) {
-          var steps = data.paths[0].steps;
-          for (var i = 0; i < steps.length; i++) {
-            var poLen = steps[i].polyline.split(';');
-            for (var j = 0; j < poLen.length; j++) {
-              points.push({
-                longitude: parseFloat(poLen[j].split(',')[0]),
-                latitude: parseFloat(poLen[j].split(',')[1])
-              })
-            }
-          }
-        }
-        that.setData({
-          polyline: [{
-            points: points,
-            color: "#0091ff",
-            width: 6
-          }]
-        });
-        if (data.paths[0] && data.paths[0].distance) {
-          that.setData({
-            distance: data.paths[0].distance + '米'
-          });
-        }
-        if (data.taxi_cost) {
-          that.setData({
-            cost: '打车约' + parseInt(data.taxi_cost) + '元'
-          });
-        }
-
-      },
-      fail: function (info) {
-
-      }
-    })
-  },
-  goToRide: function (e) {
- 
-    var that = this;
-    myAmapFun.getRidingRoute({
-      origin: that.data.markers[0].longitude + ',' + that.data.markers[0].latitude,
-      destination: '119.0333890915,29.1851002329',
-      success: function (data) {
-        var points = [];
-        if (data.paths && data.paths[0] && data.paths[0].steps) {
-          var steps = data.paths[0].steps;
-          for (var i = 0; i < steps.length; i++) {
-            var poLen = steps[i].polyline.split(';');
-            for (var j = 0; j < poLen.length; j++) {
-              points.push({
-                longitude: parseFloat(poLen[j].split(',')[0]),
-                latitude: parseFloat(poLen[j].split(',')[1])
-              })
-            }
-          }
-        }
-        that.setData({
-          polyline: [{
-            points: points,
-            color: "#0091ff",
-            width: 6
-          }]
-        });
-        if (data.paths[0] && data.paths[0].distance) {
-          that.setData({
-            distance: data.paths[0].distance + '米'
-          });
-        }
-        if (data.taxi_cost) {
-          that.setData({
-            cost: '打车约' + parseInt(data.taxi_cost) + '元'
-          });
-        }
-
-      },
-      fail: function (info) {
-
-      }
-    })
-
-
-  },
-  goToWalk: function (e) {
-    var that=this;
-    myAmapFun.getDrivingRoute({
-      origin: that.data.markers[0].longitude + ',' + that.data.markers[0].latitude,
-      destination: '119.0333890915,29.1851002329',
-      success: function (data) {
-        var points = [];
-        if (data.paths && data.paths[0] && data.paths[0].steps) {
-          var steps = data.paths[0].steps;
-          for (var i = 0; i < steps.length; i++) {
-            var poLen = steps[i].polyline.split(';');
-            for (var j = 0; j < poLen.length; j++) {
-              points.push({
-                longitude: parseFloat(poLen[j].split(',')[0]),
-                latitude: parseFloat(poLen[j].split(',')[1])
-              })
-            }
-          }
-        }
-        that.setData({
-          polyline: [{
-            points: points,
-            color: "#0091ff",
-            width: 6
-          }]
-        });
-        if (data.paths[0] && data.paths[0].distance) {
-          that.setData({
-            distance: data.paths[0].distance + '米'
-          });
-        }
-        if (data.taxi_cost) {
-          that.setData({
-            cost: '打车约' + parseInt(data.taxi_cost) + '元'
-          });
-        }
-
-      },
-      fail: function (info) {
-
-      }
-    })
   }
 })

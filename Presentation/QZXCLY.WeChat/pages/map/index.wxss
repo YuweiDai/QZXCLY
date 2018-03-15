@@ -182,6 +182,7 @@
 {
   line-height: 45rpx;
   font-size: 45rpx;
+  top: 220rpx;
 }
 .drawer_box .drawer_content .drawer_btns .navigator
 {

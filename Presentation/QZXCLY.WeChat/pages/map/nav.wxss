@@ -1,34 +1,7 @@
 /* pages/map/nav.wxss */
-.method-select{
-	height: 90rpx;
-	padding: 20rpx 10rpx;
-	padding-bottom: 0;
-  background: white;
-  width: 100%;
-}
-.flex-item{
-  height: 70rpx; 
-  line-height: 70rpx;
-  text-align: center;
-  	float: left;
-	display: -webkit-flex;
-	flex-direction: column;
-	flex-wrap: wrap;
-	width: 25%;
-}
-.flex-item.active{
-  color:#0091ff;
-}
-.map_box{
-  position:absolute;
-  top: 90rpx;
-  bottom: 90px;
-  left: 0px;
-  right: 0px;
-}
 #navi_map{
   width: 100%;
-  height: 100%;
+  height: 100vh;
 }
 .text_box{
   position:absolute;
@@ -36,6 +9,7 @@
   bottom: 0px;
   left: 0px;
   right: 0px;
+  background-color: white;
 }
 .text_box .text{
   margin: 15px;
