@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QZCHY.Core.Domain.Media;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity.Spatial;
 using System.Linq;
@@ -9,14 +10,15 @@ namespace QZCHY.Core.Domain.Villages
 {
    public class Village:BaseEntity
     {
-
+        private ICollection<VillageService> _villageServices;
         private ICollection<VillagePlay> _villagePlays;
         private ICollection<VillageLive> _villageLives;
         private ICollection<VillageEat> _villageEats;
         private ICollection<VillagePicture> _villagePictures;
+        private ICollection<VillageVedio> _villageVedios;
 
         /// <summary>
-        /// 景点名称
+        /// 景区名称
         /// </summary>
         public string Name { get; set; }
         /// <summary>
@@ -39,10 +41,37 @@ namespace QZCHY.Core.Domain.Villages
         /// 景区标签
         /// </summary>
         public string Tags { get; set; }
+
+        /// <summary>
+        /// 门票，免费即为0
+        /// </summary>
+        public double Price { get; set; }
+
+        /// <summary>
+        /// 旅游路线
+        /// </summary>
+        public string TourRoute { get; set; }
+
+        /// <summary>
+        /// 旅游空间路线
+        /// </summary>
+        public DbGeography GeoTourRoute { get; set; }
+
+        /// <summary>
+        /// 图标
+        /// </summary>
+        public string Icon { get; set; }
+
         /// <summary>
         /// 坐落位置
         /// </summary>
         public DbGeography Location { get; set; }
+
+        public virtual ICollection<VillageService> Services
+        {
+            get { return _villageServices ?? (_villageServices = new List<VillageService>()); }
+            protected set { _villageServices = value; }
+        }
 
         public virtual ICollection<VillagePlay> Plays
         {
@@ -66,6 +95,12 @@ namespace QZCHY.Core.Domain.Villages
         {
             get { return _villagePictures ?? (_villagePictures = new List<VillagePicture>()); }
             protected set { _villagePictures = value; }
+        }
+
+        public virtual ICollection<VillageVedio> VillageVedios
+        {
+            get { return _villageVedios ?? (_villageVedios = new List<VillageVedio>()); }
+            protected set { _villageVedios = value; }
         }
     }
 }

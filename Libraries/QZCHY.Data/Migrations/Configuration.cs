@@ -10,7 +10,7 @@ namespace QZCHY.Data.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            AutomaticMigrationDataLossAllowed= true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(QZCHY.Data.QZCHYObjectContext context)

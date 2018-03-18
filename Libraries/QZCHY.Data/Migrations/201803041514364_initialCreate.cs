@@ -51,9 +51,18 @@ namespace QZCHY.Data.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Title = c.String(nullable: false, maxLength: 255),
+                        Address = c.String(),
                         Description = c.String(),
                         Tel = c.String(),
                         Person = c.String(),
+                        Price = c.Double(nullable: false),
+                        Level = c.Int(nullable: false),
+                        ReceptionNumber = c.Int(nullable: false),
+                        Tags = c.String(),
+                        Suggestion = c.String(),
+                        Location = c.Geography(),
+                        Icon = c.String(),
+                        Order = c.Int(nullable: false),
                         Deleted = c.Boolean(nullable: false),
                         CreatedOn = c.DateTime(nullable: false),
                         UpdatedOn = c.DateTime(nullable: false),
@@ -73,7 +82,10 @@ namespace QZCHY.Data.Migrations
                         Phone = c.String(),
                         OpenTime = c.String(),
                         Desc = c.String(),
-                        Star = c.Boolean(nullable: false),
+                        Tags = c.String(),
+                        Price = c.Double(nullable: false),
+                        TourRoute = c.String(),
+                        Icon = c.String(),
                         Location = c.Geography(),
                         Deleted = c.Boolean(nullable: false),
                         CreatedOn = c.DateTime(nullable: false),
@@ -87,9 +99,17 @@ namespace QZCHY.Data.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Title = c.String(nullable: false, maxLength: 255),
+                        Address = c.String(),
                         Description = c.String(),
                         Tel = c.String(),
                         Person = c.String(),
+                        Location = c.Geography(),
+                        Icon = c.String(),
+                        BedsNumber = c.Int(nullable: false),
+                        RoomPrice = c.String(),
+                        Tags = c.String(),
+                        Facilities = c.String(),
+                        Order = c.Int(nullable: false),
                         Deleted = c.Boolean(nullable: false),
                         CreatedOn = c.DateTime(nullable: false),
                         UpdatedOn = c.DateTime(nullable: false),
@@ -127,6 +147,11 @@ namespace QZCHY.Data.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         Title = c.String(nullable: false, maxLength: 255),
                         Description = c.String(),
+                        PanoramaId = c.Int(nullable: false),
+                        AudioUrl = c.String(),
+                        Icon = c.String(),
+                        Location = c.Geography(),
+                        Order = c.Int(nullable: false),
                         Deleted = c.Boolean(nullable: false),
                         CreatedOn = c.DateTime(nullable: false),
                         UpdatedOn = c.DateTime(nullable: false),
@@ -158,6 +183,46 @@ namespace QZCHY.Data.Migrations
                 .Index(t => t.VillagePlay_Id);
             
             CreateTable(
+                "dbo.VillageService",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Title = c.String(nullable: false, maxLength: 255),
+                        Description = c.String(),
+                        PanoramaId = c.Int(nullable: false),
+                        Icon = c.String(),
+                        Location = c.Geography(),
+                        Deleted = c.Boolean(nullable: false),
+                        CreatedOn = c.DateTime(nullable: false),
+                        UpdatedOn = c.DateTime(nullable: false),
+                        Village_Id = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Village", t => t.Village_Id, cascadeDelete: true)
+                .Index(t => t.Village_Id);
+            
+            CreateTable(
+                "dbo.ServicePicture",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        ServiceId = c.Int(nullable: false),
+                        PictureId = c.Int(nullable: false),
+                        IsLogo = c.Boolean(nullable: false),
+                        Deleted = c.Boolean(nullable: false),
+                        CreatedOn = c.DateTime(nullable: false),
+                        UpdatedOn = c.DateTime(nullable: false),
+                        VillageService_Id = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Pictures", t => t.PictureId, cascadeDelete: true)
+                .ForeignKey("dbo.VillageService", t => t.ServiceId, cascadeDelete: true)
+                .ForeignKey("dbo.VillageService", t => t.VillageService_Id)
+                .Index(t => t.ServiceId)
+                .Index(t => t.PictureId)
+                .Index(t => t.VillageService_Id);
+            
+            CreateTable(
                 "dbo.VillagePicture",
                 c => new
                     {
@@ -174,6 +239,37 @@ namespace QZCHY.Data.Migrations
                 .ForeignKey("dbo.Village", t => t.VillageId, cascadeDelete: true)
                 .Index(t => t.VillageId)
                 .Index(t => t.PictureId);
+            
+            CreateTable(
+                "dbo.VillageVedios",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        VillageId = c.Int(nullable: false),
+                        VedioId = c.Int(nullable: false),
+                        Order = c.Int(nullable: false),
+                        Deleted = c.Boolean(nullable: false),
+                        CreatedOn = c.DateTime(nullable: false),
+                        UpdatedOn = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Vedios", t => t.VedioId, cascadeDelete: true)
+                .ForeignKey("dbo.Village", t => t.VillageId, cascadeDelete: true)
+                .Index(t => t.VillageId)
+                .Index(t => t.VedioId);
+            
+            CreateTable(
+                "dbo.Vedios",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                        Url = c.String(),
+                        Deleted = c.Boolean(nullable: false),
+                        CreatedOn = c.DateTime(nullable: false),
+                        UpdatedOn = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.EmailAccount",
@@ -402,8 +498,14 @@ namespace QZCHY.Data.Migrations
             DropForeignKey("dbo.AccountUser_AccountUserRole_Mapping", "AccountUser_Id", "dbo.AccountUser");
             DropForeignKey("dbo.QueuedEmail", "EmailAccountId", "dbo.EmailAccount");
             DropForeignKey("dbo.EatPicture", "EatId", "dbo.VillageEat");
+            DropForeignKey("dbo.VillageVedios", "VillageId", "dbo.Village");
+            DropForeignKey("dbo.VillageVedios", "VedioId", "dbo.Vedios");
             DropForeignKey("dbo.VillagePicture", "VillageId", "dbo.Village");
             DropForeignKey("dbo.VillagePicture", "PictureId", "dbo.Pictures");
+            DropForeignKey("dbo.VillageService", "Village_Id", "dbo.Village");
+            DropForeignKey("dbo.ServicePicture", "VillageService_Id", "dbo.VillageService");
+            DropForeignKey("dbo.ServicePicture", "ServiceId", "dbo.VillageService");
+            DropForeignKey("dbo.ServicePicture", "PictureId", "dbo.Pictures");
             DropForeignKey("dbo.VillagePlay", "Village_Id", "dbo.Village");
             DropForeignKey("dbo.PlayPicture", "VillagePlay_Id", "dbo.VillagePlay");
             DropForeignKey("dbo.PlayPicture", "PlayId", "dbo.VillagePlay");
@@ -421,8 +523,14 @@ namespace QZCHY.Data.Migrations
             DropIndex("dbo.ActivityLog", new[] { "AccountUserId" });
             DropIndex("dbo.ActivityLog", new[] { "ActivityLogTypeId" });
             DropIndex("dbo.QueuedEmail", new[] { "EmailAccountId" });
+            DropIndex("dbo.VillageVedios", new[] { "VedioId" });
+            DropIndex("dbo.VillageVedios", new[] { "VillageId" });
             DropIndex("dbo.VillagePicture", new[] { "PictureId" });
             DropIndex("dbo.VillagePicture", new[] { "VillageId" });
+            DropIndex("dbo.ServicePicture", new[] { "VillageService_Id" });
+            DropIndex("dbo.ServicePicture", new[] { "PictureId" });
+            DropIndex("dbo.ServicePicture", new[] { "ServiceId" });
+            DropIndex("dbo.VillageService", new[] { "Village_Id" });
             DropIndex("dbo.PlayPicture", new[] { "VillagePlay_Id" });
             DropIndex("dbo.PlayPicture", new[] { "PictureId" });
             DropIndex("dbo.PlayPicture", new[] { "PlayId" });
@@ -447,7 +555,11 @@ namespace QZCHY.Data.Migrations
             DropTable("dbo.QueuedEmail");
             DropTable("dbo.MessageTemplate");
             DropTable("dbo.EmailAccount");
+            DropTable("dbo.Vedios");
+            DropTable("dbo.VillageVedios");
             DropTable("dbo.VillagePicture");
+            DropTable("dbo.ServicePicture");
+            DropTable("dbo.VillageService");
             DropTable("dbo.PlayPicture");
             DropTable("dbo.VillagePlay");
             DropTable("dbo.LivePicture");

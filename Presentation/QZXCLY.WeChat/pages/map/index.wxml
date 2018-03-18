@@ -1,6 +1,6 @@
 <view class="container">
   <view class="map_section section">
-    <map id="map" longitude="{{lon}}" latitude="{{lat}}" scale="{{level}}" controls="{{currentControls}}" bindmarkertap="bindmarkertap" markers="{{markers}}" bindcontroltap="controltap" show-location>
+    <map id="map" longitude="{{lon}}" latitude="{{lat}}" scale="{{level}}" controls="{{currentControls}}" bindmarkertap="bindmarkertap" markers="{{markers}}" polyline='{{polylines}}' bindcontroltap="controltap" show-location>
       <!-- <cover-view hidden='{{showSingelSpot}}' class='search_section top_section'>
         <cover-view class="search" bindtap="tapSearch">
           <cover-image class="icon" src="/resources/images/index/icon_search.png"/>

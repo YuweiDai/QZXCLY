@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace QZCHY.Core.Domain.Villages
 {
-   public  class LivePicture:BaseEntity
+    public class ServicePicture : BaseEntity
     {
-        public int LiveId { get; set; }
+        public int ServiceId { get; set; }
 
         public int PictureId { get; set; }
 
@@ -17,6 +17,6 @@ namespace QZCHY.Core.Domain.Villages
 
         public virtual Picture Picture { get; set; }
 
-        public virtual VillageLive VillageLive { get; set; }
+        public virtual VillageService VillageService { get; set; }
     }
 }

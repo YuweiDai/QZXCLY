@@ -40,7 +40,7 @@
       <view class='title'>东坪喃语</view>
       <scroll-view scroll-y="true">	   
         <view class="vedios">     
-          <video class='vedio' src="http://qzch.qz.gov.cn/qzxcly/resources/vedios/test.mp4"></video>
+          <video class='vedio' src="https://v-cdn.zjol.com.cn/169771.mp4?userId=464a4a67-5e8e-4637-8e76-34f289d6f4da"></video>
         </view>
       </scroll-view>
     </view>

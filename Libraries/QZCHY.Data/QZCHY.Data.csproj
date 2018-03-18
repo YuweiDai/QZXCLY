@@ -85,11 +85,13 @@
     <Compile Include="Mapping\VillageMap\EatPictureMap.cs" />
     <Compile Include="Mapping\VillageMap\LivePictureIdMap.cs" />
     <Compile Include="Mapping\VillageMap\PlayPictureMap.cs" />
+    <Compile Include="Mapping\VillageMap\ServicePictureMap.cs" />
     <Compile Include="Mapping\VillageMap\VillageEatMap.cs" />
     <Compile Include="Mapping\VillageMap\VillageLiveMap.cs" />
     <Compile Include="Mapping\VillageMap\VillageMap.cs" />
     <Compile Include="Mapping\VillageMap\VillagePictureMap.cs" />
     <Compile Include="Mapping\VillageMap\VillagePlayMap.cs" />
+    <Compile Include="Mapping\VillageMap\VillageServiceMap.cs" />
     <Compile Include="Migrations\201803041514364_initialCreate.cs" />
     <Compile Include="Migrations\201803041514364_initialCreate.Designer.cs">
       <DependentUpon>201803041514364_initialCreate.cs</DependentUpon>
