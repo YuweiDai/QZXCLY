@@ -40,8 +40,8 @@ Page({
       {
         id: 3,
         img: 'http://qzch.qz.gov.cn/qzxcly/resources/images/index/icon_9.jpg',
-        name: '活动',
-        url: 'activities'
+        name: '地图',
+        url: '../map/index'
       }
     ],
     suggestions:[
@@ -125,36 +125,34 @@ Page({
     }
     
     wx.request({
-      url: 'http://www.qz-map.com/api/feature/query', //仅为示例，并非真实的接口地址
-      data: {
-        auto_global: true,
-        page: 1,
-        size: 50,
-        tcode: "160501, 160502,160503",
-        zoom:15,
-        bbox:"118.81864611083985,28.95371039932251,118.89074388916016,28.99314960067749"
-      },
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success: function (res) {
-        wx.showToast({
-          title: '数据加载成功',
-          icon: 'success',
-          duration: 2000
-        });
-         
-      },
-      fail: function (res) {
-        wx.showToast({
-          title: '数据加载失败',
-          icon: 'none',
-          duration: 2000
-        });        
-      },
-    })
+        url: 'http://www.qz-map.com/api/feature/query', //仅为示例，并非真实的接口地址
+        data: {
+            auto_global: true,
+            page: 1,
+            size: 50,
+            tcode: "160501, 160502,160503",
+            zoom: 15,
+            bbox: "118.81864611083985,28.95371039932251,118.89074388916016,28.99314960067749"
+        },
+        header: {
+            'content-type': 'application/json' // 默认值
+        },
+        success: function (res) {
+            wx.showToast({
+                title: '数据加载成功',
+                icon: 'success',
+                duration: 2000
+            });
 
-
+        },
+        fail: function (res) {
+            wx.showToast({
+                title: '数据加载失败',
+                icon: 'none',
+                duration: 2000
+            });
+        },
+    });
 
 
   },

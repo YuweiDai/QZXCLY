@@ -21,7 +21,14 @@ Page({
     drawerMarker:null,
 
     selectedSpot:0,
-    markers:[],
+    markers: [{
+      iconPath: "/resources/others.png",
+      id: 0,
+      latitude: 28.099994,
+      longitude: 118.324520,
+      width: 50,
+      height: 50
+    }],
     polylines:[],
     spots:[
       {
@@ -476,7 +483,7 @@ Page({
     var currentSpot = p.data.currentSpot;
     p.setSubMarkers(currentSpot, e.target.dataset.id);
 
-var pls=[];
+    var pls=[];
 
     if (e.target.dataset.id=="play")
      pls = [{
@@ -551,8 +558,6 @@ var pls=[];
       padding: [30],
       points: newRegionPoints
     });
-
-    console.log(subMarkers);
 
     this.setData({
       markers:subMarkers,    
@@ -643,21 +648,32 @@ var pls=[];
    */
   onLoad: function (options) {
     if(p==null) p=this;
-    this.mapCtx = wx.createMapContext('map');
-    rpx =750/ app.globalData.systemInfo.screenWidth ;
-    
+//    this.mapCtx = wx.createMapContext('map');
+    rpx =750/ app.globalData.systemInfo.screenWidth ;     
+
+    console.log("onLoad");
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+    console.log("onReady");
+
+
     var controlSize = 20 * rpx;
-    console.log(controlSize);
+
     //设置地图控件
     var controls = [
-      { id: "locateBtn", iconPath: '../../resources/images/map/locate.png', position: { left: controlSize / 3, top:  3.3 * controlSize, width: controlSize, height: controlSize},clickable: true},
-      { id: "zoomInBtn", iconPath: '../../resources/images/map/zoomIn.png', position: { left: controlSize / 3, top: controlSize/3, width: controlSize, height: controlSize }, clickable: true },
+      { id: "locateBtn", iconPath: '../../resources/images/map/locate.png', position: { left: controlSize / 3, top: 3.3 * controlSize, width: controlSize, height: controlSize }, clickable: true },
+      { id: "zoomInBtn", iconPath: '../../resources/images/map/zoomIn.png', position: { left: controlSize / 3, top: controlSize / 3, width: controlSize, height: controlSize }, clickable: true },
       { id: "zoomOutBtn", iconPath: '../../resources/images/map/zoomOut.png', position: { left: controlSize / 3, top: controlSize / 3 + controlSize, width: controlSize, height: controlSize }, clickable: true },
       { id: "zoomAllBtn", iconPath: '../../resources/images/map/zoomAll.png', position: { left: controlSize / 3, top: 2.3 * controlSize, width: controlSize, height: controlSize }, clickable: true }];
 
     //设置初始景点图标及原始缩放位置
     var points = [];
-    var spotMarkers=[];
+    var spotMarkers = [];
     for (var index in p.data.spots) {
       var spot = p.data.spots[index];
       points.push({ latitude: spot.latitude, longitude: spot.longitude });
@@ -670,58 +686,38 @@ var pls=[];
         textAlign: defaultCallout.textAlign,
         display: defaultCallout.display,
         borderRadius: defaultCallout.borderRadius,
-      }; 
+      };
 
       var spotMarker = {
         id: "spot_" + spot.id,
-        title:spot.title,
-        width:40*rpx,
-        height:40*rpx,
-        iconPath: "../../resources/images/map/spot" + spot.id + ".png",
+        title: spot.title,
+        width: 40 * rpx,
+        height: 40 * rpx,
+        iconPath: "../../resources/images/map/spot0.png",// "../../resources/images/map/spot" + spot.id + ".png",
         latitude: spot.latitude,
         longitude: spot.longitude,
         callout: callout
       };
-
       spotMarkers.push(spotMarker);
-    } 
+    }
 
-    this.mapCtx.includePoints({
-      padding: [30],
-      points: points
-    }); 
- 
+    // this.mapCtx.includePoints({
+    //   padding: [30],
+    //   points: points
+    // });
+    console.log(JSON.stringify(spotMarkers));
     //设置数据
     p.setData({
       markers: spotMarkers,
       allSpotMarkers: spotMarkers,
       currentRegionPoints: points,
       currentControls: controls,
-      allControls:controls
-    });   
+      allControls: controls
+    });
 
-    // if (app.globalData.locationDetect)
-    // {
-    //   page.bindmarkertap({ markerId:1});
-    //   app.globalData.locationDetect=false;
-    // }
-    // else
-    // {
-    //   this.setData({
-    //     mapHeight: app.globalData.systemInfo.windowHeight,
-    //     contentHeight: 0,
-    //   });
 
-    //   console.log(this.data.mapHeight);
-    // }
 
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+    
   },
 
   /**
@@ -729,8 +725,7 @@ var pls=[];
    */
   onShow: function () {
 
-
-
+    console.log("onShow");
 
   },
 

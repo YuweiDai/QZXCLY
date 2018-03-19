@@ -30,10 +30,10 @@ namespace QZCHY.API.Controllers
 
         [HttpGet]
         [Route("villageId")]
-        public IHttpActionResult GetVillageById() {
+        public IHttpActionResult GetVillageById()
+        {
             var response = _villageService.GetVillageById(1);
             return Ok(response);
         }
-
     }
 }

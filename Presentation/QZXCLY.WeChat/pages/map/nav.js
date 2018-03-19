@@ -73,7 +73,7 @@ Page({
         var accuracy = res.accuracy;
 
         var startPoint = {
-          iconPath: "../../resources/images/map/marker.png",
+          iconPath: "../../resources/images/map/start.png",
           id: 0,
           latitude: latitude,
           longitude: longitude,
@@ -81,7 +81,7 @@ Page({
           height: 33
         };
         var endPoint = {
-          iconPath: "../../resources/images/map/marker_checked.png",
+          iconPath: "../../resources/images/map/end.png",
           id: 1,
           latitude: targetLat,
           longitude: targetLon,

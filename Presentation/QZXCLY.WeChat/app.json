@@ -28,24 +28,7 @@
     "navigationBarTitleText": "衢州市乡村旅游地图",
     "navigationBarTextStyle":"white"
   },
-  "tabBar": {
-      "color": "#8a8a8a",
-      "selectedColor": "#27c24c",  
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "首页",
-        "iconPath":"/resources/images/home.png",
-        "selectedIconPath":"/resources/images/home_s.png"
-      },
-      {
-        "pagePath": "pages/map/index",
-        "text": "地图",
-        "iconPath": "/resources/images/map.png",
-        "selectedIconPath": "/resources/images/map_s.png"        
-      }
-    ]
-  },
+
   "networkTimeout": {
     "request": 10000,
     "downloadFile": 10000
