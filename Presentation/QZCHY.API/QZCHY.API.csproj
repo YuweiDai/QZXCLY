@@ -269,8 +269,20 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\InitialController.cs" />
     <Compile Include="Controllers\VillageController.cs" />
+    <Compile Include="Extensions\MappingExtensions.cs" />
     <Compile Include="Infrastructure\AutoMapperStartupTask.cs" />
     <Compile Include="Infrastructure\DependencyRegistrar.cs" />
+    <Compile Include="Models\EatPictureModel.cs" />
+    <Compile Include="Models\LivePictureModel.cs" />
+    <Compile Include="Models\PlayPictureModel.cs" />
+    <Compile Include="Models\ServicePictureModel.cs" />
+    <Compile Include="Models\VillageEatModel.cs" />
+    <Compile Include="Models\VillageLiveModel.cs" />
+    <Compile Include="Models\VillageModel.cs" />
+    <Compile Include="Models\VillagePictureModel.cs" />
+    <Compile Include="Models\VillagePlayModel.cs" />
+    <Compile Include="Models\VillageServiceModel.cs" />
+    <Compile Include="Models\VillageVedioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -285,8 +297,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Extensions\" />
-    <Folder Include="Models\" />
     <Folder Include="Resources\Imports\dp\play_images\新建文件夹\" />
     <Folder Include="SqlServerTypes\" />
     <Folder Include="Validators\" />
