@@ -54,6 +54,12 @@ namespace QZCHY.Core.Domain.Villages
         public string TourRoute { get; set; }
 
         /// <summary>
+        /// 交通路线
+        /// </summary>
+        public string Triffic { get; set; }
+
+
+        /// <summary>
         /// 旅游空间路线
         /// </summary>
         public DbGeography GeoTourRoute { get; set; }
