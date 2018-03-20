@@ -22,8 +22,6 @@ namespace QZCHY.Api
 
         public void Configuration(IAppBuilder app)
         {
-            //SqlServerTypes.Utilities.LoadNativeAssemblies(MapPath("~/bin"));
-
             var config = new HttpConfiguration();
             WebApiConfig.Register(config);
 
@@ -51,6 +49,7 @@ namespace QZCHY.Api
 
             app.UseWebApi(config);
 
+            SqlServerTypes.Utilities.LoadNativeAssemblies(System.Web.HttpContext.Current.Server.MapPath("~/bin"));
 
         }
 

@@ -27,19 +27,19 @@ Page({
     icons: [
       {
         id: 1,
-        img: 'http://qzch.qz.gov.cn/qzxcly/resources/images/index/icon_12.jpg',
+        img: 'http://qzch.qz.gov.cn/qzxcly/resources/images/index/spots.png',
         name: '景区',
         url: 'spots'
       },
       {
         id: 2,
-        img: 'http://qzch.qz.gov.cn/qzxcly/resources/images/index/icon_5.jpg',
+        img: 'http://qzch.qz.gov.cn/qzxcly/resources/images/index/activity.jpg',
         name: '攻略',
         url: 'strategies'
       },
       {
         id: 3,
-        img: 'http://qzch.qz.gov.cn/qzxcly/resources/images/index/icon_9.jpg',
+        img: 'http://qzch.qz.gov.cn/qzxcly/resources/images/index/map.png',
         name: '地图',
         url: '../map/index'
       }
@@ -84,18 +84,18 @@ Page({
     })
   },
   onLoad: function () {
-    wx.showModal({
-      title: '提示',
-      content: '检测到您正位于东坪景区，是否前往景区地图？',
-      success: function (res) {
-        if (res.confirm) {
-          app.globalData.locationDetect=true;
-          wx.navigateTo({
-            url: 'spot',
-          })
-        }
-      }
-    })
+    // wx.showModal({
+    //   title: '提示',
+    //   content: '检测到您正位于东坪景区，是否前往景区地图？',
+    //   success: function (res) {
+    //     if (res.confirm) {
+    //       app.globalData.locationDetect=true;
+    //       wx.navigateTo({
+    //         url: 'spot',
+    //       })
+    //     }
+    //   }
+    // })
 
     if (app.globalData.userInfo) {
       this.setData({

@@ -1,6 +1,6 @@
 // pages/map/index.js
 var app = getApp();
-var p = null;
+var page = null;
 var rpx=2;
 var defaultCallout= {
   padding: 5,
@@ -21,14 +21,7 @@ Page({
     drawerMarker:null,
 
     selectedSpot:0,
-    markers: [{
-      iconPath: "/resources/others.png",
-      id: 0,
-      latitude: 28.099994,
-      longitude: 118.324520,
-      width: 50,
-      height: 50
-    }],
+    markers: [],
     polylines:[],
     spots:[
       {
@@ -267,10 +260,10 @@ Page({
             console.log("current:" + currentLevel);
             currentLevel=currentLevel+1;
             if (currentLevel == 19) currentLevel=18;
-            p.setData({
+            page.setData({
               level: currentLevel,
             });
-            console.log("now:" + p.data.level);
+            console.log("now:" + page.data.level);
           },
           fail:function(res)
           {
@@ -285,7 +278,7 @@ Page({
             console.log("current:" + currentLevel);
             currentLevel--;
             if (currentLevel == 4) currentLevel = 5;
-            p.setData({
+            page.setData({
               level: currentLevel,
             });
           },
@@ -297,7 +290,7 @@ Page({
       case "zoomAllBtn":
         this.mapCtx.includePoints({
           padding: [30],
-          points: p.data.currentRegionPoints
+          points: page.data.currentRegionPoints
         });
         break; 
       case "locateBtn":
@@ -325,15 +318,15 @@ Page({
     {
       case "spot":
         //景区点击事件
-        if (p.data.showSingelSpot) return;
-        var spot = p.data.spots[0];// markers[event.markerId];
+        if (page.data.showSingelSpot) return;
+        var spot = page.data.spots[0];// markers[event.markerId];
 
         if (spot.id == undefined || spot.id == null) return;
         var spotMarkers = [];
         // spotMarkers.push(marker);
 
         //更新空间位置
-        var controls = p.data.allControls;
+        var controls = page.data.allControls;
         //controls.splice(3, 1);
         console.log(200 / rpx);
         controls[0].position.top += 200 / rpx;        
@@ -345,7 +338,7 @@ Page({
           title: spot.title
         });
 
-        p.setSubMarkers(spot, p.data.filterType);
+        page.setSubMarkers(spot, page.data.filterType);
       
         this.setData({        
           currentSpot:spot,
@@ -355,7 +348,7 @@ Page({
         break;    
         case "play":
         var play = null;
-        p.data.currentSpot.play_list.forEach(function (item) {
+        page.data.currentSpot.play_list.forEach(function (item) {
           if (item.id == markerId) {
             play = item;
             return false;
@@ -375,7 +368,7 @@ Page({
         break;
       case "eat":
         var eat = null;
-        p.data.currentSpot.eat_list.forEach(function (item) {
+        page.data.currentSpot.eat_list.forEach(function (item) {
           if (item.id == markerId) {
             eat = item;
             return false;
@@ -395,7 +388,7 @@ Page({
         break;
       case "live":
           var live = null;
-          p.data.currentSpot.live_list.forEach(function(item){
+          page.data.currentSpot.live_list.forEach(function(item){
             if(item.id==markerId)
             {
               live=item;
@@ -419,7 +412,7 @@ Page({
       this.setData({
         drawerMarker: drawerMarker
       });
-      p.powerDrawer();
+      page.powerDrawer();
     }
 
   },
@@ -427,7 +420,7 @@ Page({
   //返回所有景点
   returnToAll: function (event) {
 
-    var controls = p.data.allControls;
+    var controls = page.data.allControls;
     controls[0].position.top -= 200 / rpx;
     controls[1].position.top -= 200 / rpx;
     controls[2].position.top -= 200 / rpx;
@@ -435,8 +428,8 @@ Page({
 
     var points = [];
     var spotMarkers = [];
-    for (var index in p.data.spots) {
-      var spot = p.data.spots[index];
+    for (var index in page.data.spots) {
+      var spot = page.data.spots[index];
       points.push({ latitude: spot.latitude, longitude: spot.longitude });
       var callout = {
         content: spot.title,
@@ -480,8 +473,8 @@ Page({
   //切换吃喝玩乐
   tapFilter: function (e) {
 
-    var currentSpot = p.data.currentSpot;
-    p.setSubMarkers(currentSpot, e.target.dataset.id);
+    var currentSpot = page.data.currentSpot;
+    page.setSubMarkers(currentSpot, e.target.dataset.id);
 
     var pls=[];
 
@@ -647,20 +640,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if(p==null) p=this;
-//    this.mapCtx = wx.createMapContext('map');
+    page=this;
+    page.mapCtx = wx.createMapContext('map');
     rpx =750/ app.globalData.systemInfo.screenWidth ;     
-
-    console.log("onLoad");
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-    console.log("onReady");
-
 
     var controlSize = 20 * rpx;
 
@@ -674,8 +656,8 @@ Page({
     //设置初始景点图标及原始缩放位置
     var points = [];
     var spotMarkers = [];
-    for (var index in p.data.spots) {
-      var spot = p.data.spots[index];
+    for (var index in page.data.spots) {
+      var spot = page.data.spots[index];
       points.push({ latitude: spot.latitude, longitude: spot.longitude });
 
       var callout = {
@@ -693,31 +675,35 @@ Page({
         title: spot.title,
         width: 40 * rpx,
         height: 40 * rpx,
-        iconPath: "../../resources/images/map/spot0.png",// "../../resources/images/map/spot" + spot.id + ".png",
+        iconPath: "../../resources/images/map/spot" + spot.id + ".png",
         latitude: spot.latitude,
         longitude: spot.longitude,
         callout: callout
       };
       spotMarkers.push(spotMarker);
     }
+    page.mapCtx.includePoints({
+      padding: [30],
+      points: points
+    });
 
-    // this.mapCtx.includePoints({
-    //   padding: [30],
-    //   points: points
-    // });
-    console.log(JSON.stringify(spotMarkers));
     //设置数据
-    p.setData({
+    page.setData({
       markers: spotMarkers,
       allSpotMarkers: spotMarkers,
       currentRegionPoints: points,
       currentControls: controls,
       allControls: controls
     });
+    console.log("onLoad");
+  },
 
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
 
-
-    
+    console.log("onReady");      
   },
 
   /**
@@ -733,14 +719,14 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    console.log("onHide");
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    console.log("onUnload");
   },
 
   /**
