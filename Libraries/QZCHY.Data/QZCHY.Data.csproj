@@ -92,6 +92,10 @@
     <Compile Include="Mapping\VillageMap\VillagePictureMap.cs" />
     <Compile Include="Mapping\VillageMap\VillagePlayMap.cs" />
     <Compile Include="Mapping\VillageMap\VillageServiceMap.cs" />
+    <Compile Include="Migrations\201803200035351_initialCreate.cs" />
+    <Compile Include="Migrations\201803200035351_initialCreate.Designer.cs">
+      <DependentUpon>201803200035351_initialCreate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QZCHYObjectContext.cs" />
@@ -123,6 +127,11 @@
     <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201803200035351_initialCreate.resx">
+      <DependentUpon>201803200035351_initialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

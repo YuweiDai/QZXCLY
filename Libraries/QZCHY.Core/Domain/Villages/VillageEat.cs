@@ -70,7 +70,7 @@ namespace QZCHY.Core.Domain.Villages
         /// <summary>
         /// 图片
         /// </summary>
-        public virtual ICollection<EatPicture> eatPictures
+        public virtual ICollection<EatPicture> EatPictures
         {
             get { return _eatPictures ?? (_eatPictures = new List<EatPicture>()); }
             protected set { _eatPictures = value; }

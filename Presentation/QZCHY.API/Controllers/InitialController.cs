@@ -159,9 +159,44 @@ namespace QZCHY.API.Controllers
             dp.Services.Add(new Core.Domain.Villages.VillageService() { Title = "山脚停车场", Description = "", Location = DbGeography.FromText("POINT(119.028336339932 29.185065206383)"), Icon = "parking" });
             dp.Services.Add(new Core.Domain.Villages.VillageService() { Title = "山上停车场", Description = "", Location = DbGeography.FromText("POINT(119.033093070437 29.1872311309559)"), Icon = "parking" });
             dp.Services.Add(new Core.Domain.Villages.VillageService() { Title = "游客接待中心", Description = "", Location = DbGeography.FromText("POINT(119.032570530284 29.1853340591726)"), Icon = "ticket" });
-            dp.Services.Add(new Core.Domain.Villages.VillageService() { Title = "厕所", Description = "", Location = DbGeography.FromText("POINT(119.028073811557 29.1847519536177)"), Icon = "wc" });
-            dp.Services.Add(new Core.Domain.Villages.VillageService() { Title = "厕所", Description = "", Location = DbGeography.FromText("POINT(119.032515188008 29.1852134615949)"), Icon = "wc" });
+            dp.Services.Add(new Core.Domain.Villages.VillageService() { Title = "山脚厕所", Description = "", Location = DbGeography.FromText("POINT(119.028073811557 29.1847519536177)"), Icon = "wc" });
+            dp.Services.Add(new Core.Domain.Villages.VillageService() { Title = "山上厕所", Description = "", Location = DbGeography.FromText("POINT(119.032515188008 29.1852134615949)"), Icon = "wc" });
             dp.Services.Add(new Core.Domain.Villages.VillageService() { Title = "红芬小卖部", Description = "", Location = DbGeography.FromText("POINT(119.032749318041 29.1854837977747)"), Icon = "wc" });
+
+            #region 图片路径
+            var service_imagesPath = System.IO.Directory.GetFiles(relativePath + "dp/images/service_images/");
+
+            foreach (var service in dp.Services)
+            {
+                var directory = service_imagesPath + service.Title + "/";
+                if (Directory.Exists(directory))
+                {
+                    var service_images = System.IO.Directory.GetFiles(directory);
+
+                    bool setLogo = service_images.Length == 1;
+
+                    foreach (var imagePath in service_images)
+                    {
+                        var fileName = System.IO.Path.GetFileNameWithoutExtension(imagePath);
+                        var fileExt = System.IO.Path.GetExtension(imagePath);
+
+                        if (imageExts.Contains(fileExt.ToLower()))
+                        {
+                            var villagePicture = new ServicePicture();
+
+                            var byData = GetPictureData(imagePath);
+
+                            var picture = _pictureService.InsertPicture(byData, "image/jpeg", "", "", "");
+
+                            villagePicture.Picture = picture;
+                            villagePicture.IsLogo = fileName.ToUpper() == "LOGO" || setLogo;
+
+                            service.ServicePictures.Add(villagePicture);
+                        }
+                    }
+                }
+            } 
+            #endregion
 
             #endregion
 
@@ -175,10 +210,11 @@ namespace QZCHY.API.Controllers
                 Icon = "play"
             });
 
-            dp.Plays.Add(new VillagePlay { Title = "山涧戏水", Description = "暂无介绍", Location = System.Data.Entity.Spatial.DbGeography.FromText("POINT(119.029138979441 29.1847379412537)"), Icon = "play" });
-            dp.Plays.Add(new VillagePlay { Title = "古树观景", Description = "暂无介绍", Location = System.Data.Entity.Spatial.DbGeography.FromText("POINT(119.029467879878 29.184588373659)"), Icon = "play" });
-            dp.Plays.Add(new VillagePlay { Title = "古树群", Description = "暂无介绍", Location = System.Data.Entity.Spatial.DbGeography.FromText("POINT(119.030056939189 29.1846325118199)"), Icon = "play" });
-            dp.Plays.Add(new VillagePlay { Title = "火烧红枫", Description = "暂无介绍", Location = System.Data.Entity.Spatial.DbGeography.FromText("POINT(119.031879550028 29.1835041602798)"), Icon = "play" });
+            dp.Plays.Add(new VillagePlay { Title = "龙石潭", Description = "相传，南宋末年的一天，东坪仙岩寺内有个老和尚，掐指一算，得知近期东坪山要出“龙”。传说出“龙”之地，意味着山洪爆发，村民就要遭殃。村民们一时惊慌失措，忙问老和尚有何破解之法。老和尚说：“龙刚从山洞里出来时，只是一条小泥鳅，要到河、沟里经过雷电闪烁才会变成大龙。”于是族长马上叫大家上山砍毛竹，把毛竹对半剖开，去掉骨节，接成水笕接到山洞里，由村民一根一根把每节水笕接到山脚。谁知快到山脚时，有个村民疲倦难当，认为接到此处应该差不多了，于是坐下来休息。恰恰这时，“龙”像一根泥鳅粗细慢慢地沿水管游出来，至水管中断处，“噔”地一声掉到山沟里。“龙”受惊，立马幻化身形，变成大龙游出去，落地之处至今留有一大坑，当地人称“龙石潭”。", Location = System.Data.Entity.Spatial.DbGeography.FromText("POINT(119.029138979441 29.1847379412537)"), Icon = "play" });
+            dp.Plays.Add(new VillagePlay { Title = "古樟指路", Description = "李烨在东坪定居以后，当年一些私下的挚友就去拜访李烨，当他们走到山脚下的时候，因为草木茂盛，不知道往那里走的时候，前面一颗樟树似乎知晓来人并无敌意，只是前来拜访李烨，根部突生一根枝节，枝节伸展的方向正好对着现东坪山，沿着枝节指引的方向，顺利来到李烨居住的地方，众挚友不无感慨： “真是天佑李烨”——上天都还眷顾着李烨。", Location = System.Data.Entity.Spatial.DbGeography.FromText("POINT(119.029467879878 29.184588373659)"), Icon = "play" });
+            dp.Plays.Add(new VillagePlay { Title = "神狮守道", Description = "自从李烨一行在此定居之后，方圆百里的鸟兽听闻有皇室血统的贵人居住在此地，纷纷前来保护贵人的安全，神狮带着的孩子也来到东坪，守护上山的必经之路，日日夜夜的守护山道，提防有人上山危害贵人的生命安全，一旦有异常可以及时警示山上的人做好抵御的准备。神狮也非常疼爱自己的孩子，担心小狮子受累，让其睡在自己的身子上，，而自己却依然恪职敬守。", Location = System.Data.Entity.Spatial.DbGeography.FromText("POINT(119.029467879878 29.184588373659)"), Icon = "play" });
+            dp.Plays.Add(new VillagePlay { Title = "神镜石", Description = "据《衢县志》等史料记载，武则天在位时，为防武后残害，一批（李姓）宗室外迁。李治（唐高宗）第七子李烨，从长安远避福建古田长河麻团岭。唐中宗时（公元705—709）为防止遭到进一步的迫害，李烨携家属以及亲信从麻团岭转迁，沿着现东坪线一路寻找新的定居点，当一行人经过（现东坪山脚下）时，发现一潭清水，清澈见底，味道甘甜，决定就地休整之后继续找寻。休息之时，李烨四处查看地形，当走到这块石头（神镜石）跟前的时候，不由自主停住脚步，审视此石，此石突显灵性，仿佛就是在等待主人的到来，大放异光，幻化成一块镜子，从镜子中隐约可以看到（现东坪山上）散发出阵阵的金光，李烨心想莫非是上天的指示，要我去山顶？要我去山顶定居？李烨毫不迟疑带领家属以及亲信向山顶进发，登上山顶一看，果然是块风水宝地，地理位置优越，居高临下，易守难攻，并且环境优美，茂林修竹，空气清新。远离朝廷的纷争，适宜清修，同时这里水资源非常丰富，适合农业生产，李烨勘察之后，聚集亲信前来商议，众人都十分钟情这块风水宝地，于是李烨决定定居此处。", Location = System.Data.Entity.Spatial.DbGeography.FromText("POINT(119.030056939189 29.1846325118199)"), Icon = "play" });
+            dp.Plays.Add(new VillagePlay { Title = "双枫迎客", Description = "李烨定居东坪之后，已经脱离朝廷的残害，心神俱宁，每日在犹如仙境的东坪吟诗作对，久而久之李烨心想能有更多的人来到这块仙境，一起修身养性、肆意酣畅，开展居住地的建设多好啊，上天好像能够读懂李烨的心思，派两位神仙化作枫树于现东坪古道，一只手化作遒劲的树枝，迎接过往来客，邀请客人作客东坪，领略山中秀色。", Location = System.Data.Entity.Spatial.DbGeography.FromText("POINT(119.031879550028 29.1835041602798)"), Icon = "play" });
             dp.Plays.Add(new VillagePlay { Title = "唐官文化岩壁石刻", Description = "暂无介绍", Location = System.Data.Entity.Spatial.DbGeography.FromText("POINT(119.032201787321 29.1840615619858)"), Icon = "play" });
             dp.Plays.Add(new VillagePlay { Title = "东坪村山寨门", Description = "暂无介绍", Location = System.Data.Entity.Spatial.DbGeography.FromText("POINT(119.032291278184 29.1854316034564)"), Icon = "play" });
             dp.Plays.Add(new VillagePlay { Title = "民俗文化广场", Description = "暂无介绍", Location = System.Data.Entity.Spatial.DbGeography.FromText("POINT(119.032800008211 29.1853076821093)"), Icon = "play" });
@@ -189,6 +225,42 @@ namespace QZCHY.API.Controllers
             dp.Plays.Add(new VillagePlay { Title = "天池", Description = "暂无介绍", Location = System.Data.Entity.Spatial.DbGeography.FromText("POINT(119.038584168861 29.1865400314482)"), Icon = "play" });
             dp.Plays.Add(new VillagePlay { Title = "徒步驿站", Description = "暂无介绍", Location = System.Data.Entity.Spatial.DbGeography.FromText("POINT(119.039391610273 29.1842117381383)"), Icon = "play" });
             dp.Plays.Add(new VillagePlay { Title = "李氏宗祠", Description = "暂无介绍", Location = System.Data.Entity.Spatial.DbGeography.FromText("POINT(119.032999154672 29.1858501345983)"), Icon = "play" });
+
+            #region 图片路径
+            var play_imagesPath = System.IO.Directory.GetFiles(relativePath + "dp/images/play_images/");
+
+            foreach (var play in dp.Plays)
+            {
+                var directory = service_imagesPath + play.Title + "/";
+                if (Directory.Exists(directory))
+                {
+                    var play_images = System.IO.Directory.GetFiles(directory);
+
+                    bool setLogo = play_images.Length == 1;
+
+                    foreach (var imagePath in play_images)
+                    {
+                        var fileName = System.IO.Path.GetFileNameWithoutExtension(imagePath);
+                        var fileExt = System.IO.Path.GetExtension(imagePath);
+
+                        if (imageExts.Contains(fileExt.ToLower()))
+                        {
+                            var playPicture = new PlayPicture();
+
+                            var byData = GetPictureData(imagePath);
+
+                            var picture = _pictureService.InsertPicture(byData, "image/jpeg", "", "", "");
+
+                            playPicture.Picture = picture;
+                            playPicture.IsLogo = fileName.ToUpper() == "LOGO" || setLogo;
+
+                            play.PlayPictures.Add(playPicture);
+                        }
+                    }
+                }
+            }
+            #endregion
+
             #endregion
 
             #region 农家乐
@@ -210,6 +282,41 @@ namespace QZCHY.API.Controllers
             dp.Eats.Add(new VillageEat() { Title = "隐柿东坪", Address = "峡川镇东坪村", Person = "余夏仙", Description = "", Tel = "13867478563", ReceptionNumber = 200, Level = 0, Price = 20, Location = DbGeography.FromText("POINT(119.033311824464 29.1855339146446)"), Icon = "eat" });
             dp.Eats.Add(new VillageEat() { Title = "叙月楼", Address = "峡川镇东坪村", Person = "李雪堂", Description = "", Tel = "13819010468", ReceptionNumber = 15, Level = 0, Price = 20, Location = DbGeography.FromText("POINT(119.032800146875 29.185509287482)"), Icon = "eat" });
 
+            #region 图片路径
+            var eat_imagesPath = System.IO.Directory.GetFiles(relativePath + "dp/images/eat_images/");
+
+            foreach (var eat in dp.Eats)
+            {
+                var directory = service_imagesPath + eat.Title + "/";
+                if (Directory.Exists(directory))
+                {
+                    var eat_images = System.IO.Directory.GetFiles(directory);
+
+                    bool setLogo = eat_images.Length == 1;
+
+                    foreach (var imagePath in eat_images)
+                    {
+                        var fileName = System.IO.Path.GetFileNameWithoutExtension(imagePath);
+                        var fileExt = System.IO.Path.GetExtension(imagePath);
+
+                        if (imageExts.Contains(fileExt.ToLower()))
+                        {
+                            var eatPicture = new EatPicture();
+
+                            var byData = GetPictureData(imagePath);
+
+                            var picture = _pictureService.InsertPicture(byData, "image/jpeg", "", "", "");
+
+                            eatPicture.Picture = picture;
+                            eatPicture.IsLogo = fileName.ToUpper() == "LOGO" || setLogo;
+
+                            eat.EatPictures.Add(eatPicture);
+                        }
+                    }
+                }
+            }
+            #endregion
+
             #endregion
 
             #region 民宿
@@ -227,6 +334,41 @@ namespace QZCHY.API.Controllers
             dp.Lives.Add(new VillageLive() { Title = "驴友之家", Address = "峡川镇东坪村", Person = "章银兰", Description = "", Tel = "15372723626", BedsNumber = 14, Location = DbGeography.FromText("POINT(119.032658398439 29.1858833715623)"), Icon = "live" });
             dp.Lives.Add(new VillageLive() { Title = "柿民客栈", Address = "峡川镇东坪村", Person = "李诗毅", Description = "", Tel = "666486", BedsNumber = 18, Location = DbGeography.FromText("POINT(119.033435575377 29.1841740615007)"), Icon = "live" });
             dp.Lives.Add(new VillageLive() { Title = "叙月楼", Address = "峡川镇东坪村", Person = "李雪堂", Description = "", Tel = "13819010468", BedsNumber = 10, Location = DbGeography.FromText("POINT(119.032800146875 29.185509287482)"), Icon = "live" });
+
+            #region 图片路径
+            var live_imagesPath = System.IO.Directory.GetFiles(relativePath + "dp/images/live_images/");
+
+            foreach (var live in dp.Lives)
+            {
+                var directory = service_imagesPath + live.Title + "/";
+                if (Directory.Exists(directory))
+                {
+                    var live_images = System.IO.Directory.GetFiles(directory);
+
+                    bool setLogo = live_images.Length == 1;
+
+                    foreach (var imagePath in live_images)
+                    {
+                        var fileName = System.IO.Path.GetFileNameWithoutExtension(imagePath);
+                        var fileExt = System.IO.Path.GetExtension(imagePath);
+
+                        if (imageExts.Contains(fileExt.ToLower()))
+                        {
+                            var livePicture = new LivePicture();
+
+                            var byData = GetPictureData(imagePath);
+
+                            var picture = _pictureService.InsertPicture(byData, "image/jpeg", "", "", "");
+
+                            livePicture.Picture = picture;
+                            livePicture.IsLogo = fileName.ToUpper() == "LOGO" || setLogo;
+
+                            live.LivePictures.Add(livePicture);
+                        }
+                    }
+                }
+            }
+            #endregion
 
             #endregion
 

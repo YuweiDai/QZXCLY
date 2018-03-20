@@ -64,7 +64,7 @@ namespace QZCHY.Core.Domain.Villages
         /// <summary>
         /// 图片
         /// </summary>
-        public virtual ICollection<LivePicture> livePictures
+        public virtual ICollection<LivePicture> LivePictures
         {
             get { return _livePictures ?? (_livePictures = new List<LivePicture>()); }
             protected set { _livePictures = value; }
