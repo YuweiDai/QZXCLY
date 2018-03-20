@@ -15,6 +15,6 @@ namespace QZCHY.Services.Villages
 
         void DeleteVillageEat(VillageEat eat);
 
-        VillageEat GetVillageEatById(int id);
+        IList< VillageEat> GetVillageEatByVillageId(int id);
     }
 }

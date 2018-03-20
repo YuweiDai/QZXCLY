@@ -16,6 +16,6 @@ namespace QZCHY.Services.Villages
 
         void DeleteVillageLive(VillageLive live);
 
-        VillageLive GetVillageLiveById(int id);
+      IList<  VillageLive> GetVillageLiveByVillageId(int id);
     }
 }

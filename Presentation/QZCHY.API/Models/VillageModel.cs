@@ -27,6 +27,8 @@ namespace QZCHY.API.Models
 
         public string TourRoute { get; set; }
 
+        public string Traffic { get; set; }
+
         public string Icon { get; set; }
 
         public string Location { get; set; }

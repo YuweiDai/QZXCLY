@@ -148,10 +148,12 @@
     <Compile Include="Tasks\Task.cs" />
     <Compile Include="Tasks\TaskManager.cs" />
     <Compile Include="Tasks\TaskThread.cs" />
+    <Compile Include="Villages\IStrategyService.cs" />
     <Compile Include="Villages\IVillageEatService.cs" />
     <Compile Include="Villages\IVillageLiveService.cs" />
     <Compile Include="Villages\IVillagePlayService.cs" />
     <Compile Include="Villages\IVillageService.cs" />
+    <Compile Include="Villages\StrategyService.cs" />
     <Compile Include="Villages\VillageEatService.cs" />
     <Compile Include="Villages\VillageLiveService.cs" />
     <Compile Include="Villages\VillagePlayService.cs" />

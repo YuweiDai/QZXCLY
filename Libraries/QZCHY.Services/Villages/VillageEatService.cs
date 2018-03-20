@@ -32,12 +32,14 @@ namespace QZCHY.Services.Villages
             }
         }
 
-        public VillageEat GetVillageEatById(int id)
+        public IList< VillageEat> GetVillageEatByVillageId(int id)
         {
+            var eats = new List<VillageEat>();
             var query = from v in _villageEatRepository.Table
-                        where v.Id == id
+                        where v.Village.Id == id
                         select v;
-            return query.FirstOrDefault();
+            eats = query.ToList();
+            return eats;
         }
 
         public void InsertVillageEat(VillageEat eat)
