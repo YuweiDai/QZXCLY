@@ -23,6 +23,7 @@ namespace QZCHY.Web.Api.Extensions
         }
 
 
+
         public static VillageModel ToModel(this Village entity)
         {
             return entity.MapTo<Village, VillageModel>();
