@@ -17,6 +17,5 @@ namespace QZCHY.Data.Mapping.VillageMap
             this.HasRequired(p => p.Picture).WithMany().HasForeignKey(pp => pp.PictureId);
             this.HasRequired(p => p.VillageEat).WithMany().HasForeignKey(pp => pp.EatId);
         }
-
     }
 }
