@@ -317,6 +317,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\images\" />
     <Folder Include="Resources\Imports\dp\play_images\新建文件夹\" />
     <Folder Include="Validators\" />
     <Folder Include="Views\Tower\" />

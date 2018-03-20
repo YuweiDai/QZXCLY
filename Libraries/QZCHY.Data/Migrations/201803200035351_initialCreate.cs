@@ -18,15 +18,12 @@ namespace QZCHY.Data.Migrations
                         Deleted = c.Boolean(nullable: false),
                         CreatedOn = c.DateTime(nullable: false),
                         UpdatedOn = c.DateTime(nullable: false),
-                        VillageEat_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Pictures", t => t.PictureId, cascadeDelete: true)
-                .ForeignKey("dbo.VillageEat", t => t.VillageEat_Id)
                 .ForeignKey("dbo.VillageEat", t => t.EatId, cascadeDelete: true)
                 .Index(t => t.EatId)
-                .Index(t => t.PictureId)
-                .Index(t => t.VillageEat_Id);
+                .Index(t => t.PictureId);
             
             CreateTable(
                 "dbo.Pictures",
@@ -85,6 +82,7 @@ namespace QZCHY.Data.Migrations
                         Tags = c.String(),
                         Price = c.Double(nullable: false),
                         TourRoute = c.String(),
+                        Triffic = c.String(),
                         GeoTourRoute = c.Geography(),
                         Icon = c.String(),
                         Location = c.Geography(),
@@ -131,15 +129,12 @@ namespace QZCHY.Data.Migrations
                         Deleted = c.Boolean(nullable: false),
                         CreatedOn = c.DateTime(nullable: false),
                         UpdatedOn = c.DateTime(nullable: false),
-                        VillageLive_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Pictures", t => t.PictureId, cascadeDelete: true)
                 .ForeignKey("dbo.VillageLive", t => t.LiveId, cascadeDelete: true)
-                .ForeignKey("dbo.VillageLive", t => t.VillageLive_Id)
                 .Index(t => t.LiveId)
-                .Index(t => t.PictureId)
-                .Index(t => t.VillageLive_Id);
+                .Index(t => t.PictureId);
             
             CreateTable(
                 "dbo.VillagePlay",
@@ -173,15 +168,12 @@ namespace QZCHY.Data.Migrations
                         Deleted = c.Boolean(nullable: false),
                         CreatedOn = c.DateTime(nullable: false),
                         UpdatedOn = c.DateTime(nullable: false),
-                        VillagePlay_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Pictures", t => t.PictureId, cascadeDelete: true)
                 .ForeignKey("dbo.VillagePlay", t => t.PlayId, cascadeDelete: true)
-                .ForeignKey("dbo.VillagePlay", t => t.VillagePlay_Id)
                 .Index(t => t.PlayId)
-                .Index(t => t.PictureId)
-                .Index(t => t.VillagePlay_Id);
+                .Index(t => t.PictureId);
             
             CreateTable(
                 "dbo.VillageService",
@@ -213,15 +205,28 @@ namespace QZCHY.Data.Migrations
                         Deleted = c.Boolean(nullable: false),
                         CreatedOn = c.DateTime(nullable: false),
                         UpdatedOn = c.DateTime(nullable: false),
-                        VillageService_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Pictures", t => t.PictureId, cascadeDelete: true)
                 .ForeignKey("dbo.VillageService", t => t.ServiceId, cascadeDelete: true)
-                .ForeignKey("dbo.VillageService", t => t.VillageService_Id)
                 .Index(t => t.ServiceId)
-                .Index(t => t.PictureId)
-                .Index(t => t.VillageService_Id);
+                .Index(t => t.PictureId);
+            
+            CreateTable(
+                "dbo.Strategy",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Title = c.String(nullable: false),
+                        Src = c.String(),
+                        Deleted = c.Boolean(nullable: false),
+                        CreatedOn = c.DateTime(nullable: false),
+                        UpdatedOn = c.DateTime(nullable: false),
+                        Village_Id = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Village", t => t.Village_Id, cascadeDelete: true)
+                .Index(t => t.Village_Id);
             
             CreateTable(
                 "dbo.VillagePicture",
@@ -271,6 +276,21 @@ namespace QZCHY.Data.Migrations
                         UpdatedOn = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.StrategyPicture",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Strategy_Id = c.Int(nullable: false),
+                        PictureId = c.Int(nullable: false),
+                        Deleted = c.Boolean(nullable: false),
+                        CreatedOn = c.DateTime(nullable: false),
+                        UpdatedOn = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Pictures", t => t.PictureId, cascadeDelete: true)
+                .Index(t => t.PictureId);
             
             CreateTable(
                 "dbo.EmailAccount",
@@ -498,25 +518,23 @@ namespace QZCHY.Data.Migrations
             DropForeignKey("dbo.AccountUser_AccountUserRole_Mapping", "AccountUserRole_Id", "dbo.AccountUserRole");
             DropForeignKey("dbo.AccountUser_AccountUserRole_Mapping", "AccountUser_Id", "dbo.AccountUser");
             DropForeignKey("dbo.QueuedEmail", "EmailAccountId", "dbo.EmailAccount");
-            DropForeignKey("dbo.EatPicture", "EatId", "dbo.VillageEat");
+            DropForeignKey("dbo.StrategyPicture", "PictureId", "dbo.Pictures");
+            DropForeignKey("dbo.VillageEat", "Village_Id", "dbo.Village");
             DropForeignKey("dbo.VillageVedios", "VillageId", "dbo.Village");
             DropForeignKey("dbo.VillageVedios", "VedioId", "dbo.Vedios");
             DropForeignKey("dbo.VillagePicture", "VillageId", "dbo.Village");
             DropForeignKey("dbo.VillagePicture", "PictureId", "dbo.Pictures");
+            DropForeignKey("dbo.Strategy", "Village_Id", "dbo.Village");
             DropForeignKey("dbo.VillageService", "Village_Id", "dbo.Village");
-            DropForeignKey("dbo.ServicePicture", "VillageService_Id", "dbo.VillageService");
             DropForeignKey("dbo.ServicePicture", "ServiceId", "dbo.VillageService");
             DropForeignKey("dbo.ServicePicture", "PictureId", "dbo.Pictures");
             DropForeignKey("dbo.VillagePlay", "Village_Id", "dbo.Village");
-            DropForeignKey("dbo.PlayPicture", "VillagePlay_Id", "dbo.VillagePlay");
             DropForeignKey("dbo.PlayPicture", "PlayId", "dbo.VillagePlay");
             DropForeignKey("dbo.PlayPicture", "PictureId", "dbo.Pictures");
             DropForeignKey("dbo.VillageLive", "Village_Id", "dbo.Village");
-            DropForeignKey("dbo.LivePicture", "VillageLive_Id", "dbo.VillageLive");
             DropForeignKey("dbo.LivePicture", "LiveId", "dbo.VillageLive");
             DropForeignKey("dbo.LivePicture", "PictureId", "dbo.Pictures");
-            DropForeignKey("dbo.VillageEat", "Village_Id", "dbo.Village");
-            DropForeignKey("dbo.EatPicture", "VillageEat_Id", "dbo.VillageEat");
+            DropForeignKey("dbo.EatPicture", "EatId", "dbo.VillageEat");
             DropForeignKey("dbo.EatPicture", "PictureId", "dbo.Pictures");
             DropIndex("dbo.AccountUser_AccountUserRole_Mapping", new[] { "AccountUserRole_Id" });
             DropIndex("dbo.AccountUser_AccountUserRole_Mapping", new[] { "AccountUser_Id" });
@@ -524,24 +542,22 @@ namespace QZCHY.Data.Migrations
             DropIndex("dbo.ActivityLog", new[] { "AccountUserId" });
             DropIndex("dbo.ActivityLog", new[] { "ActivityLogTypeId" });
             DropIndex("dbo.QueuedEmail", new[] { "EmailAccountId" });
+            DropIndex("dbo.StrategyPicture", new[] { "PictureId" });
             DropIndex("dbo.VillageVedios", new[] { "VedioId" });
             DropIndex("dbo.VillageVedios", new[] { "VillageId" });
             DropIndex("dbo.VillagePicture", new[] { "PictureId" });
             DropIndex("dbo.VillagePicture", new[] { "VillageId" });
-            DropIndex("dbo.ServicePicture", new[] { "VillageService_Id" });
+            DropIndex("dbo.Strategy", new[] { "Village_Id" });
             DropIndex("dbo.ServicePicture", new[] { "PictureId" });
             DropIndex("dbo.ServicePicture", new[] { "ServiceId" });
             DropIndex("dbo.VillageService", new[] { "Village_Id" });
-            DropIndex("dbo.PlayPicture", new[] { "VillagePlay_Id" });
             DropIndex("dbo.PlayPicture", new[] { "PictureId" });
             DropIndex("dbo.PlayPicture", new[] { "PlayId" });
             DropIndex("dbo.VillagePlay", new[] { "Village_Id" });
-            DropIndex("dbo.LivePicture", new[] { "VillageLive_Id" });
             DropIndex("dbo.LivePicture", new[] { "PictureId" });
             DropIndex("dbo.LivePicture", new[] { "LiveId" });
             DropIndex("dbo.VillageLive", new[] { "Village_Id" });
             DropIndex("dbo.VillageEat", new[] { "Village_Id" });
-            DropIndex("dbo.EatPicture", new[] { "VillageEat_Id" });
             DropIndex("dbo.EatPicture", new[] { "PictureId" });
             DropIndex("dbo.EatPicture", new[] { "EatId" });
             DropTable("dbo.AccountUser_AccountUserRole_Mapping");
@@ -556,9 +572,11 @@ namespace QZCHY.Data.Migrations
             DropTable("dbo.QueuedEmail");
             DropTable("dbo.MessageTemplate");
             DropTable("dbo.EmailAccount");
+            DropTable("dbo.StrategyPicture");
             DropTable("dbo.Vedios");
             DropTable("dbo.VillageVedios");
             DropTable("dbo.VillagePicture");
+            DropTable("dbo.Strategy");
             DropTable("dbo.ServicePicture");
             DropTable("dbo.VillageService");
             DropTable("dbo.PlayPicture");
