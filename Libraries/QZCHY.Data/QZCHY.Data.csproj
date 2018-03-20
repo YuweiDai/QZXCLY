@@ -86,6 +86,8 @@
     <Compile Include="Mapping\VillageMap\LivePictureIdMap.cs" />
     <Compile Include="Mapping\VillageMap\PlayPictureMap.cs" />
     <Compile Include="Mapping\VillageMap\ServicePictureMap.cs" />
+    <Compile Include="Mapping\VillageMap\StrategyMap.cs" />
+    <Compile Include="Mapping\VillageMap\StrategyPictureMap.cs" />
     <Compile Include="Mapping\VillageMap\VillageEatMap.cs" />
     <Compile Include="Mapping\VillageMap\VillageLiveMap.cs" />
     <Compile Include="Mapping\VillageMap\VillageMap.cs" />

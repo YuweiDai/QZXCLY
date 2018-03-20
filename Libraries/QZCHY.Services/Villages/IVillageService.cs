@@ -18,5 +18,7 @@ namespace QZCHY.Services.Villages
 
         Village GetVillageById(int id);
 
+        Village GetVillageByName(string name);
+
     }
 }

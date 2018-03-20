@@ -59,5 +59,13 @@ namespace QZCHY.Services.Villages
                 _eventPublisher.EntityUpdated(village);
             }
         }
+
+        public Village GetVillageByName(string name)
+        {
+            var query = from v in _villageRepository.Table
+                        where v.Name == name
+                        select v;
+            return query.FirstOrDefault();
+        }
     }
 }

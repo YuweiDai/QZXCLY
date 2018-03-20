@@ -106,7 +106,7 @@ namespace QZCHY.Web.Framework
             builder.RegisterType<VillageEatService>().As<IVillageEatService>().InstancePerLifetimeScope();
             builder.RegisterType<VillagePlayService>().As<IVillagePlayService>().InstancePerLifetimeScope();
             builder.RegisterType<VillageLiveService>().As<IVillageLiveService>().InstancePerLifetimeScope();
-
+            builder.RegisterType<StrategyService>().As<IStrategyService>().InstancePerLifetimeScope();
 
             //builder.RegisterType<PropertyService>().As<IPropertyService>().InstancePerLifetimeScope();
             //builder.RegisterType<GovernmentService>().As<IGovernmentService>().InstancePerLifetimeScope();

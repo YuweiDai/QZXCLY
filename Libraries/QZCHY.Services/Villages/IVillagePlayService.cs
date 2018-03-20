@@ -15,6 +15,6 @@ namespace QZCHY.Services.Villages
 
         void DeleteVillagePaly(VillagePlay play);
 
-        VillagePlay GetVillagePlayById(int id);
+       IList <VillagePlay> GetVillagePlayByVillageId(int id);
     }
 }

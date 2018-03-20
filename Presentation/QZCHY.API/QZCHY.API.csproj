@@ -276,6 +276,8 @@
     <Compile Include="Models\LivePictureModel.cs" />
     <Compile Include="Models\PlayPictureModel.cs" />
     <Compile Include="Models\ServicePictureModel.cs" />
+    <Compile Include="Models\StrategyModel.cs" />
+    <Compile Include="Models\StrategyPictureModel.cs" />
     <Compile Include="Models\VillageEatModel.cs" />
     <Compile Include="Models\VillageLiveModel.cs" />
     <Compile Include="Models\VillageModel.cs" />

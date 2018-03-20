@@ -166,6 +166,8 @@
     <Compile Include="Domain\Villages\LivePicture.cs" />
     <Compile Include="Domain\Villages\PlayPicture.cs" />
     <Compile Include="Domain\Villages\ServicePicture.cs" />
+    <Compile Include="Domain\Villages\Strategy.cs" />
+    <Compile Include="Domain\Villages\StrategyPicture.cs" />
     <Compile Include="Domain\Villages\Village.cs" />
     <Compile Include="Domain\Villages\VillageEat.cs" />
     <Compile Include="Domain\Villages\VillageLive.cs" />

@@ -1,4 +1,5 @@
 ﻿using QZCHY.Services.Villages;
+using QZCHY.Web.Api.Extensions;
 using QZCHY.Web.Framework.Controllers;
 using System;
 using System.Collections.Generic;
@@ -29,10 +30,10 @@ namespace QZCHY.API.Controllers
         }
 
         [HttpGet]
-        [Route("villageId")]
-        public IHttpActionResult GetVillageById()
+        [Route("{{Name}}")]
+        public IHttpActionResult GetVillageById(string Name)
         {
-            var response = _villageService.GetVillageById(1);
+            var response = _villageService.GetVillageByName(Name).ToModel();
             return Ok(response);
         }
     }

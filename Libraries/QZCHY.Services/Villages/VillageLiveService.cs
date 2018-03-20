@@ -30,12 +30,15 @@ namespace QZCHY.Services.Villages
             }
         }
 
-        public VillageLive GetVillageLiveById(int id)
+        public IList<VillageLive> GetVillageLiveByVillageId(int id)
         {
+            var lives = new List<VillageLive>();
+
             var query = from v in _villageLiveRepository.Table
-                        where v.Id == id
+                        where v.Village.Id == id
                         select v;
-            return query.FirstOrDefault();
+            lives = query.ToList();
+            return lives;
         }
 
         public void InsertVillageLive(VillageLive live)

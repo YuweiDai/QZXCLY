@@ -32,12 +32,14 @@ namespace QZCHY.Services.Villages
             throw new NotImplementedException();
         }
 
-        public VillagePlay GetVillagePlayById(int id)
+        public IList<VillagePlay> GetVillagePlayByVillageId(int id)
         {
+            var plays = new List<VillagePlay>();
             var query = from v in _villagePlayRepository.Table
-                        where v.Id == id
+                        where v.Village.Id == id
                         select v;
-            return query.FirstOrDefault();
+            plays = query.ToList();
+            return plays;
         }
 
         public void InsertVillagePlay(VillagePlay play)
