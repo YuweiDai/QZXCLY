@@ -1,12 +1,12 @@
 <view class="container">
-  <view class="map_section section">
-    <map id="map" longitude="{{lon}}" latitude="{{lat}}" scale="{{level}}" controls="{{currentControls}}" bindmarkertap="bindmarkertap" markers="{{markers}}" polyline='{{polylines}}' bindcontroltap="controltap" show-location>
+  <view class="map_section section" >
+    <map  id="map" longitude="{{lon}}" latitude="{{lat}}" scale="{{level}}" controls="{{currentControls}}" bindmarkertap="bindmarkertap" markers="{{markers}}" polyline='{{polylines}}' bindcontroltap="controltap"  show-location>
       <!-- <cover-view hidden='{{showSingelSpot}}' class='search_section top_section'>
         <cover-view class="search" bindtap="tapSearch">
           <cover-image class="icon" src="/resources/images/index/icon_search.png"/>
           <cover-view class="placeholder">搜索你想去的地方...</cover-view>
         </cover-view> 
-      </cover-view>     -->
+      </cover-view>  -->
 
       <cover-view hidden='{{!showSingelSpot}}'  class='spot_section top_section'>
         <cover-view><cover-image class="avatar" src="{{currentSpot.logo}}" /></cover-view>
