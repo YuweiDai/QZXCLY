@@ -36,7 +36,7 @@ namespace QZCHY.API.Models
 
         public int Order { get; set; }
 
-        public IList<PlayPictureModel> Pictures { get; set; }
+        public virtual ICollection<PlayPictureModel> PlayPictures { get; set; }
 
         public int Village_Id { get; set; }
 

@@ -14,8 +14,8 @@ namespace QZCHY.Data.Mapping.VillageMap
             this.ToTable("VillagePicture");
             this.HasKey(p => p.Id);
 
-            this.HasRequired(p => p.Picture).WithMany().HasForeignKey(pp => pp.PictureId);
-            this.HasRequired(p => p.Village).WithMany().HasForeignKey(pp=>pp.VillageId);
+             this.HasRequired(p => p.Picture).WithMany().HasForeignKey(pp => pp.PictureId);
+             this.HasRequired(p => p.Village).WithMany().HasForeignKey(pp=>pp.VillageId);
 
         }
 

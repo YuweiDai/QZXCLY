@@ -38,7 +38,7 @@ namespace QZCHY.API.Models
         /// </summary>
         public string GeoTourRoute { get; set; }
 
-        public IList<VillagePictureModel> Pictures { get; set; }
+        public virtual ICollection<VillagePictureModel> VillagePictures { get; set; }
 
         public IList<VillageEatModel> Eats { get; set; }
 

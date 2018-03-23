@@ -56,7 +56,7 @@ namespace QZCHY.API.Models
 
         public int Order { get; set; }
 
-        public IList<LivePictureModel> Pictures { get; set; }
+        public virtual ICollection<LivePictureModel> LivePictures { get; set; }
 
         public int Vliiage_Id { get; set; }
 
