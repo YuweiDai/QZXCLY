@@ -1,7 +1,19 @@
 /* pages/index/strategies.wxss */
-.strategies
+.container
 {
-  margin-top: 98rpx;
+  background-color: white;
+}
+.strategies,.strategy
+{
+  margin-top: 0rpx;
 }
 
- 
+.strategies,.strategy .content .item:first-child
+{
+  margin-top: 0;
+} 
+
+.strategies,.strategy .content .item:last-child
+{
+  margin-bottom: 0;
+}

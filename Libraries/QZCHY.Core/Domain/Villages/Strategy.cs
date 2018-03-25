@@ -6,15 +6,20 @@ using System.Threading.Tasks;
 
 namespace QZCHY.Core.Domain.Villages
 {
-    public  class Strategy:BaseEntity
+    public class Strategy : BaseEntity
     {
-       
-      public string Title { get; set; }
+
+        public string Title { get; set; }
+
+ 
+        public DateTime Date { get; set; }
 
 
         public string Src { get; set; }
 
-        public Village Village { get; set; }
+        public virtual StrategyPicture StrategyPicture { get; set; }
+
+        public virtual Village Village { get; set; }
 
     }
 }

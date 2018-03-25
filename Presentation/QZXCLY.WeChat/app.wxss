@@ -44,6 +44,8 @@
   display: inline-block;
 }
 
+
+
 .section
 {
   margin: 20rpx 0;
@@ -98,6 +100,10 @@
 
 
 /* 玩法攻略 */
+.strategy
+{
+  margin-bottom:0;
+}
 .strategy .content {
 	width: 100%; 
 }
@@ -107,6 +113,11 @@
   width: 100%;
 	flex-wrap: wrap;
   margin: 20rpx 0;
+}
+
+.strategy .content .item:last-child
+{
+  margin-bottom:0;  
 }
 
 .strategy .content .item image

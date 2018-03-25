@@ -3,7 +3,7 @@
 <view class="container">
   <template is="searchBar" /> 
   <view class='strategies'>
-    <scroll-view scroll-y="true" scroll-into-view="{{scrollIntoView}}"  style='height:{{strategiesHeight}}px'>	   
+    <scroll-view scroll-y="true" scroll-into-view="{{scrollIntoView}}">	   
       <view class="section section-big strategy">
         <view class='content'>
           <template is="strategy" data="{{item}}" wx:for="{{strategies}}" />

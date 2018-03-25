@@ -12,6 +12,7 @@ namespace QZCHY.Core.Domain.Villages
         public int Strategy_Id { get; set; }
         public int PictureId { get; set; }
 
+        public virtual Strategy Strategy { get; set; }
         public virtual Picture Picture { get; set; }
 
     }
