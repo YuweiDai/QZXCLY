@@ -7,13 +7,13 @@ namespace QZCHY.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class initalCreateforce : IMigrationMetadata
+    public sealed partial class initialCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(initalCreateforce));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initialCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "201803240220017_initalCreate-force"; }
+            get { return "201803260033419_initialCreate"; }
         }
         
         string IMigrationMetadata.Source
