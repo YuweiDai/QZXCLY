@@ -25,7 +25,7 @@ namespace QZCHY.API.Models
         /// </summary>
         public string Icon { get; set; }
 
-        public IList<ServicePictureModel> Pictures { get; set; }
+        public virtual ICollection<ServicePictureModel> ServicePictures { get; set; }
 
         public int Village_Id { get; set; }
 

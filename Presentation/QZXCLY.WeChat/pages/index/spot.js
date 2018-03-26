@@ -1,17 +1,29 @@
 // pages/index/spot.js
+var app = getApp();
+var page=null;
 var innerAudioContext = null;
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    dialog:{
+      visible:false,
+      title:"",
+      content:""
+    },
     spot:{
+      latitude: 29.1851002329,
+      longitude: 119.0333890915,      
       name:"康养衢江· 隐柿东坪",      
       tags: ["AAA级景区", "柿子节", "康养"],
       price:"免费",
       address:'衢州市衢江区峡川镇驻地峡口村东北部13公里',
       phone:'13705706658',
       opentime:'9:00-16:00',
+      traffic:"途经星口、池淮、皇岸、立江、虹桥、芳村、下坞、河滩每40分钟一班",
+      route:"一路游：北源状元文化村（云门寺）——桃源范氏宗祠——江南最美茶园——江南布达拉宫（台回山）——钱王祖墓——高田坑古村落——霞川红军烈士纪念馆（集贤祠）——红色库坑——天上人间西山——红军烈士纪念墙——西坑野生石斑鱼基地——一村居两省河滩（红军被服厂）; 红色游：霞坞红军烈士纪念馆（红军樟、国民党重兵驻地）——库坑中共闽浙赣省委旧址——红军烈士纪念墙——石盔山红军被服厂; 古色游：北源状元文化村（云门寺、大麦山）——桃源范氏文化村——钱王祖墓——高田坑古村落——霞坞集贤祠——一村居两省河滩; 绿色游：江南最美茶园——江南布达拉宫（台回山）——碧家湖——天上人间西山——西坑野生石斑鱼基地——一村居两省河滩",
+      tourJpg:"http://qzch.qz.gov.cn/qzxcly/resources/images/index/dp.jpg",
       desc:'东坪村地处衢州市衢江区峡川镇驻地峡口村东北部13公里，距衢州市区38公里，东临龙游县塔石镇金村村、西与乌石坂村相交、南与大理、李泽村为界，北与高岭村相连，地理位置险要，村落分散，村坊两旁山高林密，仅有一条乡村公路和千年古道与外界相连，村坊后背山山峰最高点海拔610米，村坊位置海拔420米，属典型的山区古村落。东坪村村史悠久，至今已有一千年左右，据《李氏宗谱》记载，高宗七子李烨为避武则天残害宗室子弟，远途跋涉，隐居福建古田长汀麻团岭，后移居浙江衢之西邑，往返于东坪与石屏源（今李泽）之间。元朝元统年间（1333—1335年）正式创业于东坪，男耕女织、读书知礼、克勤克俭，延续至今。东坪村气候四季分明，雨量充沛，属亚热带季风性气候，适宜针、阔叶林等多种作物生长。红柿、竹笋、油茶、板栗、粮食、蔬菜是东坪村的主要物产，其中红柿又是东坪村的主打产品历史悠久，源于唐末，盛产至今，其中号称“柿王”的一棵柿树，年产量均在3000斤左右，因为这里海拔高，温差大，光照足，无污染，特别适应柿树的种植、生长，柿果个大味甘，极富营养，曾作为贡品进献朝廷。相传，广为衢北百姓传诵的明朝中后期的“李泽娘娘”就是东坪人，这位娘娘入宫后的第一个中秋，望月思乡，想起家乡父老，想起家中红柿。然而，吃遍了全国各地送来的红柿，娘娘皆不如意，故决定以后的每年中秋，由衢州进贡一篮东坪红柿进皇宫。久而久之，东坪红柿便得名“贡柿”。东坪红柿品种众多，有客柿、西瓜柿、牛奶柿、鸟柿、汤瓶柿、六柿等。柿干质地柔软、肉质细嫩、霜厚均匀，含有蛋白质、糖、胡萝卜素等丰富的营养及磷、铁、钙、碘等多种微量元素，具有很高的营养及药用价值。',
       star:true,
       strategies: [
@@ -334,7 +346,9 @@ Page({
     audioPlayer:{
       playing:false,
       current:""
-    }
+    },
+    windowHeight:0,
+    rpx: 750 / 375
   },
   tapFilter: function (e) {    
     this.setData({
@@ -355,35 +369,21 @@ Page({
       }
     })
   },
-  navTo: function (event) {
+  //跳至地图导航
+  navToMap:function(event){
+    var url = event.currentTarget.dataset.url;
+    var lon = event.currentTarget.dataset.lon;
+    var lat = event.currentTarget.dataset.lat;
     wx.navigateTo({
-      url: '../map/nav',
-    })
+      url: url + "?lon=" + lon + "&lat=" + lat,
+    });
   },
-  navToSpotSubItem:function(event){
-    var id=event.currentTarget.dataset.id;
-    console.log(id);
-    var url="";
-    switch (this.data.filterId)
-    {
-      case "0":
-        url = "spot_play";
-        break;
-      case "1":
-        url = "spot_eat";
-        break;
-      case "2":
-        url = "spot_live";
-      break;
-    }
+  //页面转跳
+  navTo: function (event) {
+    var url=event.currentTarget.dataset.url;
     wx.navigateTo({
       url: url,
-    });
-  },
-  navToPanorama: function (event) {
-    wx.navigateTo({
-      url: 'webview?title=全景图&src=www.luckyday.top/resources/panoramas/index.html',
-    });
+    })
   },
   starSpot:function(event)
   {
@@ -453,11 +453,30 @@ Page({
       }
     });
   },
+  showTourJpg:function(event){
+    wx.previewImage({
+      urls: [page.data.spot.tourJpg],
+    })
+  },
+  showDialog:function(event){
+    page.setData({
+      'dialog.visible': true,
+      'dialog.title': event.currentTarget.dataset.title,
+      'dialog.content': event.currentTarget.dataset.content      
+    });
+  },
+  closeDialog:function(){
+    page.setData({
+      'dialog.visible':false
+    });
+  },
+
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var page=this;
+    page=this;
     if(innerAudioContext==null)
       innerAudioContext = wx.createInnerAudioContext();
 
@@ -477,6 +496,10 @@ Page({
       console.log('onEnded');
       page.updateAudioState(false, "");
     });      
+    page.setData({
+      windowHeight: app.globalData.systemInfo.windowHeight,
+      rpx: 750 / app.globalData.systemInfo.screenWidth
+    });
   },
 
   /**

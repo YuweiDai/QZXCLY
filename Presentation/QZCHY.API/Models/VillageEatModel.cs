@@ -63,7 +63,7 @@ namespace QZCHY.API.Models
 
         public int Order { get; set; }
 
-        public List<EatPictureModel> Pictures { get; set; }
+        public virtual ICollection<EatPictureModel> EatPictures { get; set; }
 
         public int Village_Id { get; set; }
 

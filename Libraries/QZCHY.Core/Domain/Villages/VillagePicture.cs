@@ -16,6 +16,11 @@ namespace QZCHY.Core.Domain.Villages
 
         public bool IsLogo { get; set; }
 
+        /// <summary>
+        /// 是否为导览图
+        /// </summary>
+        public bool IsRoute { get; set; }
+
         public virtual Picture Picture { get; set; }
 
         public virtual Village Village{get;set;}

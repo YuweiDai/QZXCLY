@@ -13,7 +13,7 @@ namespace QZCHY.Data.Mapping.VillageMap
         {
             this.ToTable("Strategy");
             this.HasKey(p => p.Id);
-            this.Property(p => p.Title).IsRequired();
+            this.Property(p => p.Title).IsRequired();           
         }
 
       
