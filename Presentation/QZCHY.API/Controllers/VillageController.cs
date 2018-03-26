@@ -10,7 +10,7 @@ using System.Web.Http;
 namespace QZCHY.API.Controllers
 {
     [RoutePrefix("Villages")]
-    public class VillageController: BaseAdminApiController
+    public class VillageController:BaseApiController
     {
 
         private readonly IVillageService _villageService;
@@ -30,9 +30,10 @@ namespace QZCHY.API.Controllers
         }
 
         [HttpGet]
-        [Route("{{Name}}")]
+        [Route("dpgd")]
         public IHttpActionResult GetVillageById(string Name)
         {
+            Name = "康养衢江· 隐柿东坪";
             var response = _villageService.GetVillageByName(Name).ToModel();
             return Ok(response);
         }
