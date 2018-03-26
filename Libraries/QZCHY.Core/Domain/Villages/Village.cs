@@ -16,7 +16,7 @@ namespace QZCHY.Core.Domain.Villages
         private ICollection<VillageEat> _villageEats;
         private ICollection<VillagePicture> _villagePictures;
         private ICollection<VillageVedio> _villageVedios;
-        private ICollection<Strategy> _strategy;
+        private ICollection<Strategy> _strategies;
 
         /// <summary>
         /// 景区名称
@@ -109,10 +109,10 @@ namespace QZCHY.Core.Domain.Villages
             get { return _villageVedios ?? (_villageVedios = new List<VillageVedio>()); }
             protected set { _villageVedios = value; }
         }
-        public virtual ICollection<Strategy> Strategys
+        public virtual ICollection<Strategy> Strategies
         {
-            get { return _strategy ?? (_strategy = new List<Strategy>()); }
-            protected set { _strategy = value; }
+            get { return _strategies ?? (_strategies = new List<Strategy>()); }
+            protected set { _strategies = value; }
         }
     }
 }

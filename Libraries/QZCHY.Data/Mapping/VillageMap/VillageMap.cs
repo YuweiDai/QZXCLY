@@ -22,7 +22,6 @@ namespace QZCHY.Data.Mapping.VillageMap
             this.HasMany(p => p.Lives).WithRequired(pp => pp.Village);
             this.HasMany(p => p.Plays).WithRequired(pp => pp.Village);
             this.HasMany(p => p.Services).WithRequired(pp => pp.Village);
-            this.HasMany(p => p.Strategys).WithRequired(pp => pp.Village);
         }
 
     }

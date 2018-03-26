@@ -223,13 +223,10 @@ namespace QZCHY.Data.Migrations
                         Deleted = c.Boolean(nullable: false),
                         CreatedOn = c.DateTime(nullable: false),
                         UpdatedOn = c.DateTime(nullable: false),
-                        StrategyPicture_Id = c.Int(),
                         Village_Id = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.StrategyPicture", t => t.StrategyPicture_Id)
                 .ForeignKey("dbo.Village", t => t.Village_Id, cascadeDelete: true)
-                .Index(t => t.StrategyPicture_Id)
                 .Index(t => t.Village_Id);
             
             CreateTable(
@@ -237,7 +234,7 @@ namespace QZCHY.Data.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Strategy_Id = c.Int(nullable: false),
+                        StrategyId = c.Int(nullable: false),
                         PictureId = c.Int(nullable: false),
                         Deleted = c.Boolean(nullable: false),
                         CreatedOn = c.DateTime(nullable: false),
@@ -245,8 +242,8 @@ namespace QZCHY.Data.Migrations
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Pictures", t => t.PictureId, cascadeDelete: true)
-                .ForeignKey("dbo.Strategy", t => t.Strategy_Id, cascadeDelete: true)
-                .Index(t => t.Strategy_Id)
+                .ForeignKey("dbo.Strategy", t => t.StrategyId, cascadeDelete: true)
+                .Index(t => t.StrategyId)
                 .Index(t => t.PictureId);
             
             CreateTable(
@@ -531,8 +528,7 @@ namespace QZCHY.Data.Migrations
             DropForeignKey("dbo.VillagePicture", "VillageId", "dbo.Village");
             DropForeignKey("dbo.VillagePicture", "PictureId", "dbo.Pictures");
             DropForeignKey("dbo.Strategy", "Village_Id", "dbo.Village");
-            DropForeignKey("dbo.Strategy", "StrategyPicture_Id", "dbo.StrategyPicture");
-            DropForeignKey("dbo.StrategyPicture", "Strategy_Id", "dbo.Strategy");
+            DropForeignKey("dbo.StrategyPicture", "StrategyId", "dbo.Strategy");
             DropForeignKey("dbo.StrategyPicture", "PictureId", "dbo.Pictures");
             DropForeignKey("dbo.VillageService", "Village_Id", "dbo.Village");
             DropForeignKey("dbo.ServicePicture", "ServiceId", "dbo.VillageService");
@@ -556,9 +552,8 @@ namespace QZCHY.Data.Migrations
             DropIndex("dbo.VillagePicture", new[] { "PictureId" });
             DropIndex("dbo.VillagePicture", new[] { "VillageId" });
             DropIndex("dbo.StrategyPicture", new[] { "PictureId" });
-            DropIndex("dbo.StrategyPicture", new[] { "Strategy_Id" });
+            DropIndex("dbo.StrategyPicture", new[] { "StrategyId" });
             DropIndex("dbo.Strategy", new[] { "Village_Id" });
-            DropIndex("dbo.Strategy", new[] { "StrategyPicture_Id" });
             DropIndex("dbo.ServicePicture", new[] { "PictureId" });
             DropIndex("dbo.ServicePicture", new[] { "ServiceId" });
             DropIndex("dbo.VillageService", new[] { "Village_Id" });
