@@ -117,7 +117,7 @@ namespace QZCHY.API.Controllers
         [Route("Import")]
         public IHttpActionResult ImportData()
         {
-            return Ok("closed");
+            //return Ok("closed");
             var relativePath = System.Web.Hosting.HostingEnvironment.MapPath("~/Resources/Imports/");
             var imageExts = new List<string>
             {
@@ -390,6 +390,8 @@ namespace QZCHY.API.Controllers
 
                 #endregion
 
+                _villageService.InsertVillage(dp);
+
                 #region 玩法攻略
 
                 var strategyDirectories= System.IO.Directory.GetDirectories(relativePath + "dp/strategies/");
@@ -425,7 +427,6 @@ namespace QZCHY.API.Controllers
 
                 #endregion
 
-                _villageService.InsertVillage(dp);
                 #endregion
               
                 #region 长虹入库
@@ -676,6 +677,8 @@ namespace QZCHY.API.Controllers
 
                 #endregion
 
+                _villageService.InsertVillage(ch);
+
                 #region 玩法攻略
 
                 strategyDirectories = System.IO.Directory.GetDirectories(relativePath + "ch/strategies/");
@@ -705,12 +708,12 @@ namespace QZCHY.API.Controllers
                             strategyPicture.Picture = picture;
 
                             strategy.StrategyPicture = strategyPicture;
-                        }
+                        }                       
                     }
                 }
 
                 #endregion
-                _villageService.InsertVillage(ch);
+
                 #endregion
 
             }
