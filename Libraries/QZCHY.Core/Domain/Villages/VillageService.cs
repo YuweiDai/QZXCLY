@@ -13,7 +13,7 @@ namespace QZCHY.Core.Domain.Villages
         /// <summary>
         /// 名称
         /// </summary>
-        public string Title { get; set; }
+        public string Name { get; set; }
         /// <summary>
         /// 描述
         /// </summary>

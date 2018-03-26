@@ -11,12 +11,12 @@
       <cover-view hidden='{{!showSingelSpot}}'  class='spot_section top_section'>
         <cover-view><cover-image class="avatar" src="{{currentSpot.logo}}" /></cover-view>
         <cover-view class='content'>
-          <cover-view class='title'>{{currentSpot.title}}</cover-view>
+          <cover-view class='title'>{{currentSpot.name}}</cover-view>
           <cover-view class='info'>
-            距离当前位置9.4km
+            距离当前位置{{currentSpot.distance}}
           </cover-view>   
           <cover-view class='btns'>
-            <cover-view data-url="../index/spot" class='navigator inline-block' bindtap='nav'>详情</cover-view>
+            <cover-view data-url="../index/spot?id={{currentSpot.id}}" class='navigator inline-block' bindtap='nav'>详情</cover-view>
             <cover-view class='navigator inline-block' bindtap='showImages'>图集</cover-view>     
             <cover-view data-url="nav"  data-lon="{{currentSpot.longitude}}" data-lat="{{currentSpot.latitude}}" class='navigator inline-block' bindtap='nav'>路线</cover-view>
           </cover-view>
@@ -39,7 +39,7 @@
          <cover-view class="drawer_logo"><cover-image class="avatar" src="{{drawerMarker.logo}}" /></cover-view>  
         <!--drawer content-->  
         <cover-view class="drawer_content">               
-          <cover-view class="drawer_title">{{drawerMarker.title}}</cover-view>
+          <cover-view class="drawer_title">{{drawerMarker.name}}</cover-view>
           <cover-view class='drawer_detail' wx:if="{{drawerMarker.desc}}">{{drawerMarker.desc}}</cover-view>
           <cover-view class='drawer_info' wx:if="{{filterType=='eat'?'active':''}}">星级：{{drawerMarker.level}}</cover-view>  
           <cover-view class='drawer_info' wx:if="{{filterType=='eat'?'active':''}}">人均消费：{{drawerMarker.price}} 元</cover-view>         

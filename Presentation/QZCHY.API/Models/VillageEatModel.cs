@@ -9,7 +9,7 @@ namespace QZCHY.API.Models
     public class VillageEatModel: BaseQMEntityModel
     {
 
-        public string Title { get; set; }
+        public string Name { get; set; }
         /// <summary>
         /// 地址
         /// </summary>

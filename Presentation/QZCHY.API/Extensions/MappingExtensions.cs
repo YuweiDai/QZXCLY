@@ -29,6 +29,16 @@ namespace QZCHY.Web.Api.Extensions
             return entity.MapTo<Village, VillageModel>();
         }
 
+        public static SimpleVillageGeoModel ToSimpleGeoModel(this Village entity)
+        {
+            return entity.MapTo<Village, SimpleVillageGeoModel>();
+        }
+
+        public static VillageGeoModel ToGeoModel(this Village entity)
+        {
+            return entity.MapTo<Village, VillageGeoModel>();
+        }
+
         public static Village ToEntity(this VillageModel model)
         {
             return model.MapTo<VillageModel, Village>();
@@ -43,6 +53,11 @@ namespace QZCHY.Web.Api.Extensions
         public static VillageEatModel ToModel(this VillageEat entity)
         {
             return entity.MapTo<VillageEat, VillageEatModel>();
+        }
+
+        public static EatGeoModel ToGeoModel(this VillageEat entity)
+        {
+            return entity.MapTo<VillageEat, EatGeoModel>();
         }
 
         public static VillageEat ToEntity(this VillageEatModel model)
@@ -61,6 +76,11 @@ namespace QZCHY.Web.Api.Extensions
             return entity.MapTo<VillageLive, VillageLiveModel>();
         }
 
+        public static LiveGeoModel ToGeoModel(this VillageLive entity)
+        {
+            return entity.MapTo<VillageLive, LiveGeoModel>();
+        }
+
         public static VillageLive ToEntity(this VillageLiveModel model)
         {
             return model.MapTo<VillageLiveModel, VillageLive>();
@@ -77,6 +97,11 @@ namespace QZCHY.Web.Api.Extensions
             return entity.MapTo<VillagePlay, VillagePlayModel>();
         }
 
+        public static PlayGeoModel ToGeoModel(this VillagePlay entity)
+        {
+            return entity.MapTo<VillagePlay, PlayGeoModel>();
+        }
+
         public static VillagePlay ToEntity(this VillagePlayModel model)
         {
             return model.MapTo<VillagePlayModel, VillagePlay>();
@@ -91,6 +116,11 @@ namespace QZCHY.Web.Api.Extensions
         public static VillageServiceModel ToModel(this VillageService entity)
         {
             return entity.MapTo<VillageService, VillageServiceModel>();
+        }
+
+        public static ServiceGeoModel ToGeoModel(this VillageService entity)
+        {
+            return entity.MapTo<VillageService, ServiceGeoModel>();
         }
 
         public static VillageService ToEntity(this VillageServiceModel model)

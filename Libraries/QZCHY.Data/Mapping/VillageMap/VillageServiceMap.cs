@@ -13,7 +13,7 @@ namespace QZCHY.Data.Mapping.VillageMap
         {
             this.ToTable("VillageService");
             this.HasKey(p => p.Id);
-            this.Property(p => p.Title).IsRequired().HasMaxLength(255);
+            this.Property(p => p.Name).IsRequired().HasMaxLength(255);
 
             this.HasMany(p => p.ServicePictures).WithRequired(pp => pp.VillageService);
             this.HasRequired(pp => pp.Village).WithMany(p => p.Services);

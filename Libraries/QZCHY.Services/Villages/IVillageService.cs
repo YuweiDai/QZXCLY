@@ -20,5 +20,11 @@ namespace QZCHY.Services.Villages
 
         Village GetVillageByName(string name);
 
+        /// <summary>
+        /// 获取所有的乡村旅游区
+        /// </summary>
+        /// <returns></returns>
+        IQueryable<Village> GetAllVillages();
+
     }
 }

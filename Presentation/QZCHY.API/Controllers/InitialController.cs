@@ -119,7 +119,7 @@ namespace QZCHY.API.Controllers
         [Route("Import")]
         public IHttpActionResult ImportData()
         {
-            //return Ok("closed");
+            return Ok("closed");
             var relativePath = System.Web.Hosting.HostingEnvironment.MapPath("~/Resources/Imports/");
             var imageExts = new List<string>
             {
@@ -168,7 +168,7 @@ namespace QZCHY.API.Controllers
 
                         villagePicture.Picture = picture;
                         villagePicture.IsLogo = fileName.ToUpper() == "LOGO";
-                        villagePicture.IsLogo = fileName.ToUpper() == "ROUTE";
+                        villagePicture.IsRoute = fileName.ToUpper() == "ROUTE";
 
                         dp.VillagePictures.Add(villagePicture);
                     }
@@ -177,19 +177,19 @@ namespace QZCHY.API.Controllers
 
                 #region 服务设施
 
-                dp.Services.Add(new Core.Domain.Villages.VillageService() { Title = "山脚停车场", Description = "", Location = DbGeography.FromText("POINT(119.028336339932 29.185065206383)"), Icon = "parking" });
-                dp.Services.Add(new Core.Domain.Villages.VillageService() { Title = "山上停车场", Description = "", Location = DbGeography.FromText("POINT(119.033093070437 29.1872311309559)"), Icon = "parking" });
-                dp.Services.Add(new Core.Domain.Villages.VillageService() { Title = "游客接待中心", Description = "", Location = DbGeography.FromText("POINT(119.032570530284 29.1853340591726)"), Icon = "ticket" });
-                dp.Services.Add(new Core.Domain.Villages.VillageService() { Title = "山脚厕所", Description = "", Location = DbGeography.FromText("POINT(119.028073811557 29.1847519536177)"), Icon = "wc" });
-                dp.Services.Add(new Core.Domain.Villages.VillageService() { Title = "山上厕所", Description = "", Location = DbGeography.FromText("POINT(119.032515188008 29.1852134615949)"), Icon = "wc" });
-                dp.Services.Add(new Core.Domain.Villages.VillageService() { Title = "红芬小卖部", Description = "", Location = DbGeography.FromText("POINT(119.032749318041 29.1854837977747)"), Icon = "wc" });
+                dp.Services.Add(new Core.Domain.Villages.VillageService() { Name = "山脚停车场", Description = "", Location = DbGeography.FromText("POINT(119.028336339932 29.185065206383)"), Icon = "parking" });
+                dp.Services.Add(new Core.Domain.Villages.VillageService() { Name = "山上停车场", Description = "", Location = DbGeography.FromText("POINT(119.033093070437 29.1872311309559)"), Icon = "parking" });
+                dp.Services.Add(new Core.Domain.Villages.VillageService() { Name = "游客接待中心", Description = "", Location = DbGeography.FromText("POINT(119.032570530284 29.1853340591726)"), Icon = "ticket" });
+                dp.Services.Add(new Core.Domain.Villages.VillageService() { Name = "山脚厕所", Description = "", Location = DbGeography.FromText("POINT(119.028073811557 29.1847519536177)"), Icon = "wc" });
+                dp.Services.Add(new Core.Domain.Villages.VillageService() { Name = "山上厕所", Description = "", Location = DbGeography.FromText("POINT(119.032515188008 29.1852134615949)"), Icon = "wc" });
+                dp.Services.Add(new Core.Domain.Villages.VillageService() { Name = "红芬小卖部", Description = "", Location = DbGeography.FromText("POINT(119.032749318041 29.1854837977747)"), Icon = "wc" });
 
                 #region 图片路径
                 var service_imagesPath = relativePath + "dp/service_images/";
 
                 foreach (var service in dp.Services)
                 {
-                    var directory = service_imagesPath + service.Title + "/";
+                    var directory = service_imagesPath + service.Name + "/";
                     if (Directory.Exists(directory))
                     {
                         var service_images = System.IO.Directory.GetFiles(directory);
@@ -225,34 +225,34 @@ namespace QZCHY.API.Controllers
 
                 dp.Plays.Add(new VillagePlay
                 {
-                    Title = "千年古道",
+                    Name = "千年古道",
                     Description = "东坪千年古道位于衢州市峡川镇境内，距市区40公里。从东坪山脚下起，一条总长1500米，宽2米，共1144级的青石板古道蜿蜒盘曲伸向山顶，随着岁月的流逝，村民的脚步磨去了古道青石块的棱角而变得光滑。这就是相传具有1300多年历史的唐朝古道。",
                     Location = DbGeography.FromText("POINT(119.0333890915 29.1851002329)"),
                     Icon = "play"
                 });
 
-                dp.Plays.Add(new VillagePlay { Title = "龙石潭", Description = "相传，南宋末年的一天，东坪仙岩寺内有个老和尚，掐指一算，得知近期东坪山要出“龙”。传说出“龙”之地，意味着山洪爆发，村民就要遭殃。村民们一时惊慌失措，忙问老和尚有何破解之法。老和尚说：“龙刚从山洞里出来时，只是一条小泥鳅，要到河、沟里经过雷电闪烁才会变成大龙。”于是族长马上叫大家上山砍毛竹，把毛竹对半剖开，去掉骨节，接成水笕接到山洞里，由村民一根一根把每节水笕接到山脚。谁知快到山脚时，有个村民疲倦难当，认为接到此处应该差不多了，于是坐下来休息。恰恰这时，“龙”像一根泥鳅粗细慢慢地沿水管游出来，至水管中断处，“噔”地一声掉到山沟里。“龙”受惊，立马幻化身形，变成大龙游出去，落地之处至今留有一大坑，当地人称“龙石潭”。", Location = DbGeography.FromText("POINT(119.029138979441 29.1847379412537)"), Icon = "play" });
-                dp.Plays.Add(new VillagePlay { Title = "古樟指路", Description = "李烨在东坪定居以后，当年一些私下的挚友就去拜访李烨，当他们走到山脚下的时候，因为草木茂盛，不知道往那里走的时候，前面一颗樟树似乎知晓来人并无敌意，只是前来拜访李烨，根部突生一根枝节，枝节伸展的方向正好对着现东坪山，沿着枝节指引的方向，顺利来到李烨居住的地方，众挚友不无感慨： “真是天佑李烨”——上天都还眷顾着李烨。", Location = DbGeography.FromText("POINT(119.029467879878 29.184588373659)"), Icon = "play" });
-                dp.Plays.Add(new VillagePlay { Title = "神狮守道", Description = "自从李烨一行在此定居之后，方圆百里的鸟兽听闻有皇室血统的贵人居住在此地，纷纷前来保护贵人的安全，神狮带着的孩子也来到东坪，守护上山的必经之路，日日夜夜的守护山道，提防有人上山危害贵人的生命安全，一旦有异常可以及时警示山上的人做好抵御的准备。神狮也非常疼爱自己的孩子，担心小狮子受累，让其睡在自己的身子上，，而自己却依然恪职敬守。", Location = DbGeography.FromText("POINT(119.029467879878 29.184588373659)"), Icon = "play" });
-                dp.Plays.Add(new VillagePlay { Title = "神镜石", Description = "据《衢县志》等史料记载，武则天在位时，为防武后残害，一批（李姓）宗室外迁。李治（唐高宗）第七子李烨，从长安远避福建古田长河麻团岭。唐中宗时（公元705—709）为防止遭到进一步的迫害，李烨携家属以及亲信从麻团岭转迁，沿着现东坪线一路寻找新的定居点，当一行人经过（现东坪山脚下）时，发现一潭清水，清澈见底，味道甘甜，决定就地休整之后继续找寻。休息之时，李烨四处查看地形，当走到这块石头（神镜石）跟前的时候，不由自主停住脚步，审视此石，此石突显灵性，仿佛就是在等待主人的到来，大放异光，幻化成一块镜子，从镜子中隐约可以看到（现东坪山上）散发出阵阵的金光，李烨心想莫非是上天的指示，要我去山顶？要我去山顶定居？李烨毫不迟疑带领家属以及亲信向山顶进发，登上山顶一看，果然是块风水宝地，地理位置优越，居高临下，易守难攻，并且环境优美，茂林修竹，空气清新。远离朝廷的纷争，适宜清修，同时这里水资源非常丰富，适合农业生产，李烨勘察之后，聚集亲信前来商议，众人都十分钟情这块风水宝地，于是李烨决定定居此处。", Location = DbGeography.FromText("POINT(119.030056939189 29.1846325118199)"), Icon = "play" });
-                dp.Plays.Add(new VillagePlay { Title = "双枫迎客", Description = "李烨定居东坪之后，已经脱离朝廷的残害，心神俱宁，每日在犹如仙境的东坪吟诗作对，久而久之李烨心想能有更多的人来到这块仙境，一起修身养性、肆意酣畅，开展居住地的建设多好啊，上天好像能够读懂李烨的心思，派两位神仙化作枫树于现东坪古道，一只手化作遒劲的树枝，迎接过往来客，邀请客人作客东坪，领略山中秀色。", Location = DbGeography.FromText("POINT(119.031879550028 29.1835041602798)"), Icon = "play" });
-                dp.Plays.Add(new VillagePlay { Title = "唐官文化岩壁石刻", Description = "暂无介绍", Location = DbGeography.FromText("POINT(119.032201787321 29.1840615619858)"), Icon = "play" });
-                dp.Plays.Add(new VillagePlay { Title = "东坪村山寨门", Description = "暂无介绍", Location = DbGeography.FromText("POINT(119.032291278184 29.1854316034564)"), Icon = "play" });
-                dp.Plays.Add(new VillagePlay { Title = "民俗文化广场", Description = "暂无介绍", Location = DbGeography.FromText("POINT(119.032800008211 29.1853076821093)"), Icon = "play" });
-                dp.Plays.Add(new VillagePlay { Title = "东坪柿林", Description = "暂无介绍", Location = DbGeography.FromText("POINT(119.033592139316 29.1863904827778)"), Icon = "play" });
-                dp.Plays.Add(new VillagePlay { Title = "农耕乐园", Description = "暂无介绍", Location = DbGeography.FromText("POINT(119.033489892298 29.1868194415728)"), Icon = "play" });
-                dp.Plays.Add(new VillagePlay { Title = "竹文化园", Description = "暂无介绍", Location = DbGeography.FromText("POINT(119.032023322173 29.1825767794082)"), Icon = "play" });
-                dp.Plays.Add(new VillagePlay { Title = "竹林素拓基地", Description = "暂无介绍", Location = DbGeography.FromText("POINT(119.030081858842 29.1800921751621)"), Icon = "play" });
-                dp.Plays.Add(new VillagePlay { Title = "天池", Description = "暂无介绍", Location = DbGeography.FromText("POINT(119.038584168861 29.1865400314482)"), Icon = "play" });
-                dp.Plays.Add(new VillagePlay { Title = "徒步驿站", Description = "暂无介绍", Location = DbGeography.FromText("POINT(119.039391610273 29.1842117381383)"), Icon = "play" });
-                dp.Plays.Add(new VillagePlay { Title = "李氏宗祠", Description = "暂无介绍", Location = DbGeography.FromText("POINT(119.032999154672 29.1858501345983)"), Icon = "play" });
+                dp.Plays.Add(new VillagePlay { Name = "龙石潭", Description = "相传，南宋末年的一天，东坪仙岩寺内有个老和尚，掐指一算，得知近期东坪山要出“龙”。传说出“龙”之地，意味着山洪爆发，村民就要遭殃。村民们一时惊慌失措，忙问老和尚有何破解之法。老和尚说：“龙刚从山洞里出来时，只是一条小泥鳅，要到河、沟里经过雷电闪烁才会变成大龙。”于是族长马上叫大家上山砍毛竹，把毛竹对半剖开，去掉骨节，接成水笕接到山洞里，由村民一根一根把每节水笕接到山脚。谁知快到山脚时，有个村民疲倦难当，认为接到此处应该差不多了，于是坐下来休息。恰恰这时，“龙”像一根泥鳅粗细慢慢地沿水管游出来，至水管中断处，“噔”地一声掉到山沟里。“龙”受惊，立马幻化身形，变成大龙游出去，落地之处至今留有一大坑，当地人称“龙石潭”。", Location = DbGeography.FromText("POINT(119.029138979441 29.1847379412537)"), Icon = "play" });
+                dp.Plays.Add(new VillagePlay { Name = "古樟指路", Description = "李烨在东坪定居以后，当年一些私下的挚友就去拜访李烨，当他们走到山脚下的时候，因为草木茂盛，不知道往那里走的时候，前面一颗樟树似乎知晓来人并无敌意，只是前来拜访李烨，根部突生一根枝节，枝节伸展的方向正好对着现东坪山，沿着枝节指引的方向，顺利来到李烨居住的地方，众挚友不无感慨： “真是天佑李烨”——上天都还眷顾着李烨。", Location = DbGeography.FromText("POINT(119.029467879878 29.184588373659)"), Icon = "play" });
+                dp.Plays.Add(new VillagePlay { Name = "神狮守道", Description = "自从李烨一行在此定居之后，方圆百里的鸟兽听闻有皇室血统的贵人居住在此地，纷纷前来保护贵人的安全，神狮带着的孩子也来到东坪，守护上山的必经之路，日日夜夜的守护山道，提防有人上山危害贵人的生命安全，一旦有异常可以及时警示山上的人做好抵御的准备。神狮也非常疼爱自己的孩子，担心小狮子受累，让其睡在自己的身子上，，而自己却依然恪职敬守。", Location = DbGeography.FromText("POINT(119.029467879878 29.184588373659)"), Icon = "play" });
+                dp.Plays.Add(new VillagePlay { Name = "神镜石", Description = "据《衢县志》等史料记载，武则天在位时，为防武后残害，一批（李姓）宗室外迁。李治（唐高宗）第七子李烨，从长安远避福建古田长河麻团岭。唐中宗时（公元705—709）为防止遭到进一步的迫害，李烨携家属以及亲信从麻团岭转迁，沿着现东坪线一路寻找新的定居点，当一行人经过（现东坪山脚下）时，发现一潭清水，清澈见底，味道甘甜，决定就地休整之后继续找寻。休息之时，李烨四处查看地形，当走到这块石头（神镜石）跟前的时候，不由自主停住脚步，审视此石，此石突显灵性，仿佛就是在等待主人的到来，大放异光，幻化成一块镜子，从镜子中隐约可以看到（现东坪山上）散发出阵阵的金光，李烨心想莫非是上天的指示，要我去山顶？要我去山顶定居？李烨毫不迟疑带领家属以及亲信向山顶进发，登上山顶一看，果然是块风水宝地，地理位置优越，居高临下，易守难攻，并且环境优美，茂林修竹，空气清新。远离朝廷的纷争，适宜清修，同时这里水资源非常丰富，适合农业生产，李烨勘察之后，聚集亲信前来商议，众人都十分钟情这块风水宝地，于是李烨决定定居此处。", Location = DbGeography.FromText("POINT(119.030056939189 29.1846325118199)"), Icon = "play" });
+                dp.Plays.Add(new VillagePlay { Name = "双枫迎客", Description = "李烨定居东坪之后，已经脱离朝廷的残害，心神俱宁，每日在犹如仙境的东坪吟诗作对，久而久之李烨心想能有更多的人来到这块仙境，一起修身养性、肆意酣畅，开展居住地的建设多好啊，上天好像能够读懂李烨的心思，派两位神仙化作枫树于现东坪古道，一只手化作遒劲的树枝，迎接过往来客，邀请客人作客东坪，领略山中秀色。", Location = DbGeography.FromText("POINT(119.031879550028 29.1835041602798)"), Icon = "play" });
+                dp.Plays.Add(new VillagePlay { Name = "唐官文化岩壁石刻", Description = "暂无介绍", Location = DbGeography.FromText("POINT(119.032201787321 29.1840615619858)"), Icon = "play" });
+                dp.Plays.Add(new VillagePlay { Name = "东坪村山寨门", Description = "暂无介绍", Location = DbGeography.FromText("POINT(119.032291278184 29.1854316034564)"), Icon = "play" });
+                dp.Plays.Add(new VillagePlay { Name = "民俗文化广场", Description = "暂无介绍", Location = DbGeography.FromText("POINT(119.032800008211 29.1853076821093)"), Icon = "play" });
+                dp.Plays.Add(new VillagePlay { Name = "东坪柿林", Description = "暂无介绍", Location = DbGeography.FromText("POINT(119.033592139316 29.1863904827778)"), Icon = "play" });
+                dp.Plays.Add(new VillagePlay { Name = "农耕乐园", Description = "暂无介绍", Location = DbGeography.FromText("POINT(119.033489892298 29.1868194415728)"), Icon = "play" });
+                dp.Plays.Add(new VillagePlay { Name = "竹文化园", Description = "暂无介绍", Location = DbGeography.FromText("POINT(119.032023322173 29.1825767794082)"), Icon = "play" });
+                dp.Plays.Add(new VillagePlay { Name = "竹林素拓基地", Description = "暂无介绍", Location = DbGeography.FromText("POINT(119.030081858842 29.1800921751621)"), Icon = "play" });
+                dp.Plays.Add(new VillagePlay { Name = "天池", Description = "暂无介绍", Location = DbGeography.FromText("POINT(119.038584168861 29.1865400314482)"), Icon = "play" });
+                dp.Plays.Add(new VillagePlay { Name = "徒步驿站", Description = "暂无介绍", Location = DbGeography.FromText("POINT(119.039391610273 29.1842117381383)"), Icon = "play" });
+                dp.Plays.Add(new VillagePlay { Name = "李氏宗祠", Description = "暂无介绍", Location = DbGeography.FromText("POINT(119.032999154672 29.1858501345983)"), Icon = "play" });
 
                 #region 图片路径
                 var play_imagesPath = relativePath + "dp/play_images/";
 
                 foreach (var play in dp.Plays)
                 {
-                    var directory = play_imagesPath + play.Title + "/";
+                    var directory = play_imagesPath + play.Name + "/";
                     if (Directory.Exists(directory))
                     {
                         var play_images = System.IO.Directory.GetFiles(directory);
@@ -286,29 +286,29 @@ namespace QZCHY.API.Controllers
 
                 #region 农家乐
 
-                dp.Eats.Add(new VillageEat() { Title = "红枫堂", Address = "峡川镇东坪村", Person = "李延标", Description = "", Tel = "0570-2610068", ReceptionNumber = 60, Level = 3, Price = 0, Location = DbGeography.FromText("POINT(119.032699213792 29.1853854672489)"), Icon = "eat" });
-                dp.Eats.Add(new VillageEat() { Title = "外婆家", Address = "峡川镇东坪村", Person = "郑银英", Description = "", Tel = "13506708395", ReceptionNumber = 40, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(119.032800146875 29.185509287482)"), Icon = "eat" });
-                dp.Eats.Add(new VillageEat() { Title = "柿民客栈", Address = "峡川镇东坪村", Person = "李诗毅", Description = "", Tel = "666486", ReceptionNumber = 200, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(119.033435575377 29.1841740615007)"), Icon = "eat" });
-                dp.Eats.Add(new VillageEat() { Title = "荷塘轩", Address = "峡川镇东坪村", Person = "姚银花", Description = "", Tel = "13575661123", ReceptionNumber = 20, Level = 2, Price = 0, Location = DbGeography.FromText("POINT(119.0329237403 29.1854197393375)"), Icon = "eat" });
-                dp.Eats.Add(new VillageEat() { Title = "古道居", Address = "峡川镇东坪村", Person = "李招耀", Description = "", Tel = "13615702342", ReceptionNumber = 40, Level = 2, Price = 0, Location = DbGeography.FromText("POINT(119.032292242207 29.1854258964995)"), Icon = "eat" });
-                dp.Eats.Add(new VillageEat() { Title = "东坪院", Address = "峡川镇东坪村", Person = "姚水仙", Description = "", Tel = "13819019293", ReceptionNumber = 50, Level = 3, Price = 0, Location = DbGeography.FromText("POINT(119.033051947207 29.1852506910921)"), Icon = "eat" });
-                dp.Eats.Add(new VillageEat() { Title = "华兰阁", Address = "峡川镇东坪村", Person = "李国华", Description = "", Tel = "13676611662", ReceptionNumber = 50, Level = 3, Price = 0, Location = DbGeography.FromText("POINT(119.033121602618 29.1860496505277)"), Icon = "eat" });
-                dp.Eats.Add(new VillageEat() { Title = "红柿斋", Address = "峡川镇东坪村", Person = "李诗良", Description = "", Tel = "15957004737", ReceptionNumber = 40, Level = 2, Price = 0, Location = DbGeography.FromText("POINT(119.033222881785 29.1855682447133)"), Icon = "eat" });
-                dp.Eats.Add(new VillageEat() { Title = "米兰农庄", Address = "峡川镇东坪村", Person = "危米兰", Description = "", Tel = "13511405431", ReceptionNumber = 60, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(119.03248017981 29.1856409383757)"), Icon = "eat" });
-                dp.Eats.Add(new VillageEat() { Title = "冬雪苑", Address = "峡川镇东坪村", Person = "杨渭花", Description = "", Tel = "15924079115", ReceptionNumber = 50, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(119.032932747381 29.1847460420451)"), Icon = "eat" });
-                dp.Eats.Add(new VillageEat() { Title = "松清阁", Address = "峡川镇东坪村", Person = "黄花化", Description = "", Tel = "15215790797", ReceptionNumber = 40, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(119.033036399867 29.1854129703936)"), Icon = "eat" });
-                dp.Eats.Add(new VillageEat() { Title = "李家庄", Address = "峡川镇东坪村", Person = "李荣华", Description = "", Tel = "15857082393", ReceptionNumber = 20, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(119.033396799926 29.1842951926885)"), Icon = "eat" });
-                dp.Eats.Add(new VillageEat() { Title = "满意楼", Address = "峡川镇东坪村", Person = "饶志英", Description = "", Tel = "13857018246", ReceptionNumber = 160, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(119.033041670312 29.1856980166666)"), Icon = "eat" });
-                dp.Eats.Add(new VillageEat() { Title = "驴友之家", Address = "峡川镇东坪村", Person = "章银兰", Description = "", Tel = "15372723626", ReceptionNumber = 50, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(119.032658398439 29.1858833715623)"), Icon = "eat" });
-                dp.Eats.Add(new VillageEat() { Title = "隐柿东坪", Address = "峡川镇东坪村", Person = "余夏仙", Description = "", Tel = "13867478563", ReceptionNumber = 200, Level = 0, Price = 20, Location = DbGeography.FromText("POINT(119.033311824464 29.1855339146446)"), Icon = "eat" });
-                dp.Eats.Add(new VillageEat() { Title = "叙月楼", Address = "峡川镇东坪村", Person = "李雪堂", Description = "", Tel = "13819010468", ReceptionNumber = 15, Level = 0, Price = 20, Location = DbGeography.FromText("POINT(119.032800146875 29.185509287482)"), Icon = "eat" });
+                dp.Eats.Add(new VillageEat() { Name = "红枫堂", Address = "峡川镇东坪村", Person = "李延标", Description = "", Tel = "0570-2610068", ReceptionNumber = 60, Level = 3, Price = 0, Location = DbGeography.FromText("POINT(119.032699213792 29.1853854672489)"), Icon = "eat" });
+                dp.Eats.Add(new VillageEat() { Name = "外婆家", Address = "峡川镇东坪村", Person = "郑银英", Description = "", Tel = "13506708395", ReceptionNumber = 40, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(119.032800146875 29.185509287482)"), Icon = "eat" });
+                dp.Eats.Add(new VillageEat() { Name = "柿民客栈", Address = "峡川镇东坪村", Person = "李诗毅", Description = "", Tel = "666486", ReceptionNumber = 200, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(119.033435575377 29.1841740615007)"), Icon = "eat" });
+                dp.Eats.Add(new VillageEat() { Name = "荷塘轩", Address = "峡川镇东坪村", Person = "姚银花", Description = "", Tel = "13575661123", ReceptionNumber = 20, Level = 2, Price = 0, Location = DbGeography.FromText("POINT(119.0329237403 29.1854197393375)"), Icon = "eat" });
+                dp.Eats.Add(new VillageEat() { Name = "古道居", Address = "峡川镇东坪村", Person = "李招耀", Description = "", Tel = "13615702342", ReceptionNumber = 40, Level = 2, Price = 0, Location = DbGeography.FromText("POINT(119.032292242207 29.1854258964995)"), Icon = "eat" });
+                dp.Eats.Add(new VillageEat() { Name = "东坪院", Address = "峡川镇东坪村", Person = "姚水仙", Description = "", Tel = "13819019293", ReceptionNumber = 50, Level = 3, Price = 0, Location = DbGeography.FromText("POINT(119.033051947207 29.1852506910921)"), Icon = "eat" });
+                dp.Eats.Add(new VillageEat() { Name = "华兰阁", Address = "峡川镇东坪村", Person = "李国华", Description = "", Tel = "13676611662", ReceptionNumber = 50, Level = 3, Price = 0, Location = DbGeography.FromText("POINT(119.033121602618 29.1860496505277)"), Icon = "eat" });
+                dp.Eats.Add(new VillageEat() { Name = "红柿斋", Address = "峡川镇东坪村", Person = "李诗良", Description = "", Tel = "15957004737", ReceptionNumber = 40, Level = 2, Price = 0, Location = DbGeography.FromText("POINT(119.033222881785 29.1855682447133)"), Icon = "eat" });
+                dp.Eats.Add(new VillageEat() { Name = "米兰农庄", Address = "峡川镇东坪村", Person = "危米兰", Description = "", Tel = "13511405431", ReceptionNumber = 60, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(119.03248017981 29.1856409383757)"), Icon = "eat" });
+                dp.Eats.Add(new VillageEat() { Name = "冬雪苑", Address = "峡川镇东坪村", Person = "杨渭花", Description = "", Tel = "15924079115", ReceptionNumber = 50, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(119.032932747381 29.1847460420451)"), Icon = "eat" });
+                dp.Eats.Add(new VillageEat() { Name = "松清阁", Address = "峡川镇东坪村", Person = "黄花化", Description = "", Tel = "15215790797", ReceptionNumber = 40, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(119.033036399867 29.1854129703936)"), Icon = "eat" });
+                dp.Eats.Add(new VillageEat() { Name = "李家庄", Address = "峡川镇东坪村", Person = "李荣华", Description = "", Tel = "15857082393", ReceptionNumber = 20, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(119.033396799926 29.1842951926885)"), Icon = "eat" });
+                dp.Eats.Add(new VillageEat() { Name = "满意楼", Address = "峡川镇东坪村", Person = "饶志英", Description = "", Tel = "13857018246", ReceptionNumber = 160, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(119.033041670312 29.1856980166666)"), Icon = "eat" });
+                dp.Eats.Add(new VillageEat() { Name = "驴友之家", Address = "峡川镇东坪村", Person = "章银兰", Description = "", Tel = "15372723626", ReceptionNumber = 50, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(119.032658398439 29.1858833715623)"), Icon = "eat" });
+                dp.Eats.Add(new VillageEat() { Name = "隐柿东坪", Address = "峡川镇东坪村", Person = "余夏仙", Description = "", Tel = "13867478563", ReceptionNumber = 200, Level = 0, Price = 20, Location = DbGeography.FromText("POINT(119.033311824464 29.1855339146446)"), Icon = "eat" });
+                dp.Eats.Add(new VillageEat() { Name = "叙月楼", Address = "峡川镇东坪村", Person = "李雪堂", Description = "", Tel = "13819010468", ReceptionNumber = 15, Level = 0, Price = 20, Location = DbGeography.FromText("POINT(119.032800146875 29.185509287482)"), Icon = "eat" });
 
                 #region 图片路径
                 var eat_imagesPath = relativePath + "dp/eat_images/";
 
                 foreach (var eat in dp.Eats)
                 {
-                    var directory = eat_imagesPath + eat.Title + "/";
+                    var directory = eat_imagesPath + eat.Name + "/";
                     if (Directory.Exists(directory))
                     {
                         var eat_images = System.IO.Directory.GetFiles(directory);
@@ -342,26 +342,26 @@ namespace QZCHY.API.Controllers
 
                 #region 民宿
 
-                dp.Lives.Add(new VillageLive() { Title = "隐柿东坪", Address = "峡川镇东坪村", Person = "余夏仙", Description = "", Tel = "13867478563", BedsNumber = 3, Location = DbGeography.FromText("POINT(119.033311824464 29.1855339146446)"), Icon = "live" });
-                dp.Lives.Add(new VillageLive() { Title = "红枫堂", Address = "峡川镇东坪村", Person = "李延标", Description = "", Tel = "0570-2610068", BedsNumber = 8, Location = DbGeography.FromText("POINT(119.032699213792 29.1853854672489)"), Icon = "live" });
-                dp.Lives.Add(new VillageLive() { Title = "古道居", Address = "峡川镇东坪村", Person = "李招耀", Description = "", Tel = "13615702342", BedsNumber = 4, Location = DbGeography.FromText("POINT(119.032292242207 29.1854258964995)"), Icon = "live" });
-                dp.Lives.Add(new VillageLive() { Title = "华兰阁", Address = "峡川镇东坪村", Person = "李国华", Description = "", Tel = "13676611662", BedsNumber = 11, Location = DbGeography.FromText("POINT(119.033121602618 29.1860496505277)"), Icon = "live" });
-                dp.Lives.Add(new VillageLive() { Title = "米兰农庄", Address = "峡川镇东坪村", Person = "危米兰", Description = "", Tel = "13511405431", BedsNumber = 5, Location = DbGeography.FromText("POINT(119.03248017981 29.1856409383757)"), Icon = "live" });
-                dp.Lives.Add(new VillageLive() { Title = "冬雪苑", Address = "峡川镇东坪村", Person = "杨渭花", Description = "", Tel = "15957004737", BedsNumber = 5, Location = DbGeography.FromText("POINT(119.032932747381 29.1847460420451)"), Icon = "live" });
-                dp.Lives.Add(new VillageLive() { Title = "松清阁", Address = "峡川镇东坪村", Person = "黄花化", Description = "", Tel = "15924079115", BedsNumber = 3, Location = DbGeography.FromText("POINT(119.033036399867 29.1854129703936)"), Icon = "live" });
-                dp.Lives.Add(new VillageLive() { Title = "李家庄", Address = "峡川镇东坪村", Person = "李荣华", Description = "", Tel = "15857082393", BedsNumber = 10, Location = DbGeography.FromText("POINT(119.033396799926 29.1842951926885)"), Icon = "live" });
-                dp.Lives.Add(new VillageLive() { Title = "外婆家", Address = "峡川镇东坪村", Person = "郑银英", Description = "", Tel = "13506708395", BedsNumber = 4, Location = DbGeography.FromText("POINT(119.032800146875 29.185509287482)"), Icon = "live" });
-                dp.Lives.Add(new VillageLive() { Title = "满意楼", Address = "峡川镇东坪村", Person = "饶志英", Description = "", Tel = "13857018246", BedsNumber = 12, Location = DbGeography.FromText("POINT(119.033041670312 29.1856980166666)"), Icon = "live" });
-                dp.Lives.Add(new VillageLive() { Title = "驴友之家", Address = "峡川镇东坪村", Person = "章银兰", Description = "", Tel = "15372723626", BedsNumber = 14, Location = DbGeography.FromText("POINT(119.032658398439 29.1858833715623)"), Icon = "live" });
-                dp.Lives.Add(new VillageLive() { Title = "柿民客栈", Address = "峡川镇东坪村", Person = "李诗毅", Description = "", Tel = "666486", BedsNumber = 18, Location = DbGeography.FromText("POINT(119.033435575377 29.1841740615007)"), Icon = "live" });
-                dp.Lives.Add(new VillageLive() { Title = "叙月楼", Address = "峡川镇东坪村", Person = "李雪堂", Description = "", Tel = "13819010468", BedsNumber = 10, Location = DbGeography.FromText("POINT(119.032800146875 29.185509287482)"), Icon = "live" });
+                dp.Lives.Add(new VillageLive() { Name = "隐柿东坪", Address = "峡川镇东坪村", Person = "余夏仙", Description = "", Tel = "13867478563", BedsNumber = 3, Location = DbGeography.FromText("POINT(119.033311824464 29.1855339146446)"), Icon = "live" });
+                dp.Lives.Add(new VillageLive() { Name = "红枫堂", Address = "峡川镇东坪村", Person = "李延标", Description = "", Tel = "0570-2610068", BedsNumber = 8, Location = DbGeography.FromText("POINT(119.032699213792 29.1853854672489)"), Icon = "live" });
+                dp.Lives.Add(new VillageLive() { Name = "古道居", Address = "峡川镇东坪村", Person = "李招耀", Description = "", Tel = "13615702342", BedsNumber = 4, Location = DbGeography.FromText("POINT(119.032292242207 29.1854258964995)"), Icon = "live" });
+                dp.Lives.Add(new VillageLive() { Name = "华兰阁", Address = "峡川镇东坪村", Person = "李国华", Description = "", Tel = "13676611662", BedsNumber = 11, Location = DbGeography.FromText("POINT(119.033121602618 29.1860496505277)"), Icon = "live" });
+                dp.Lives.Add(new VillageLive() { Name = "米兰农庄", Address = "峡川镇东坪村", Person = "危米兰", Description = "", Tel = "13511405431", BedsNumber = 5, Location = DbGeography.FromText("POINT(119.03248017981 29.1856409383757)"), Icon = "live" });
+                dp.Lives.Add(new VillageLive() { Name = "冬雪苑", Address = "峡川镇东坪村", Person = "杨渭花", Description = "", Tel = "15957004737", BedsNumber = 5, Location = DbGeography.FromText("POINT(119.032932747381 29.1847460420451)"), Icon = "live" });
+                dp.Lives.Add(new VillageLive() { Name = "松清阁", Address = "峡川镇东坪村", Person = "黄花化", Description = "", Tel = "15924079115", BedsNumber = 3, Location = DbGeography.FromText("POINT(119.033036399867 29.1854129703936)"), Icon = "live" });
+                dp.Lives.Add(new VillageLive() { Name = "李家庄", Address = "峡川镇东坪村", Person = "李荣华", Description = "", Tel = "15857082393", BedsNumber = 10, Location = DbGeography.FromText("POINT(119.033396799926 29.1842951926885)"), Icon = "live" });
+                dp.Lives.Add(new VillageLive() { Name = "外婆家", Address = "峡川镇东坪村", Person = "郑银英", Description = "", Tel = "13506708395", BedsNumber = 4, Location = DbGeography.FromText("POINT(119.032800146875 29.185509287482)"), Icon = "live" });
+                dp.Lives.Add(new VillageLive() { Name = "满意楼", Address = "峡川镇东坪村", Person = "饶志英", Description = "", Tel = "13857018246", BedsNumber = 12, Location = DbGeography.FromText("POINT(119.033041670312 29.1856980166666)"), Icon = "live" });
+                dp.Lives.Add(new VillageLive() { Name = "驴友之家", Address = "峡川镇东坪村", Person = "章银兰", Description = "", Tel = "15372723626", BedsNumber = 14, Location = DbGeography.FromText("POINT(119.032658398439 29.1858833715623)"), Icon = "live" });
+                dp.Lives.Add(new VillageLive() { Name = "柿民客栈", Address = "峡川镇东坪村", Person = "李诗毅", Description = "", Tel = "666486", BedsNumber = 18, Location = DbGeography.FromText("POINT(119.033435575377 29.1841740615007)"), Icon = "live" });
+                dp.Lives.Add(new VillageLive() { Name = "叙月楼", Address = "峡川镇东坪村", Person = "李雪堂", Description = "", Tel = "13819010468", BedsNumber = 10, Location = DbGeography.FromText("POINT(119.032800146875 29.185509287482)"), Icon = "live" });
 
                 #region 图片路径
                 var live_imagesPath = relativePath + "dp/live_images/";
 
                 foreach (var live in dp.Lives)
                 {
-                    var directory = live_imagesPath + live.Title + "/";
+                    var directory = live_imagesPath + live.Name + "/";
                     if (Directory.Exists(directory))
                     {
                         var live_images = System.IO.Directory.GetFiles(directory);
@@ -470,7 +470,7 @@ namespace QZCHY.API.Controllers
 
                         villagePicture.Picture = picture;
                         villagePicture.IsLogo = fileName.ToUpper() == "LOGO";
-                        villagePicture.IsLogo = fileName.ToUpper() == "ROUTE";
+                        villagePicture.IsRoute = fileName.ToUpper() == "ROUTE";
 
                         dp.VillagePictures.Add(villagePicture);
                     }
@@ -479,21 +479,21 @@ namespace QZCHY.API.Controllers
 
                 #region 服务设施
 
-                ch.Services.Add(new Core.Domain.Villages.VillageService() { Title = "七彩长虹游客服务中心", Description = "", Location = DbGeography.FromText("POINT(118.23096992496347 29.220730023463066)"), Icon = "service" });
-                ch.Services.Add(new Core.Domain.Villages.VillageService() { Title = "台回山游客服务中心", Description = "", Location = DbGeography.FromText("POINT(118.21898247916494 29.276036035563667)"), Icon = "service" });
-                ch.Services.Add(new Core.Domain.Villages.VillageService() { Title = "舒园",Description = "三星级厕所", Location = DbGeography.FromText("POINT(118.23167688702317 29.220346136287962)"), Icon = "wc" });
-                ch.Services.Add(new Core.Domain.Villages.VillageService() { Title = "厕所", Description = "", Location = DbGeography.FromText("POINT(118.21894261979105 29.276819622922055)"), Icon = "wc" });
-                ch.Services.Add(new Core.Domain.Villages.VillageService() { Title = "生态停车场", Description = "大巴停车场，11个车位，", Location = DbGeography.FromText("POINT(118.23174881417336 29.220685323999167)"), Icon = "parking" });
-                ch.Services.Add(new Core.Domain.Villages.VillageService() { Title = "停车场（带充电装）", Description = "12个车位，充电车位5个", Location = DbGeography.FromText("POINT(118.23090200094957 29.220470892812539)"), Icon = "parking" });
-                ch.Services.Add(new Core.Domain.Villages.VillageService() { Title = "停车场", Description = "10个车位", Location = DbGeography.FromText("POINT(118.21853031550714 29.275862482675571)"), Icon = "parking" });
-                ch.Services.Add(new Core.Domain.Villages.VillageService() { Title = "台回山停车场（带充电装）", Description = "30个车位，充电车位5个", Location = DbGeography.FromText("POINT(118.21853031550714 29.275862482675571)"), Icon = "parking" });
+                ch.Services.Add(new Core.Domain.Villages.VillageService() { Name = "七彩长虹游客服务中心", Description = "", Location = DbGeography.FromText("POINT(118.23096992496347 29.220730023463066)"), Icon = "service" });
+                ch.Services.Add(new Core.Domain.Villages.VillageService() { Name = "台回山游客服务中心", Description = "", Location = DbGeography.FromText("POINT(118.21898247916494 29.276036035563667)"), Icon = "service" });
+                ch.Services.Add(new Core.Domain.Villages.VillageService() { Name = "舒园",Description = "三星级厕所", Location = DbGeography.FromText("POINT(118.23167688702317 29.220346136287962)"), Icon = "wc" });
+                ch.Services.Add(new Core.Domain.Villages.VillageService() { Name = "厕所", Description = "", Location = DbGeography.FromText("POINT(118.21894261979105 29.276819622922055)"), Icon = "wc" });
+                ch.Services.Add(new Core.Domain.Villages.VillageService() { Name = "生态停车场", Description = "大巴停车场，11个车位，", Location = DbGeography.FromText("POINT(118.23174881417336 29.220685323999167)"), Icon = "parking" });
+                ch.Services.Add(new Core.Domain.Villages.VillageService() { Name = "停车场（带充电装）", Description = "12个车位，充电车位5个", Location = DbGeography.FromText("POINT(118.23090200094957 29.220470892812539)"), Icon = "parking" });
+                ch.Services.Add(new Core.Domain.Villages.VillageService() { Name = "停车场", Description = "10个车位", Location = DbGeography.FromText("POINT(118.21853031550714 29.275862482675571)"), Icon = "parking" });
+                ch.Services.Add(new Core.Domain.Villages.VillageService() { Name = "台回山停车场（带充电装）", Description = "30个车位，充电车位5个", Location = DbGeography.FromText("POINT(118.21853031550714 29.275862482675571)"), Icon = "parking" });
 
                 #region 图片路径
                 service_imagesPath = relativePath + "ch/service_images/";
 
                 foreach (var service in ch.Services)
                 {
-                    var directory = service_imagesPath + service.Title + "/";
+                    var directory = service_imagesPath + service.Name + "/";
                     if (Directory.Exists(directory))
                     {
                         var service_images = System.IO.Directory.GetFiles(directory);
@@ -527,23 +527,23 @@ namespace QZCHY.API.Controllers
 
                 #region 玩的景点
  
-                ch.Plays.Add(new VillagePlay { Title = "江南布达拉宫·台回山", Description = "村庄一层一层从山脚到半山腰分布，房前屋后是梯田，形成布达拉宫式的景观。当漫山的油菜花开时，花在村中，村在画中。传有钱王逃（台）回之山、敲石传音等故事。每年清明节前后为来此游客5000多人次。目前，长虹乡已开始实施该景点提升整治，将修筑景观坝，整理河道，增设盘山公路会车道，修建道路边沟、上下2处停车场，统一种植油菜，对山体进行绿化彩化，修建公厕，改造农房，发展农家乐等，致力把该景点打造成为钱江源生态文化休闲旅游度假区的重要景点。", Location = DbGeography.FromText("POINT(118.2185769081 29.2764700665)"), Icon = "play" });
-                ch.Plays.Add(new VillagePlay { Title = "钱王祖墓·真子坑", Description = "民国三十八年《开化县志稿》记载，“钱王冢在县北三十里云台真子坑，传吴越王钱缪祖坟地也……”。真子坑就是现在长虹乡老屋基村。如今在长虹乡一带还传诵着许多有关钱王的民间故事。相传一风水先生来到钱塘江，观其江水，自言自语道：“随江而上必有宝地，不出天子也出将相。”风水先生一路寻来，在长虹乡老屋基农户住下，爬遍了方圆每座山。最后，选定老屋基村东北面的茅山，称该地为“万山龙脉一山通，山前溪水玉带环，远近群山齐相拥，万马千军呼应来”，为“天子地”。却被姓钱的放牛娃把自己祖宗遗骨埋在此地。从此钱娃（即钱缪王）一天天发迹起来，建立了吴越国。现存老屋基村《邹氏宗谱》第四卷墓图上标有“钱王祖坟”位置，《邹氏宗谱》塘流降派里居图标有“钱墓”位置，题为《钱缪遗址》，诗曰“潮声涛涌吞江海，电闪雷轰时炫彩。迄今谁是帝王家，古冢累累终不改”。", Location = DbGeography.FromText("POINT(118.2277822495 29.2930050986)"), Icon = "play" });
-                ch.Plays.Add(new VillagePlay { Title = "壁水观鱼·西坑", Description = "碧家河尽源头，一条流量不小的溪河穿村而过，河两边村民房屋密置。河道常年禁渔，夏至，小河清澈见底，成群成片的溪鱼在河里游来游，村民喂点食，成团的小鱼竞相争食，一幅鱼儿欢、村民乐的生态自然和谐图，是原生态河鱼观赏的绝佳之地。", Location = DbGeography.FromText("POINT(118.2156586647 29.3261045474)"), Icon = "play" });
-                ch.Plays.Add(new VillagePlay { Title = "天上人间·西山", Description = "位于库坑村西山自然村，30余户人家原生态居住在一个很高又平阔的山顶上，蓝天为顶，大地为毯，举目远望，众山尽收眼底，宽广无限，是可遇不可求的天堂邻地。", Location = DbGeography.FromText("POINT(118.2004101130 29.2987313342)"), Icon = "play" });
-                ch.Plays.Add(new VillagePlay { Title = "两省一村·河滩", Description = "浙江河滩和江西河滩两省村民共居一村，两省村民人口近800人（浙江人口300多人）。“开化”和“婺源”有最美的诗画乡村名号的两个点在这儿交汇成“河滩”村，一条溪水左为浙江地域、右为江西地域，几座小桥和谐了两省。", Location = DbGeography.FromText("POINT(118.1779329816 29.2944931710)"), Icon = "play" });
-                ch.Plays.Add(new VillagePlay { Title = "最美茶园·中山堂", Description = "该茶园有160多亩，处在半山，山腰一“小天池”，这里山水相接，云蒸雾蔚，茶芽茵绿，山色如黛。新任市委书记考察该茶园时，称中山堂茶园为“江南最美茶园”。该茶园为桃源村在1990年“路教”时种植发展的，三年一轮承包，现每年增加村集体收入10万余元，年产名茶5000多斤，产值90万元。", Location = DbGeography.FromText("POINT(118.2198423403 29.2605925451)"), Icon = "play" });
-                ch.Plays.Add(new VillagePlay { Title = "省委旧址·库坑", Description = "1935年5月，闽浙赣省委书记关英带领一个突击队在开化与赵礼生、邱老金会合，在库坑成立浙西建立的第一个中心县委——开婺休中心县委，并建立开婺休中心县游击大队，成为浙西革命根据地的中心。当时，全乡人口有4789人，建有15个党支部71名党员； 7个团支部38名团员；32个贫农团，390人参加；一个妇女会，18个地下工作队。先后与敌人激战9次，其中库坑天堂山战役最为著名，战役打了3个多小时，歼敌200余人，俘敌90余人，缴获长短枪120余支。库坑现有中共闽浙赣省委陈列室，展阵面积120平方。陈列着闽浙赣省委创始人方志敏、省委书记关英的生平事迹和在开化开展建党活动、扩大武装斗争的业绩和图片以及开化英烈的感人事迹，外有一个红军练兵场，总展览面积500平方米，有展板25块，设有一个接待服务中心。红军被服厂展出有当年村民为红军做衣服的缝纫机具、衣厨等。霞坞国民党军进剿驻地有当时国民党军队驻扎的祠堂、曾悬挂烈士头颅的红军樟。1983年1月，该旧址被列为县级重点文物保护单位。2002年4月，被列为县爱国主义教育基地，2007年1月被批准为市级爱国主义教育基地。2005年4月，被列为衢州市党史教育基地。2005年4月 ，被省委党史研究室命名省级党史教育基地。2012年库坑闽浙赣省委旧址被列为“省级爱国主义教育基地”。", Location = DbGeography.FromText("POINT(118.2029210006 29.3128785706)"), Icon = "play" });
-                ch.Plays.Add(new VillagePlay { Title = "高山古村·高田坑", Description = "海拔500多米，住有500多村民，是开化县地处海拔最高、保存最完整的原生态村落。该村地处山高地茂，夏季平均气温比其它地方要低5℃左右，有奇特壮观的原始次森林，清澈幽深的瀑布，古朴优雅的红豆杉，身在此地，一切返璞归真，是天然的高山避暑胜地。", Location = DbGeography.FromText("POINT(118.2365572646 29.3121048142)"), Icon = "play" });
-                ch.Plays.Add(new VillagePlay { Title = "范仲淹后裔迁居地·桃源", Description = "现存桃源范氏世谱（修于乾隆15年）记载，宋朝大名人文学家、思想家范仲淹先生之孙范旭迁居大举村，繁衍后代至今已有一千余年历史。在乾隆15年（公元1750年）大举村就建有范氏宗祠。大举自然村人口600多人，全村范氏村民300多人。1995年，该村范氏村民共同集资5万多元，将范氏宗祠修葺一新，现有建筑面积300余平方米。", Location = DbGeography.FromText("POINT(118.2140610000 29.2579920000)"), Icon = "play" });
-                ch.Plays.Add(new VillagePlay { Title = "状元故里·北源", Description = "宋端拱元年(988年)，程宿18岁即登进士，殿试第一，成为史书上记载的浙江省第一位科举状元。程宿名登金榜后，遂除翰林编修，以殿中丞、直集贤院的身份参与编撰有关太子、亲皇、皇族等事迹。后对策称旨，被提升为川陕督抚、江西安抚使。他为官清正廉明，勤政爱民，深得百姓敬重。咸平三年，病死于任所，朝中士大夫莫不叹悼，连真宗皇帝也为之掉泪，诏缢号“文熙”。程宿的儿子程迪是宋仁宗庆历二年(1042)榜眼（第一名为状元、第二名为榜眼），程宿的孙子程天民于熙宁六年(1073年)考中进士，至重孙程俱宋绍圣四年(1097)参加京都进士考试，中南宫廷试甲科第一，赐上舍出身，拜礼部郎官。程俱，字致道，以太常少卿知秀州，历任秘书省少监、集贤殿编撰、徽猷阁待制。程具所作《麟台故事》、《北山集》均收入《四库全书》。据不完全统计，北源村历史考中进士有20多人，特别是宋代程家“一门四进士”全国罕见。", Location = DbGeography.FromText("POINT(118.2363450000 29.1987020000)"), Icon = "play" });
+                ch.Plays.Add(new VillagePlay { Name = "江南布达拉宫·台回山", Description = "村庄一层一层从山脚到半山腰分布，房前屋后是梯田，形成布达拉宫式的景观。当漫山的油菜花开时，花在村中，村在画中。传有钱王逃（台）回之山、敲石传音等故事。每年清明节前后为来此游客5000多人次。目前，长虹乡已开始实施该景点提升整治，将修筑景观坝，整理河道，增设盘山公路会车道，修建道路边沟、上下2处停车场，统一种植油菜，对山体进行绿化彩化，修建公厕，改造农房，发展农家乐等，致力把该景点打造成为钱江源生态文化休闲旅游度假区的重要景点。", Location = DbGeography.FromText("POINT(118.2185769081 29.2764700665)"), Icon = "play" });
+                ch.Plays.Add(new VillagePlay { Name = "钱王祖墓·真子坑", Description = "民国三十八年《开化县志稿》记载，“钱王冢在县北三十里云台真子坑，传吴越王钱缪祖坟地也……”。真子坑就是现在长虹乡老屋基村。如今在长虹乡一带还传诵着许多有关钱王的民间故事。相传一风水先生来到钱塘江，观其江水，自言自语道：“随江而上必有宝地，不出天子也出将相。”风水先生一路寻来，在长虹乡老屋基农户住下，爬遍了方圆每座山。最后，选定老屋基村东北面的茅山，称该地为“万山龙脉一山通，山前溪水玉带环，远近群山齐相拥，万马千军呼应来”，为“天子地”。却被姓钱的放牛娃把自己祖宗遗骨埋在此地。从此钱娃（即钱缪王）一天天发迹起来，建立了吴越国。现存老屋基村《邹氏宗谱》第四卷墓图上标有“钱王祖坟”位置，《邹氏宗谱》塘流降派里居图标有“钱墓”位置，题为《钱缪遗址》，诗曰“潮声涛涌吞江海，电闪雷轰时炫彩。迄今谁是帝王家，古冢累累终不改”。", Location = DbGeography.FromText("POINT(118.2277822495 29.2930050986)"), Icon = "play" });
+                ch.Plays.Add(new VillagePlay { Name = "壁水观鱼·西坑", Description = "碧家河尽源头，一条流量不小的溪河穿村而过，河两边村民房屋密置。河道常年禁渔，夏至，小河清澈见底，成群成片的溪鱼在河里游来游，村民喂点食，成团的小鱼竞相争食，一幅鱼儿欢、村民乐的生态自然和谐图，是原生态河鱼观赏的绝佳之地。", Location = DbGeography.FromText("POINT(118.2156586647 29.3261045474)"), Icon = "play" });
+                ch.Plays.Add(new VillagePlay { Name = "天上人间·西山", Description = "位于库坑村西山自然村，30余户人家原生态居住在一个很高又平阔的山顶上，蓝天为顶，大地为毯，举目远望，众山尽收眼底，宽广无限，是可遇不可求的天堂邻地。", Location = DbGeography.FromText("POINT(118.2004101130 29.2987313342)"), Icon = "play" });
+                ch.Plays.Add(new VillagePlay { Name = "两省一村·河滩", Description = "浙江河滩和江西河滩两省村民共居一村，两省村民人口近800人（浙江人口300多人）。“开化”和“婺源”有最美的诗画乡村名号的两个点在这儿交汇成“河滩”村，一条溪水左为浙江地域、右为江西地域，几座小桥和谐了两省。", Location = DbGeography.FromText("POINT(118.1779329816 29.2944931710)"), Icon = "play" });
+                ch.Plays.Add(new VillagePlay { Name = "最美茶园·中山堂", Description = "该茶园有160多亩，处在半山，山腰一“小天池”，这里山水相接，云蒸雾蔚，茶芽茵绿，山色如黛。新任市委书记考察该茶园时，称中山堂茶园为“江南最美茶园”。该茶园为桃源村在1990年“路教”时种植发展的，三年一轮承包，现每年增加村集体收入10万余元，年产名茶5000多斤，产值90万元。", Location = DbGeography.FromText("POINT(118.2198423403 29.2605925451)"), Icon = "play" });
+                ch.Plays.Add(new VillagePlay { Name = "省委旧址·库坑", Description = "1935年5月，闽浙赣省委书记关英带领一个突击队在开化与赵礼生、邱老金会合，在库坑成立浙西建立的第一个中心县委——开婺休中心县委，并建立开婺休中心县游击大队，成为浙西革命根据地的中心。当时，全乡人口有4789人，建有15个党支部71名党员； 7个团支部38名团员；32个贫农团，390人参加；一个妇女会，18个地下工作队。先后与敌人激战9次，其中库坑天堂山战役最为著名，战役打了3个多小时，歼敌200余人，俘敌90余人，缴获长短枪120余支。库坑现有中共闽浙赣省委陈列室，展阵面积120平方。陈列着闽浙赣省委创始人方志敏、省委书记关英的生平事迹和在开化开展建党活动、扩大武装斗争的业绩和图片以及开化英烈的感人事迹，外有一个红军练兵场，总展览面积500平方米，有展板25块，设有一个接待服务中心。红军被服厂展出有当年村民为红军做衣服的缝纫机具、衣厨等。霞坞国民党军进剿驻地有当时国民党军队驻扎的祠堂、曾悬挂烈士头颅的红军樟。1983年1月，该旧址被列为县级重点文物保护单位。2002年4月，被列为县爱国主义教育基地，2007年1月被批准为市级爱国主义教育基地。2005年4月，被列为衢州市党史教育基地。2005年4月 ，被省委党史研究室命名省级党史教育基地。2012年库坑闽浙赣省委旧址被列为“省级爱国主义教育基地”。", Location = DbGeography.FromText("POINT(118.2029210006 29.3128785706)"), Icon = "play" });
+                ch.Plays.Add(new VillagePlay { Name = "高山古村·高田坑", Description = "海拔500多米，住有500多村民，是开化县地处海拔最高、保存最完整的原生态村落。该村地处山高地茂，夏季平均气温比其它地方要低5℃左右，有奇特壮观的原始次森林，清澈幽深的瀑布，古朴优雅的红豆杉，身在此地，一切返璞归真，是天然的高山避暑胜地。", Location = DbGeography.FromText("POINT(118.2365572646 29.3121048142)"), Icon = "play" });
+                ch.Plays.Add(new VillagePlay { Name = "范仲淹后裔迁居地·桃源", Description = "现存桃源范氏世谱（修于乾隆15年）记载，宋朝大名人文学家、思想家范仲淹先生之孙范旭迁居大举村，繁衍后代至今已有一千余年历史。在乾隆15年（公元1750年）大举村就建有范氏宗祠。大举自然村人口600多人，全村范氏村民300多人。1995年，该村范氏村民共同集资5万多元，将范氏宗祠修葺一新，现有建筑面积300余平方米。", Location = DbGeography.FromText("POINT(118.2140610000 29.2579920000)"), Icon = "play" });
+                ch.Plays.Add(new VillagePlay { Name = "状元故里·北源", Description = "宋端拱元年(988年)，程宿18岁即登进士，殿试第一，成为史书上记载的浙江省第一位科举状元。程宿名登金榜后，遂除翰林编修，以殿中丞、直集贤院的身份参与编撰有关太子、亲皇、皇族等事迹。后对策称旨，被提升为川陕督抚、江西安抚使。他为官清正廉明，勤政爱民，深得百姓敬重。咸平三年，病死于任所，朝中士大夫莫不叹悼，连真宗皇帝也为之掉泪，诏缢号“文熙”。程宿的儿子程迪是宋仁宗庆历二年(1042)榜眼（第一名为状元、第二名为榜眼），程宿的孙子程天民于熙宁六年(1073年)考中进士，至重孙程俱宋绍圣四年(1097)参加京都进士考试，中南宫廷试甲科第一，赐上舍出身，拜礼部郎官。程俱，字致道，以太常少卿知秀州，历任秘书省少监、集贤殿编撰、徽猷阁待制。程具所作《麟台故事》、《北山集》均收入《四库全书》。据不完全统计，北源村历史考中进士有20多人，特别是宋代程家“一门四进士”全国罕见。", Location = DbGeography.FromText("POINT(118.2363450000 29.1987020000)"), Icon = "play" });
 
                 #region 图片路径
                 play_imagesPath = relativePath + "ch/play_images/";
 
                 foreach (var play in ch.Plays)
                 {
-                    var directory = play_imagesPath + play.Title + "/";
+                    var directory = play_imagesPath + play.Name + "/";
                     if (Directory.Exists(directory))
                     {
                         var play_images = System.IO.Directory.GetFiles(directory);
@@ -577,30 +577,30 @@ namespace QZCHY.API.Controllers
 
                 #region 农家乐
 
-                ch.Eats.Add(new VillageEat() { Title = "醉美农庄", Address = "", Person = "", Description = "", Tel = "", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2151107 29.27662663)"), Icon = "eat" });
-                ch.Eats.Add(new VillageEat() { Title = "金仙菜馆", Address = "长虹乡桃源村下山蛇15号", Person = "邱桃英", Description = "", Tel = "18857035780", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2151617 29.27639345)"), Icon = "eat" });
-                ch.Eats.Add(new VillageEat() { Title = "丽仙菜馆", Address = "长虹乡桃源村下山蛇19号", Person = "邱娣仂", Description = "", Tel = "15268076791", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2151519 29.27682628)"), Icon = "eat" });
-                ch.Eats.Add(new VillageEat() { Title = "红卫菜馆", Address = "长虹乡桃源村下山蛇18号", Person = "余女兰", Description = "", Tel = "15167081989", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2152905 29.27673033)"), Icon = "eat" });
-                ch.Eats.Add(new VillageEat() { Title = "玲玲土菜馆", Address = "长虹乡桃源村下山蛇7号", Person = "朱玲", Description = "", Tel = "13750705939", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2155372 29.27680702)"), Icon = "eat" });
-                ch.Eats.Add(new VillageEat() { Title = "枫云山庄", Address = "长虹乡桃源村下首删8号", Person = "", Description = "", Tel = "", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2156739 29.27638355)"), Icon = "eat" });
-                ch.Eats.Add(new VillageEat() { Title = "爱珍农庄", Address = "长虹乡桃源村下山蛇4号", Person = "方爱珍", Description = "", Tel = "18757031087", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2175602 29.27650015)"), Icon = "eat" });
-                ch.Eats.Add(new VillageEat() { Title = "爱客来农庄", Address = "长虹乡桃源村下山蛇", Person = "邱龙炳", Description = "", Tel = "13665701403", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2177169 29.27663505)"), Icon = "eat" });
-                ch.Eats.Add(new VillageEat() { Title = "红苏农庄", Address = "长虹乡桃源村下山蛇2号", Person = "邱振英", Description = "", Tel = "13506707197", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2178327 29.27673797)"), Icon = "eat" });
-                ch.Eats.Add(new VillageEat() { Title = "福客来菜馆", Address = "长虹乡桃源村下山蛇1号", Person = "程学春", Description = "", Tel = "18767063498", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2185144 29.2767351)"), Icon = "eat" });
-                ch.Eats.Add(new VillageEat() { Title = "英英菜馆", Address = "长虹乡桃源村下山蛇", Person = "俞连英", Description = "", Tel = "15167086293", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.218766  29.27688889)"), Icon = "eat" });
-                ch.Eats.Add(new VillageEat() { Title = "开化佳艺家庭农场", Address = "长虹乡星河村", Person = "方进林", Description = "", Tel = "13757058770", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2299753 29.22029959)"), Icon = "eat" });
-                ch.Eats.Add(new VillageEat() { Title = "长虹民俗苑", Address = "长虹乡星河村", Person = "江建坤", Description = "", Tel = "18957026099", ReceptionNumber = 0, Level = 3, Price = 0, Location = DbGeography.FromText("POINT(118.2311617 29.22086095)"), Icon = "eat" });
+                ch.Eats.Add(new VillageEat() { Name = "醉美农庄", Address = "", Person = "", Description = "", Tel = "", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2151107 29.27662663)"), Icon = "eat" });
+                ch.Eats.Add(new VillageEat() { Name = "金仙菜馆", Address = "长虹乡桃源村下山蛇15号", Person = "邱桃英", Description = "", Tel = "18857035780", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2151617 29.27639345)"), Icon = "eat" });
+                ch.Eats.Add(new VillageEat() { Name = "丽仙菜馆", Address = "长虹乡桃源村下山蛇19号", Person = "邱娣仂", Description = "", Tel = "15268076791", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2151519 29.27682628)"), Icon = "eat" });
+                ch.Eats.Add(new VillageEat() { Name = "红卫菜馆", Address = "长虹乡桃源村下山蛇18号", Person = "余女兰", Description = "", Tel = "15167081989", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2152905 29.27673033)"), Icon = "eat" });
+                ch.Eats.Add(new VillageEat() { Name = "玲玲土菜馆", Address = "长虹乡桃源村下山蛇7号", Person = "朱玲", Description = "", Tel = "13750705939", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2155372 29.27680702)"), Icon = "eat" });
+                ch.Eats.Add(new VillageEat() { Name = "枫云山庄", Address = "长虹乡桃源村下首删8号", Person = "", Description = "", Tel = "", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2156739 29.27638355)"), Icon = "eat" });
+                ch.Eats.Add(new VillageEat() { Name = "爱珍农庄", Address = "长虹乡桃源村下山蛇4号", Person = "方爱珍", Description = "", Tel = "18757031087", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2175602 29.27650015)"), Icon = "eat" });
+                ch.Eats.Add(new VillageEat() { Name = "爱客来农庄", Address = "长虹乡桃源村下山蛇", Person = "邱龙炳", Description = "", Tel = "13665701403", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2177169 29.27663505)"), Icon = "eat" });
+                ch.Eats.Add(new VillageEat() { Name = "红苏农庄", Address = "长虹乡桃源村下山蛇2号", Person = "邱振英", Description = "", Tel = "13506707197", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2178327 29.27673797)"), Icon = "eat" });
+                ch.Eats.Add(new VillageEat() { Name = "福客来菜馆", Address = "长虹乡桃源村下山蛇1号", Person = "程学春", Description = "", Tel = "18767063498", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2185144 29.2767351)"), Icon = "eat" });
+                ch.Eats.Add(new VillageEat() { Name = "英英菜馆", Address = "长虹乡桃源村下山蛇", Person = "俞连英", Description = "", Tel = "15167086293", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.218766  29.27688889)"), Icon = "eat" });
+                ch.Eats.Add(new VillageEat() { Name = "开化佳艺家庭农场", Address = "长虹乡星河村", Person = "方进林", Description = "", Tel = "13757058770", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2299753 29.22029959)"), Icon = "eat" });
+                ch.Eats.Add(new VillageEat() { Name = "长虹民俗苑", Address = "长虹乡星河村", Person = "江建坤", Description = "", Tel = "18957026099", ReceptionNumber = 0, Level = 3, Price = 0, Location = DbGeography.FromText("POINT(118.2311617 29.22086095)"), Icon = "eat" });
 
-                ch.Eats.Add(new VillageEat() { Title = "钱王客栈叁号", Address = "长虹乡真子坑村老屋基", Person = "邹丰明", Description = "", Tel = "15857036338", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.228508 29.29422)"), Icon = "eat" });
-                ch.Eats.Add(new VillageEat() { Title = "艳艳菜馆", Address = "长虹乡桃源村下山蛇17号", Person = "夏素英", Description = "", Tel = "18767066877", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2152046088 29.2761895696)"), Icon = "eat" });
-                ch.Eats.Add(new VillageEat() { Title = "台回山农庄", Address = "长虹乡桃源村台回山6号", Person = "曹顺子", Description = "", Tel = "15157063100", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2103017975 29.2764574573)"), Icon = "eat" });
-                ch.Eats.Add(new VillageEat() { Title = "闽台农庄", Address = "长虹乡桃源村台回山52号", Person = "张桂梅", Description = "", Tel = "15167086802", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2104412724 29.2779735140)"), Icon = "eat" });
-                ch.Eats.Add(new VillageEat() { Title = "龙标土菜馆", Address = "长虹乡桃源村台回山38号", Person = "吴国仙", Description = "", Tel = "15067033959", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2114229609 29.2774260517)"), Icon = "eat" });
-                ch.Eats.Add(new VillageEat() { Title = "落凤山庄", Address = "长虹乡桃源村台回山24号", Person = "邹林凤", Description = "", Tel = "18758982800", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2117126394 29.2774494476)"), Icon = "eat" });
-                ch.Eats.Add(new VillageEat() { Title = "云雾山庄", Address = "长虹乡桃源村台回山337号", Person = "程根元", Description = "", Tel = "15857038489", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2107685019 29.2765042495)"), Icon = "eat" });
-                ch.Eats.Add(new VillageEat() { Title = "峰回台客栈", Address = "长虹乡桃源村台回山", Person = "邱龙根", Description = "", Tel = "15924086431", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2115517069 29.2783993160)"), Icon = "eat" });
-                ch.Eats.Add(new VillageEat() { Title = "田英山庄", Address = "长虹乡桃源村长芦61号", Person = "程田英", Description = "", Tel = "15257023563", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2127619654 29.2583806553)"), Icon = "eat" });
-                ch.Eats.Add(new VillageEat() { Title = "江南人家", Address = "长虹乡桃源村长芦", Person = "余素君", Description = "", Tel = "15167084006", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2131160170 29.2601543787)"), Icon = "eat" });
+                ch.Eats.Add(new VillageEat() { Name = "钱王客栈叁号", Address = "长虹乡真子坑村老屋基", Person = "邹丰明", Description = "", Tel = "15857036338", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.228508 29.29422)"), Icon = "eat" });
+                ch.Eats.Add(new VillageEat() { Name = "艳艳菜馆", Address = "长虹乡桃源村下山蛇17号", Person = "夏素英", Description = "", Tel = "18767066877", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2152046088 29.2761895696)"), Icon = "eat" });
+                ch.Eats.Add(new VillageEat() { Name = "台回山农庄", Address = "长虹乡桃源村台回山6号", Person = "曹顺子", Description = "", Tel = "15157063100", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2103017975 29.2764574573)"), Icon = "eat" });
+                ch.Eats.Add(new VillageEat() { Name = "闽台农庄", Address = "长虹乡桃源村台回山52号", Person = "张桂梅", Description = "", Tel = "15167086802", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2104412724 29.2779735140)"), Icon = "eat" });
+                ch.Eats.Add(new VillageEat() { Name = "龙标土菜馆", Address = "长虹乡桃源村台回山38号", Person = "吴国仙", Description = "", Tel = "15067033959", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2114229609 29.2774260517)"), Icon = "eat" });
+                ch.Eats.Add(new VillageEat() { Name = "落凤山庄", Address = "长虹乡桃源村台回山24号", Person = "邹林凤", Description = "", Tel = "18758982800", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2117126394 29.2774494476)"), Icon = "eat" });
+                ch.Eats.Add(new VillageEat() { Name = "云雾山庄", Address = "长虹乡桃源村台回山337号", Person = "程根元", Description = "", Tel = "15857038489", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2107685019 29.2765042495)"), Icon = "eat" });
+                ch.Eats.Add(new VillageEat() { Name = "峰回台客栈", Address = "长虹乡桃源村台回山", Person = "邱龙根", Description = "", Tel = "15924086431", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2115517069 29.2783993160)"), Icon = "eat" });
+                ch.Eats.Add(new VillageEat() { Name = "田英山庄", Address = "长虹乡桃源村长芦61号", Person = "程田英", Description = "", Tel = "15257023563", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2127619654 29.2583806553)"), Icon = "eat" });
+                ch.Eats.Add(new VillageEat() { Name = "江南人家", Address = "长虹乡桃源村长芦", Person = "余素君", Description = "", Tel = "15167084006", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2131160170 29.2601543787)"), Icon = "eat" });
 
 
                 #region 图片路径
@@ -608,7 +608,7 @@ namespace QZCHY.API.Controllers
 
                 foreach (var eat in ch.Eats)
                 {
-                    var directory = eat_imagesPath + eat.Title + "/";
+                    var directory = eat_imagesPath + eat.Name + "/";
                     if (Directory.Exists(directory))
                     {
                         var eat_images = System.IO.Directory.GetFiles(directory);
@@ -642,15 +642,15 @@ namespace QZCHY.API.Controllers
 
                 #region 民宿
 
-                ch.Lives.Add(new VillageLive() { Title = "舍予阁", Address = "长虹乡星河村", Person = "方进林", Description = "", Tel = "13757058770", BedsNumber = 3, Location = DbGeography.FromText("POINT(118.2299753 29.22029959)"), Icon = "live" });
-                ch.Lives.Add(new VillageLive() { Title = "长虹民俗苑", Address = "长虹乡星河村", Person = "江建坤", Description = "", Tel = "18957026099", BedsNumber = 150, Location = DbGeography.FromText("POINT(118.2290907 29.22058961)"), Icon = "live" });
+                ch.Lives.Add(new VillageLive() { Name = "舍予阁", Address = "长虹乡星河村", Person = "方进林", Description = "", Tel = "13757058770", BedsNumber = 3, Location = DbGeography.FromText("POINT(118.2299753 29.22029959)"), Icon = "live" });
+                ch.Lives.Add(new VillageLive() { Name = "长虹民俗苑", Address = "长虹乡星河村", Person = "江建坤", Description = "", Tel = "18957026099", BedsNumber = 150, Location = DbGeography.FromText("POINT(118.2290907 29.22058961)"), Icon = "live" });
                 
                 #region 图片路径
                 live_imagesPath = relativePath + "ch/live_images/";
 
                 foreach (var live in ch.Lives)
                 {
-                    var directory = live_imagesPath + live.Title + "/";
+                    var directory = live_imagesPath + live.Name + "/";
                     if (Directory.Exists(directory))
                     {
                         var live_images = System.IO.Directory.GetFiles(directory);
@@ -729,40 +729,6 @@ namespace QZCHY.API.Controllers
             {
                 return BadRequest(e.Message);
             }
-
-            return Ok("finished");
-        }
-
-       [HttpGet]
-       [Route("ImportStrategies")]
-       public IHttpActionResult ImportStrategies()
-        {
-            
-            try
-            {
-
-                var dp = _villageService.GetVillageByName("康养衢江· 隐柿东坪");
-                var ch = _villageService.GetVillageByName("诗画乡村·七彩长虹");
-
-                if (dp == null || ch ==null) return BadRequest("未找到景区");
-
-                var list = new string[] {
-                    "寻找浙江最美古村落之旅：七彩长虹",
-                    "感情深，我才约你！4A景区七彩长虹的星级厕所，看傻了！"
-                };
-
-
-
-                var strategyPicture = new StrategyPicture { };
-                var picture = new Picture { };
-
-
-            }
-            catch(Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-
 
             return Ok("finished");
         }

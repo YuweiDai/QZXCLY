@@ -29,9 +29,11 @@ namespace QZCHY.API.Models
 
         public string Traffic { get; set; }
 
-        public string Icon { get; set; }
-
         public string Location { get; set; }
+
+        public string Logo { get; set; }
+
+        public string Route { get; set; }
 
         /// <summary>
         /// 旅游空间路线
