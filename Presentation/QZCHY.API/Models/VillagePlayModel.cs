@@ -9,7 +9,7 @@ namespace QZCHY.API.Models
     public class VillagePlayModel: BaseQMEntityModel
     {
 
-        public string Title { get; set; }
+        public string Name { get; set; }
         /// <summary>
         /// 描述
         /// </summary>

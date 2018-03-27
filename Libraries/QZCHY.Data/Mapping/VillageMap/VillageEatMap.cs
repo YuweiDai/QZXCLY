@@ -14,7 +14,7 @@ namespace QZCHY.Data.Mapping.VillageMap
         {
             this.ToTable("VillageEat");
             this.HasKey(p => p.Id);
-            this.Property(p => p.Title).IsRequired().HasMaxLength(255);
+            this.Property(p => p.Name).IsRequired().HasMaxLength(255);
 
             this.HasMany(p => p.EatPictures).WithRequired(pp => pp.VillageEat);
             this.HasRequired(pp => pp.Village).WithMany(p => p.Eats);

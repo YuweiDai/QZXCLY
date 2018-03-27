@@ -9,7 +9,7 @@ namespace QZCHY.API.Models
     public class VillageServiceModel: BaseQMEntityModel
     {
 
-        public string Title { get; set; }
+        public string Name { get; set; }
         /// <summary>
         /// 描述
         /// </summary>
@@ -28,6 +28,5 @@ namespace QZCHY.API.Models
         public virtual ICollection<ServicePictureModel> ServicePictures { get; set; }
 
         public int Village_Id { get; set; }
-
     }
 }

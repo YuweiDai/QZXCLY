@@ -26,24 +26,49 @@ namespace QZCHY.Web.Api.Infrastructure
                    .ForMember(dest => dest.Location, mo => mo.MapFrom(src => src.Location == null ? "" : src.Location.AsText()))
                    .ForMember(dest => dest.GeoTourRoute, mo => mo.MapFrom(src => src.GeoTourRoute == null ? "" : src.GeoTourRoute.AsText()));
 
+            Mapper.CreateMap<Village, SimpleVillageGeoModel>()
+                  .ForMember(dest => dest.Longitude, mo => mo.MapFrom(src => src.Location.Longitude))
+                  .ForMember(dest => dest.Latitude, mo => mo.MapFrom(src => src.Location.Latitude));
+
+            Mapper.CreateMap<Village, VillageGeoModel>()
+                  .ForMember(dest => dest.Longitude, mo => mo.MapFrom(src => src.Location.Longitude))
+                  .ForMember(dest => dest.Latitude, mo => mo.MapFrom(src => src.Location.Latitude));
+
             Mapper.CreateMap<VillageEatModel, VillageEat>();
 
             Mapper.CreateMap<VillageEat, VillageEatModel>();
+
+            Mapper.CreateMap<VillageEat, EatGeoModel>()
+                  .ForMember(dest => dest.Longitude, mo => mo.MapFrom(src => src.Location.Longitude))
+                  .ForMember(dest => dest.Latitude, mo => mo.MapFrom(src => src.Location.Latitude));
+
 
             //
             Mapper.CreateMap<VillagePlayModel, VillagePlay>();
 
             Mapper.CreateMap<VillagePlay, VillagePlayModel>();
 
+            Mapper.CreateMap<VillagePlay, PlayGeoModel>()
+                  .ForMember(dest => dest.Longitude, mo => mo.MapFrom(src => src.Location.Longitude))
+                  .ForMember(dest => dest.Latitude, mo => mo.MapFrom(src => src.Location.Latitude));
+
             //
             Mapper.CreateMap<VillageLiveModel, VillageLive>();
 
             Mapper.CreateMap<VillageLive, VillageLiveModel>();
 
+            Mapper.CreateMap<VillageLive, LiveGeoModel>()
+                  .ForMember(dest => dest.Longitude, mo => mo.MapFrom(src => src.Location.Longitude))
+                  .ForMember(dest => dest.Latitude, mo => mo.MapFrom(src => src.Location.Latitude));
+
             //
             Mapper.CreateMap<VillageServiceModel, VillageService>();
 
             Mapper.CreateMap<VillageService, VillageServiceModel>();
+
+            Mapper.CreateMap<VillageService, ServiceGeoModel>()
+                  .ForMember(dest => dest.Longitude, mo => mo.MapFrom(src => src.Location.Longitude))
+                  .ForMember(dest => dest.Latitude, mo => mo.MapFrom(src => src.Location.Latitude));
 
             //
             Mapper.CreateMap<VillagePictureModel, VillagePicture>();

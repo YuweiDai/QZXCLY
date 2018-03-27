@@ -372,6 +372,7 @@
     <Compile Include="Models\StrategyModel.cs" />
     <Compile Include="Models\StrategyPictureModel.cs" />
     <Compile Include="Models\VillageEatModel.cs" />
+    <Compile Include="Models\VillageGeoModel.cs" />
     <Compile Include="Models\VillageLiveModel.cs" />
     <Compile Include="Models\VillageModel.cs" />
     <Compile Include="Models\VillagePictureModel.cs" />

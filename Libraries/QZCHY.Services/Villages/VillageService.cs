@@ -62,10 +62,23 @@ namespace QZCHY.Services.Villages
 
         public Village GetVillageByName(string name)
         {
-            var query = from v in _villageRepository.Table
+            var query = from v in GetAllVillages()
                         where v.Name == name
                         select v;
             return query.FirstOrDefault();
+        }
+
+        /// <summary>
+        /// 获取所有的乡村
+        /// </summary>
+        /// <returns></returns>
+        public IQueryable<Village> GetAllVillages()
+        {
+            var query = from v in _villageRepository.Table
+                        where !v.Deleted
+                        select v;
+
+            return query;
         }
     }
 }

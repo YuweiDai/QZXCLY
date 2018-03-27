@@ -32,23 +32,59 @@ namespace QZCHY.API.Controllers
         }
 
         [HttpGet]
-        [Route("dpgd")]
-        public IHttpActionResult GetVillageById(string Name)
+        [Route("{id}")]
+        public IHttpActionResult GetVillageById(int id = 0)
         {
-             Name = "康养衢江· 隐柿东坪";
-            var response = _villageService.GetVillageByName(Name).ToModel();
+            var village = _villageService.GetVillageById(id);
+            if (village == null) return NotFound();
 
-            foreach (var img in response.VillagePictures) {
+            var villageModel = village.ToModel();
 
-                img.Href = _pictureService.GetPictureUrl(img.Id);
+            var logoPicture = village.VillagePictures.Where(vp => vp.IsLogo).FirstOrDefault();
+            var routePicture = village.VillagePictures.Where(vp => vp.IsRoute).FirstOrDefault();
 
-            }
+            if (logoPicture != null)
+                villageModel.Logo = _pictureService.GetPictureUrl(logoPicture.Picture, 320);
 
+            if (routePicture != null)
+                villageModel.Route = _pictureService.GetPictureUrl(routePicture.Picture, 320);
 
-
-            return Ok(response);
+            return Ok(villageModel);
         }
 
+        [HttpGet]
+        [Route("Geo")]
+        public IHttpActionResult GetAllVillageInMap()
+        {
+            var villages = _villageService.GetAllVillages().ToList();
 
+            var geoVillages = villages.Select(p =>
+            {
+                var g = p.ToSimpleGeoModel();
+
+                return g;
+            });
+
+
+            return Ok(geoVillages);
+        }
+
+        [HttpGet]
+        [Route("Geo/{Id}")]
+        public IHttpActionResult GetVillageByIdInMap(int id=0)
+        {
+            var village = _villageService.GetVillageById(id);
+            if (village == null) return NotFound();
+
+            var villageModel = village.ToGeoModel();
+
+            var logoPicture = village.VillagePictures.Where(vp => vp.IsLogo).FirstOrDefault();
+            var routePicture = village.VillagePictures.Where(vp => vp.IsRoute).FirstOrDefault();
+
+            if (logoPicture != null)
+                villageModel.Logo = _pictureService.GetPictureUrl(logoPicture.Picture, 320);
+
+            return Ok(villageModel);
+        }
     }
 }
