@@ -30,19 +30,20 @@ namespace QZCHY.API.Models
 
         public string Logo { get; set; }
 
+        public string TourRoute { get; set; }
+
+        public string RoutePicutre { get; set; }
+
         public string VideoUrl { get; set; }
 
-        /// <summary>
-        /// 旅游空间路线
-        /// </summary>
-        public string GeoTourRoute { get; set; }
+        public IList<StrategyModel> Strategies { get; set; }
 
-        public virtual ICollection<VillagePictureModel> VillagePictures { get; set; }
+        //public virtual ICollection<VillagePictureModel> VillagePictures { get; set; }
 
         public IList<VillageEatModel> Eats { get; set; }
 
-        public IList<VillageLiveModel> Lives { get; set; }
+        //public IList<VillageLiveModel> Lives { get; set; }
 
-        public IList<VillagePlayModel> Plays { get; set; }
+        //public IList<VillagePlayModel> Plays { get; set; }
     }
 }

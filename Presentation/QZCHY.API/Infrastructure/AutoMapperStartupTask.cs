@@ -22,9 +22,9 @@ namespace QZCHY.Web.Api.Infrastructure
                   .ForMember(dest => dest.Location, mo => mo.Ignore())
            .ForMember(dest => dest.GeoTourRoute, mo => mo.Ignore());
 
-             Mapper.CreateMap<Village, VillageModel>()
-                   .ForMember(dest => dest.Location, mo => mo.MapFrom(src => src.Location == null ? "" : src.Location.AsText()))
-                   .ForMember(dest => dest.GeoTourRoute, mo => mo.MapFrom(src => src.GeoTourRoute == null ? "" : src.GeoTourRoute.AsText()));
+            Mapper.CreateMap<Village, VillageModel>()
+                 .ForMember(dest => dest.Longitude, mo => mo.MapFrom(src => src.Location.Longitude))
+                 .ForMember(dest => dest.Latitude, mo => mo.MapFrom(src => src.Location.Latitude));
 
             Mapper.CreateMap<Village, SimpleVillageGeoModel>()
                   .ForMember(dest => dest.Longitude, mo => mo.MapFrom(src => src.Location.Longitude))
@@ -32,7 +32,8 @@ namespace QZCHY.Web.Api.Infrastructure
 
             Mapper.CreateMap<Village, VillageGeoModel>()
                   .ForMember(dest => dest.Longitude, mo => mo.MapFrom(src => src.Location.Longitude))
-                  .ForMember(dest => dest.Latitude, mo => mo.MapFrom(src => src.Location.Latitude));
+                  .ForMember(dest => dest.Latitude, mo => mo.MapFrom(src => src.Location.Latitude))
+                  .ForMember(dest => dest.GeoTourRoute, mo => mo.MapFrom(src => src.GeoTourRoute == null ? "" : src.GeoTourRoute.AsText()));
 
             Mapper.CreateMap<VillageEatModel, VillageEat>();
 
@@ -41,7 +42,6 @@ namespace QZCHY.Web.Api.Infrastructure
             Mapper.CreateMap<VillageEat, EatGeoModel>()
                   .ForMember(dest => dest.Longitude, mo => mo.MapFrom(src => src.Location.Longitude))
                   .ForMember(dest => dest.Latitude, mo => mo.MapFrom(src => src.Location.Latitude));
-
 
             //
             Mapper.CreateMap<VillagePlayModel, VillagePlay>();
@@ -95,9 +95,9 @@ namespace QZCHY.Web.Api.Infrastructure
 
             Mapper.CreateMap<ServicePicture, ServicePictureModel>();
 
+            Mapper.CreateMap<StrategyModel, Strategy>();
 
-
-
+            Mapper.CreateMap<Strategy, StrategyModel>();
         }
     }
 }

@@ -216,7 +216,20 @@ namespace QZCHY.Web.Api.Extensions
 
 
 
+        public static StrategyModel ToModel(this Strategy entity)
+        {
+            return entity.MapTo<Strategy, StrategyModel>();
+        }
 
+        public static Strategy ToEntity(this StrategyModel model)
+        {
+            return model.MapTo<StrategyModel, Strategy>();
+        }
+
+        public static Strategy ToEntity(this StrategyModel model, Strategy destination)
+        {
+            return model.MapTo(destination);
+        }
 
     }
 }

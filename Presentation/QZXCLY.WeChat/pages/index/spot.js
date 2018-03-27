@@ -101,7 +101,6 @@ Page({
     //       descriptions: "衢州市峡川镇东坪村",
     //       tel: "13867478563",
     //       price: "44",
-    //       hot:true,
     //       logo: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/spots/ysdp.bmp"
     //     },        
     //     {
@@ -455,7 +454,7 @@ Page({
   },
   showTourJpg:function(event){
     wx.previewImage({
-      urls: [page.data.spot.tourJpg],
+      urls: [page.data.spot.routePicutre],
     })
   },
   showDialog:function(event){
@@ -527,13 +526,22 @@ Page({
       url: app.globalData.apiUrl + 'Villages/'+id,
       success: function (response) {
         var spot=response.data;
+        spot.tags=spot.tags.split(';');
+
+        spot.strategies.forEach(function(item){
+
+          item.src = app.globalData.resourceUrl+"/strategies/"+item.src;
+
+        });
+
+        console.log(spot);
 
         page.setData({
           spot: spot
         });
 
         wx.setNavigationBarTitle({
-          title: spot.title
+          title: spot.name
         });
       },
       fail: function (response) {
@@ -551,10 +559,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    var that=this;
-    wx.setNavigationBarTitle({
-      title: that.data.spot.name
-    });
   },
 
   /**

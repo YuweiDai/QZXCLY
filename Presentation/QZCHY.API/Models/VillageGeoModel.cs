@@ -34,7 +34,10 @@ namespace QZCHY.API.Models
 
         public double Longitude { get; set; }
 
-        public string TourRoute { get; set; }
+        /// <summary>
+        /// 旅游空间路线
+        /// </summary>
+        public string GeoTourRoute { get; set; }
 
         public IList<ServiceGeoModel> Services { get; set; }
 
