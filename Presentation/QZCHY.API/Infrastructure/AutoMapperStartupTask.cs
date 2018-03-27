@@ -74,12 +74,7 @@ namespace QZCHY.Web.Api.Infrastructure
             Mapper.CreateMap<VillagePictureModel, VillagePicture>();
 
             Mapper.CreateMap<VillagePicture, VillagePictureModel>();
-
-            //
-            Mapper.CreateMap<VillageVedioModel, VillageVedio>();
-
-            Mapper.CreateMap<VillageVedio, VillageVedioModel>();
-
+     
             //
             Mapper.CreateMap<EatPictureModel, EatPicture>();
 

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Spatial;
+using System.Data.Spatial;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,6 @@ namespace QZCHY.Core.Domain.Villages
         private ICollection<VillageLive> _villageLives;
         private ICollection<VillageEat> _villageEats;
         private ICollection<VillagePicture> _villagePictures;
-        private ICollection<VillageVedio> _villageVedios;
         private ICollection<Strategy> _strategies;
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace QZCHY.Core.Domain.Villages
         /// <summary>
         /// 旅游空间路线
         /// </summary>
-        public DbGeography GeoTourRoute { get; set; }
+        public System.Data.Entity.Spatial.DbGeography GeoTourRoute { get; set; }
 
         /// <summary>
         /// 图标
@@ -75,9 +75,14 @@ namespace QZCHY.Core.Domain.Villages
         public string Panorama { get; set; }
 
         /// <summary>
+        /// 录音url
+        /// </summary>
+        public string VideoUrl { get; set; }
+
+        /// <summary>
         /// 坐落位置
         /// </summary>
-        public DbGeography Location { get; set; }
+        public System.Data.Entity.Spatial.DbGeography Location { get; set; }
 
         public virtual ICollection<VillageService> Services
         {
@@ -109,11 +114,6 @@ namespace QZCHY.Core.Domain.Villages
             protected set { _villagePictures = value; }
         }
 
-        public virtual ICollection<VillageVedio> VillageVedios
-        {
-            get { return _villageVedios ?? (_villageVedios = new List<VillageVedio>()); }
-            protected set { _villageVedios = value; }
-        }
         public virtual ICollection<Strategy> Strategies
         {
             get { return _strategies ?? (_strategies = new List<Strategy>()); }
