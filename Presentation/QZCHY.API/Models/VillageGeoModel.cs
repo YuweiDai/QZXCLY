@@ -22,12 +22,6 @@ namespace QZCHY.API.Models
     /// </summary>
     public class VillageGeoModel : BaseQMEntityModel
     {
-        //private ICollection<ServiceGeoModel> _villageServices;
-        //private ICollection<PlayGeoModel> _villagePlays;
-        //private ICollection<LiveGeoModel> _villageLives;
-        //private ICollection<EatGeoModel> _villageEats;
-
-
         public string Name { get; set; }
 
         public string Logo { get; set; }
@@ -39,7 +33,9 @@ namespace QZCHY.API.Models
         public double Latitude { get; set; }
 
         public double Longitude { get; set; }
-        
+
+        public string TourRoute { get; set; }
+
         public IList<ServiceGeoModel> Services { get; set; }
 
         public IList<PlayGeoModel> Plays { get; set; }

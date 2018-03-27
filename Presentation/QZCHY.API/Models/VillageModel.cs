@@ -8,9 +8,6 @@ namespace QZCHY.API.Models
 {
     public class VillageModel: BaseQMEntityModel
     {
-
-        public int Village_Id { get; set; }
-
         public string Name { get; set; }     
 
         public string Address { get; set; }
@@ -25,15 +22,13 @@ namespace QZCHY.API.Models
 
         public double Price { get; set; }
 
-        public string TourRoute { get; set; }
-
         public string Traffic { get; set; }
 
-        public string Location { get; set; }
+        public double Latitude { get; set; }
+
+        public double Longitude { get; set; }
 
         public string Logo { get; set; }
-
-        public string Route { get; set; }
 
         public string VideoUrl { get; set; }
 
@@ -47,9 +42,7 @@ namespace QZCHY.API.Models
         public IList<VillageEatModel> Eats { get; set; }
 
         public IList<VillageLiveModel> Lives { get; set; }
-        public IList<VillagePlayModel> Plays { get; set; }
-        public IList<VillageServiceModel> Services { get; set; }
 
-        public IList<VillageVedioModel> Vedios { get; set; }
+        public IList<VillagePlayModel> Plays { get; set; }
     }
 }

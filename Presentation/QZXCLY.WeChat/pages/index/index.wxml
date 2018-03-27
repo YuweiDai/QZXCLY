@@ -22,7 +22,7 @@
 		<view class="section section-big suggestion">
 			<view class="title">必玩·推荐</view>
       <view class='content'>
-        <view class='item' wx:for="{{suggestions}}" wx:for-item="suggestion" bindtap='navToSpot'>      
+        <view class='item' wx:for="{{suggestions}}" data-id="{{suggestion.id}}" wx:for-item="suggestion" bindtap='navToSpot'>      
           <image src="{{suggestion.img}}"/>
           <view class='item-name'>{{suggestion.name}}</view>  
         </view>

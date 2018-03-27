@@ -13,13 +13,13 @@ Page({
       },
       {
         id: 1,
-        img: 'http://qzch.qz.gov.cn/qzxcly/resources/images/index/b2.png',
+        img: 'http://qzch.qz.gov.cn/qzxcly/resources/images/index/b2.jpg',
         url: '',
         name: '告别午高峰'
       },
       {
         id: 2,
-        img: 'http://qzch.qz.gov.cn/qzxcly/resources/images/index/b3.png',
+        img: 'http://qzch.qz.gov.cn/qzxcly/resources/images/index/b3.jpg',
         url: '',
         name: '金牌好店'
       }
@@ -45,10 +45,10 @@ Page({
       }
     ],
     suggestions:[
-      { name: "康养衢江·隐柿东坪", img: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/dp_1.jpg" },
-      { name: "寻梦乡愁·桃源七里", img: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/ql.png" },
-      { name: "七彩长虹", img: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/ch.png" },
-      { name: "廿八都古镇印象", img: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/nbd.png" }        
+      { name: "康养衢江·隐柿东坪", img: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/dp_1.jpg",id:1 },
+      { name: "寻梦乡愁·桃源七里", img: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/ql.png",id:3 },
+      { name: "诗画乡村·七彩长虹", img: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/ch.png",id:2 },
+      { name: "九华乡", img: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/nbd.png",id:4 }        
     ],
     strategies: [
       { id: 0, title: "摘柿子，赏枫叶，走古道，东坪等你来！", img: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/dp.jpg", src: "https://www.luckyday.top/resources/strategies/dp001.html" },
@@ -123,38 +123,6 @@ Page({
         }
       })
     }
-    
-    wx.request({
-        url: 'http://www.qz-map.com/api/feature/query', //仅为示例，并非真实的接口地址
-        data: {
-            auto_global: true,
-            page: 1,
-            size: 50,
-            tcode: "160501, 160502,160503",
-            zoom: 15,
-            bbox: "118.81864611083985,28.95371039932251,118.89074388916016,28.99314960067749"
-        },
-        header: {
-            'content-type': 'application/json' // 默认值
-        },
-        success: function (res) {
-            wx.showToast({
-                title: '数据加载成功',
-                icon: 'success',
-                duration: 2000
-            });
-
-        },
-        fail: function (res) {
-            wx.showToast({
-                title: '数据加载失败',
-                icon: 'none',
-                duration: 2000
-            });
-        },
-    });
-
-
   },
   onShow:function(event)
   {

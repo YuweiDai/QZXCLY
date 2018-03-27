@@ -93,14 +93,17 @@ Page({
     var tappedMarkerId=event.markerId;
     var markerType=tappedMarkerId.split('_')[0];
     var markerId = tappedMarkerId.split('_')[1];
-    var drawerMarker={
-      logo:"",
-      t:markerType,
-      lon:0,
-      lat:0,
-      detailUrl:"",
-      panoramaUrl:"https://www.luckyday.top/threejs?pid="
+
+    var drawerMarker = {
+      logo: "",
+      t: markerType,
+      lon: 0,
+      lat: 0,
+      detailUrl: ""
     };
+    if (page.data.currentSpot != null)
+      drawerMarker.panoramaUrl = "https://www.luckyday.top/threejs?village=" + page.data.currentSpot.panorama + "&pid=";
+
     switch(markerType)
     {
       case "spot":
@@ -155,8 +158,10 @@ Page({
           }
         });
         break;   
-
-        case "play":
+      
+      
+      
+      case "play":
         var play = null;
         page.data.currentSpot.plays.forEach(function (item) {
           if (item.id == markerId) {
