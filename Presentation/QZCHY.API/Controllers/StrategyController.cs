@@ -64,12 +64,5 @@ namespace QZCHY.API.Controllers
 
             return Ok(strategyModels);
         }
-
-
-
-
-
-
-
     }
 }

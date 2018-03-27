@@ -1,7 +1,7 @@
 //index.js
 //获取应用实例
-const app = getApp()
-
+var app = getApp()
+var page=null;
 Page({
   data: {
     banners: [
@@ -81,6 +81,7 @@ Page({
     })
   },
   onLoad: function () {
+    page=this;
     // wx.showModal({
     //   title: '提示',
     //   content: '检测到您正位于东坪景区，是否前往景区地图？',
@@ -98,7 +99,26 @@ Page({
   //     { id: 1, title: "桃源七里•图说2017", img: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/ql.jpg", src: "https://m.sohu.com/a/213140963_695982/?pvid=000115_3w_a" },
   // { id: 2, title: "画里开化‖浙西乡村旅游的一个“引爆点”——七彩长虹！", img: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/ch.jpg", src: "https://m.sohu.com/a/214971209_173747/?pvid=000115_3w_a" }
     wx.request({
-      url: '',
+      url:app.globalData.apiUrl+ 'Strategy/Random',
+      success: function (response) {
+        var strategies = response.data;
+
+        strategies.forEach(function(item){
+          item.src = app.globalData.resourceUrl + "/strategies/" + item.src;
+        });
+
+
+        page.setData({
+          strategies: strategies
+        });
+      },
+      fail: function (response) {
+        wx.showToast({
+          title: '获取数据失败...',
+        })
+      },
+      complete: function () {
+      }      
     });
 
     if (app.globalData.userInfo) {
