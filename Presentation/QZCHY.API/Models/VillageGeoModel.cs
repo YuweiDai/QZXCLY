@@ -81,7 +81,7 @@ namespace QZCHY.API.Models
     {
         public string AudioUrl { get; set; }
 
-        public string Panorama { get; set; }
+        public string PanoramaId { get; set; }
     }
 
     /// <summary>
@@ -96,7 +96,7 @@ namespace QZCHY.API.Models
 
         public string Tel { get; set; }
 
-        public string Panorama { get; set; }
+        public string PanoramaId { get; set; }
     }
 
     /// <summary>
@@ -107,6 +107,6 @@ namespace QZCHY.API.Models
 
         public string Tel { get; set; }
 
-        public string Panorama { get; set; }
+        public string PanoramaId { get; set; }
     }
 }

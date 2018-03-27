@@ -155,7 +155,7 @@ Page({
           }
         });
         break;   
-         
+
         case "play":
         var play = null;
         page.data.currentSpot.plays.forEach(function (item) {
@@ -167,11 +167,11 @@ Page({
         if (play == null) return;
             drawerMarker.name = play.name;
             drawerMarker.logo = play.logo;
-            drawerMarker.desc = play.descriptions;
+            drawerMarker.desc = play.description;
             drawerMarker.lon = play.longitude;
             drawerMarker.latitude = play.latitude;
-            drawerMarker.audioUrl = play.audio;
-            if (play.panorama) drawerMarker.panoramaUrl += play.panorama;
+            drawerMarker.audioUrl = play.audioUrl;
+            if (play.panoramaId) drawerMarker.panoramaUrl += play.panoramaId;
             else drawerMarker.panoramaUrl=undefined;
             drawerMarker.detailUrl = "../index/spot_play?id="+play.id;
             
@@ -189,7 +189,7 @@ Page({
           drawerMarker.logo = eat.logo;
           drawerMarker.lon = eat.longitude;
           drawerMarker.latitude = eat.latitude;
-          if (eat.panorama) drawerMarker.panoramaUrl += eat.panorama;
+          if (eat.panoramaId) drawerMarker.panoramaUrl += eat.panoramaId;
           drawerMarker.phone = eat.tel;
           drawerMarker.price = eat.price;
           drawerMarker.level=eat.level;
@@ -211,8 +211,8 @@ Page({
           drawerMarker.lon = live.longitude;
           drawerMarker.latitude = live.latitude;
           drawerMarker.phone = live.tel;
-          if (live.panorama) drawerMarker.panoramaUrl += live.panorama;
-          drawerMarker.desc = live.descriptions;
+          if (live.panoramaId) drawerMarker.panoramaUrl += live.panoramaId;
+          drawerMarker.desc = live.description;
           drawerMarker.detailUrl = "../index/spot_live?id=" + live.id;
         break;                
     }    

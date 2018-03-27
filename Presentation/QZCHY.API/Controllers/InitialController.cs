@@ -41,6 +41,7 @@ namespace QZCHY.API.Controllers
         private readonly ISettingService _settingService;
 
         private readonly IVillageService _villageService;
+        private readonly IVillagePlayService _villagePlayService;
         private readonly IStrategyService _strategyService;
 
         public InitialController(IAuthenticationService authenticationService, IAccountUserService customerService,
@@ -48,7 +49,7 @@ namespace QZCHY.API.Controllers
        IWorkflowMessageService workflowMessageService, IEncryptionService encryptionService, IPictureService pictureService,
         IWebHelper webHelper,IWorkContext workContext,
         AccountUserSettings customerSettings, CommonSettings commonSettings, SecuritySettings securitySettings, ISettingService settingService,
-        IVillageService villageService, IStrategyService strategyService)
+        IVillageService villageService, IStrategyService strategyService, IVillagePlayService villagePlayService)
         {
             _authenticationService = authenticationService;
             _accountUserService = customerService;
@@ -68,6 +69,7 @@ namespace QZCHY.API.Controllers
 
             _villageService = villageService;
             _strategyService = strategyService;
+            _villagePlayService = villagePlayService;
         }
 
         [HttpGet]
@@ -228,7 +230,7 @@ namespace QZCHY.API.Controllers
                 {
                     Name = "千年古道",
                     Description = "东坪千年古道位于衢州市峡川镇境内，距市区40公里。从东坪山脚下起，一条总长1500米，宽2米，共1144级的青石板古道蜿蜒盘曲伸向山顶，随着岁月的流逝，村民的脚步磨去了古道青石块的棱角而变得光滑。这就是相传具有1300多年历史的唐朝古道。",
-                    Location = DbGeography.FromText("POINT(119.0333890915 29.1851002329)"),
+                    Location = DbGeography.FromText("POINT(119.0282124281 29.1850908661)"),
                     Icon = "play"
                 });
 
@@ -743,12 +745,16 @@ namespace QZCHY.API.Controllers
             var dp = _villageService.GetVillageById(1);
             var qngd = dp.Plays.Where(v => v.Id == 1).SingleOrDefault();
 
-            if (qngd != null) qngd.AudioUrl = "https://www.luckyday.top/resources/audios/dp001.mp3";
+            qngd.Location = DbGeography.FromText("POINT(119.0282124281 29.1850908661)");
 
-            var ch = _villageService.GetVillageById(1);
-            var ths = ch.Plays.Where(v => v.Id == 17).SingleOrDefault();
+            _villagePlayService.UpdateVillagePlay(qngd);
 
-            if (qngd != null) qngd.AudioUrl = "https://www.luckyday.top/resources/audios/ch001.mp3";
+            //if (qngd != null) qngd.AudioUrl = "https://www.luckyday.top/resources/audios/dp001.mp3";
+
+            //var ch = _villageService.GetVillageById(1);
+            //var ths = ch.Plays.Where(v => v.Id == 17).SingleOrDefault();
+
+            //if (qngd != null) qngd.AudioUrl = "https://www.luckyday.top/resources/audios/ch001.mp3";
 
             return Ok("");
         }
