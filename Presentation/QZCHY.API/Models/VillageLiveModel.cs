@@ -29,7 +29,8 @@ namespace QZCHY.API.Models
         /// <summary>
         /// 坐落位置
         /// </summary>
-        public string Location { get; set; }
+        public string Lon { get; set; }
+        public string Lat { get; set; }
         /// <summary>
         /// 图标
         /// </summary>
@@ -59,6 +60,25 @@ namespace QZCHY.API.Models
         public virtual ICollection<LivePictureModel> LivePictures { get; set; }
 
         public int Vliiage_Id { get; set; }
+
+        public string Logo { get; set; }
+
+    }
+
+
+    public class SimpleLiveModel:BaseQMEntityModel
+    {
+
+        public string Name { get; set; }
+
+        public string Description { get; set; }
+
+        public string Tel { get; set; }
+
+        public int BedsNumber { get; set; }
+
+        public string Logo { get; set; }
+
 
     }
 }

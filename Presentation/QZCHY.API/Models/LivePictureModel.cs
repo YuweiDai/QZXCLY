@@ -8,13 +8,15 @@ namespace QZCHY.API.Models
 {
     public class LivePictureModel: BaseQMEntityModel
     {
-        public int LiveId { get; set; }
+        //public int LiveId { get; set; }
 
-        public int PictureId { get; set; }
+        //public int PictureId { get; set; }
 
-        public bool IsLogo { get; set; }
+        //public bool IsLogo { get; set; }
 
-        public int Picture_Id { get; set; }
+        //public int Picture_Id { get; set; }
+        public string Name { get; set; }
+        public string Img { get; set; }
 
     }
 }

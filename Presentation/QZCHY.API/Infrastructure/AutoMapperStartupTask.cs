@@ -97,6 +97,11 @@ namespace QZCHY.Web.Api.Infrastructure
 
 
 
+            //simple
+            Mapper.CreateMap<VillagePlay, SimplePlayModel>();
+            Mapper.CreateMap<VillageEat, SimpleEatModel>();
+            Mapper.CreateMap<VillageLive, SimpleLiveModel>();
+
 
         }
     }

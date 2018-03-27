@@ -55,7 +55,9 @@ namespace QZCHY.API.Models
         /// <summary>
         /// 坐落位置
         /// </summary>
-        public string Location { get; set; }
+        public string Lon { get; set; }
+        public string Lat { get; set; }
+
         /// <summary>
         /// 图标
         /// </summary>
@@ -69,4 +71,20 @@ namespace QZCHY.API.Models
 
         public string Logo { get; set; }
     }
+
+    public class SimpleEatModel : BaseQMEntityModel
+    {
+        public string Name { get; set; }
+
+        public string Description { get; set; }
+
+        public string Tel { get; set;}
+
+        public double Price { get; set; }
+
+        public int Level { get; set; }
+
+        public string Logo { get; set; }
+    }
+
 }

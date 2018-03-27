@@ -70,6 +70,21 @@ namespace QZCHY.Web.Api.Extensions
             return model.MapTo(destination);
         }
 
+        public static SimplePlayModel ToSimpleModel(this VillagePlay entity)
+        {
+            return entity.MapTo<VillagePlay, SimplePlayModel>();
+        }
+
+        public static SimpleEatModel ToSimpleModel(this VillageEat entity)
+        {
+            return entity.MapTo<VillageEat, SimpleEatModel>();
+        }
+
+        public static SimpleLiveModel ToSimpleModel(this VillageLive entity)
+        {
+            return entity.MapTo<VillageLive, SimpleLiveModel>();
+        }
+
         //
         public static VillageLiveModel ToModel(this VillageLive entity)
         {

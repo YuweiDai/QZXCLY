@@ -67,9 +67,13 @@ namespace QZCHY.API.Controllers
         public IHttpActionResult GetVillageEatById(int id = 0) {
 
             var eat = _villageEatService.GetVillageEatById(id);
+
             if (eat == null) return NotFound();
+            var location = eat.Location.ToString().Split('(')[1].Substring(0, eat.Location.ToString().Split('(')[1].Length-1);
 
             var eatModel = eat.ToModel();
+            eatModel.Lon = location.Split(' ')[0];
+            eatModel.Lat = location.Split(' ')[1];
             //得到Logo
             var logoPicture = eat.EatPictures.Where(p => p.IsLogo).FirstOrDefault();
             if (logoPicture != null) eatModel.Logo = _pictureService.GetPictureUrl(logoPicture.Picture);
@@ -88,6 +92,74 @@ namespace QZCHY.API.Controllers
 
             return Ok(eatModel);
         }
+
+        [HttpGet]
+        [Route("Live/{Id}")]
+        public IHttpActionResult GetVillageLiveById(int id = 0)
+        {
+
+            var live = _villageLiveService.GetVillageLiveById(id);
+            if (live == null) return NotFound();
+            var location = live.Location.ToString().Split('(')[1].Substring(0, live.Location.ToString().Split('(')[1].Length - 1);
+
+            var liveModel = live.ToModel();
+            liveModel.Lon = location.Split(' ')[0];
+            liveModel.Lat = location.Split(' ')[1];
+            //得到Logo
+            var logoPicture = live.LivePictures.Where(p => p.IsLogo).FirstOrDefault();
+            if (logoPicture != null) liveModel.Logo = _pictureService.GetPictureUrl(logoPicture.Picture);
+
+            //得到图片集
+            var livePictures = live.LivePictures.Where(p => p.LiveId == id).ToList();
+            var livePicturesModel = new List<LivePictureModel>();
+            foreach (var picture in livePictures)
+            {
+                var livePictureModel = new LivePictureModel();
+                livePictureModel.Name = "主题";
+                livePictureModel.Img = _pictureService.GetPictureUrl(picture.Picture);
+                livePicturesModel.Add(livePictureModel);
+            }
+
+            liveModel.LivePictures = livePicturesModel;
+
+            return Ok(liveModel);
+        }
+
+
+        [HttpGet]
+        [Route("Play/{Id}")]
+        public IHttpActionResult GetVillagePlayById(int id = 0)
+        {
+
+            var play = _villagePlayService.GetVillagePlayById(id);
+            if (play == null) return NotFound();
+            var location = play.Location.ToString().Split('(')[1].Substring(0, play.Location.ToString().Split('(')[1].Length - 1);
+
+            var playModel = play.ToModel();
+            playModel.Lon = location.Split(' ')[0];
+            playModel.Lat = location.Split(' ')[1];
+            //得到Logo
+            var logoPicture = play.PlayPictures.Where(p => p.IsLogo).FirstOrDefault();
+            if (logoPicture != null) playModel.Logo = _pictureService.GetPictureUrl(logoPicture.Picture);
+
+            //得到图片集
+            var playPictures = play.PlayPictures.Where(p => p.PlayId == id).ToList();
+            var playPicturesModel = new List<PlayPictureModel>();
+            foreach (var picture in playPictures)
+            {
+                var playPictureModel = new PlayPictureModel();
+                playPictureModel.Name = "主题";
+                playPictureModel.Img = _pictureService.GetPictureUrl(picture.Picture);
+                playPicturesModel.Add(playPictureModel);
+            }
+
+            playModel.PlayPictures = playPicturesModel;
+
+            return Ok(playModel);
+        }
+
+
+
 
         [HttpGet]
         [Route("Geo")]

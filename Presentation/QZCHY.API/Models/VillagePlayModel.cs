@@ -32,13 +32,31 @@ namespace QZCHY.API.Models
         /// <summary>
         /// 坐落位置
         /// </summary>
-        public string Location { get; set; }
+        public string Lon { get; set; }
+        public string Lat { get; set; }
 
         public int Order { get; set; }
 
         public virtual ICollection<PlayPictureModel> PlayPictures { get; set; }
 
         public int Village_Id { get; set; }
+
+        public string Logo { get; set; }
+
+    }
+
+
+    public class SimplePlayModel : BaseQMEntityModel
+    {
+        public string Name { get; set; }
+
+        public string Description { get; set; }
+
+        public string Logo { get; set; }
+
+        public string Audio { get; set; }
+
+        public int PanoramaId { get; set; }
 
     }
 }
