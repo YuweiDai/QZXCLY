@@ -65,6 +65,7 @@ namespace QZCHY.API.Controllers
                 {
                     Src = _pictureService.GetPictureUrl(picture.Picture)
                 };
+                villageModel.VillagePictures.Add(vpm);
             }
 
 
