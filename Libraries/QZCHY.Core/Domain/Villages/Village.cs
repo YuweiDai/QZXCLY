@@ -70,6 +70,11 @@ namespace QZCHY.Core.Domain.Villages
         public string Icon { get; set; }
 
         /// <summary>
+        /// 对应全景的名称Id
+        /// </summary>
+        public string Panorama { get; set; }
+
+        /// <summary>
         /// 坐落位置
         /// </summary>
         public DbGeography Location { get; set; }

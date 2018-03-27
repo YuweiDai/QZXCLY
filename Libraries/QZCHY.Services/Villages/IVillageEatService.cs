@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace QZCHY.Services.Villages
 {
-   public partial  interface IVillageEatService
+    public partial interface IVillageEatService
     {
         void InsertVillageEat(VillageEat eat);
 
@@ -15,6 +15,10 @@ namespace QZCHY.Services.Villages
 
         void DeleteVillageEat(VillageEat eat);
 
-        IList< VillageEat> GetVillageEatByVillageId(int id);
+        IList<VillageEat> GetVillageEatByVillageId(int id);
+
+        EatPicture GetEatLogoPictureById(int id);
+
+        VillageEat GetVillageEatById(int id);
     }
 }

@@ -34,6 +34,8 @@ namespace QZCHY.API.Models
 
         public string Distance { get; set; }
 
+        public string Panorama { get; set; }
+
         public double Latitude { get; set; }
 
         public double Longitude { get; set; }
@@ -77,7 +79,7 @@ namespace QZCHY.API.Models
     /// </summary>
     public class PlayGeoModel : SpotItemGeoModel
     {
-        public string Audio { get; set; }
+        public string AudioUrl { get; set; }
 
         public string Panorama { get; set; }
     }
@@ -92,7 +94,7 @@ namespace QZCHY.API.Models
 
         public double Price { get; set; }
 
-        public string Phone { get; set; }
+        public string Tel { get; set; }
 
         public string Panorama { get; set; }
     }
@@ -103,7 +105,7 @@ namespace QZCHY.API.Models
     public class LiveGeoModel : SpotItemGeoModel
     {
 
-        public string Phone { get; set; }
+        public string Tel { get; set; }
 
         public string Panorama { get; set; }
     }

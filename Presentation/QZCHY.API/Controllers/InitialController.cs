@@ -17,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Spatial;
 using System.IO;
+using System.Linq;
 using System.Web.Http;
 
 namespace QZCHY.API.Controllers
@@ -731,6 +732,25 @@ namespace QZCHY.API.Controllers
             }
 
             return Ok("finished");
+        }
+
+        [HttpGet]
+        [Route("test")]
+        public IHttpActionResult Test()
+        {
+            return Ok("closed");
+
+            var dp = _villageService.GetVillageById(1);
+            var qngd = dp.Plays.Where(v => v.Id == 1).SingleOrDefault();
+
+            if (qngd != null) qngd.AudioUrl = "https://www.luckyday.top/resources/audios/dp001.mp3";
+
+            var ch = _villageService.GetVillageById(1);
+            var ths = ch.Plays.Where(v => v.Id == 17).SingleOrDefault();
+
+            if (qngd != null) qngd.AudioUrl = "https://www.luckyday.top/resources/audios/ch001.mp3";
+
+            return Ok("");
         }
 
         /// <summary>  

@@ -28,6 +28,7 @@ using QZCHY.Services.Messages;
 using QZCHY.Services.Common;
 using QZCHY.Services.Media;
 using QZCHY.Services.Villages;
+using QZCHY.Services.Geo;
 
 namespace QZCHY.Web.Framework
 {
@@ -106,6 +107,7 @@ namespace QZCHY.Web.Framework
             builder.RegisterType<VillageEatService>().As<IVillageEatService>().InstancePerLifetimeScope();
             builder.RegisterType<VillagePlayService>().As<IVillagePlayService>().InstancePerLifetimeScope();
             builder.RegisterType<VillageLiveService>().As<IVillageLiveService>().InstancePerLifetimeScope();
+            builder.RegisterType<VillageServiceService>().As<IVillageServiceService>().InstancePerLifetimeScope();
             builder.RegisterType<StrategyService>().As<IStrategyService>().InstancePerLifetimeScope();
 
             //builder.RegisterType<PropertyService>().As<IPropertyService>().InstancePerLifetimeScope();
@@ -122,6 +124,8 @@ namespace QZCHY.Web.Framework
             //builder.RegisterType<LowPowerUserService>().As<ILowPowerUserService>().InstancePerLifetimeScope();
             //builder.RegisterType<UserLineService>().As<IUserLineService>().InstancePerLifetimeScope();
             #endregion
+
+            builder.RegisterType<GeometryService>().As<IGeometryService>().InstancePerLifetimeScope();
 
             //builder.RegisterType<BackInStockSubscriptionService>().As<IBackInStockSubscriptionService>().InstancePerLifetimeScope();
             //builder.RegisterType<CategoryService>().As<ICategoryService>().InstancePerLifetimeScope();

@@ -16,6 +16,7 @@ namespace QZCHY.Core.Domain.Villages
         /// 标题
         /// </summary>
         public string Name { get; set; }
+
         /// <summary>
         /// 地址
         /// </summary>
@@ -49,6 +50,11 @@ namespace QZCHY.Core.Domain.Villages
         /// 房价信息
         /// </summary>
         public string RoomPrice { get; set; }
+
+        /// <summary>
+        /// 全景id
+        /// </summary>
+        public int PanoramaId { get; set; }
 
         /// <summary>
         /// 特色标签

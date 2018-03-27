@@ -111,6 +111,8 @@
     <Compile Include="Events\IEventPublisher.cs" />
     <Compile Include="Events\ISubscriptionService.cs" />
     <Compile Include="Events\SubscriptionService.cs" />
+    <Compile Include="Geo\GeometryService.cs" />
+    <Compile Include="Geo\IGeometryService.cs" />
     <Compile Include="Helpers\BrowscapXmlParser.cs" />
     <Compile Include="Helpers\IUserAgentHelper.cs" />
     <Compile Include="Helpers\UserAgentHelper.cs" />
@@ -153,11 +155,13 @@
     <Compile Include="Villages\IVillageLiveService.cs" />
     <Compile Include="Villages\IVillagePlayService.cs" />
     <Compile Include="Villages\IVillageService.cs" />
+    <Compile Include="Villages\IVillageServiceService.cs" />
     <Compile Include="Villages\StrategyService.cs" />
     <Compile Include="Villages\VillageEatService.cs" />
     <Compile Include="Villages\VillageLiveService.cs" />
     <Compile Include="Villages\VillagePlayService.cs" />
     <Compile Include="Villages\VillageService.cs" />
+    <Compile Include="Villages\VillageServiceService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
