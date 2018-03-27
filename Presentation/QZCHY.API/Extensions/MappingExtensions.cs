@@ -132,23 +132,7 @@ namespace QZCHY.Web.Api.Extensions
         {
             return model.MapTo(destination);
         }
-
-        //
-        public static VillageVedioModel ToModel(this VillageVedio entity)
-        {
-            return entity.MapTo<VillageVedio, VillageVedioModel>();
-        }
-
-        public static VillageVedio ToEntity(this VillageVedioModel model)
-        {
-            return model.MapTo<VillageVedioModel, VillageVedio>();
-        }
-
-        public static VillageVedio ToEntity(this VillageVedioModel model, VillageVedio destination)
-        {
-            return model.MapTo(destination);
-        }
-
+    
 
         //
         public static VillagePictureModel ToModel(this VillagePicture entity)

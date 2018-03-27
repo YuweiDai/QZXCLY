@@ -35,6 +35,8 @@ namespace QZCHY.API.Models
 
         public string Route { get; set; }
 
+        public string VideoUrl { get; set; }
+
         /// <summary>
         /// 旅游空间路线
         /// </summary>

@@ -146,7 +146,6 @@
     <Compile Include="Domain\Media\Picture.cs" />
     <Compile Include="Domain\Media\PictureType.cs" />
     <Compile Include="Domain\Media\ResizeType.cs" />
-    <Compile Include="Domain\Media\Vedio.cs" />
     <Compile Include="Domain\Messages\EmailAccount.cs" />
     <Compile Include="Domain\Messages\EmailAccountSettings.cs" />
     <Compile Include="Domain\Messages\Event.cs" />
@@ -174,7 +173,6 @@
     <Compile Include="Domain\Villages\VillagePicture.cs" />
     <Compile Include="Domain\Villages\VillagePlay.cs" />
     <Compile Include="Domain\Villages\VillageService.cs" />
-    <Compile Include="Domain\Villages\VillageVedio.cs" />
     <Compile Include="Events\EntityDeleted.cs" />
     <Compile Include="Events\EntityInserted.cs" />
     <Compile Include="Events\EntityUpdated.cs" />
