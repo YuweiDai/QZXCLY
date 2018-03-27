@@ -18,9 +18,9 @@
     <view class='section'>
       <view class='title relative'>景点图片</view>     
       <view class='photos'>
-        <view class='photo' bindtap='previewImage' wx:for="{{play.photos}}" wx:for-item="photo" data-url="{{photo.img}}" data-index="{{index}}" >      
+        <view class='photo' bindtap='previewImage' wx:for="{{play.playPictures}}" wx:for-item="photo" data-url="{{photo.img}}" data-index="{{index}}" >      
           <image src="{{photo.img}}"/>
-          <view class='title'>{{photo.title}}</view>  
+          <view class='title'>{{photo.name}}</view>  
         </view>      
       </view>
 

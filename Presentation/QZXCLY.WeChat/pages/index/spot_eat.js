@@ -20,7 +20,8 @@ Page({
     //   { title: "大厅", img: "http://s9.rr.itc.cn/r/wapChange/20169_12_15/a29q5o2502122756352.jpg" },
     //   { title: "包厢", img: "http://img2.niwota.com/album/images/2015-07-15/1436925113922-club.jpg" }
     // ],
-    // urls: '',
+    eat:null,
+    urls: '',
   },
   // 拨打电话
   makePhoneCall: function (event) {
@@ -78,17 +79,18 @@ Page({
 
         console.log(eat);
 
-        // var urls = [];
-        // for (var index in p.data.photos) {
-        //   urls.push(p.data.photos[index].img);
-        // }
+        var urls = [];
+        for (var index in eat.eatPictures) {
+          urls.push(eat.eatPictures[index].img);
+        }
 
         page.setData({
+          urls:urls,
           eat: eat
         });
 
         wx.setNavigationBarTitle({
-          title: spot.name
+          title: eat.name
         });
       },
       fail: function (response) {

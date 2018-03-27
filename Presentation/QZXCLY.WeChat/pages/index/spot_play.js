@@ -20,8 +20,9 @@ Page({
     //  { title: "古道3", img: "http://img2.niwota.com/album/images/2015-07-15/1436925113922-club.jpg" },
     //  { title: "古道4", img: "http://www.qlx123.com/files/2015-11/20151114161243130592.jpg" }  
     //],
-    //urls:'',
-    //playing:false
+    play:null,
+    urls:'',
+    playing:false
   },
 
   // 语音讲解
@@ -59,7 +60,7 @@ Page({
     var url=event.currentTarget.dataset.url;
     wx.previewImage({
       current: url, // 当前显示图片的http链接
-      urls:p.data.urls // 需要预览的图片http链接列表
+      urls:page.data.urls // 需要预览的图片http链接列表
     })
   },
 
@@ -89,17 +90,18 @@ Page({
 
               console.log(play);
 
-              // var urls = [];
-              // for (var index in p.data.photos) {
-              //   urls.push(p.data.photos[index].img);
-              // }
+              var urls = [];
+              for (var index in play.playPictures) {
+                urls.push(play.playPictures[index].img);
+              }
 
               page.setData({
-                  play: play
+                  play: play,
+                  urls:urls
               });
 
               wx.setNavigationBarTitle({
-                  title: spot.name
+                  title: play.name
               });
           },
           fail: function (response) {
@@ -115,20 +117,20 @@ Page({
     if (innerAudioContext == null)
     {
       innerAudioContext = wx.createInnerAudioContext();
-      innerAudioContext.src=p.data.audio;
+      innerAudioContext.src=page.data.audio;
     }
 
     innerAudioContext.onPlay(() => {
       console.log('开始播放');
-      p.setData({playing: true});
+      page.setData({playing: true});
     });
     innerAudioContext.onStop(() => {
       console.log('onStop');
-      p.setData({ playing: false });
+      page.setData({ playing: false });
     })
     innerAudioContext.onEnded(() => {
       console.log('onEnded');
-      p.setData({ playing: false });
+      page.setData({ playing: false });
     });        
   },
 
