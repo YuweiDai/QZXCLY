@@ -1,4 +1,5 @@
-﻿using QZCHY.Services.Geo;
+﻿using QZCHY.API.Models;
+using QZCHY.Services.Geo;
 using QZCHY.Services.Media;
 using QZCHY.Services.Villages;
 using QZCHY.Web.Api.Extensions;
@@ -58,6 +59,34 @@ namespace QZCHY.API.Controllers
                 villageModel.Route = _pictureService.GetPictureUrl(routePicture.Picture, 320);
 
             return Ok(villageModel);
+        }
+
+
+        [HttpGet]
+        [Route("Eat/{Id}")]
+        public IHttpActionResult GetVillageEatById(int id = 0) {
+
+            var eat = _villageEatService.GetVillageEatById(id);
+            if (eat == null) return NotFound();
+
+            var eatModel = eat.ToModel();
+            //得到Logo
+            var logoPicture = eat.EatPictures.Where(p => p.IsLogo).FirstOrDefault();
+            if (logoPicture != null) eatModel.Logo = _pictureService.GetPictureUrl(logoPicture.Picture);
+
+            //得到图片集
+            var eatPictures = eat.EatPictures.Where(p => p.EatId == id ).ToList();
+            var eatPicturesModel = new List<EatPictureModel>();
+            foreach (var picture in eatPictures) {
+                var eatPictureModel = new EatPictureModel();
+                eatPictureModel.Name = "主题";
+                eatPictureModel.Img = _pictureService.GetPictureUrl(picture.Picture);
+                eatPicturesModel.Add(eatPictureModel);
+            }
+
+            eatModel.EatPictures = eatPicturesModel;
+
+            return Ok(eatModel);
         }
 
         [HttpGet]

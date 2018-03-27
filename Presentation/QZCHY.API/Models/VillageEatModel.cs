@@ -67,6 +67,6 @@ namespace QZCHY.API.Models
 
         public int Village_Id { get; set; }
 
-
+        public string Logo { get; set; }
     }
 }
