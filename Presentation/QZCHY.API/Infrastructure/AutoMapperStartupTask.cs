@@ -2,7 +2,6 @@
 using System.Linq;
 using QZCHY.Core.Infrastructure;
 using AutoMapper;
-using QZCHY.Core.Domain.AccountUsers;
 using QZCHY.API.Models;
 using QZCHY.Core.Domain.Villages;
 
@@ -20,10 +19,12 @@ namespace QZCHY.Web.Api.Infrastructure
             //对象映射     
              Mapper.CreateMap<VillageModel, Village>()
                   .ForMember(dest => dest.Location, mo => mo.Ignore())
+                  .ForMember(dest => dest.Region, mo => mo.Ignore())
            .ForMember(dest => dest.GeoTourRoute, mo => mo.Ignore());
 
             Mapper.CreateMap<Village, VillageModel>()
                  .ForMember(dest => dest.Longitude, mo => mo.MapFrom(src => src.Location.Longitude))
+                  .ForMember(dest => dest.Region, mo => mo.Ignore())
                  .ForMember(dest => dest.Latitude, mo => mo.MapFrom(src => src.Location.Latitude));
 
             Mapper.CreateMap<Village, SimpleVillageGeoModel>()

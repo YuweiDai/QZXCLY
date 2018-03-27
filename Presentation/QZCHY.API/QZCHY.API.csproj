@@ -361,6 +361,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\InitialController.cs" />
+    <Compile Include="Controllers\StrategyController.cs" />
     <Compile Include="Controllers\VillageController.cs" />
     <Compile Include="Extensions\MappingExtensions.cs" />
     <Compile Include="Infrastructure\AutoMapperStartupTask.cs" />
