@@ -17,6 +17,8 @@ namespace QZCHY.API.Models
         public string OpenTime { get; set; }
 
         public string Desc { get; set; }
+
+        public string Region { get; set; }
  
         public string Tags { get; set; }
 

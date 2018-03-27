@@ -18,5 +18,10 @@ namespace QZCHY.Services.Villages
         void DeleteStrategy(Strategy stra);
 
       IList< Strategy> GetStrategyByVillageId(int id);
+
+        IList<Strategy> GetAllStrategy();
+
+        Strategy GetStrategyById(int id);
+             
     }
 }

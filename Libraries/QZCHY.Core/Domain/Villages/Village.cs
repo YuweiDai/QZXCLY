@@ -79,6 +79,9 @@ namespace QZCHY.Core.Domain.Villages
         /// </summary>
         public string VideoUrl { get; set; }
 
+
+        public Region Region { get; set; }
+
         /// <summary>
         /// 坐落位置
         /// </summary>

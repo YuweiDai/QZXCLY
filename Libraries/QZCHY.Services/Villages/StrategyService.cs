@@ -61,5 +61,24 @@ namespace QZCHY.Services.Villages
             response = query.ToList();
             return response;
         }
+
+        public IList<Strategy> GetAllStrategy()
+        {
+            var response = new List<Strategy>();
+            var query = from s in _strategyRepository.Table
+                        where s.Deleted ==false
+                        select s;
+
+            response = query.ToList();
+            return response;
+        }
+
+        public Strategy GetStrategyById(int id)
+        {
+            var query = from s in _strategyRepository.Table
+                        where s.Id == id
+                        select s;
+            return query.FirstOrDefault();
+        }
     }
 }
