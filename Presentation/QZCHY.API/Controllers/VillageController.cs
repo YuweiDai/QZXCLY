@@ -53,10 +53,19 @@ namespace QZCHY.API.Controllers
             var routePicture = village.VillagePictures.Where(vp => vp.IsRoute).FirstOrDefault();
 
             if (logoPicture != null)
-                villageModel.Logo = _pictureService.GetPictureUrl(logoPicture.Picture, 320);
+                villageModel.Logo = _pictureService.GetPictureUrl(logoPicture.Picture);
 
             if (routePicture != null)
-                villageModel.Route = _pictureService.GetPictureUrl(routePicture.Picture, 320);
+                villageModel.RoutePicutre = _pictureService.GetPictureUrl(routePicture.Picture);
+
+           //处理攻略
+           foreach(var strategyModel in villageModel.Strategies)
+            {
+                var strategy = village.Strategies.Where(s => s.Id == strategyModel.Id).SingleOrDefault();
+                var strategyLogoPicture = strategy.StrategyPictures.FirstOrDefault();
+
+                strategyModel.Img = _pictureService.GetPictureUrl(strategyLogoPicture.Picture);
+            }
 
             return Ok(villageModel);
         }

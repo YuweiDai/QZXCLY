@@ -26,24 +26,24 @@
         <view class='navAnchor' bindtap='navToMap' data-url="../map/nav" data-lon="{{spot.longitude}}" data-lat="{{spot.latitude}}">导航</view>
       </view>
       <view class='phone line' catchtap='makePhoneCall' data-phone="{{spot.phone}}"><i class="iconfont icon-dianhua"></i> 联系电话：{{spot.phone}}</view>      
-      <view class='price line'><i class="iconfont icon-menpiao"></i> 景区门票：{{spot.price}}</view>    
+      <view class='price line'><i class="iconfont icon-menpiao"></i> 景区门票：{{spot.price!=0?spot.price:"免费"}}</view>    
       <view class='bus line' data-title="公共交通" data-content="{{spot.traffic}}" bindtap='showDialog'><i class="iconfont icon-bus"></i> 查看公共交通</view>    
       <view class='address line flex'>
-        <view class='mapAnchor' data-title="旅游路线" data-content="{{spot.route}}" bindtap='showDialog'>
+        <view class='mapAnchor' data-title="旅游路线" data-content="{{spot.tourRoute}}" bindtap='showDialog'>
           <i class="iconfont icon-zhuanyiluxian"></i> 查看旅游路线
         </view>
-        <view class='navAnchor' bindtap='showTourJpg' wx:if='{{spot.tourJpg}}'>导游图</view>
+        <view class='navAnchor' bindtap='showTourJpg' wx:if='{{spot.routePicutre}}'>导游图</view>
       </view>      
       <!-- <view class='route line' data-title="旅游路线" data-content="{{spot.route}}" bindtap='showDialog'><i class="iconfont icon-zhuanyiluxian"></i> 查看旅游路线</view>            -->
       <view class='desc_title line'><i class="iconfont icon-campaign"></i> 景区介绍</view>
       <view class='desc' data-title="景区介绍" data-content="{{spot.desc}}" bindtap='showDialog'>{{spot.desc}}</view>
     </view>
 
-    <view class='spot_vedios section relative' wx:if="{{!dialog.visible}}">
+    <view class='spot_vedios section relative' wx:if="{{!dialog.visible && spot.videoUrl}}">
       <view class='title'>视频</view>
       <scroll-view scroll-y="true">	   
         <view class="vedios">     
-          <video class='vedio' src="https://v-cdn.zjol.com.cn/169771.mp4?userId=464a4a67-5e8e-4637-8e76-34f289d6f4da"></video>
+          <video class='vedio' src="{{spot.videoUrl}}"></video>
         </view>
       </scroll-view>
     </view>

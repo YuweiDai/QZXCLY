@@ -66,6 +66,7 @@ App({
   },
   globalData: {
     apiUrl: "http://qzghj.free.ngrok.cc/",  //1ded3a1f69ed8d58
+    resourceUrl:"https://www.luckyday.top/resources/",
     userInfo: null,
     systemInfo:null,
     locationDetect:false
