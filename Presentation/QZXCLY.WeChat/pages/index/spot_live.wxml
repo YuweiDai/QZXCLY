@@ -2,33 +2,34 @@
 <view class="container">
   <scroll-view scroll-y="true" class='spot_service'>
     <view class='banner'>
-     <image src="{{logo}}"></image>
+     <image src="{{live.logo}}"></image>
     </view>
     <view class='section'>
-      <view class='name line relative'>{{title}}
-       <view class='btns'>          
-        <view class='btn' bindtap='makePhoneCall' title="拨打"data-phone="{{phone}}"><i class="iconfont icon-dianhua"></i></view>
-        <view class='btn' hidden='{{panorama==undefined}}' bindtap='navToPanorama' title="全景"><i class='iconfont icon-vr-m'></i></view>        
+      <view class='name line relative'>
+        {{live.name}}
+        <view class='btns'>          
+        <view class='btn' bindtap='makePhoneCall' title="拨打"data-phone="{{live.phone}}"><i class="iconfont icon-dianhua"></i></view>
+        <view class='btn' hidden='{{live.panorama==0}}' bindtap='navToPanorama' title="全景"><i class='iconfont icon-vr-m'></i></view>        
         <view class='btn' bindtap='navTo' title="导航"><i class='iconfont icon-daohang1'></i></view>       
        </view>
       </view>
-      <view class='line relative'>地址：{{address}}</view>
+      <view class='line relative'>地址：{{live.address}}</view>
       <view class='line relative'>设施设备：
-        <view>{{facilities}}</view>      
+        <view>{{live.facilities}}</view>      
       </view>                 
     </view>
     <view class='section'>
       <view class='title relative'>民宿信息</view>
       <view class='description'>
         <scroll-view scroll-y="true">
-          {{description}}
+          {{live.description}}
         </scroll-view>
       </view>      
     </view>
     <view class='section'>
       <view class='title relative'>民宿图片</view>    
       <view class='photos'>
-        <view class='photo' bindtap='previewImage' wx:for="{{photos}}" wx:for-item="photo" data-url="{{photo.img}}" data-index="{{index}}" >      
+        <view class='photo' bindtap='previewImage' wx:for="{{live.photos}}" wx:for-item="photo" data-url="{{photo.img}}" data-index="{{index}}" >      
           <image src="{{photo.img}}"/>
           <view class='title'>{{photo.title}}</view>  
         </view>      

@@ -22,7 +22,7 @@ namespace QZCHY.API.Models
 
         public double Price { get; set; }
 
-        public string Traffic { get; set; }
+        public string Triffic { get; set; }
 
         public double Latitude { get; set; }
 
@@ -38,12 +38,12 @@ namespace QZCHY.API.Models
 
         public IList<StrategyModel> Strategies { get; set; }
 
-        //public virtual ICollection<VillagePictureModel> VillagePictures { get; set; }
+        public virtual ICollection<VillagePictureModel> VillagePictures { get; set; }
 
-        public IList<VillageEatModel> Eats { get; set; }
+        public IList<SimpleEatModel> Eats { get; set; }
 
-        //public IList<VillageLiveModel> Lives { get; set; }
+        public IList<SimpleLiveModel> Lives { get; set; }
 
-        //public IList<VillagePlayModel> Plays { get; set; }
+        public IList<SimplePlayModel> Plays { get; set; }
     }
 }

@@ -2,26 +2,26 @@
 <view class="container">
   <scroll-view scroll-y="true" class='spot_service'>
     <view class='banner'>
-     <image src="{{logo}}"></image>
+     <image src="{{eat.logo}}"></image>
     </view>
     <view class='section'>
-      <view class='name line relative'>{{title}}
+      <view class='name line relative'>{{eat.name}}
        <view class='btns'>   
-        <view class='btn' bindtap='makePhoneCall' title="拨打"data-phone="{{phone}}"><i class="iconfont icon-dianhua"></i></view>
+        <view class='btn' bindtap='makePhoneCall' title="拨打"data-phone="{{eat.phone}}"><i class="iconfont icon-dianhua"></i></view>
         <view class='btn' bindtap='navTo' title="导航"><i class='iconfont icon-daohang1'></i></view>       
        </view>
       </view>
-      <view class='line relative'>地址：{{address}}</view>
-      <view class='line relative'>人均消费：{{price}} 元</view>
-      <view class='line relative'>推荐菜：<view>{{suggestion}}</view></view>                 
+      <view class='line relative'>地址：{{eat.address}}</view>
+      <view class='line relative'>人均消费：{{eat.price}} 元</view>
+      <view class='line relative'>推荐菜：<view>{{eat.suggestion}}</view></view>                 
       <view class='description'>餐厅信息：
-        <view wx:for="{{descriptions}}" wx:for-item="description">{{description}}</view>
+        <view wx:for="{{eat.descriptions}}" wx:for-item="d">{{d}}</view>
       </view>
     </view>
     <view class='section'>
       <view class='title relative'>酒店图片</view>     
       <view class='photos'>
-        <view class='photo' bindtap='previewImage' wx:for="{{photos}}" wx:for-item="photo" data-url="{{photo.img}}" data-index="{{index}}" >      
+        <view class='photo' bindtap='previewImage' wx:for="{{eat.photos}}" wx:for-item="photo" data-url="{{photo.img}}" data-index="{{index}}" >      
           <image src="{{photo.img}}"/>
           <view class='title'>{{photo.title}}</view>  
         </view>      

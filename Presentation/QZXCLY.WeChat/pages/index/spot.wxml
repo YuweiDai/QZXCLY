@@ -22,12 +22,12 @@
         </view>
       </view>
       <view class='address line flex'>
-        <view class='mapAnchor'><navigator class='ellipsis' url="/pages/map/index??spotid={{spot.id}}" open-type="navigate" hover-class="navigator-hover"><i class="iconfont icon-position"></i> {{spot.address}}</navigator></view>
+        <view class='mapAnchor'><navigator class='ellipsis' url="/pages/map/index?spotid={{spot.id}}" open-type="navigate" hover-class="navigator-hover"><i class="iconfont icon-position"></i> {{spot.address}}</navigator></view>
         <view class='navAnchor' bindtap='navToMap' data-url="../map/nav" data-lon="{{spot.longitude}}" data-lat="{{spot.latitude}}">导航</view>
       </view>
       <view class='phone line' catchtap='makePhoneCall' data-phone="{{spot.phone}}"><i class="iconfont icon-dianhua"></i> 联系电话：{{spot.phone}}</view>      
       <view class='price line'><i class="iconfont icon-menpiao"></i> 景区门票：{{spot.price!=0?spot.price:"免费"}}</view>    
-      <view class='bus line' data-title="公共交通" data-content="{{spot.traffic}}" bindtap='showDialog'><i class="iconfont icon-bus"></i> 查看公共交通</view>    
+      <view class='bus line' data-title="公共交通" data-content="{{spot.triffic}}" bindtap='showDialog'><i class="iconfont icon-bus"></i> 查看公共交通</view>    
       <view class='address line flex'>
         <view class='mapAnchor' data-title="旅游路线" data-content="{{spot.tourRoute}}" bindtap='showDialog'>
           <i class="iconfont icon-zhuanyiluxian"></i> 查看旅游路线
@@ -68,43 +68,41 @@
 				<view class="filter {{filterId==2?'active':''}}" data-id="2" bindtap="tapFilter">住宿</view>
       </view>
       <view hidden="{{filterId!=0}}" class='spot_service_group'>
-          <view class="spot_service_item" wx:for="{{spot.play_list}}" data-url='spot_play?id={{item.id}}' bindtap='navTo'>
+          <view class="spot_service_item" wx:for="{{spot.plays}}" data-url='spot_play?id={{item.id}}' bindtap='navTo'>
             <image class="poster" src="{{item.logo}}"></image>
             <view class="meta">
-              <text class="title">{{item.title}}</text>
-              <text class="sub-title">{{item.descriptions}}</text>
+              <text class="title">{{item.name}}</text>
+              <text class="sub-title">{{item.description}}</text>
               <view class='btns'>
-                <view class='btn' hidden='{{item.panorama==undefined}}' catchtap='navTo' data-url="webview?title=全景图&src=www.luckyday.top/resources/panoramas/index.html"><i class='iconfont icon-vr-m'></i> 全景</view>
-                <view class='btn {{audioPlayer.playing&&audioPlayer.current==item.audio?"selected":""}}' hidden='{{item.audio==undefined}}' catchtap='playAudio' data-audio='{{item.audio}}'><i class='iconfont icon-yuyin'></i> 讲解</view>
-                <view class='btn' catchtap='navToMap' data-url="../map/nav" data-lon="{{item.longitude}}" data-lat="{{item.latitude}}"><i class='iconfont icon-daohang1'></i> 导航</view>
+                <view class='btn' hidden='{{item.panoramaId==0}}' catchtap='navTo' data-url="../index/webview?src=https://www.luckyday.top/threejs?village={{item.panorama}}&pId={{item.panoramaId}}"><i class='iconfont icon-vr-m'></i> 全景</view>
+                <view class='btn {{audioPlayer.playing&&audioPlayer.current==item.audio?"selected":""}}' hidden='{{item.audio==undefined}}' catchtap='playAudio' data-audio='{{item.audioUrl}}'><i class='iconfont icon-yuyin'></i> 讲解</view>
+                <view class='btn' catchtap='navToMap' data-url="../map/nav" data-lon="{{item.longitude}}" data-lat="{{item.latitude}}"><i class='iconfont icon-daohang1'></i> 导航</view>                 
               </view>
             </view>
           </view>
       </view>    
       <view hidden="{{filterId!=1}}" class='spot_service_group'>
-          <view class="spot_service_item" wx:for="{{spot.eat_list}}" wx:for-item="eat"  data-url='spot_eat?id={{item.id}}' bindtap='navTo'>
+          <view class="spot_service_item" wx:for="{{spot.eats}}" wx:for-item="eat"  data-url='spot_eat?id={{eat.id}}' bindtap='navTo'>
             <image class="poster" src="{{eat.logo}}"></image>
             <view class="meta">
               <view class='title'>
-                <text class="">{{eat.title}}</text> 
-                <i class="iconfont icon-206 star" wx:for="{{eat.level}}"></i>
-                <i class="iconfont icon-hotfill hot" hidden="{{!hot}}"></i>                
+                <text class="">{{eat.name}}</text> 
+                <i class="iconfont icon-206 star" wx:for="{{eat.level}}"></i>               
               </view>              
-              <text class="multi-info">{{eat.descriptions}}</text>
+              <text class="multi-info">{{eat.description}}</text>
               <text class="multi-info" data-phone="{{eat.tel}}" catchtap='makePhoneCall'>联系电话：{{eat.tel}}</text>
-              <text class="multi-info">人均：{{eat.price}}元</text>
+              <text class="multi-info">人均：{{eat.price==0?"不详":eat.price+" 元"}}</text>
             </view>
           </view>      
       </view> 
       <view hidden="{{filterId!=2}}" class='spot_service_group'>
-          <view class="spot_service_item" wx:for="{{spot.live_list}}"  data-url='spot_live?id={{item.id}}' bindtap='navTo'>
+          <view class="spot_service_item" wx:for="{{spot.lives}}"  data-url='spot_live?id={{item.id}}' bindtap='navTo'>
             <image class="poster" src="{{item.logo}}"></image>
             <view class="meta">
               <view class='title'>
-                <text class="">{{item.title}}</text> 
-                <i class="iconfont icon-hotfill hot" hidden="{{!hot}}"></i>                
+                <text class="">{{item.name}}</text>             
               </view>              
-              <text class="multi-info">{{item.descriptions}}</text>
+              <text class="multi-info">{{item.description}}</text>
               <text class="multi-info" data-phone="{{item.tel}}" catchtap='makePhoneCall'>联系电话：{{item.tel}}</text>
               <text class="multi-info">床位：{{item.bedCount}}</text>
             </view>

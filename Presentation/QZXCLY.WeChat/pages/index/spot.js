@@ -526,13 +526,28 @@ Page({
       url: app.globalData.apiUrl + 'Villages/'+id,
       success: function (response) {
         var spot=response.data;
+        var size = 240 / page.data.rpx;
+
         spot.tags=spot.tags.split(';');
 
         spot.strategies.forEach(function(item){
-
           item.src = app.globalData.resourceUrl+"/strategies/"+item.src;
-
         });
+
+        spot.plays.forEach(function (item) {
+          if(item.logo==""||item.logo==null)
+          item.logo = "http://www.atool.org/placeholder.png?size=" + size + "x" + size + "&text=" + item.name + "&&bg=836&fg=fff";
+        });        
+
+        spot.eats.forEach(function (item) {
+          if (item.logo == "" || item.logo == null)
+          item.logo = "http://www.atool.org/placeholder.png?size=" + size + "x" + size + "&text=" + item.name + "&&bg=836&fg=fff";
+        });   
+
+        spot.lives.forEach(function (item) {
+          if (item.logo == "" || item.logo == null)
+          item.logo = "http://www.atool.org/placeholder.png?size=" + size + "x" + size + "&text=" + item.name + "&&bg=836&fg=fff";
+        });   
 
         console.log(spot);
 

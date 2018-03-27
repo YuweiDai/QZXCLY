@@ -2,22 +2,23 @@
 <view class="container">
   <scroll-view scroll-y="true" class='spot_service'>
     <view class='banner'>
-     <image src="{{logo}}"></image>
+     <image src="{{play.logo}}"></image>
     </view>
     <view class='section'>
-      <view class='name line relative'>{{title}}
-       <view class='btns'>
-        <view class='btn {{playing?"selected":""}}' hidden='{{audio==undefined}}' bindtap='playAudio' data-audio='{{audio}}' title="讲解"><i class='iconfont icon-yuyin'></i></view>       
-        <view class='btn' hidden='{{panorama==undefined}}' bindtap='navToPanorama' title="全景"><i class='iconfont icon-vr-m'></i></view>
+      <view class='name line relative'>
+        {{play.name}}
+        <view class='btns'>
+        <view class='btn {{playing?"selected":""}}' hidden='{{play.audioUrl==undefined}}' bindtap='playAudio' data-audio='{{play.audioUrl}}' title="讲解"><i class='iconfont icon-yuyin'></i></view>       
+        <view class='btn' hidden='{{play.panorama==0}}' bindtap='navToPanorama' title="全景"><i class='iconfont icon-vr-m'></i></view>
         <view class='btn' bindtap='navTo' title="导航"><i class='iconfont icon-daohang1'></i></view>       
        </view>
       </view>
-      <view class='description'>{{description}}</view>
+      <view class='description'>{{play.description}}</view>
     </view>
     <view class='section'>
       <view class='title relative'>景点图片</view>     
       <view class='photos'>
-        <view class='photo' bindtap='previewImage' wx:for="{{photos}}" wx:for-item="photo" data-url="{{photo.img}}" data-index="{{index}}" >      
+        <view class='photo' bindtap='previewImage' wx:for="{{play.photos}}" wx:for-item="photo" data-url="{{photo.img}}" data-index="{{index}}" >      
           <image src="{{photo.img}}"/>
           <view class='title'>{{photo.title}}</view>  
         </view>      

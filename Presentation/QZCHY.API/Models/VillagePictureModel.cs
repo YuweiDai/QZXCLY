@@ -8,13 +8,6 @@ namespace QZCHY.API.Models
 {
     public class VillagePictureModel: BaseQMEntityModel
     {
-
-        public int Village_Id { get; set; }
-
-        public int Picture_Id { get; set; }
-
-        public bool IsLogo { get; set; }
-
-        public string Href { get; set; }
+        public string Src { get; set; }
     }
 }

@@ -58,8 +58,39 @@ namespace QZCHY.API.Controllers
             if (routePicture != null)
                 villageModel.RoutePicutre = _pictureService.GetPictureUrl(routePicture.Picture);
 
-           //处理攻略
-           foreach(var strategyModel in villageModel.Strategies)
+            villageModel.VillagePictures = new List<VillagePictureModel>();
+            foreach (var picture in village.VillagePictures)
+            {
+                var vpm = new VillagePictureModel
+                {
+                    Src = _pictureService.GetPictureUrl(picture.Id)
+                };
+            }
+
+
+            foreach (var eat in villageModel.Eats)
+            {
+                var eatLogoPicture = _villageEatService.GetEatLogoPictureById(eat.Id);
+                if (eatLogoPicture != null)
+                    eat.Logo = _pictureService.GetPictureUrl(eatLogoPicture.Picture);
+            }
+
+            foreach (var play in villageModel.Plays)
+            {
+                var playLogoPicture = _villagePlayService.GetPlayLogoPictureById(play.Id);
+                if (playLogoPicture != null)
+                    play.Logo = _pictureService.GetPictureUrl(playLogoPicture.Picture);
+            }
+
+            foreach (var live in villageModel.Lives)
+            {
+                var liveLogoPicture = _villageLiveService.GetLiveLogoPictureById(live.Id);
+                if (liveLogoPicture != null)
+                    live.Logo = _pictureService.GetPictureUrl(liveLogoPicture.Picture);
+            }
+
+            //处理攻略
+            foreach (var strategyModel in villageModel.Strategies)
             {
                 var strategy = village.Strategies.Where(s => s.Id == strategyModel.Id).SingleOrDefault();
                 var strategyLogoPicture = strategy.StrategyPictures.FirstOrDefault();

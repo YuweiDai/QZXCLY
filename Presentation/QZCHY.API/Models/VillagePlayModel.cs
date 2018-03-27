@@ -54,7 +54,7 @@ namespace QZCHY.API.Models
 
         public string Logo { get; set; }
 
-        public string Audio { get; set; }
+        public string AudioUrl { get; set; }
 
         public int PanoramaId { get; set; }
 
