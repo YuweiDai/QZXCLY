@@ -63,7 +63,7 @@ namespace QZCHY.API.Controllers
             {
                 var vpm = new VillagePictureModel
                 {
-                    Src = _pictureService.GetPictureUrl(picture.Id)
+                    Src = _pictureService.GetPictureUrl(picture.Picture)
                 };
             }
 
