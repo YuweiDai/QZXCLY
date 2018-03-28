@@ -66,29 +66,7 @@ namespace QZCHY.API.Controllers
                     Src = _pictureService.GetPictureUrl(picture.Picture)
                 };
                 villageModel.VillagePictures.Add(vpm);
-            }
-
-
-            foreach (var eat in villageModel.Eats)
-            {
-                var eatLogoPicture = _villageEatService.GetEatLogoPictureById(eat.Id);
-                if (eatLogoPicture != null)
-                    eat.Logo = _pictureService.GetPictureUrl(eatLogoPicture.Picture);
-            }
-
-            foreach (var play in villageModel.Plays)
-            {
-                var playLogoPicture = _villagePlayService.GetPlayLogoPictureById(play.Id);
-                if (playLogoPicture != null)
-                    play.Logo = _pictureService.GetPictureUrl(playLogoPicture.Picture);
-            }
-
-            foreach (var live in villageModel.Lives)
-            {
-                var liveLogoPicture = _villageLiveService.GetLiveLogoPictureById(live.Id);
-                if (liveLogoPicture != null)
-                    live.Logo = _pictureService.GetPictureUrl(liveLogoPicture.Picture);
-            }
+            }        
 
             //处理攻略
             foreach (var strategyModel in villageModel.Strategies)
@@ -100,6 +78,82 @@ namespace QZCHY.API.Controllers
             }
 
             return Ok(villageModel);
+        }
+
+        [HttpGet]
+        [Route("EatList/{Id}")]
+        public IHttpActionResult GetEatList(int id)
+        {
+            var village = _villageService.GetVillageById(id);
+            if (village == null) return NotFound();
+
+            var villageModel = village.ToModel();
+            foreach (var eat in villageModel.Eats)
+            {
+                var eatLogoPicture = _villageEatService.GetEatLogoPictureById(eat.Id);
+                if (eatLogoPicture != null)
+                    eat.Logo = _pictureService.GetPictureUrl(eatLogoPicture.Picture);
+            }
+
+
+            return Ok(villageModel.Eats);
+        }
+
+        [HttpGet]
+        [Route("PlayList/{Id}")]
+        public IHttpActionResult GetPlayList(int id)
+        {
+            var village = _villageService.GetVillageById(id);
+            if (village == null) return NotFound();
+
+            var villageModel = village.ToModel();
+            foreach (var play in villageModel.Plays)
+            {
+                var playLogoPicture = _villageEatService.GetEatLogoPictureById(play.Id);
+                if (playLogoPicture != null)
+                    play.Logo = _pictureService.GetPictureUrl(playLogoPicture.Picture);
+            }
+
+
+            return Ok(villageModel.Plays);
+        }
+
+        [HttpGet]
+        [Route("LiveList/{Id}")]
+        public IHttpActionResult GetLiveList(int id)
+        {
+            var village = _villageService.GetVillageById(id);
+            if (village == null) return NotFound();
+
+            var villageModel = village.ToModel();
+            foreach (var live in villageModel.Lives)
+            {
+                var liveLogoPicture = _villageEatService.GetEatLogoPictureById(live.Id);
+                if (liveLogoPicture != null)
+                    live.Logo = _pictureService.GetPictureUrl(liveLogoPicture.Picture);
+            }
+
+
+            return Ok(villageModel.Lives);
+        }
+
+        [HttpGet]
+        [Route("Region/{regionId}")]
+        public IHttpActionResult GetVillagesByRegionId(int regionId)
+        {
+
+            var villages = _villageService.GetVillagesByRegionId(regionId);
+
+            var simpleVillages = new List<VillageSimpleModel>();
+            foreach (var village in villages) {
+
+                var simpleVillage = village.ToSimpleModel();
+                var logePicture = village.VillagePictures.Where(p => p.IsLogo).FirstOrDefault();
+                simpleVillage.Logo = _pictureService.GetPictureUrl(logePicture.Picture);
+                simpleVillages.Add(simpleVillage);
+            }
+
+            return Ok(simpleVillages);
         }
 
 

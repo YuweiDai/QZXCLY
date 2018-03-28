@@ -106,6 +106,7 @@ namespace QZCHY.Web.Api.Infrastructure
             Mapper.CreateMap<StrategyModel, Strategy>();
 
             Mapper.CreateMap<Strategy, StrategyModel>();
+            Mapper.CreateMap<Village, VillageSimpleModel>();
         }
     }
 }

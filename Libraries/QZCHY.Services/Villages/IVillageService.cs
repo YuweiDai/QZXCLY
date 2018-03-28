@@ -26,5 +26,7 @@ namespace QZCHY.Services.Villages
         /// <returns></returns>
         IQueryable<Village> GetAllVillages();
 
+        IList<Village> GetVillagesByRegionId(int id);
+
     }
 }

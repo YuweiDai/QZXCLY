@@ -49,6 +49,11 @@ namespace QZCHY.Web.Api.Extensions
             return model.MapTo(destination);
         }
 
+        public static VillageSimpleModel ToSimpleModel(this Village entity)
+        {
+            return entity.MapTo<Village, VillageSimpleModel>();
+        }
+
 
         public static VillageEatModel ToModel(this VillageEat entity)
         {
