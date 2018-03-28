@@ -2,7 +2,7 @@
 <view class="container">
   <scroll-view scroll-y="true" class='spot_service'>
     <view class='banner'>
-     <image src="{{eat.logo}}"></image>
+     <image mode='aspectFill' src="{{eat.logo}}"></image>
     </view>
     <view class='section'>
       <view class='name line relative'>{{eat.name}}

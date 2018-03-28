@@ -59,14 +59,14 @@ namespace QZCHY.API.Controllers
                 villageModel.RoutePicutre = _pictureService.GetPictureUrl(routePicture.Picture);
 
             villageModel.VillagePictures = new List<VillagePictureModel>();
-            foreach (var picture in village.VillagePictures)
+            foreach (var picture in village.VillagePictures.Take(3))
             {
                 var vpm = new VillagePictureModel
                 {
                     Src = _pictureService.GetPictureUrl(picture.Picture)
                 };
                 villageModel.VillagePictures.Add(vpm);
-            }        
+            }
 
             //处理攻略
             foreach (var strategyModel in villageModel.Strategies)
@@ -77,11 +77,15 @@ namespace QZCHY.API.Controllers
                 strategyModel.Img = _pictureService.GetPictureUrl(strategyLogoPicture.Picture);
             }
 
+            villageModel.Eats = null;
+            villageModel.Plays = null;
+            villageModel.Lives = null;
+
             return Ok(villageModel);
         }
 
         [HttpGet]
-        [Route("EatList/{Id}")]
+        [Route("{Id}/EatList")]
         public IHttpActionResult GetEatList(int id)
         {
             var village = _villageService.GetVillageById(id);
@@ -100,7 +104,7 @@ namespace QZCHY.API.Controllers
         }
 
         [HttpGet]
-        [Route("PlayList/{Id}")]
+        [Route("{Id}/PlayList")]
         public IHttpActionResult GetPlayList(int id)
         {
             var village = _villageService.GetVillageById(id);
@@ -119,7 +123,7 @@ namespace QZCHY.API.Controllers
         }
 
         [HttpGet]
-        [Route("LiveList/{Id}")]
+        [Route("{Id}/LiveList")]
         public IHttpActionResult GetLiveList(int id)
         {
             var village = _villageService.GetVillageById(id);
@@ -132,9 +136,29 @@ namespace QZCHY.API.Controllers
                 if (liveLogoPicture != null)
                     live.Logo = _pictureService.GetPictureUrl(liveLogoPicture.Picture);
             }
-
-
             return Ok(villageModel.Lives);
+        }
+
+        [HttpGet]
+        [Route("{Id}/Pictures")]
+        public IHttpActionResult GetPictures(int id)
+        {
+            var village = _villageService.GetVillageById(id);
+            if (village == null) return NotFound();
+
+            var images = new List<VillagePictureModel>();
+
+            foreach(var villagePicture in village.VillagePictures)
+            {
+                var model = new VillagePictureModel
+                {
+                    Src = _pictureService.GetPictureUrl(villagePicture.Picture)
+                };
+
+                images.Add(model);
+            }
+
+            return Ok(images);
         }
 
         [HttpGet]

@@ -2,7 +2,7 @@
 <template name="strategy">
   <view class='item'>      
     <navigator url='webview?src={{item.src}}'>
-      <image src="{{item.img}}"/>
+      <image mode="aspectFill" src="{{item.img}}"/>
       <view class='item-name'>{{item.title}}</view>  
     </navigator>
   </view>

@@ -475,7 +475,7 @@ namespace QZCHY.API.Controllers
                         villagePicture.IsLogo = fileName.ToUpper() == "LOGO";
                         villagePicture.IsRoute = fileName.ToUpper() == "ROUTE";
 
-                        dp.VillagePictures.Add(villagePicture);
+                        ch.VillagePictures.Add(villagePicture);
                     }
                 }
                 #endregion

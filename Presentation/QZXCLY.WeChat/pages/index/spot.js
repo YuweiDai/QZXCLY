@@ -1,4 +1,6 @@
 // pages/index/spot.js
+var util = require('../../utils/util')
+
 var app = getApp();
 var page=null;
 var innerAudioContext = null;
@@ -18,9 +20,12 @@ Page({
       playing:false,
       current:""
     },
+    urls:[],
     windowHeight:0,
     rpx: 750 / 375
   },
+
+
   tapFilter: function (e) {    
     this.setData({
       filterId: e.target.dataset.id, 
@@ -115,6 +120,39 @@ Page({
     });
   },
 
+  showImgs:function(){
+    if(page.data.spot!=null)
+    {
+      if(page.data.urls.length==0)
+      {
+        var requestPromisified = util.wxPromisify(wx.request)
+
+        requestPromisified({
+          url: app.globalData.apiUrl +"Villages/"+ page.data.spot.id + "/pictures",
+        }).then(function (res) {
+          var urls=[];
+          res.data.forEach(function(item){
+            item.src = item.src.replace(app.globalData.apiUrl, app.globalData.picturesUrl);
+            urls.push(item.src);
+          });
+
+          page.setData({
+            urls:urls
+          });
+          page.previewImgs();
+        }).catch(function () {
+        })
+      }
+      else page.previewImgs();
+
+    };
+  },
+
+  previewImgs:function(){
+    wx.previewImage({
+      urls: page.data.urls,
+    });
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -177,15 +215,90 @@ Page({
 
         spot.strategies.forEach(function(item){
           item.src = app.globalData.resourceUrl+"/strategies/"+item.src;
+          item.img = item.img.replace(app.globalData.apiUrl, app.globalData.picturesUrl);
         });
-        
-          
+
+        spot.villagePictures.forEach(function(item){
+          item.src = item.src.replace(app.globalData.apiUrl, app.globalData.picturesUrl);
+        });
+
+        spot.logo = spot.logo.replace(app.globalData.apiUrl, app.globalData.picturesUrl);
+        spot.routePicutre = spot.routePicutre.replace(app.globalData.apiUrl, app.globalData.picturesUrl);        
 
         console.log(spot);
 
         page.setData({
           spot: spot
         });
+
+        wx.request({
+          url: app.globalData.apiUrl + 'Villages/' + id +"/EatList",
+          success:function(response)
+          {
+            var eats=response.data;
+            eats.forEach(function (item) {
+              if (item.logo == "" || item.logo == null)
+                item.logo = "http://www.atool.org/placeholder.png?size=" + size + "x" + size + "&text=" + item.name + "&&bg=836&fg=fff";
+                else
+                item.logo = item.logo.replace(app.globalData.apiUrl, app.globalData.picturesUrl);
+            }); 
+
+            page.setData({
+              'spot.eats': eats
+            });
+          },
+          fail:function(response)
+          {
+
+          },
+          complete:function(){}
+
+        });
+
+        wx.request({
+          url: app.globalData.apiUrl + 'Villages/' + id + "/PlayList",
+          success: function (response) {       
+            var plays=response.data;
+            plays.forEach(function (item) {
+              if (item.logo == "" || item.logo == null)
+                item.logo = "http://www.atool.org/placeholder.png?size=" + size + "x" + size + "&text=" + item.name + "&&bg=836&fg=fff";
+                 else
+                item.logo = item.logo.replace(app.globalData.apiUrl, app.globalData.picturesUrl);
+            });   
+            page.setData({
+              'spot.plays': plays
+            });            
+          },
+          fail: function (response) {
+
+          },
+          complete: function () { }
+
+        });
+
+        wx.request({
+          url: app.globalData.apiUrl + 'Villages/' + id + "/LiveList",
+          success: function (response) {
+            var lives=response.data;
+
+            lives.forEach(function (item) {
+              if (item.logo == "" || item.logo == null)
+                item.logo = "http://www.atool.org/placeholder.png?size=" + size + "x" + size + "&text=" + item.name + "&&bg=836&fg=fff";
+              else
+                item.logo = item.logo.replace(app.globalData.apiUrl, app.globalData.picturesUrl);
+            });   
+            page.setData({
+              'spot.lives': lives
+            });     
+
+          },
+          fail: function (response) {
+
+          },
+          complete: function () { }
+
+        });       
+
 
         wx.setNavigationBarTitle({
           title: spot.name

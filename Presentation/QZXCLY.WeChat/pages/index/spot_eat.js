@@ -7,19 +7,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // id: 1,
-    // title: "望乡楼",
-    // address: "衢州市峡川镇东坪村",
-    // suggestion: "羊骨粽子 酸梅汤 手擀面 ‍羊蝎子 ‍羊蝎子 ‍羊蝎子 火锅汤 驴肉饺子 驴肉火锅 滋补汤底",
-    // descriptions:["周一至周日 10：00-20：00","内设WIFI"],
-    // phone: "13812345678",
-    // price: "51",
-    // logo: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/l2.png",    
-    // photos: [
-    //   { title: "门口", img: "http://img8.blog.eastmoney.com/zl/zltkg/201505/20150530075406190.jpg" },
-    //   { title: "大厅", img: "http://s9.rr.itc.cn/r/wapChange/20169_12_15/a29q5o2502122756352.jpg" },
-    //   { title: "包厢", img: "http://img2.niwota.com/album/images/2015-07-15/1436925113922-club.jpg" }
-    // ],
     eat:null,
     urls: '',
   },
@@ -40,9 +27,12 @@ Page({
   },
   // 导航
   navTo: function (event) {
+    var url = '../map/nav';
+    var lon = page.eat.long;
+    var lat = page.eat.long;
     wx.navigateTo({
-      url: '../map/nav',
-    })
+      url: url + "?lon=" + lon + "&lat=" + lat,
+    });    
   },  
   // 点击图片预览
   previewImage: function (event) {
@@ -74,6 +64,8 @@ Page({
         
         if (eat.logo == "" || eat.logo == null)
           eat.logo = "http://www.atool.org/placeholder.png?size=" + size + "x" + size + "&text=" + eat.name + "&&bg=836&fg=fff";
+          else
+          item.logo = item.logo.replace(app.globalData.apiUrl, app.globalData.picturesUrl);
 
         eat.descriptions = eat.description.split(';');
 
@@ -81,7 +73,8 @@ Page({
 
         var urls = [];
         for (var index in eat.eatPictures) {
-          urls.push(eat.eatPictures[index].img);
+          var img = eat.eatPictures[index].img.replace(app.globalData.apiUrl, app.globalData.picturesUrl);
+          urls.push(img);
         }
 
         page.setData({

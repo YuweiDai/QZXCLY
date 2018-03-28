@@ -3,19 +3,19 @@
 <view class="container"> 
   <view class="{{dialog.visible?'overflowhidden':''}}" style='height:{{dialog.visible?windowHeight+"px":"auto"}}'>
     <view class='spot_photos relative'>
-      <swiper class="banner" autoplay='true'  interval="3000" duration="500" bindchange="photoChange">
+      <swiper class="banner" autoplay='true' interval="3000" duration="500" bindchange="photoChange">
         <block wx:for="{{spot.villagePictures}}" wx:key="id">
           <swiper-item>
-            <image data-id="{{index}}" src="{{item.src}}"/>
+            <image mode="aspectFill" data-id="{{index}}" src="{{item.src}}"/>
           </swiper-item>
         </block>
       </swiper>
       <view class="tipBg absolute"></view>        
-      <view class='photoTip absolute'><i class="iconfont icon-picture}}"></i> {{spot.villagePictures.length}}张</view>
+      <view class='photoTip absolute' catchtap='showImgs'><i class="iconfont icon-picture}}"></i> {{spot.villagePictures.length}}张</view>
     </view>
     <view class='spot_detail section relative'>
       <view class="name line">
-        {{spot.name}}
+        {{spot.name}} <navigator wx:if="{{spot!=null}}" class='vrBtn' url="webview?src=https://www.luckyday.top/threejs?village={{item.panorama}}"><i class='iconfont icon-vr-m'></i> 虚拟游</navigator>
         <view class='tags'>
           <text class='tag' wx:for="{{spot.tags}}">{{item}}</text>
         </view>
@@ -60,7 +60,7 @@
       </scroll-view>
     </view>
 
-    <view class='spot_services'>
+    <view class='spot_services' wx:if="{{spot.eats!=null && spot.lives!=null && spot.plays!=null}}">
       <view class='filters'>
 				<view class="filter {{filterId==0?'active':''}}" data-id="0" bindtap="tapFilter">景点</view>
 				<view class="filter {{filterId==1?'active':''}}" data-id="1" bindtap="tapFilter">美食</view>  

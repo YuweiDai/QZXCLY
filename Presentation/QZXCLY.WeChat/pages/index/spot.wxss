@@ -42,6 +42,15 @@
   line-height: 22rpx;
 }
 
+.spot_detail .name .vrBtn
+{
+  position:absolute;
+  top:40rpx;
+  right:15rpx;
+
+  color: #27c24c;  
+}
+
 .spot_detail .name .tags .tag
 {
   display: inline-block;
