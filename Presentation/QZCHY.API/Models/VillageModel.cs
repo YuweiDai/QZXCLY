@@ -48,4 +48,13 @@ namespace QZCHY.API.Models
 
         public IList<SimplePlayModel> Plays { get; set; }
     }
+
+
+    public class VillageSimpleModel {
+
+        public string Name { get; set; }
+
+        public string Logo { get; set; }
+    }
+
 }

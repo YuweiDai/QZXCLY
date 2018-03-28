@@ -80,5 +80,16 @@ namespace QZCHY.Services.Villages
 
             return query;
         }
+
+        public IList<Village> GetVillagesByRegionId(int id)
+        {
+            var query = from v in _villageRepository.Table
+                        where (int)v.Region== id
+                        select v;
+
+            var villages = query.ToList();
+            return villages;
+          
+        }
     }
 }
