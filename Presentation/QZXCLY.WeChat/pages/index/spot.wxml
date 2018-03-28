@@ -15,7 +15,7 @@
     </view>
     <view class='spot_detail section relative'>
       <view class="name line">
-        {{spot.name}} <navigator wx:if="{{spot!=null}}" class='vrBtn' url="webview?src=https://www.luckyday.top/threejs?village={{item.panorama}}"><i class='iconfont icon-vr-m'></i> 虚拟游</navigator>
+        {{spot.name}} <navigator wx:if="{{spot!=null}}" class='vrBtn' url="webview?src=https://www.luckyday.top/threejs/^village%{{spot.panorama}}$pid%1"><i class='iconfont icon-vr-m'></i> 虚拟游</navigator>
         <view class='tags'>
           <text class='tag' wx:for="{{spot.tags}}">{{item}}</text>
         </view>

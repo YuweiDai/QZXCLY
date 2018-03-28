@@ -132,7 +132,7 @@ Page({
         }).then(function (res) {
           var urls=[];
           res.data.forEach(function(item){
-            item.src = item.src.replace(app.globalData.apiUrl, app.globalData.picturesUrl);
+            item.src = item.src.replace(app.globalData.apiUrl1, app.globalData.picturesUrl);
             urls.push(item.src);
           });
 
@@ -215,15 +215,15 @@ Page({
 
         spot.strategies.forEach(function(item){
           item.src = app.globalData.resourceUrl+"/strategies/"+item.src;
-          item.img = item.img.replace(app.globalData.apiUrl, app.globalData.picturesUrl);
+          item.img = item.img.replace(app.globalData.apiUrl1, app.globalData.picturesUrl);
         });
 
         spot.villagePictures.forEach(function(item){
-          item.src = item.src.replace(app.globalData.apiUrl, app.globalData.picturesUrl);
+          item.src = item.src.replace(app.globalData.apiUrl1, app.globalData.picturesUrl);
         });
 
-        spot.logo = spot.logo.replace(app.globalData.apiUrl, app.globalData.picturesUrl);
-        spot.routePicutre = spot.routePicutre.replace(app.globalData.apiUrl, app.globalData.picturesUrl);        
+        spot.logo = spot.logo.replace(app.globalData.apiUrl1, app.globalData.picturesUrl);
+        spot.routePicutre = spot.routePicutre.replace(app.globalData.apiUrl1, app.globalData.picturesUrl);        
 
         console.log(spot);
 
@@ -240,7 +240,7 @@ Page({
               if (item.logo == "" || item.logo == null)
                 item.logo = "http://www.atool.org/placeholder.png?size=" + size + "x" + size + "&text=" + item.name + "&&bg=836&fg=fff";
                 else
-                item.logo = item.logo.replace(app.globalData.apiUrl, app.globalData.picturesUrl);
+                item.logo = item.logo.replace(app.globalData.apiUrl1, app.globalData.picturesUrl);
             }); 
 
             page.setData({
@@ -263,7 +263,7 @@ Page({
               if (item.logo == "" || item.logo == null)
                 item.logo = "http://www.atool.org/placeholder.png?size=" + size + "x" + size + "&text=" + item.name + "&&bg=836&fg=fff";
                  else
-                item.logo = item.logo.replace(app.globalData.apiUrl, app.globalData.picturesUrl);
+                item.logo = item.logo.replace(app.globalData.apiUrl1, app.globalData.picturesUrl);
             });   
             page.setData({
               'spot.plays': plays
@@ -285,7 +285,7 @@ Page({
               if (item.logo == "" || item.logo == null)
                 item.logo = "http://www.atool.org/placeholder.png?size=" + size + "x" + size + "&text=" + item.name + "&&bg=836&fg=fff";
               else
-                item.logo = item.logo.replace(app.globalData.apiUrl, app.globalData.picturesUrl);
+                item.logo = item.logo.replace(app.globalData.apiUrl1, app.globalData.picturesUrl);
             });   
             page.setData({
               'spot.lives': lives

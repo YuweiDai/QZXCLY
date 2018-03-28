@@ -101,7 +101,7 @@ Page({
         var strategies = response.data;
 
         strategies.forEach(function(item){
-          item.img = item.img.replace(app.globalData.apiUrl, app.globalData.picturesUrl);
+          item.img = item.img.replace(app.globalData.apiUrl1, app.globalData.picturesUrl);
           item.src = app.globalData.resourceUrl + "/strategies/" + item.src;
         });
         page.setData({

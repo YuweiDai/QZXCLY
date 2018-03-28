@@ -17,7 +17,7 @@
           </cover-view>   
           <cover-view class='btns'>
             <cover-view data-url="../index/spot?id={{currentSpot.id}}" class='navigator inline-block' bindtap='nav'>详情</cover-view>
-            <cover-view data-url="../index/webview?src=https://www.luckyday.top/threejs?village={{currentSpot.panorama}}" class='navigator inline-block' bindtap='nav'>全景游</cover-view>     
+            <cover-view data-url="../index/webview?src=https://www.luckyday.top/threejs^village%{{currentSpot.panorama}}&pid%1" class='navigator inline-block' bindtap='nav'>全景游</cover-view>     
             <cover-view data-url="nav"  data-lon="{{currentSpot.longitude}}" data-lat="{{currentSpot.latitude}}" class='navigator inline-block' bindtap='nav'>导航</cover-view>
           </cover-view>
         </cover-view>        
@@ -26,10 +26,10 @@
       </cover-view>
       <cover-view hidden='{{!showSingelSpot}}' class='spotFilter_section  absolute'>
         <cover-view class='filters'>
-          <cover-view class="filter {{filterType=='service'?'active':''}}" data-id="service" bindtap="tapFilter">服务点</cover-view>     
-          <cover-view class="filter {{filterType=='play'?'active':''}}}}" data-id="play" bindtap="tapFilter">景点</cover-view>
+          <cover-view class="filter {{filterType=='play'?'active':''}}}}" data-id="play" bindtap="tapFilter">景点</cover-view>    
           <cover-view class="filter {{filterType=='eat'?'active':''}}" data-id="eat" bindtap="tapFilter">美食</cover-view>  
-          <cover-view class="filter {{filterType=='live'?'active':''}}" data-id="live" bindtap="tapFilter">住宿</cover-view>
+          <cover-view class="filter {{filterType=='live'?'active':''}}" data-id="live" bindtap="tapFilter">住宿</cover-view>              
+          <cover-view class="filter {{filterType=='service'?'active':''}}" data-id="service" bindtap="tapFilter">服务点</cover-view>  
         </cover-view>
       </cover-view>     
 

@@ -102,7 +102,7 @@ Page({
       detailUrl: ""
     };
     if (page.data.currentSpot != null)
-      drawerMarker.panoramaUrl = "https://www.luckyday.top/threejs?village=" + page.data.currentSpot.panorama + "&pid=";
+      drawerMarker.panoramaUrl = "https://www.luckyday.top/threejs?village=" + page.data.currentSpot.panorama + "&pid=1";
 
     switch(markerType)
     {
