@@ -113,8 +113,9 @@ Page({
         });
       },
       fail: function (response) {
+        console.log(response);
         wx.showToast({
-          title: '获取数据失败...',
+          title: response//'获取数据失败...',
         })
       },
       complete: function () {

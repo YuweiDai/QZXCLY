@@ -56,32 +56,6 @@ Page({
       url: url,
     })
   },
-  starSpot:function(event)
-  {
-    var spot=this.data.spot;
-    spot.star=!spot.star;
-    this.setData(
-      {
-        spot: spot
-      }
-    );
-    var title=spot.star?'收藏成功':'取消收藏';
-    wx.showToast({
-      title: title,
-      icon: 'none',
-      duration: 2000
-    })
-  },
-  photoChange:function(event)
-  {
-    var spot = this.data.spot;
-    spot.current_photo= event.detail.current+1;
-    this.setData(
-      {
-        spot: spot
-      }
-    ); 
-  },
   playAudio:function(event)
   {   
     console.log(event);
@@ -115,7 +89,6 @@ Page({
      
     }    
   },
-
   updateAudioState: function (playing, audioSrc){ 
     this.setData({
       audioPlayer: {
@@ -205,21 +178,8 @@ Page({
         spot.strategies.forEach(function(item){
           item.src = app.globalData.resourceUrl+"/strategies/"+item.src;
         });
-
-        spot.plays.forEach(function (item) {
-          if(item.logo==""||item.logo==null)
-          item.logo = "http://www.atool.org/placeholder.png?size=" + size + "x" + size + "&text=" + item.name + "&&bg=836&fg=fff";
-        });        
-
-        spot.eats.forEach(function (item) {
-          if (item.logo == "" || item.logo == null)
-          item.logo = "http://www.atool.org/placeholder.png?size=" + size + "x" + size + "&text=" + item.name + "&&bg=836&fg=fff";
-        });   
-
-        spot.lives.forEach(function (item) {
-          if (item.logo == "" || item.logo == null)
-          item.logo = "http://www.atool.org/placeholder.png?size=" + size + "x" + size + "&text=" + item.name + "&&bg=836&fg=fff";
-        });   
+        
+          
 
         console.log(spot);
 

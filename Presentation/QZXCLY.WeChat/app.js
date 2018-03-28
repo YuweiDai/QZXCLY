@@ -61,12 +61,11 @@ App({
           })
         } */
       }
-    });    
-   
+    });   
   },
   globalData: {
-    apiUrl: "http://qzghj.free.ngrok.cc/",  //1ded3a1f69ed8d58
-    resourceUrl:"https://www.luckyday.top/resources/",
+    apiUrl: "http://qzghj.free.ngrok.cc/",  //1ded3a1f69ed8d58 https://www.luckyday.top/api/
+    resourceUrl:"https://qzch.qz.gov.cn/qzxcly/resources/",
     userInfo: null,
     systemInfo:null,
     locationDetect:false

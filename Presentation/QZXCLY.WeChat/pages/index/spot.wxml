@@ -4,15 +4,14 @@
   <view class="{{dialog.visible?'overflowhidden':''}}" style='height:{{dialog.visible?windowHeight+"px":"auto"}}'>
     <view class='spot_photos relative'>
       <swiper class="banner" autoplay='true'  interval="3000" duration="500" bindchange="photoChange">
-        <block wx:for="{{spot.photos}}" wx:key="id">
+        <block wx:for="{{spot.villagePictures}}" wx:key="id">
           <swiper-item>
             <image data-id="{{index}}" src="{{item.src}}"/>
           </swiper-item>
         </block>
       </swiper>
-      <!-- <view class="star absolute" bindtap='starSpot'><i class="iconfont {{spot.star?'icon-buoumaotubiao44':'icon-shoucang2'}}"></i></view>     -->
       <view class="tipBg absolute"></view>        
-      <view class='photoTip absolute'><i class="iconfont icon-picture}}"></i> {{spot.current_photo}}/{{spot.photos.length}}张</view>
+      <view class='photoTip absolute'><i class="iconfont icon-picture}}"></i> {{spot.villagePictures.length}}张</view>
     </view>
     <view class='spot_detail section relative'>
       <view class="name line">

@@ -12,7 +12,7 @@ using System.Web.Http;
 namespace QZCHY.API.Controllers
 {
     [RoutePrefix("Strategy")]
-    public class StrategyController: ApiController
+    public class StrategyController : ApiController
     {
 
         private readonly IStrategyService _strategyService;
@@ -29,7 +29,7 @@ namespace QZCHY.API.Controllers
         public IHttpActionResult GetRandomStrategy()
         {
 
-            var sum = _strategyService.GetAllStrategy().Count()+1;
+            var sum = _strategyService.GetAllStrategy().Count() + 1;
             //获取随机数
             Random random = new Random();
             List<int> result = new List<int>();
@@ -43,17 +43,19 @@ namespace QZCHY.API.Controllers
                 }
             }
 
-            var strategyModels =new  List<StrategyModel>();
+            var strategyModels = new List<StrategyModel>();
             var strategys = new List<Strategy>();
 
-            foreach (var id in result) {
+            foreach (var id in result)
+            {
                 var strategy = _strategyService.GetStrategyById(id);
                 strategys.Add(strategy);
             }
 
 
-            foreach (var s in strategys) {
-             
+            foreach (var s in strategys)
+            {
+
                 var picture = s.StrategyPictures.FirstOrDefault();
                 var strategyModel = s.ToModel();
                 strategyModel.Img = _pictureService.GetPictureUrl(picture.Picture);
@@ -64,5 +66,7 @@ namespace QZCHY.API.Controllers
 
             return Ok(strategyModels);
         }
+
+
     }
 }

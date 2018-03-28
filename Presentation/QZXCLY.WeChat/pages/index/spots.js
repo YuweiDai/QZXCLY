@@ -46,7 +46,7 @@ Page({
           name: "康养衢江·隐柿东坪",
           img: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/j3.jpg" ,
           num: 1,
-          id: 2
+          id: 1
         }
       ],
       [
@@ -54,40 +54,22 @@ Page({
           name: "寻梦乡愁·桃源七里",
           img: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/j1.jpg",
           num: 1,
-          id: 1
+          id: 2
         },        
-        {
-          name: "石梁镇",
-          img: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/j2.jpg",
-          num: 2,
-          id: 29
-        }
       ],
       [
         {
           name: "康养衢江·隐柿东坪",
           img: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/j3.jpg",
           num: 1,
-          id: 2
+          id: 1
         }
       ],
       [],
-      [
-        {
-          name: "杨林镇",
-          img: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/j3.jpg",
-          num: 1,
-          id: 3
-        }    
+      [ 
       ],
       [],
-      [
-        {
-          name: "溪口镇",
-          img: "http://qzch.qz.gov.cn/qzxcly/resources/images/index/j2.jpg",
-          num: 1,
-          id: 4
-        }            
+      [           
       ]
 
     ]
