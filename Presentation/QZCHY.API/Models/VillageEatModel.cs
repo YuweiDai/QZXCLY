@@ -55,8 +55,8 @@ namespace QZCHY.API.Models
         /// <summary>
         /// 坐落位置
         /// </summary>
-        public string Lon { get; set; }
-        public string Lat { get; set; }
+        public string Longitude { get; set; }
+        public string Latitude { get; set; }
 
         /// <summary>
         /// 图标
@@ -70,6 +70,13 @@ namespace QZCHY.API.Models
         public int Village_Id { get; set; }
 
         public string Logo { get; set; }
+
+        /// <summary>
+        /// 景区全景标识
+        /// </summary>
+        public string Panorama { get; set; }
+
+        public int Panoramaid { get; set; }
     }
 
     public class SimpleEatModel : BaseQMEntityModel
@@ -85,6 +92,16 @@ namespace QZCHY.API.Models
         public int Level { get; set; }
 
         public string Logo { get; set; }
+
+        /// <summary>
+        /// 景区全景标识
+        /// </summary>
+        public string Panorama { get; set; }
+
+        public int Panoramaid { get; set; }
+
+        public string Longitude { get; set; }
+        public string Latitude { get; set; }
     }
 
 }

@@ -19,7 +19,7 @@ namespace QZCHY.Services.Geo
             {
                 var d = Distance(lat1, lon1, lat2, lon2);
 
-                return d > 1000 ? Math.Round(d / 1000, 2) + "公里" : Math.Round(d, 2) + "米";
+                return d <1 ? Math.Round(d * 1000, 2) + "米" : Math.Round(d, 2) + "公里";
             }
             catch (Exception e)
             {

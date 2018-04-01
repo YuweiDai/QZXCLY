@@ -1,6 +1,5 @@
 /* pages/index/strategy.wxss */
 
-@import '../../libs/wxParse/wxParse.wxss';
 
 .strategy-title
 {

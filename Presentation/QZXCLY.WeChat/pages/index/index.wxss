@@ -1,79 +1,312 @@
-/**index.wxss**/
-.container
+/* pages/index/map.wxss */
+
+.tarBar
 {
-  padding: 0;
-}
-page {
-	height: 100%;
-}
-.container {
-	height: 100%;
-}
-scroll-view {
-	height: 100%;
-}
-
-.icons {
-	height: 250rpx;
-	padding: 20rpx 10rpx;
-	padding-bottom: 0;
-  background: white;
-}
-.icons swiper-item {
-	width: 100%;
-	/*display: -webkit-flex;*/
-	/*flex-direction: row;*/
-	/*flex-wrap: wrap;*/
-	/*justify-content: center;*/
-}
-.icons .icon {
-	float: left;
-	display: -webkit-flex;
-	flex-direction: column;
-	flex-wrap: wrap;
-	width: 33.33%;
-	text-align: center;
-	margin: 10rpx 0;
-}
-.icons .icon image {
-	margin: 0 auto;
-	width: 150rpx;
-	height: 150rpx;
-}
-.icons .icon text {
-	color: #000;
-	font-size: 30rpx;
-	line-height: 2;
-}
-
-.suggestion .content {
-	width: 100%;
-	height: 568rpx;
+  height: 100rpx;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
   display: flex;
-  flex-wrap: wrap;  
+  flex-direction: row;
+  align-items: center;
+  border-top: solid 1px #c8d0d2;
+  font-weight: bolder;
+  background-color: white;
 }
 
-.suggestion .content .item
+.tarBar .btn
 {
-  width:335rpx;
-  margin-bottom:20rpx;
-  padding:0 10rpx;
+  color: #4A5767;  
+  flex-grow: 1;  
+  text-align: center;
+  height: 100rpx;
+  padding-top: 15rpx;
+}
+.tarBar .btn .icon
+{
+  font-size: 60rpx;
+  line-height: 60rpx;
+}
+.tarBar .btn .title
+{
+  font-size: 25rpx;
+  line-height: 20rpx;  
 }
 
-.suggestion .content .item image
+.tarBar .btn.active
 {
-  width: 335rpx;
+  color: #71CDD8;
+}
+
+.tarBar .btn.main .icon
+{
+  position: absolute;
+  width: 140rpx;
+  height: 140rpx;
+  left: 50%;
+  top: -55rpx;
+  margin-left: -70rpx;
+}
+
+.tarBar .btn.main .icon image
+{
+  width: 100%;
+  height: 100%;
+}
+
+.content
+{
+  width: 100%;
+}
+.content > view
+{
+  width: 100%;
+}
+
+.content #map
+{
+  width: 100%;
+  height: 100%;
+}
+
+.spots_section .section-item
+{
+  padding: 20rpx;
+}
+
+.spots_section .title
+{
+  padding-left: 28rpx;
+  color: #4A5767;
+}
+
+.spots_section .line
+{
+  border-left:solid 6rpx #65C5D5;
+  height:60rpx;
+  width:1rpx;
+  position:absolute;
+  top:20rpx;
+  left:35rpx;
+}
+
+.refresh
+{
+  position: absolute;
+  top: 30rpx;
+  right: 10rpx;
+  color: #B9B9B6;
+  font-size: 30rpx;
+
+}
+
+.spots_section .section-item.hot .content
+{
+  display: flex;
+  flex-direction: row;
+  margin-top: 20rpx;
+}
+
+.spots_section .section-item.hot .content .item
+{
+  flex-grow: 1;  
+  padding: 15rpx;  
+}
+
+.spots_section .section-item.hot .content .item image
+{
+  border-radius: 15rpx;
+  width: 206.6rpx;
+  height: 206.6rpx;
+}
+
+.spots_section .section-item.hot .content .item .name
+{
+  font-size: 30rpx;
+  text-align: center;
+  color: #4A5767;
+  font-weight: bolder;
+}
+
+.spots_section .section-item.choiceness
+{
+  background-color: white;
+}
+
+.spots_section .section-item.choiceness .content
+{
+  flex-direction: column;
+  margin-top: 20rpx;
+}
+
+.spots_section .section-item.choiceness .content .item
+{
+  display: flex;
+  flex-direction: row;
+}
+
+.spots_section .section-item.choiceness .content .item .logo
+{
+  padding: 15rpx;
+}
+.spots_section .section-item.choiceness .content .item .logo image
+{
+  width: 220rpx;
+  height: 220rpx;
+  border-radius: 15rpx;  
+}
+.spots_section .section-item.choiceness .content .item .meta
+{
+  width: 586rpx;
+}
+.spots_section .section-item.choiceness .content .item .meta .name
+{
+  font-size: 45rpx;
+  color: #4A5767;
+}
+.spots_section .section-item.choiceness .content .item .meta .description
+{
+  height: 120rpx;
+  font-size: 25rpx;
+  line-height: 40rpx;  
+  color: #c0c0c0;
+  overflow: hidden;
+  text-overflow: ellipsis;  
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical; 
+  margin-bottom: 5rpx;
+}
+
+.spots_section .section-item.choiceness .content .item .meta .others
+{
+  font-size: 28rpx;
+  color: #c0c0c0;
+}
+
+/* 地图界面 */
+.map_section #map .earthBtn
+{
+  position: absolute;
+  width: 140rpx;
+  height: 140rpx;  
+  left: 50%;
+  margin-left: -70rpx;
+  bottom: -84rpx;
+}
+
+.top_section {
   height: 200rpx;
+  position: absolute;
+	display: -webkit-flex;
+	left: 0;
+	top: 0;
+	width: 100%;
+	padding: 20rpx;
+	box-sizing: border-box;
+	z-index: 1;
+	-webkit-transition: background 0.5s ease-in-out;
 }
 
-.suggestion .content .item .item-name
+.spot_section
 {
-  font-size: 30rpx;
+background:#27c24c;
+color:white;
+
+  padding: 20rpx 50rpx;
+  border-bottom: 1px solid #f0f0f0;
 }
 
-.suggestion .content .more,.strategy .content .more
+.spot_section .avatar {
+	display: block;
+	margin: 0 auto;
+	width: 160rpx;
+	height: 160rpx;
+	border-radius:15rpx;
+}
+
+.spot_section .content
 {
+  margin-left: 50rpx;
+}
+
+.spot_section .content .title
+{
+  margin-bottom: 15rpx;
+  font-size: 40rpx;
+}
+
+.spot_section .content .info
+{
+  line-height: 35rpx;
+  margin-bottom:15rpx;  
   font-size: 30rpx;
-  text-align: right;
-  color: silver;
+  color: #8a8a8a;
+}
+
+
+.spot_section .content .btns .navigator
+{
+  display: inline-block;
+  margin-right: 25rpx;
+  font-size: 35rpx;
+  color: #27c24c;
+}
+
+.spot_section .close {
+  position: absolute;
+  bottom: 10rpx;
+  right: 10rpx;  
+	width: 60rpx;
+	height: 60rpx;
+	vertical-align: middle;
+}
+
+.spot_section .icon,
+{
+  left: 10rpx;
+}
+
+
+/* 后期要整合 */
+.spotFilter_section
+{
+  bottom: 50rpx;
+  padding: 20rpx;
+}
+
+.spotFilter_section .filters {  
+  width: 710rpx;  
+	display: -webkit-flex;
+  background-color: white;
+  border-radius: 15rpx;
+}
+.spotFilter_section .filters .filter {
+	-webkit-flex: 1;
+	text-align: center;
+	color: #696969;
+	font-size: 24rpx;
+	line-height: 60rpx;
+}
+.spotFilter_section .filters .filter .v {
+	display: none;
+}
+.spotFilter_section .filters .filter.active {
+	color: white;
+	font-weight: bold;
+  background-color: #27c24c;  
+}
+.spotFilter_section .filters .filter.active .v {
+	display: inline-block;
+}
+
+/* 攻略界面 */
+.strategies_section
+{
+  background-color: white;
+}
+.strategies_section .section
+{
+  margin-top: 0;
+  margin-bottom: 40rpx;
 }

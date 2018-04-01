@@ -21,7 +21,7 @@
         </view>
       </view>
       <view class='address line flex'>
-        <view class='mapAnchor'><navigator class='ellipsis' url="/pages/map/index?spotid={{spot.id}}" open-type="navigate" hover-class="navigator-hover"><i class="iconfont icon-position"></i> {{spot.address}}</navigator></view>
+        <view class='mapAnchor'><navigator class='ellipsis' url="map?spotId={{spot.id}}" open-type="redirect" hover-class="navigator-hover"><i class="iconfont icon-position"></i> {{spot.address}}</navigator></view>
         <view class='navAnchor' bindtap='navToMap' data-url="../map/nav" data-lon="{{spot.longitude}}" data-lat="{{spot.latitude}}">导航</view>
       </view>
       <view class='phone line' catchtap='makePhoneCall' data-phone="{{spot.phone}}"><i class="iconfont icon-dianhua"></i> 联系电话：{{spot.phone}}</view>      
@@ -33,7 +33,6 @@
         </view>
         <view class='navAnchor' bindtap='showTourJpg' wx:if='{{spot.routePicutre}}'>导游图</view>
       </view>      
-      <!-- <view class='route line' data-title="旅游路线" data-content="{{spot.route}}" bindtap='showDialog'><i class="iconfont icon-zhuanyiluxian"></i> 查看旅游路线</view>            -->
       <view class='desc_title line'><i class="iconfont icon-campaign"></i> 景区介绍</view>
       <view class='desc' data-title="景区介绍" data-content="{{spot.desc}}" bindtap='showDialog'>{{spot.desc}}</view>
     </view>
@@ -73,8 +72,8 @@
               <text class="title">{{item.name}}</text>
               <text class="sub-title">{{item.description}}</text>
               <view class='btns'>
-                <view class='btn' hidden='{{item.panoramaId==0}}' catchtap='navTo' data-url="../index/webview?src=https://www.luckyday.top/threejs?village={{item.panorama}}&pId={{item.panoramaId}}"><i class='iconfont icon-vr-m'></i> 全景</view>
-                <view class='btn {{audioPlayer.playing&&audioPlayer.current==item.audio?"selected":""}}' hidden='{{item.audio==undefined}}' catchtap='playAudio' data-audio='{{item.audioUrl}}'><i class='iconfont icon-yuyin'></i> 讲解</view>
+                <view class='btn' hidden='{{item.panoramaId==0}}' catchtap='navTo' data-url="../index/webview?src=https://www.luckyday.top/threejs^village%{{item.panorama}}$pId%{{item.panoramaId}}"><i class='iconfont icon-vr-m'></i> 全景</view>
+                <view class='btn {{audioPlayer.playing&&audioPlayer.current==item.audioUrl?"selected":""}}' hidden='{{item.audioUrl==undefined}}' catchtap='playAudio' data-audio='{{item.audioUrl}}'><i class='iconfont icon-yuyin'></i> 讲解</view>
                 <view class='btn' catchtap='navToMap' data-url="../map/nav" data-lon="{{item.longitude}}" data-lat="{{item.latitude}}"><i class='iconfont icon-daohang1'></i> 导航</view>                 
               </view>
             </view>

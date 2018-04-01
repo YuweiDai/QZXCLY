@@ -1,41 +1,137 @@
+<!--pages/index/map.wxml-->
 <import src="../common/strategy-list.wxml" />
 
-<!--index.wxml-->
-<view class="container">
+<view class='container'>
+  <view class='content' style='height:{{contentHeight}}px'>
+    <!-- 推荐景点 -->
+    <view class='spots_section' wx:if='{{currentTab=="-1"?"active":""}}'>
+      <scroll-view scroll-y="true"  style='height:{{contentHeight}}px'>
+        <swiper class="banner" indicator-dots="true" autoplay="true" interval="3000" duration="500">
+          <block wx:for="{{suggestion.banners}}" wx:key="id">
+            <swiper-item>
+              <image bindtap="tapBanner" data-id="{{index}}" src="{{item.img}}"/>
+            </swiper-item>
+          </block>
+        </swiper>
 
-<scroll-view scroll-y="true" scroll-into-view="{{scrollIntoView}}">
-		<swiper class="banner" indicator-dots="true" autoplay="true" interval="3000" duration="500">
-			<block wx:for="{{banners}}" wx:key="id">
-				<swiper-item>
-					<image bindtap="tapBanner" data-id="{{index}}" src="{{item.img}}"/>
-				</swiper-item>
-			</block>
-		</swiper>
-
-    <view class='icons'>
-    	<view class="icon" wx:for="{{icons}}" wx:for-item="icon" wx:key="id" bindtap="toSpots" data-url="{{icon.url}}">
-          <image src="{{icon.img}}"/>
-					<text>{{icon.name}}</text>				
-			</view>
-    </view>
-
-		<view class="section section-big suggestion">
-			<view class="title">必玩·推荐</view>
-      <view class='content'>
-        <view class='item' wx:for="{{suggestions}}" data-id="{{suggestion.id}}" wx:for-item="suggestion" bindtap='navToSpot'>      
-          <image src="{{suggestion.img}}"/>
-          <view class='item-name'>{{suggestion.name}}</view>  
+        <view class='hot section-item relative'>
+          <view class='title'>当季游</view>
+          <view class='line'></view>
+          <view class='refresh'><i class='iconfont icon-shuaxin'></i> 换一批</view>
+          <view class='content'>
+            <view class='item animated zoomIn' bindtap='showInMap' data-id="2">
+              <image mode='aspectFill' src='http://qzch.qz.gov.cn/qzxcly/resources/images/ch.jpg'></image>
+              <view class='name'>七彩长虹</view>
+            </view>          
+            <view class='item animated zoomIn' bindtap='showInMap' data-id="3">
+              <image mode='aspectFill' src='http://qzch.qz.gov.cn/qzxcly/resources/images/jx.jpg'></image>
+              <view class='name'>荆溪花海</view>
+            </view>     
+            <view class='item animated zoomIn' bindtap='showInMap' data-id="1">
+              <image mode='aspectFill' src='http://qzch.qz.gov.cn/qzxcly/resources/images/dp.jpg'></image>
+              <view class='name'>隐柿东坪</view>
+            </view>                             
+          </view>
         </view>
-        <!-- <view class='more'><navigator url="/pages/index/spots" hover-class="navigator-hove">更多</navigator></view>         -->
-      </view>
-		</view>
 
-		<view class="section section-big strategy">
-			<view class="title">玩法·攻略</view>
-      <view class='content'>
-        <template is="strategy" data="{{item}}" wx:for="{{strategies}}" />
-        <!-- <view class='more'><navigator url="/pages/map/index" hover-class="navigator-hove">更多</navigator></view>   -->
-      </view>      
-		</view>
-	</scroll-view>
+        <view class='choiceness section-item relative'>
+          <view class='title'>热门游</view>
+          <view class='line'></view>
+          <view class='refresh'><i class='iconfont icon-shuaxin'></i> 换一批</view>
+          <view class='content'>  
+            <view class='item animated fadeInLeft'>
+              <view class='logo'>
+                <image mode='aspectFill' src='http://qzch.qz.gov.cn/qzxcly/resources/images/qjy.jpg'></image>                            
+              </view>
+              <view class='meta'>
+                <view class='name' data-id="4">钱江源</view>
+                <view class='description'>浙江钱江源国家森林公园位于钱塘江的源头——浙江省开化县齐溪镇，与3省（浙、皖、赣）4县相接壤。截至2014年，公园总面积4500公顷，其中山林面积4250公顷，水面220公顷。园内有原始状态的大片天然次生林，林相结构复杂，生物物种丰富，起源古老、区系成分独特，已成为华东地区重要的生态屏障。景区内负氧离子成份最高浓度达到每立方厘米10万多个。</view>
+                <view class='others'>人气:15000</view>
+              </view>          
+            </view>   
+            
+            <view class='item animated fadeInRight'>
+              <view class='logo'>
+                <image mode='aspectFill' src='http://qzch.qz.gov.cn/qzxcly/resources/images/nwc.jpg'></image>                            
+              </view>
+              <view class='meta'>
+                <view class='name' data-id="4">江山耕读</view>
+                <view class='description'>耕读农场坐落在江山市贺村镇耕读村，这方热土历来是人才辈出的钟灵毓秀之地，耕读文化更是历经千年传承的宝贵遗产。村庄内峡口水库西干渠串起农户，海棠湖（湖塘）怡养天地灵秀，五旗山连绵起伏，与对面的大石山遥相呼应，石头成仙，树林绚烂。村口，几人合抱的香枫、古樟如有声韵部，飒飒风响，荫佑着耕读人。漫步在耕读村海棠湖畔，碧波荡漾，绿树掩映，亭台楼阁，错落有致；果树林里，枇杷、杨梅等时令水果挂满枝头，篱笆园里，辣椒、黄瓜等有机蔬菜坠满藤架。游客或惬意信步，或体验采摘，或安然垂钓，或摇橹泛舟。山水相依，宜居养性，好一幅秀美山水画卷。</view>
+                <view class='others'>人气:15000</view>
+              </view>          
+            </view>  
+
+            <view class='item animated fadeInLeft'>
+              <view class='logo'>
+                <image mode='aspectFill' src='http://qzch.qz.gov.cn/qzxcly/resources/images/dcc.jpg'></image>                            
+              </view>
+              <view class='meta'>
+                <view class='name' data-id="5">大陈村</view>
+                <view class='description'>大陈村历史悠久，文化积淀厚重。近年来，大陈村加强文化融入，充分挖掘、传承和发扬“麻糍文化”、“古祠文化”、“崇尚教育”等传统文化，以文化熏陶大陈人，以文化繁荣大陈村，着力打造“文化大陈、幸福乡村”；以“学习、创新、文化、和谐、发展”理念来经营村庄，抓实一系列惠民工程，充分调动村民参与建设主动性，有力提升了村级管理水平。相继完成汪氏宗祠修缮、村道硬化、村庄绿化、亮化工程、户厕改造和污水处理等项目；建立健全卫生长效保洁机制，村容村貌长年整洁。先后荣获衢州市先进基层组织，衢州市全面小康建设示范村，衢州市最具历史文化村庄，江山市先进基层党组织、江山市和谐新农村、江山市首批中国幸福乡村等多项荣誉。</view>
+                <view class='others'>人气:15000</view>
+              </view>          
+            </view>                                         
+          </view>        
+        </view>
+
+      </scroll-view>
+    </view>  
+    <!-- 地图主页面 -->
+    <view class='map_section' wx:if='{{currentTab=="0"?"active":""}}' style='height:{{contentHeight}}px'>
+      <map  id="map" longitude="{{map.lon}}" latitude="{{map.lat}}" scale="{{map.level}}" controls="{{map.currentControls}}" bindmarkertap="bindmarkertap" markers="{{map.markers}}" bindcontroltap="controltap"  show-location>
+        <cover-view hidden='{{!map.showSingelSpot}}'  class='spot_section top_section animated fadeInDown'>
+          <cover-view><cover-image class="avatar" mode="aspectFill" src="{{map.currentSpot.logo}}" /></cover-view>
+          <cover-view class='content'>
+            <!-- <cover-view class='title'>{{map.currentSpot.name}}</cover-view> -->
+            <cover-view class='info'>
+              距离当前位置{{map.currentSpot.distance}}
+            </cover-view>   
+            <cover-view class='btns'>
+              <cover-view data-url="../index/spot?id={{map.currentSpot.id}}" class='navigator inline-block' bindtap='nav'>详情</cover-view>
+              <cover-view data-url="../index/webview?src=https://www.luckyday.top/threejs^village%{{map.currentSpot.panorama}}$pid%1" class='navigator inline-block' bindtap='nav'>全景游</cover-view>     
+              <cover-view data-url="../map/nav"  data-lon="{{map.currentSpot.longitude}}" data-lat="{{map.currentSpot.latitude}}" class='navigator inline-block' bindtap='nav'>导航</cover-view>
+            </cover-view>
+          </cover-view>        
+          <cover-image class='close' src="http://qzch.qz.gov.cn/qzxcly/resources/images/map/close.png" bindtap='returnToAll'></cover-image>
+        </cover-view>           
+
+        <cover-view hidden='{{!map.showSingelSpot}}' class='spotFilter_section absolute  animated fadeInUp'>
+          <cover-view class='filters'>
+            <cover-view class="filter {{map.filterType=='play'?'active':''}}}}" data-id="play" bindtap="tapFilter">景点</cover-view>
+            <cover-view class="filter {{map.filterType=='eat'?'active':''}}" data-id="eat" bindtap="tapFilter">美食</cover-view>
+            <cover-view class="filter {{map.filterType=='live'?'active':''}}" data-id="live" bindtap="tapFilter">住宿</cover-view>
+            <cover-view class="filter {{map.filterType=='service'?'active':''}}" data-id="service" bindtap="tapFilter">服务点</cover-view>
+          </cover-view>
+          
+        </cover-view>      
+        <cover-image class='earthBtn' src='http://qzch.qz.gov.cn/qzxcly/resources/images/earth.png'></cover-image>   
+      </map>
+    </view>
+    <!-- 攻略页面 -->
+    <view class='strategies_section' wx:if='{{currentTab=="1"?"active":""}}'>
+      <scroll-view  scroll-y="true" style='height:{{contentHeight}}px'>
+        <view class="section strategy">
+          <view class='content'>
+            <template is="strategy" data="{{item}}" wx:for="{{strategies}}" />
+          </view>      
+        </view> 
+      </scroll-view>    
+    </view>
+  </view>
+  <!-- 底部切换条 -->
+  <view class='tarBar flex'>
+    <view class='btn {{currentTab=="-1"?"active":""}}' bindtap='setTab' data-id="-1">
+      <view class='icon'><i class='iconfont icon-shoucang1'></i></view>
+      <view class='title'>推荐</view>
+    </view>
+    <view class='btn main' bindtap='setTab' data-id="0">
+      <view class='icon'>
+        <image src='http://qzch.qz.gov.cn/qzxcly/resources/images/earth.png'></image>
+      </view>
+    </view>    
+    <view class='btn {{currentTab=="1"?"active":""}}' bindtap='setTab' data-id="1">
+      <view class='icon'><i class='iconfont icon-gonglve'></i></view>
+      <view class='title'>玩法</view>
+    </view>    
+  </view>
 </view>

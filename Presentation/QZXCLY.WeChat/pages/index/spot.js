@@ -1,5 +1,5 @@
 // pages/index/spot.js
-var util = require('../../utils/util')
+var util = require('../../utils/util');
 
 var app = getApp();
 var page=null;
@@ -214,7 +214,7 @@ Page({
         spot.tags=spot.tags.split(';');
 
         spot.strategies.forEach(function(item){
-          item.src = app.globalData.resourceUrl+"/strategies/"+item.src;
+          item.src = app.globalData.resourceUrl+"strategies/"+item.src;
           item.img = item.img.replace(app.globalData.apiUrl1, app.globalData.picturesUrl);
         });
 
@@ -264,6 +264,9 @@ Page({
                 item.logo = "http://www.atool.org/placeholder.png?size=" + size + "x" + size + "&text=" + item.name + "&&bg=836&fg=fff";
                  else
                 item.logo = item.logo.replace(app.globalData.apiUrl1, app.globalData.picturesUrl);
+
+              if(item.audioUrl!=""&&item.audioUrl!=null)
+                item.audioUrl = item.audioUrl.replace(app.globalData.apiUrl1, app.globalData.picturesUrl);
             });   
             page.setData({
               'spot.plays': plays

@@ -1,6 +1,7 @@
 @import 'styles/weui.wxss';
 @import 'styles/color.wxss';
 @import 'styles/iconfont.wxss';
+@import 'styles/animate.wxss';
 
 /**app.wxss**/
 .container {

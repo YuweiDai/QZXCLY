@@ -29,8 +29,10 @@ namespace QZCHY.API.Models
         /// <summary>
         /// 坐落位置
         /// </summary>
-        public string Lon { get; set; }
-        public string Lat { get; set; }
+        public string Longitude { get; set; }
+        public string Latitude { get; set; }
+   
+        public int PanoramaId { get; set; }
         /// <summary>
         /// 图标
         /// </summary>
@@ -57,6 +59,11 @@ namespace QZCHY.API.Models
 
         public int Order { get; set; }
 
+        /// <summary>
+        /// 景区全景标识
+        /// </summary>
+        public string Panorama { get; set; }
+
         public virtual ICollection<LivePictureModel> LivePictures { get; set; }
 
         public int Vliiage_Id { get; set; }
@@ -79,6 +86,14 @@ namespace QZCHY.API.Models
 
         public string Logo { get; set; }
 
+        /// <summary>
+        /// 景区全景标识
+        /// </summary>
+        public string Panorama { get; set; }
 
+        public int Panoramaid { get; set; }
+
+        public string Longitude { get; set; }
+        public string Latitude { get; set; }
     }
 }

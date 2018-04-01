@@ -8,18 +8,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    //id: 0,
-    //title: "千年古道",
-    //description: "东坪千年古道位于衢州市峡川镇境内，距市区40公里。从东坪山脚下起，一条总长1500米，宽2米，共1144级的青石板古道蜿蜒盘曲伸向山顶，随着岁月的流逝，村民的脚步磨去了古道青石块的棱角而变得光滑。这就是相传具有1300多年历史的唐朝古道。",
-    //logo: "http://qzch.qz.gov.cn/qzxcly//resources/images/index/l1.jpg",
-    //audio: "http://sc1.111ttt.cn/2017/1/11/11/304112004168.mp3",
-    //panorama: "",
-    //photos: [
-    //  { title: "古道1", img: "http://img8.blog.eastmoney.com/zl/zltkg/201505/20150530075406190.jpg" },
-    //  { title: "古道2", img: "http://s9.rr.itc.cn/r/wapChange/20169_12_15/a29q5o2502122756352.jpg" },
-    //  { title: "古道3", img: "http://img2.niwota.com/album/images/2015-07-15/1436925113922-club.jpg" },
-    //  { title: "古道4", img: "http://www.qlx123.com/files/2015-11/20151114161243130592.jpg" }  
-    //],
     play:null,
     urls:'',
     playing:false
@@ -39,19 +27,19 @@ Page({
   },
 
   // 切换至全景
-  navToPanorama:function(event)
-  {
+  navToPanorama: function (event) {
     wx.navigateTo({
-      url: 'webview?title=全景图&src=http://www.ipanocloud.com/tour/share/151029AEQ1O',
+      url: 'webview?src=https://www.luckyday.top/threejs^village%' + page.data.play.panorama + '$pId%' + page.data.play.panoramaId,
     });
   },
-
-  // 地图导航
-  navTo:function(event)
-  {
+  // 导航
+  navTo: function (event) {
+    var url = '../map/nav';
+    var lon = page.data.play.longitude;
+    var lat = page.data.play.latitude;
     wx.navigateTo({
-      url: '../map/nav',
-    })
+      url: url + "?lon=" + lon + "&lat=" + lat,
+    });
   },
 
   // 点击图片预览
@@ -83,17 +71,22 @@ Page({
           url: app.globalData.apiUrl + 'Villages/Play/' + id,
           success: function (response) {
               var play = response.data;
-
+              var size =  750 / app.globalData.rpx ;
               if (play.logo == "" || play.logo == null)
-                  play.logo = "http://www.atool.org/placeholder.png?size=" + size + "x" + size + "&text=" + play.name + "&&bg=836&fg=fff";
-
+                play.logo = "http://www.atool.org/placeholder.png?size=" + size + "x" + size + "&text=" + play.name + "&&bg=836&fg=fff";
 
               console.log(play);
 
               var urls = [];
               for (var index in play.playPictures) {
-                urls.push(play.playPictures[index].img);
+                var url = play.playPictures[index].img.replace(app.globalData.apiUrl1, app.globalData.picturesUrl);
+                play.playPictures[index].img=url;
+                urls.push(url);
               }
+
+              console.log(play.playPictures);
+
+              play.logo = play.logo.replace(app.globalData.apiUrl1, app.globalData.picturesUrl);
 
               page.setData({
                   play: play,
@@ -103,6 +96,9 @@ Page({
               wx.setNavigationBarTitle({
                   title: play.name
               });
+
+
+              innerAudioContext.src = page.data.play.audioUrl;
           },
           fail: function (response) {
               wx.showToast({
@@ -117,7 +113,6 @@ Page({
     if (innerAudioContext == null)
     {
       innerAudioContext = wx.createInnerAudioContext();
-      innerAudioContext.src=page.data.audio;
     }
 
     innerAudioContext.onPlay(() => {

@@ -68,12 +68,9 @@ App({
     wx.getSystemInfo({
       success: res => {
         console.log(res);
-        // 可使用窗口宽度、高度
-        console.log('height=' + res.windowHeight);
-        console.log('width=' + res.windowWidth);
         // 计算主体部分高度,单位为px
         this.globalData.systemInfo=res;
-        
+        this.globalData.rpx = 750 / res.windowWidth;
         //this.globalData.deviceSize = { width: res.windowWidth, height: res.windowHeight, pixelRatio: res.pixelRatio };
 
         /* if (res.authSetting['scope.userInfo']) {
@@ -95,10 +92,11 @@ App({
     });   
   },
   globalData: {
-    apiUrl: "https://www.luckyday.top/api/",  //1ded3a1f69ed8d58 
+    apiUrl: "https://www.luckyday.top/api/",  //1ded3a1f69ed8d58  http://qzghj.free.ngrok.cc/
     apiUrl1: "http://www.luckyday.top/api/",    
     resourceUrl:"https://www.luckyday.top/resources/",
     picturesUrl:"http://qzch.qz.gov.cn/qzxcly/resources/",
+    rpx:2,
     userInfo: null,
     systemInfo:null,
     locationDetect:false

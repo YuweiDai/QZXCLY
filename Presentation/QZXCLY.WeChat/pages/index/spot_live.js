@@ -7,19 +7,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    //id: 1,
-    //title: "庙源溪墅",
-    //address: "柯城区九华乡茶铺村",
-    //description: "乡贤王耀水建于2015年的蘑菇房“庙源溪墅”在衢城远近闻名。该民宿由中外合资木屋公司设计，采取全木质结构，木材取自加拿大，被称为“世界上最会呼吸的房子”。二楼大床房的楼梯口，悬挂有北大著名美术教授手绘的绘画作品。三楼放置有长达7米的榻榻米通铺。民宿内一应事物，全按五星级酒店配备。",
-    //phone: "18906708718",
-    //facilities:"热水器 空调 全屋WIFI",
-    //panorama:"",
-    //logo: "http://5b0988e595225.cdn.sohucs.com/images/20171002/f748eec5944141428bbb589b3bf4a3e2.jpeg",
-    //photos: [
-    //  { title: "门口", img: "http://img8.blog.eastmoney.com/zl/zltkg/201505/20150530075406190.jpg" },
-    //  { title: "大厅", img: "http://s9.rr.itc.cn/r/wapChange/20169_12_15/a29q5o2502122756352.jpg" },
-    //  { title: "包厢", img: "http://img2.niwota.com/album/images/2015-07-15/1436925113922-club.jpg" }
-    //],
     live:null,
     urls: '',  
   },
@@ -38,26 +25,22 @@ Page({
       }
     })
   },
+
   // 切换至全景
   navToPanorama: function (event) {
     wx.navigateTo({
-      url: 'webview?title=全景图&src=http://www.ipanocloud.com/tour/share/151029AEQ1O',
+      url: 'webview?src=https://www.luckyday.top/threejs^village%' + page.data.live.panorama + '$pId%' + page.data.live.panoramaId,
     });
-  },  
+  },
   // 导航
   navTo: function (event) {
+    var url = '../map/nav';
+    var lon = page.data.live.longitude;
+    var lat = page.data.live.latitude;
     wx.navigateTo({
-      url: '../map/nav',
-    })
+      url: url + "?lon=" + lon + "&lat=" + lat,
+    });
   },
-  // 点击图片预览
-  previewImage: function (event) {
-    var url = event.currentTarget.dataset.url;
-    wx.previewImage({
-      current: url, // 当前显示图片的http链接
-      urls: p.data.urls // 需要预览的图片http链接列表
-    })
-  },  
   /**
    * 生命周期函数--监听页面加载
    */
@@ -77,7 +60,7 @@ Page({
           url: app.globalData.apiUrl + 'Villages/live/' + id,
           success: function (response) {
               var live = response.data;
-
+              var size = 750 / app.globalData.rpx;
               if (live.logo == "" || live.logo == null)
                   live.logo = "http://www.atool.org/placeholder.png?size=" + size + "x" + size + "&text=" + live.name + "&&bg=836&fg=fff";
 
@@ -86,8 +69,11 @@ Page({
 
               var urls = [];
               for (var index in live.livePictures) {
-                urls.push(live.livePictures[index].img);
+                var url = live.livePictures[index].img.replace(app.globalData.apiUrl1, app.globalData.picturesUrl);
+                live.livePictures[index].img = url;
+                urls.push(url);                
               }
+              live.logo = live.logo.replace(app.globalData.apiUrl1, app.globalData.picturesUrl);
 
               page.setData({
                   live: live
