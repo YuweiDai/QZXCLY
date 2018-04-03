@@ -13,7 +13,7 @@
 		</swiper>
 
     <view class='icons'>
-    	<view class="icon" wx:for="{{icons}}" wx:for-item="icon" wx:key="id" bindtap="toSpots" data-url="{{icon.url}}">
+    	<view class="icon animated bounceInDown" wx:for="{{icons}}" wx:for-item="icon" wx:key="id" bindtap="toSpots" data-url="{{icon.url}}">
           <image src="{{icon.img}}"/>
 					<text>{{icon.name}}</text>				
 			</view>
