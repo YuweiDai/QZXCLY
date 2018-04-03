@@ -15,7 +15,7 @@
     </view>
     <view class='spot_detail section relative'>
       <view class="name line">
-        {{spot.name}} <navigator wx:if="{{spot!=null}}" class='vrBtn' url="webview?src=https://www.luckyday.top/threejs/^village%{{spot.panorama}}$pid%1"><i class='iconfont icon-vr-m'></i> 虚拟游</navigator>
+        {{spot.name}} <navigator wx:if="{{spot!=null}}" class='vrBtn' url="webview?src=https://www.luckyday.top/{{spot.panorama}}vtour"><i class='iconfont icon-vr-m'></i> 虚拟游</navigator>
         <view class='tags'>
           <text class='tag' wx:for="{{spot.tags}}">{{item}}</text>
         </view>
@@ -72,7 +72,7 @@
               <text class="title">{{item.name}}</text>
               <text class="sub-title">{{item.description}}</text>
               <view class='btns'>
-                <view class='btn' hidden='{{item.panoramaId==0}}' catchtap='navTo' data-url="../index/webview?src=https://www.luckyday.top/threejs^village%{{item.panorama}}$pId%{{item.panoramaId}}"><i class='iconfont icon-vr-m'></i> 全景</view>
+                <view class='btn' hidden='{{item.panoramaId==0}}' catchtap='navTo' data-url="../index/webview?src=https://www.luckyday.top/{{item.panorama}}vtour"><i class='iconfont icon-vr-m'></i> 全景</view>
                 <view class='btn {{audioPlayer.playing&&audioPlayer.current==item.audioUrl?"selected":""}}' hidden='{{item.audioUrl==undefined}}' catchtap='playAudio' data-audio='{{item.audioUrl}}'><i class='iconfont icon-yuyin'></i> 讲解</view>
                 <view class='btn' catchtap='navToMap' data-url="../map/nav" data-lon="{{item.longitude}}" data-lat="{{item.latitude}}"><i class='iconfont icon-daohang1'></i> 导航</view>                 
               </view>

@@ -12,6 +12,7 @@
   border-top: solid 1px #c8d0d2;
   font-weight: bolder;
   background-color: white;
+  z-index: 2;
 }
 
 .tarBar .btn
@@ -24,8 +25,9 @@
 }
 .tarBar .btn .icon
 {
-  font-size: 60rpx;
-  line-height: 60rpx;
+  font-size: 50rpx;
+  line-height: 50rpx;
+  margin-bottom: 10rpx;
 }
 .tarBar .btn .title
 {
@@ -40,6 +42,7 @@
 
 .tarBar .btn.main .icon
 {
+  z-index: 10000;
   position: absolute;
   width: 140rpx;
   height: 140rpx;
@@ -57,6 +60,7 @@
 .content
 {
   width: 100%;
+  z-index: 1;
 }
 .content > view
 {
@@ -195,109 +199,80 @@
   bottom: -84rpx;
 }
 
-.top_section {
-  height: 200rpx;
-  position: absolute;
-	display: -webkit-flex;
-	left: 0;
-	top: 0;
-	width: 100%;
-	padding: 20rpx;
-	box-sizing: border-box;
-	z-index: 1;
-	-webkit-transition: background 0.5s ease-in-out;
-}
-
+/* 方案二 */
 .spot_section
-{
-background:#27c24c;
-color:white;
-
-  padding: 20rpx 50rpx;
-  border-bottom: 1px solid #f0f0f0;
-}
-
-.spot_section .avatar {
-	display: block;
-	margin: 0 auto;
-	width: 160rpx;
-	height: 160rpx;
-	border-radius:15rpx;
-}
-
-.spot_section .content
-{
-  margin-left: 50rpx;
-}
-
-.spot_section .content .title
-{
-  margin-bottom: 15rpx;
-  font-size: 40rpx;
-}
-
-.spot_section .content .info
-{
-  line-height: 35rpx;
-  margin-bottom:15rpx;  
-  font-size: 30rpx;
-  color: #8a8a8a;
-}
-
-
-.spot_section .content .btns .navigator
-{
-  display: inline-block;
-  margin-right: 25rpx;
-  font-size: 35rpx;
-  color: #27c24c;
-}
-
-.spot_section .close {
+{  
+  height: 80rpx;
   position: absolute;
-  bottom: 10rpx;
-  right: 10rpx;  
-	width: 60rpx;
-	height: 60rpx;
-	vertical-align: middle;
-}
-
-.spot_section .icon,
-{
-  left: 10rpx;
-}
-
-
-/* 后期要整合 */
-.spotFilter_section
-{
-  bottom: 50rpx;
-  padding: 20rpx;
-}
-
-.spotFilter_section .filters {  
-  width: 710rpx;  
-	display: -webkit-flex;
-  background-color: white;
+  left: 0;
+	top: 20rpx;
+	width: 710rpx;
+  margin: 0 20rpx; 
+  box-sizing:border-box;
+	z-index: 1;  
+  background:#fff;
+  border: solid 1px #4A5767;
+  color:#4A5767;
   border-radius: 15rpx;
+  box-shadow: 2px 2px 1px #888888;
 }
-.spotFilter_section .filters .filter {
-	-webkit-flex: 1;
-	text-align: center;
-	color: #696969;
-	font-size: 24rpx;
-	line-height: 60rpx;
+
+#map .spot_section .btn
+{
+  position:absolute;
+  top:10rpx;
+  width:100rpx;
+  height:60rpx;
+  color:white;
 }
-.spotFilter_section .filters .filter .v {
-	display: none;
+#map .spot_section .btn cover-image
+{
+  position:absolute;
+  width:60rpx;
+  height:60rpx;
 }
-.spotFilter_section .filters .filter.active {
-	color: white;
-	font-weight: bold;
-  background-color: #27c24c;  
+#map .spot_section .closeBtn
+{
+  left:10rpx;
 }
-.spotFilter_section .filters .filter.active .v {
-	display: inline-block;
+
+#map .spot_section .closeBtn cover-image
+{
+  top:0rpx;
+}
+
+#map .spot_section .navBtn
+{
+  right:10rpx;
+}
+
+#map .spot_section .navBtn cover-image
+{
+  right:0rpx;
+}
+
+
+#map .spot_section .separate
+{
+  width: 1px;
+  background: #4A5767;
+  position: absolute;
+  height: 60rpx;
+  right: 80rpx;
+  top: 10rpx;
+}
+
+#map .spot_section  .text 
+{
+  position: absolute;
+  top: 10rpx;
+  left: 80rpx;
+  font-size: 30rpx;
+  line-height: 60rpx;    
+  width: 510rpx;
+ 	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 
 /* 攻略界面 */
@@ -309,4 +284,255 @@ color:white;
 {
   margin-top: 0;
   margin-bottom: 40rpx;
+}
+
+
+/* 景区详情页面 */
+ 
+.detail_section .spot_photos .tipBg,.spot_photos .photoTip
+{ 
+  width: 180rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 30rpx;
+  bottom: 20rpx;
+  left: 20rpx;
+  color: white;
+  text-align: center;
+}
+
+.detail_section .spot_photos .tipBg
+{
+  background: black;
+  border-radius: 10rpx;    
+  opacity: 0.8;
+}
+
+.detail_section .spot_photos .photoTip i
+{
+  font-size: 30rpx;  
+}
+
+.detail_section .spot_detail .name .tags
+{
+  line-height: 22rpx;
+}
+
+.detail_section .spot_detail .name .vrBtn
+{
+  position:absolute;
+  top:40rpx;
+  right:15rpx;
+
+  color: #27c24c;  
+}
+
+.detail_section .spot_detail .name .tags .tag
+{
+  display: inline-block;
+  border:1px solid green;
+  color:green;
+  font-size:24rpx;
+  padding:4rpx 8rpx;
+  border-radius: 8rpx;
+  margin-right: 8rpx;
+}
+
+.detail_section .spot_detail .address,.detail_section .spot_detail .phone,.detail_section .spot_detail .price,.detail_section .spot_detail .opentime,.detail_section .spot_detail .desc_title,.detail_section .spot_detail .bus,.detail_section .spot_detail .route
+{
+  font-size: 30rpx;
+  line-height: 50rpx;
+  color: #8a8a8a;
+}
+
+.detail_section .spot_detail .address
+{
+	display: -webkit-flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+.detail_section .spot_detail .address .mapAnchor
+{
+  width: 600rpx;
+}
+
+.detail_section .spot_detail .address .navAnchor
+{
+  width: 100rpx;
+  color: #27c24c;
+  text-align: center;
+  border-left: solid #a4dd4a 1px;
+}
+
+.detail_section .spot_detail .desc_title
+{
+  border: none;
+}
+
+.detail_section .spot_detail .desc
+{
+  font-size: 30rpx;   
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;  
+}
+
+.detail_section .spot_vedios scroll-view .vedios
+{
+  height: 100%;
+}
+.detail_section .spot_vedios scroll-view .vedio
+{
+  width: 100%;
+}
+
+.detail_section .spot_services
+{
+  margin: 20rpx 0 0 0;
+  background: white;
+  padding: 20rpx;  
+}
+
+.detail_section .spot_services .filters {
+	display: -webkit-flex;
+  margin-bottom: 20rpx;
+}
+.detail_section .spot_services .filters .filter {
+	-webkit-flex: 1;
+	text-align: center;
+	color: #696969;
+	font-size: 30rpx;
+	line-height: 3;
+}
+.detail_section .spot_services .filters .filter .v {
+	display: none;
+}
+.detail_section .spot_services .filters .filter.active {
+	color: #000;
+	font-weight: bold;
+  border-bottom: solid 2rpx #27c24c;
+}
+.detail_section .spot_services .filters .filter.active .v {
+	display: inline-block;
+}
+
+.detail_section .spot_services .spot_service_group
+{
+  background: white;
+  font-size: 30rpx;
+}
+
+.detail_section .spot_service_item {
+  display: flex;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #eee;
+  max-height: 170rpx;
+}
+
+.detail_section .spot_service_item .poster {
+  width: 170rpx;
+  height: 170rpx;
+  margin-right: 20rpx;
+}
+
+.detail_section .spot_service_item .meta {
+  flex: 1;
+}
+
+.detail_section .spot_service_item .meta .title,
+.detail_section .spot_service_item .meta .sub-title,
+.detail_section .spot_service_item .meta .multi-info {
+  display: block;
+  margin-bottom: 5rpx;
+}
+
+.detail_section .spot_service_item .meta .title {
+  font-size: 32rpx;
+  height:50rpx;
+  line-height:50rpx;  
+}
+
+.detail_section .spot_service_item .meta .title .star,
+.detail_section .spot_service_item .meta .title .hot
+{
+  color: red;
+}
+
+.detail_section .spot_service_item .meta .sub-title,
+.detail_section .spot_service_item .meta .multi-info
+{
+  font-size: 25rpx;
+  line-height: 35rpx;  
+  color: #c0c0c0;
+  overflow: hidden;
+  text-overflow: ellipsis;  
+}
+
+.detail_section .spot_service_item .meta .sub-title {
+  height: 70rpx;
+}
+
+.detail_section .spot_service_item .meta .multi-info
+{
+  height: 40rpx;
+}
+
+.detail_section .spot_service_item .meta .btns {
+  height: 40rpx;    
+  display: flex;
+}
+
+.detail_section .spot_service_item .meta .btns .btn
+{
+  color: #27c24c;
+  font-size: 25rpx;
+  padding:0rpx 14rpx;
+  border-radius:8rpx;
+  margin-right:8rpx;
+  border:1px solid #27c24c;
+}
+
+.detail_section .spot_service_item .meta .btns .btn.selected
+{
+  color: white;
+  background-color: #27c24c;
+}
+
+
+.detail_section .dialog
+{
+  top: 0;
+  z-index: 1001;
+  background-color: white;
+  position: absolute;
+  width: 100%;
+}
+
+.detail_section .dialog .dialog_header
+{
+  padding: 20rpx;
+  position: relative;
+  font-size: 40rpx;
+  line-height: 50rpx;  
+}
+
+.detail_section .dialog .dialog_header .dialog_closeBtn
+{
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  right: 20rpx;
+  top:20rpx;
+}
+
+.detail_section .dialog .dialog_content
+{
+  padding:0 20rpx;
+  font-size: 30rpx;
+} 
+
+.overflowhidden
+{
+  overflow: hidden;
 }

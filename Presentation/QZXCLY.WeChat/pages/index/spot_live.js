@@ -29,7 +29,7 @@ Page({
   // 切换至全景
   navToPanorama: function (event) {
     wx.navigateTo({
-      url: 'webview?src=https://www.luckyday.top/threejs^village%' + page.data.live.panorama + '$pId%' + page.data.live.panoramaId,
+      url: 'webview?src=https://www.luckyday.top/' + page.data.live.panorama + 'vtour',      
     });
   },
   // 导航

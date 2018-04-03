@@ -58,6 +58,10 @@ namespace QZCHY.Core.Domain.Villages
         /// </summary>
         public string Triffic { get; set; }
 
+        /// <summary>
+        /// 景区A级
+        /// </summary>
+        public int Level { get; set; }
 
         /// <summary>
         /// 旅游空间路线
