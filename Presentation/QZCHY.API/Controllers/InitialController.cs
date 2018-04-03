@@ -605,7 +605,6 @@ namespace QZCHY.API.Controllers
                 ch.Eats.Add(new VillageEat() { Name = "田英山庄", Address = "长虹乡桃源村长芦61号", Person = "程田英", Description = "", Tel = "15257023563", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2127619654 29.2583806553)"), Icon = "eat" });
                 ch.Eats.Add(new VillageEat() { Name = "江南人家", Address = "长虹乡桃源村长芦", Person = "余素君", Description = "", Tel = "15167084006", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.2131160170 29.2601543787)"), Icon = "eat" });
 
-
                 #region 图片路径
                 eat_imagesPath = relativePath + "ch/eat_images/";
 

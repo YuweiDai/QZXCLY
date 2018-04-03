@@ -9,7 +9,7 @@
         {{live.name}}
         <view class='btns'>          
         <view class='btn' bindtap='makePhoneCall' title="拨打"data-phone="{{live.tel}}"><i class="iconfont icon-dianhua"></i></view>
-        <view class='btn' hidden='{{live.panorama==0}}' bindtap='navToPanorama' title="全景"><i class='iconfont icon-vr-m'></i></view>        
+        <view class='btn' hidden='{{live.panoramaId==0}}' bindtap='navToPanorama' title="全景"><i class='iconfont icon-vr-m'></i></view>        
         <view class='btn' bindtap='navTo' title="导航"><i class='iconfont icon-daohang1'></i></view>       
        </view>
       </view>
@@ -30,7 +30,7 @@
       <view class='title relative'>民宿图片</view>    
       <view class='photos'>
         <view class='photo' bindtap='previewImage' wx:for="{{live.livePictures}}" wx:for-item="photo" data-url="{{photo.img}}" data-index="{{index}}" >      
-          <image src="{{photo.img}}"/>
+          <image src="{{photo.img}}"  mode='aspectFill' />
           <view class='title'>{{photo.name}}</view>  
         </view>      
       </view>

@@ -25,21 +25,27 @@ Page({
       }
     })
   },
+  // 切换至全景
+  navToPanorama: function (event) {
+    wx.navigateTo({
+      url: 'webview?src=https://www.luckyday.top/' + page.data.eat.panorama + 'vtour', 
+    });
+  },
   // 导航
   navTo: function (event) {
     var url = '../map/nav';
-    var lon = page.eat.long;
-    var lat = page.eat.long;
+    var lon = page.data.eat.longitude;
+    var lat = page.data.eat.latitude;
     wx.navigateTo({
       url: url + "?lon=" + lon + "&lat=" + lat,
-    });    
-  },  
+    });
+  },
   // 点击图片预览
   previewImage: function (event) {
     var url = event.currentTarget.dataset.url;
     wx.previewImage({
       current: url, // 当前显示图片的http链接
-      urls: p.data.urls // 需要预览的图片http链接列表
+      urls: page.data.urls // 需要预览的图片http链接列表
     })
   },  
   /**
@@ -61,11 +67,11 @@ Page({
       url: app.globalData.apiUrl + 'Villages/Eat/' + id,
       success: function (response) {
         var eat = response.data;
-        
+        var size = 750 / app.globalData.rpx;
         if (eat.logo == "" || eat.logo == null)
           eat.logo = "http://www.atool.org/placeholder.png?size=" + size + "x" + size + "&text=" + eat.name + "&&bg=836&fg=fff";
           else
-          item.logo = item.logo.replace(app.globalData.apiUrl, app.globalData.picturesUrl);
+          eat.logo = eat.logo.replace(app.globalData.apiUrl1, app.globalData.picturesUrl);
 
         eat.descriptions = eat.description.split(';');
 
@@ -73,9 +79,11 @@ Page({
 
         var urls = [];
         for (var index in eat.eatPictures) {
-          var img = eat.eatPictures[index].img.replace(app.globalData.apiUrl, app.globalData.picturesUrl);
-          urls.push(img);
+          var url = eat.eatPictures[index].img.replace(app.globalData.apiUrl1, app.globalData.picturesUrl);
+          eat.eatPictures[index].img = url;
+          urls.push(url);
         }
+        eat.logo = eat.logo.replace(app.globalData.apiUrl1, app.globalData.picturesUrl);
 
         page.setData({
           urls:urls,

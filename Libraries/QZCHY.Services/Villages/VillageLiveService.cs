@@ -79,8 +79,20 @@ namespace QZCHY.Services.Villages
         {
             if (villageLiveId == 0) return null;
 
-            string key = string.Format(VillageLive_BY_ID_KEY, villageLiveId);
-            return _cacheManager.Get(key, () => _villageLiveRepository.GetById(villageLiveId));
+            var villageLive = _villageLiveRepository.Table;
+
+            var query = from vl in _villageLiveRepository.Table
+                        where vl.Id == villageLiveId
+                        select vl;
+
+            var live = query.FirstOrDefault();
+
+            return live;
+
+            //string key = string.Format(VillageLive_BY_ID_KEY, villageLiveId);
+            ////return _cacheManager.Get(key, () => _villageLiveRepository.GetById(villageLiveId));
+
+            //return _villageLiveRepository.GetById(villageLiveId);
         }
     }
 }

@@ -34,6 +34,8 @@ namespace QZCHY.API.Models
 
         public double Longitude { get; set; }
 
+        public int Level { get; set; }
+
         /// <summary>
         /// 旅游空间路线
         /// </summary>
@@ -70,7 +72,7 @@ namespace QZCHY.API.Models
     /// </summary>
     public class ServiceGeoModel:SpotItemGeoModel
     {
-
+        public int ServiceType { get; set; }
     }
 
     /// <summary>

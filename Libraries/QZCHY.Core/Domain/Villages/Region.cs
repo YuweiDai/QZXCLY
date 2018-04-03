@@ -21,7 +21,16 @@ namespace QZCHY.Core.Domain.Villages
         CS = 4,
         [Description("龙游县")]
         LY = 5
+    }
 
+    public enum ServiceType
+    {
+        [Description("厕所")]
+        WC = 0,
+        [Description("停车场")]
+        Park = 1,
 
+        [Description("其他")]
+        Others = 99
     }
 }

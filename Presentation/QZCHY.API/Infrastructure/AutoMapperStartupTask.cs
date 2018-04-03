@@ -38,7 +38,9 @@ namespace QZCHY.Web.Api.Infrastructure
 
             Mapper.CreateMap<VillageEatModel, VillageEat>();
 
-            Mapper.CreateMap<VillageEat, VillageEatModel>();
+            Mapper.CreateMap<VillageEat, VillageEatModel>()
+                  .ForMember(dest => dest.Longitude, mo => mo.MapFrom(src => src.Location.Longitude))
+                  .ForMember(dest => dest.Latitude, mo => mo.MapFrom(src => src.Location.Latitude));
 
             Mapper.CreateMap<VillageEat, EatGeoModel>()
                   .ForMember(dest => dest.Longitude, mo => mo.MapFrom(src => src.Location.Longitude))
@@ -46,8 +48,9 @@ namespace QZCHY.Web.Api.Infrastructure
 
             //
             Mapper.CreateMap<VillagePlayModel, VillagePlay>();
-
-            Mapper.CreateMap<VillagePlay, VillagePlayModel>();
+            Mapper.CreateMap<VillagePlay, VillagePlayModel>()
+                  .ForMember(dest => dest.Longitude, mo => mo.MapFrom(src => src.Location.Longitude))
+                  .ForMember(dest => dest.Latitude, mo => mo.MapFrom(src => src.Location.Latitude));
 
             Mapper.CreateMap<VillagePlay, PlayGeoModel>()
                   .ForMember(dest => dest.Longitude, mo => mo.MapFrom(src => src.Location.Longitude))
@@ -56,7 +59,9 @@ namespace QZCHY.Web.Api.Infrastructure
             //
             Mapper.CreateMap<VillageLiveModel, VillageLive>();
 
-            Mapper.CreateMap<VillageLive, VillageLiveModel>();
+            Mapper.CreateMap<VillageLive, VillageLiveModel>()
+                  .ForMember(dest => dest.Longitude, mo => mo.MapFrom(src => src.Location.Longitude))
+                  .ForMember(dest => dest.Latitude, mo => mo.MapFrom(src => src.Location.Latitude));
 
             Mapper.CreateMap<VillageLive, LiveGeoModel>()
                   .ForMember(dest => dest.Longitude, mo => mo.MapFrom(src => src.Location.Longitude))
@@ -99,9 +104,15 @@ namespace QZCHY.Web.Api.Infrastructure
 
 
             //simple
-            Mapper.CreateMap<VillagePlay, SimplePlayModel>();
-            Mapper.CreateMap<VillageEat, SimpleEatModel>();
-            Mapper.CreateMap<VillageLive, SimpleLiveModel>();
+            Mapper.CreateMap<VillagePlay, SimplePlayModel>()
+                  .ForMember(dest => dest.Longitude, mo => mo.MapFrom(src => src.Location.Longitude))
+                  .ForMember(dest => dest.Latitude, mo => mo.MapFrom(src => src.Location.Latitude));
+            Mapper.CreateMap<VillageEat, SimpleEatModel>()
+                  .ForMember(dest => dest.Longitude, mo => mo.MapFrom(src => src.Location.Longitude))
+                  .ForMember(dest => dest.Latitude, mo => mo.MapFrom(src => src.Location.Latitude));
+            Mapper.CreateMap<VillageLive, SimpleLiveModel>()
+                  .ForMember(dest => dest.Longitude, mo => mo.MapFrom(src => src.Location.Longitude))
+                  .ForMember(dest => dest.Latitude, mo => mo.MapFrom(src => src.Location.Latitude));
 
             Mapper.CreateMap<StrategyModel, Strategy>();
 

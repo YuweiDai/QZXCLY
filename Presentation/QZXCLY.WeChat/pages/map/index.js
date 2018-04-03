@@ -323,18 +323,6 @@ Page({
     });
   },
 
-  //显示图片合辑
-  showImages:function(event)
-  {
-    // wx.previewImage({
-    //   current: "http://img8.blog.eastmoney.com/zl/zltkg/201505/20150530075406190.jpg",
-    //   urls: ["http://img8.blog.eastmoney.com/zl/zltkg/201505/20150530075406190.jpg", "http://s9.rr.itc.cn/r/wapChange/20169_12_15/a29q5o2502122756352.jpg", "http://img2.niwota.com/album/images/2015-07-15/1436925113922-club.jpg"],
-    //   success: function(res) {},
-    //   fail: function(res) {},
-    //   complete: function(res) {},
-    // })
-  },
-
   //统一导航函数
   nav:function(event){
     var url = event.currentTarget.dataset.url;

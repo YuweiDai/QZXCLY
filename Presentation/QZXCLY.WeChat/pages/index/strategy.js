@@ -1,6 +1,5 @@
 // pages/index/strategy.js
 var p=null;
-var WxParse = require('../../libs/wxParse/wxParse.js');
 
 Page({
 

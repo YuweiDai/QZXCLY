@@ -21,6 +21,11 @@ namespace QZCHY.API.Models
         public int PanoramaId { get; set; }
 
         /// <summary>
+        /// 景区全景标识
+        /// </summary>
+        public string Panorama { get; set; }
+
+        /// <summary>
         /// 语音讲解路径
         /// </summary>
         public string AudioUrl { get; set; }
@@ -32,8 +37,8 @@ namespace QZCHY.API.Models
         /// <summary>
         /// 坐落位置
         /// </summary>
-        public string Lon { get; set; }
-        public string Lat { get; set; }
+        public string Longitude { get; set; }
+        public string Latitude { get; set; }
 
         public int Order { get; set; }
 
@@ -57,6 +62,14 @@ namespace QZCHY.API.Models
         public string AudioUrl { get; set; }
 
         public int PanoramaId { get; set; }
+        /// <summary>
+        /// 景区全景标识
+        /// </summary>
+        public string Panorama { get; set; }
+
+        public string Longitude { get; set; }
+        public string Latitude { get; set; }
+
 
     }
 }
