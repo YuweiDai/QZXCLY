@@ -94,9 +94,9 @@
     <Compile Include="Mapping\VillageMap\VillagePictureMap.cs" />
     <Compile Include="Mapping\VillageMap\VillagePlayMap.cs" />
     <Compile Include="Mapping\VillageMap\VillageServiceMap.cs" />
-    <Compile Include="Migrations\201803260640138_initialCreate.cs" />
-    <Compile Include="Migrations\201803260640138_initialCreate.Designer.cs">
-      <DependentUpon>201803260640138_initialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201804031341399_initialCreate.cs" />
+    <Compile Include="Migrations\201804031341399_initialCreate.Designer.cs">
+      <DependentUpon>201804031341399_initialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -115,8 +115,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201803260640138_initialCreate.resx">
-      <DependentUpon>201803260640138_initialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201804031341399_initialCreate.resx">
+      <DependentUpon>201804031341399_initialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

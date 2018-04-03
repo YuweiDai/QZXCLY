@@ -47,7 +47,7 @@ namespace QZCHY.Data.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Title = c.String(nullable: false, maxLength: 255),
+                        Name = c.String(nullable: false, maxLength: 255),
                         Address = c.String(),
                         Description = c.String(),
                         Tel = c.String(),
@@ -83,8 +83,12 @@ namespace QZCHY.Data.Migrations
                         Price = c.Double(nullable: false),
                         TourRoute = c.String(),
                         Triffic = c.String(),
+                        Level = c.Int(nullable: false),
                         GeoTourRoute = c.Geography(),
                         Icon = c.String(),
+                        Panorama = c.String(),
+                        VideoUrl = c.String(),
+                        Region = c.Int(nullable: false),
                         Location = c.Geography(),
                         Deleted = c.Boolean(nullable: false),
                         CreatedOn = c.DateTime(nullable: false),
@@ -97,7 +101,7 @@ namespace QZCHY.Data.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Title = c.String(nullable: false, maxLength: 255),
+                        Name = c.String(nullable: false, maxLength: 255),
                         Address = c.String(),
                         Description = c.String(),
                         Tel = c.String(),
@@ -106,6 +110,7 @@ namespace QZCHY.Data.Migrations
                         Icon = c.String(),
                         BedsNumber = c.Int(nullable: false),
                         RoomPrice = c.String(),
+                        PanoramaId = c.Int(nullable: false),
                         Tags = c.String(),
                         Facilities = c.String(),
                         Order = c.Int(nullable: false),
@@ -141,7 +146,7 @@ namespace QZCHY.Data.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Title = c.String(nullable: false, maxLength: 255),
+                        Name = c.String(nullable: false, maxLength: 255),
                         Description = c.String(),
                         PanoramaId = c.Int(nullable: false),
                         AudioUrl = c.String(),
@@ -180,9 +185,10 @@ namespace QZCHY.Data.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Title = c.String(nullable: false, maxLength: 255),
+                        Name = c.String(nullable: false, maxLength: 255),
                         Description = c.String(),
                         PanoramaId = c.Int(nullable: false),
+                        ServiceType = c.Int(nullable: false),
                         Icon = c.String(),
                         Location = c.Geography(),
                         Deleted = c.Boolean(nullable: false),
@@ -264,37 +270,6 @@ namespace QZCHY.Data.Migrations
                 .ForeignKey("dbo.Village", t => t.VillageId, cascadeDelete: true)
                 .Index(t => t.VillageId)
                 .Index(t => t.PictureId);
-            
-            CreateTable(
-                "dbo.VillageVedios",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        VillageId = c.Int(nullable: false),
-                        VedioId = c.Int(nullable: false),
-                        Order = c.Int(nullable: false),
-                        Deleted = c.Boolean(nullable: false),
-                        CreatedOn = c.DateTime(nullable: false),
-                        UpdatedOn = c.DateTime(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Vedios", t => t.VedioId, cascadeDelete: true)
-                .ForeignKey("dbo.Village", t => t.VillageId, cascadeDelete: true)
-                .Index(t => t.VillageId)
-                .Index(t => t.VedioId);
-            
-            CreateTable(
-                "dbo.Vedios",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        Url = c.String(),
-                        Deleted = c.Boolean(nullable: false),
-                        CreatedOn = c.DateTime(nullable: false),
-                        UpdatedOn = c.DateTime(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.EmailAccount",
@@ -523,8 +498,6 @@ namespace QZCHY.Data.Migrations
             DropForeignKey("dbo.AccountUser_AccountUserRole_Mapping", "AccountUser_Id", "dbo.AccountUser");
             DropForeignKey("dbo.QueuedEmail", "EmailAccountId", "dbo.EmailAccount");
             DropForeignKey("dbo.VillageEat", "Village_Id", "dbo.Village");
-            DropForeignKey("dbo.VillageVedios", "VillageId", "dbo.Village");
-            DropForeignKey("dbo.VillageVedios", "VedioId", "dbo.Vedios");
             DropForeignKey("dbo.VillagePicture", "VillageId", "dbo.Village");
             DropForeignKey("dbo.VillagePicture", "PictureId", "dbo.Pictures");
             DropForeignKey("dbo.Strategy", "Village_Id", "dbo.Village");
@@ -547,8 +520,6 @@ namespace QZCHY.Data.Migrations
             DropIndex("dbo.ActivityLog", new[] { "AccountUserId" });
             DropIndex("dbo.ActivityLog", new[] { "ActivityLogTypeId" });
             DropIndex("dbo.QueuedEmail", new[] { "EmailAccountId" });
-            DropIndex("dbo.VillageVedios", new[] { "VedioId" });
-            DropIndex("dbo.VillageVedios", new[] { "VillageId" });
             DropIndex("dbo.VillagePicture", new[] { "PictureId" });
             DropIndex("dbo.VillagePicture", new[] { "VillageId" });
             DropIndex("dbo.StrategyPicture", new[] { "PictureId" });
@@ -578,8 +549,6 @@ namespace QZCHY.Data.Migrations
             DropTable("dbo.QueuedEmail");
             DropTable("dbo.MessageTemplate");
             DropTable("dbo.EmailAccount");
-            DropTable("dbo.Vedios");
-            DropTable("dbo.VillageVedios");
             DropTable("dbo.VillagePicture");
             DropTable("dbo.StrategyPicture");
             DropTable("dbo.Strategy");

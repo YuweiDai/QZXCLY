@@ -13,7 +13,7 @@ namespace QZCHY.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201803260640138_initialCreate"; }
+            get { return "201804031341399_initialCreate"; }
         }
         
         string IMigrationMetadata.Source
