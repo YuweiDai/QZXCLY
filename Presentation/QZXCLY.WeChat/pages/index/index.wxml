@@ -165,7 +165,7 @@
                   <text class="title">{{item.name}}</text>
                   <text class="sub-title">{{item.description}}</text>
                   <view class='btns'>
-                    <view class='btn' hidden='{{item.panoramaId==0}}' catchtap='navTo' data-url="../index/webview?src=https://www.luckyday.top/{{item.panorama}}vtour"><i class='iconfont icon-vr-m'></i> 全景</view>
+                    <view class='btn' hidden='{{item.panoramaId==0}}' catchtap='navTo' data-url="../index/webview?src=https://www.luckyday.top/{{item.panorama}}vtour"><i class='iconfont icon-VRshebei'></i> 全景</view>
                     <view class='btn {{detail.audioPlayer.playing&&detail.audioPlayer.current==item.audioUrl?"selected":""}}' hidden='{{item.audioUrl==undefined}}' catchtap='playAudio' data-audio='{{item.audioUrl}}'><i class='iconfont icon-yuyin'></i> 讲解</view>
                     <view class='btn' catchtap='viewPath' data-url="../map/nav" data-lon="{{item.longitude}}" data-lat="{{item.latitude}}"><i class='iconfont icon-daohang2'></i> 导航</view>                 
                   </view>

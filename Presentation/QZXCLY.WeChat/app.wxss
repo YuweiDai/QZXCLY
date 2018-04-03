@@ -62,7 +62,7 @@
 
 .section .name
 {
-  font-size: 50rpx;
+  font-size: 45rpx;
   font-weight: bolder;
   padding: 25rpx 0;  
 }

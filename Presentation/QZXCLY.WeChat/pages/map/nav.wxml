@@ -2,8 +2,7 @@
 <view class="container">
   <map id="navi_map" markers="{{markers}}" polyline="{{polyline}}">
     <cover-view  class="text_box">
-      <cover-view class="text">距离：{{distance}}</cover-view>
-      <cover-view class="text">{{cost}}</cover-view>
+      <cover-view class="text">距离：{{distance}}</cover-view> 
       <cover-view class="detail_button" bindtap="goDetail">导航</cover-view>
     </cover-view>    
   </map>
