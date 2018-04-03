@@ -1,12 +1,11 @@
 {
   "pages":[
-
     "pages/index/index",
     "pages/index/spot_play",   
     "pages/index/spot_eat",
     "pages/index/spot_live",
-    "pages/map/nav",
-    "pages/index/webview"
+    "pages/map/nav",  
+    "pages/index/webview"    
   ],
   "window":{
     "backgroundTextStyle":"light",

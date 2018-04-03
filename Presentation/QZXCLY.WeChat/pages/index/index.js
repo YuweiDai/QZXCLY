@@ -88,6 +88,13 @@ Page({
 
     switch(target)
     {
+      case "0":
+        //切换视野
+        this.mapCtx.includePoints({
+          padding: [50,50,50,50],
+          points: page.data.map.currentRegionPoints
+        });
+        break;
       case "1":
         page.refreshStrategies();
         break;
@@ -131,8 +138,7 @@ Page({
       });
 
       spot.logo = spot.logo.replace(app.globalData.apiUrl1, app.globalData.picturesUrl);
-      spot.routePicutre = spot.routePicutre.replace(app.globalData.apiUrl1, app.globalData.picturesUrl);
-
+      spot.routePicutre = spot.routePicutre.replace(app.globalData.apiUrl1, app.globalData.picturesUrl);     
       console.log(spot);
 
       page.setData({
@@ -448,6 +454,16 @@ Page({
                 success: function (response) {
                   var spot = response.data;
                   spot.logo=spot.logo.replace(app.globalData.apiUrl1,app.globalData.picturesUrl);
+
+                  if (spot.level > 0) {
+                    var index = 1;
+                    spot.levelTag = "·";
+                    for (var index = 1; index <= spot.level; index++) {
+                      spot.levelTag += "A";
+                    }
+                    spot.levelTag += "级景区";
+                  }
+
                   //更新空间位置
                   var allControls = page.data.map.allControls;
                   allControls[1].iconPath = "../../resources/images/map/nearBy_s.png";
@@ -572,11 +588,12 @@ Page({
 
       this.mapCtx.includePoints({
           padding: [30, 30, 30, 30],
-          points: newRegionPoints
+          points: newRegionPoints,
       });
 
       page.setData({
-          'map.markers': subMarkers,
+        'map.markers': subMarkers,
+        'map.currentRegionPoints': newRegionPoints
       });
   },
 

@@ -83,7 +83,7 @@
           <cover-view class='btn closeBtn' bindtap='returnToAll'>
             <cover-image src="http://qzch.qz.gov.cn/qzxcly/resources/images/map/return.png" ></cover-image>
           </cover-view>
-          <cover-view class='text'>{{map.currentSpot.name}}·AAA级景区</cover-view>          
+          <cover-view class='text'>{{map.currentSpot.name}}{{map.currentSpot.levelTag}}</cover-view>       
           <cover-view class='btn navBtn' bindtap='viewPath'>
             <cover-image src="http://qzch.qz.gov.cn/qzxcly/resources/images/map/nav.png" ></cover-image>
           </cover-view>          
