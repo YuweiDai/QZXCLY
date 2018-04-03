@@ -84,7 +84,7 @@
             <cover-image src="http://qzch.qz.gov.cn/qzxcly/resources/images/map/return.png" ></cover-image>
           </cover-view>
           <cover-view class='text'>{{map.currentSpot.name}}{{map.currentSpot.levelTag}}</cover-view>       
-          <cover-view class='btn navBtn' bindtap='viewPath'>
+          <cover-view class='btn navBtn' bindtap='viewPath' data-lon="{{map.currentSpot.longitude}}" data-lat="{{map.currentSpot.latitude}}">
             <cover-image src="http://qzch.qz.gov.cn/qzxcly/resources/images/map/nav.png" ></cover-image>
           </cover-view>          
           <cover-view class='separate'></cover-view>
