@@ -38,6 +38,8 @@ namespace QZCHY.API.Models
 
         public string VideoUrl { get; set; }
 
+        public string Panorama { get; set; }
+
         public IList<StrategyModel> Strategies { get; set; }
 
         public virtual ICollection<VillagePictureModel> VillagePictures { get; set; }

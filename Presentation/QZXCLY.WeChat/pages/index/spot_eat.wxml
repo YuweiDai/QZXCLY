@@ -2,13 +2,13 @@
 <view class="container">
   <scroll-view scroll-y="true" class='spot_service'>
     <view class='banner'>
-     <image src="{{eat.logo}}"></image>
+     <image mode='aspectFill' src="{{eat.logo}}"></image>
     </view>
     <view class='section'>
       <view class='name line relative'>{{eat.name}}
        <view class='btns'>   
         <view class='btn' bindtap='makePhoneCall' title="拨打"data-phone="{{eat.tel}}"><i class="iconfont icon-dianhua"></i></view>
-        <view class='btn' bindtap='navTo' title="导航"><i class='iconfont icon-daohang1'></i></view>       
+        <view class='btn' bindtap='navTo' title="导航"><i class='iconfont icon-daohang2'></i></view>       
        </view>
       </view>
       <view class='line relative'>地址：{{eat.address}}</view>
@@ -22,7 +22,7 @@
       <view class='title relative'>酒店图片</view>     
       <view class='photos'>
         <view class='photo' bindtap='previewImage' wx:for="{{eat.eatPictures}}" wx:for-item="photo" data-url="{{photo.img}}" data-index="{{index}}" >      
-          <image src="{{photo.img}}"/>
+          <image src="{{photo.img}}" mode='aspectFill' />
           <view class='title'>{{photo.name}}</view>  
         </view>      
       </view>

@@ -1,28 +1,15 @@
 {
   "pages":[
-
     "pages/index/index",
-    "pages/index/spots",
-    "pages/map/index",
-    "pages/map/nav",
     "pages/index/spot_play",   
     "pages/index/spot_eat",
     "pages/index/spot_live",
-    "pages/index/spot",
-    
-    "pages/index/strategies",    
-    "pages/index/strategy",
-    
- 
-
-    "pages/index/webview",    
-    
-    "pages/mine/index", 
-    "pages/logs/logs"
+    "pages/map/nav",  
+    "pages/index/webview"    
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#27c24c",
+    "navigationBarBackgroundColor": "#4A5767",
     "navigationBarTitleText": "衢州市乡村旅游地图",
     "navigationBarTextStyle":"white"
   },

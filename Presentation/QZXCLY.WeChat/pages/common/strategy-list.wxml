@@ -1,8 +1,8 @@
 <!-- 攻略卡片 -->
 <template name="strategy">
-  <view class='item'>      
+  <view class='item animated slideInRight'>      
     <navigator url='webview?src={{item.src}}'>
-      <image src="{{item.img}}"/>
+      <image mode="aspectFill" src="{{item.img}}"/>
       <view class='item-name'>{{item.title}}</view>  
     </navigator>
   </view>

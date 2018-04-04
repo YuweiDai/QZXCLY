@@ -204,6 +204,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bug fixed.txt" />
     <Content Include="Content\images\thumbs\0000001_0.jpeg" />
     <Content Include="Content\images\thumbs\0000002_0.jpeg" />
     <Content Include="Content\images\thumbs\0000003_0.jpeg" />
@@ -280,66 +281,6 @@
     <Content Include="Content\images\thumbs\0000074_0.jpeg" />
     <Content Include="Content\images\thumbs\0000075_0.jpeg" />
     <Content Include="Content\Site.css" />
-    <Content Include="Resources\Imports\dp\eat_images\dpy.bmp" />
-    <Content Include="Resources\Imports\dp\eat_images\dxy.bmp" />
-    <Content Include="Resources\Imports\dp\eat_images\gdj.bmp" />
-    <Content Include="Resources\Imports\dp\eat_images\hft.bmp" />
-    <Content Include="Resources\Imports\dp\eat_images\hlg.bmp" />
-    <Content Include="Resources\Imports\dp\eat_images\hsz.bmp" />
-    <Content Include="Resources\Imports\dp\eat_images\htx.bmp" />
-    <Content Include="Resources\Imports\dp\eat_images\ljz.bmp" />
-    <Content Include="Resources\Imports\dp\eat_images\lyzj.bmp" />
-    <Content Include="Resources\Imports\dp\eat_images\mlnz.bmp" />
-    <Content Include="Resources\Imports\dp\eat_images\myl.bmp" />
-    <Content Include="Resources\Imports\dp\eat_images\smkz.bmp" />
-    <Content Include="Resources\Imports\dp\eat_images\sqg.bmp" />
-    <Content Include="Resources\Imports\dp\eat_images\wpj.bmp" />
-    <Content Include="Resources\Imports\dp\eat_images\xyl.bmp" />
-    <Content Include="Resources\Imports\dp\eat_images\ysdp.bmp" />
-    <Content Include="Resources\Imports\dp\images\00.jpg" />
-    <Content Include="Resources\Imports\dp\images\01.jpg" />
-    <Content Include="Resources\Imports\dp\images\02.jpg" />
-    <Content Include="Resources\Imports\dp\images\03.jpg" />
-    <Content Include="Resources\Imports\dp\images\04.jpg" />
-    <Content Include="Resources\Imports\dp\images\05.jpg" />
-    <Content Include="Resources\Imports\dp\images\06.jfif" />
-    <Content Include="Resources\Imports\dp\images\7112315_847422.jpg" />
-    <Content Include="Resources\Imports\dp\images\logo.jpg" />
-    <Content Include="Resources\Imports\dp\images\M000F85CggSBFoH3MOAcxETAAIH286N6UQ493.jpg" />
-    <Content Include="Resources\Imports\dp\images\M000FAFCggSA1oH3LuAeiemAAI9oyU8pB4788.jpg" />
-    <Content Include="Resources\Imports\dp\images\M000FAFCggSA1oH3LyAFq1XAAKwBOFvALU411.jpg" />
-    <Content Include="Resources\Imports\dp\images\M001920CggSDVoH3L2AeKPUAAKKfOx-yWQ669.jpg" />
-    <Content Include="Resources\Imports\dp\images\M001920CggSDVoH3LyANweWAAJQgbd3P6c027.jpg" />
-    <Content Include="Resources\Imports\dp\images\M002537CggSDloH3MGAJDoLAAL4M6rcl6k831.jpg" />
-    <Content Include="Resources\Imports\dp\images\timg %281%29.jfif" />
-    <Content Include="Resources\Imports\dp\images\timg %282%29.jfif" />
-    <Content Include="Resources\Imports\dp\images\timg %283%29.jfif" />
-    <Content Include="Resources\Imports\dp\images\timg %287%29.jfif" />
-    <Content Include="Resources\Imports\dp\images\timg.jfif" />
-    <Content Include="Resources\Imports\dp\images\trip.jpg" />
-    <Content Include="Resources\Imports\dp\images\u=1375075198,3293820776&amp;fm=27&amp;gp=0.jpg" />
-    <Content Include="Resources\Imports\dp\images\u=1759609287,3259995652&amp;fm=27&amp;gp=0.jpg" />
-    <Content Include="Resources\Imports\dp\live_images\dpy.bmp" />
-    <Content Include="Resources\Imports\dp\live_images\dxy.bmp" />
-    <Content Include="Resources\Imports\dp\live_images\gdj.bmp" />
-    <Content Include="Resources\Imports\dp\live_images\hft.bmp" />
-    <Content Include="Resources\Imports\dp\live_images\hlg.bmp" />
-    <Content Include="Resources\Imports\dp\live_images\hsz.bmp" />
-    <Content Include="Resources\Imports\dp\live_images\htx.bmp" />
-    <Content Include="Resources\Imports\dp\live_images\ljz.bmp" />
-    <Content Include="Resources\Imports\dp\live_images\lyzj.bmp" />
-    <Content Include="Resources\Imports\dp\live_images\mlnz.bmp" />
-    <Content Include="Resources\Imports\dp\live_images\myl.bmp" />
-    <Content Include="Resources\Imports\dp\live_images\smkz.bmp" />
-    <Content Include="Resources\Imports\dp\live_images\sqg.bmp" />
-    <Content Include="Resources\Imports\dp\live_images\wpj.bmp" />
-    <Content Include="Resources\Imports\dp\live_images\xyl.bmp" />
-    <Content Include="Resources\Imports\dp\live_images\ys.jpg" />
-    <Content Include="Resources\Imports\dp\live_images\ysdp.bmp" />
-    <Content Include="Resources\Imports\dp\service_images\parking.jpg" />
-    <Content Include="Resources\Imports\dp\service_images\selling.jpg" />
-    <Content Include="Resources\Imports\dp\service_images\wc.jpg" />
-    <Content Include="Resources\Imports\dp\攻略列表.txt" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -386,6 +327,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\publish.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -395,7 +337,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Resources\Imports\dp\play_images\新建文件夹\" />
+    <Folder Include="Resources\" />
     <Folder Include="Validators\" />
     <Folder Include="Views\Tower\" />
   </ItemGroup>

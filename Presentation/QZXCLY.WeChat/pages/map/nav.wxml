@@ -1,10 +1,9 @@
 <!--pages/map/nav.wxml-->
 <view class="container">
-  <map id="navi_map" longitude=" 118.8594317436" latitude="28.9702076731" scale="12" markers="{{markers}}" polyline="{{polyline}}">
+  <map id="navi_map" markers="{{markers}}" polyline="{{polyline}}">
     <cover-view  class="text_box">
-      <cover-view class="text">距离：{{distance}}</cover-view>
-      <cover-view class="text">{{cost}}</cover-view>
-      <cover-view class="detail_button" bindtouchstart="goDetail">导航</cover-view>
+      <cover-view class="text">距离：{{distance}}</cover-view> 
+      <cover-view class="detail_button" bindtap="goDetail">导航</cover-view>
     </cover-view>    
   </map>
 </view>

@@ -13,8 +13,12 @@ Page({
    */
   onLoad: function (options) {
     console.log(options);
+    var src=options.src.replace('^','?');
+    src = src.replace("$", "&");
+    src = src.replace("%", "=");
+    src = src.replace("%", "=");    
     this.setData({
-      src:options.src
+      src:src
     });
   },
 

@@ -25,6 +25,11 @@ namespace QZCHY.Core.Domain.Villages
         public int PanoramaId { get; set; }
 
         /// <summary>
+        /// 服务点类型
+        /// </summary>
+        public ServiceType ServiceType { get; set; }
+
+        /// <summary>
         /// 图标
         /// </summary>
         public string Icon { get; set; }

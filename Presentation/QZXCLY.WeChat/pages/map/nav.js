@@ -1,7 +1,7 @@
 // pages/map/nav.js
 var amapFile = require('../../libs/amap-wx.js');//如：..­/..­/libs/amap-wx.js
 var myAmapFun=null;
-var p=null;
+var page=null;
 
 Page({
 
@@ -30,10 +30,10 @@ Page({
   },
 
   goDetail: function () {
-    console.log(p.data.targetLat);
+    console.log(page.data.targetLat);
     wx.openLocation({
-      latitude: p.data.targetLat,
-      longitude: p.data.targetLon
+      latitude: page.data.targetLat,
+      longitude: page.data.targetLon
     });
   },
 
@@ -43,10 +43,10 @@ Page({
   onLoad: function (options) {
     this.mapCtx = wx.createMapContext('navi_map');
 
-    if (p == null) p = this;
+    page = this;
     var targetLon = parseFloat(options.lon);
     var targetLat = parseFloat(options.lat);
-    if (p.validateLonAndLat(targetLon, targetLat)) {
+    if (page.validateLonAndLat(targetLon, targetLat)) {
       wx.showModal({
         title: '无法计算路线',
         content: '传入的经纬度数据错误',
@@ -58,7 +58,7 @@ Page({
         }
       });
     }
-    p.setData({
+    page.setData({
       targetLon: targetLon,
       targetLat: targetLat,
     });
@@ -80,6 +80,8 @@ Page({
           width: 23,
           height: 33
         };
+
+        console.log(startPoint);
         var endPoint = {
           iconPath: "../../resources/images/map/end.png",
           id: 1,
@@ -89,11 +91,11 @@ Page({
           height: 34
         };
 
-        p.setData({ markers: [startPoint, endPoint] });
+        page.setData({ markers: [startPoint, endPoint] });
 
-        p.mapCtx.includePoints({
+        page.mapCtx.includePoints({
           padding: [30],
-          points: [{ latitude: latitude, longitude: longitude }, { latitude: p.data.targetLat, longitude: p.data.targetLon }]
+          points: [{ latitude: latitude, longitude: longitude }, { latitude: page.data.targetLat, longitude: page.data.targetLon }]
         }); 
 
         myAmapFun.getDrivingRoute({
@@ -113,7 +115,7 @@ Page({
                 }
               }
             }
-            p.setData({
+            page.setData({
               polyline: [{
                 points: points,
                 color: "#0091ff",
@@ -121,12 +123,12 @@ Page({
               }]
             });
             if (data.paths[0] && data.paths[0].distance) {
-              p.setData({
-                distance: data.paths[0].distance + '米'
+              page.setData({
+                distance: data.paths[0].distance > 1000 ? (data.paths[0].distance / 1000).toFixed(2)+ '公里' : data.paths[0].distance+ '米'
               });
             }
             if (data.taxi_cost) {
-              p.setData({
+              page.setData({
                 cost: '打车约' + parseInt(data.taxi_cost) + '元'
               });
             }
