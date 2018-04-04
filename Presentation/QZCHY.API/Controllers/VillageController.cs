@@ -321,6 +321,31 @@ namespace QZCHY.API.Controllers
             return Ok(villageModel);
         }
 
+        [HttpGet]
+        [Route("PlayPicture")]
+        public IHttpActionResult GetPictureUrl()
+        {
+
+            var plays = _villagePlayService.GetVillagePlayByVillageId(2);
+            var logos =new  List<string>();
+            foreach (var play in plays)
+            {
+                var playPicture = play.PlayPictures.Where(p => p.IsLogo).FirstOrDefault();
+                if (playPicture != null) {
+                    var logo = _pictureService.GetPictureUrl(playPicture.Picture);
+                    logos.Add(play.Name+ logo);
+                } 
+
+            }
+
+          
+
+
+
+            return Ok(logos);
+
+        }
+
 
     }
 }
