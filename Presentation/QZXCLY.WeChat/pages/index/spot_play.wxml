@@ -9,8 +9,8 @@
         {{play.name}}
         <view class='btns'>
         <view class='btn {{playing?"selected":""}}' hidden='{{play.audioUrl==undefined}}' bindtap='playAudio' data-audio='{{play.audioUrl}}' title="讲解"><i class='iconfont icon-yuyin'></i></view>       
-        <view class='btn' hidden='{{play.panoramaId==0}}' bindtap='navToPanorama' title="全景"><i class='iconfont icon-vr-m'></i></view>
-        <view class='btn' bindtap='navTo' title="导航"><i class='iconfont icon-daohang1'></i></view>       
+        <view class='btn' hidden='{{play.panoramaId==0}}' bindtap='navToPanorama' title="全景"><i class='iconfont icon-VRshebei'></i></view>
+        <view class='btn' bindtap='navTo' title="导航"><i class='iconfont icon-daohang2'></i></view>       
        </view>
       </view>
       <view class='description'>{{play.description}}</view>

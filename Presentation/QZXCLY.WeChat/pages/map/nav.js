@@ -124,7 +124,7 @@ Page({
             });
             if (data.paths[0] && data.paths[0].distance) {
               page.setData({
-                distance: data.paths[0].distance + '米'
+                distance: data.paths[0].distance > 1000 ? (data.paths[0].distance / 1000).toFixed(2)+ '公里' : data.paths[0].distance+ '米'
               });
             }
             if (data.taxi_cost) {

@@ -84,7 +84,7 @@
             <cover-image src="http://qzch.qz.gov.cn/qzxcly/resources/images/map/return.png" ></cover-image>
           </cover-view>
           <cover-view class='text'>{{map.currentSpot.name}}{{map.currentSpot.levelTag}}</cover-view>       
-          <cover-view class='btn navBtn' bindtap='viewPath'>
+          <cover-view class='btn navBtn' bindtap='viewPath' data-lon="{{map.currentSpot.longitude}}" data-lat="{{map.currentSpot.latitude}}">
             <cover-image src="http://qzch.qz.gov.cn/qzxcly/resources/images/map/nav.png" ></cover-image>
           </cover-view>          
           <cover-view class='separate'></cover-view>
@@ -121,7 +121,7 @@
         </view>
         <view class='spot_detail section relative'>
           <view class="name line">
-            {{detail.spot.name}} <navigator wx:if="{{detail.spot!=null}}" class='vrBtn' url="webview?src=https://www.luckyday.top/{{detail.spot.panorama}}vtour"><i class='iconfont icon-vr-m'></i> 虚拟游</navigator>
+            {{detail.spot.name}} <navigator wx:if="{{detail.spot!=null}}" class='vrBtn' url="webview?src=https://www.luckyday.top/{{detail.spot.panorama}}vtour"><i class='iconfont icon-VRshebei'></i> 虚拟游</navigator>
             <view class='tags'>
               <text class='tag' wx:for="{{detail.spot.tags}}">{{item}}</text>
             </view>
@@ -165,9 +165,9 @@
                   <text class="title">{{item.name}}</text>
                   <text class="sub-title">{{item.description}}</text>
                   <view class='btns'>
-                    <view class='btn' hidden='{{item.panoramaId==0}}' catchtap='navTo' data-url="../index/webview?src=https://www.luckyday.top/{{item.panorama}}vtour"><i class='iconfont icon-vr-m'></i> 全景</view>
+                    <view class='btn' hidden='{{item.panoramaId==0}}' catchtap='navTo' data-url="../index/webview?src=https://www.luckyday.top/{{item.panorama}}vtour"><i class='iconfont icon-VRshebei'></i> 全景</view>
                     <view class='btn {{detail.audioPlayer.playing&&detail.audioPlayer.current==item.audioUrl?"selected":""}}' hidden='{{item.audioUrl==undefined}}' catchtap='playAudio' data-audio='{{item.audioUrl}}'><i class='iconfont icon-yuyin'></i> 讲解</view>
-                    <view class='btn' catchtap='viewPath' data-url="../map/nav" data-lon="{{item.longitude}}" data-lat="{{item.latitude}}"><i class='iconfont icon-daohang1'></i> 导航</view>                 
+                    <view class='btn' catchtap='viewPath' data-url="../map/nav" data-lon="{{item.longitude}}" data-lat="{{item.latitude}}"><i class='iconfont icon-daohang2'></i> 导航</view>                 
                   </view>
                 </view>
               </view>

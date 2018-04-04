@@ -313,18 +313,6 @@ Page({
           };
           console.log(spotMarker);
           spotMarkers.push(spotMarker);
-
-          //获取景区的logo
-          wx.downloadFile({
-            url: app.globalData.resourceUrl+"images/map/"+spot.icon+".png",
-            success: function (res) {
-              // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
-              if (res.statusCode === 200) {
-                console.log(res);
-
-              }
-            }
-          });
         }
         page.mapCtx.includePoints({
           padding: [50,50,50,50],
@@ -376,13 +364,24 @@ Page({
             url: 'webview?src=https://www.luckyday.top/' + page.data.map.currentSpot.panorama+'vtour',
           });
           break;
-        case "navBtn":
-          page.viewPath({ currentTarget:{
-            dataset:{
-              lon:page.data.map.currentSpot.longitude,
-              lat: page.data.map.currentSpot.latitude,
-            }
-          }});
+        case "labelBtn":
+
+          var markers=page.data.map.markers;
+          var off=false;
+
+          markers.forEach(function(item){
+            if (item.callout.display == "ALWAYS") { item.callout.display = "BYCLICK"; off = true; }
+            else item.callout.display = "ALWAYS";
+          });
+
+          var controlls = page.data.map.allControls;
+          controlls[8].iconPath = "../../resources/images/map/switch" + (!off ? "_s" : "") + ".png";
+    
+
+          page.setData({
+            'map.markers':markers,
+            'map.currentControls': controlls           
+          });
           break;
         case "spotBtn":
         case "foodBtn":
@@ -759,7 +758,7 @@ Page({
       { id: "hotelBtn", iconPath: '../../resources/images/map/hotel.png', position: { left: controlSize / 3, top: controlSize * (11 / 3) + offsetTop, width: controlSize, height: controlSize }, clickable: true },
       { id: "parkBtn", iconPath: '../../resources/images/map/park.png', position: { left: controlSize / 3, top: controlSize * (14 / 3) + offsetTop, width: controlSize, height: controlSize }, clickable: true },
       { id: "washroomBtn", iconPath: '../../resources/images/map/washroom.png', position: { left: controlSize / 3, top: controlSize * (17 / 3) + offsetTop, width: controlSize, height: controlSize }, clickable: true },
-    //  { id: "navBtn", iconPath: '../../resources/images/map/nav.png', position: { left: windowWidth - controlSize * (4 / 3), top: controlSize * (5 / 3) + offsetTop, width: controlSize, height: controlSize }, clickable: true },
+      { id: "labelBtn", iconPath: '../../resources/images/map/switch.png', position: { left: windowWidth - controlSize * (4 / 3), top: windowHeight - 200 / app.globalData.rpx, width: controlSize, height: controlSize }, clickable: true },
     ];
 
     var spotId=options.spotId;
