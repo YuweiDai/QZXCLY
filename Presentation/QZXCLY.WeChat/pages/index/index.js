@@ -140,6 +140,9 @@ Page({
         item.src = item.src.replace(app.globalData.apiUrl1, app.globalData.picturesUrl);
       });
 
+      //设置视频封面
+      spot.videoLogo = spot.videoUrl.replace("mp4", "jpg");
+
       spot.logo = spot.logo.replace(app.globalData.apiUrl1, app.globalData.picturesUrl);
       spot.routePicutre = spot.routePicutre.replace(app.globalData.apiUrl1, app.globalData.picturesUrl);     
       console.log(spot);
@@ -493,10 +496,22 @@ Page({
           break;
         case "play":
         case "eat":
-        case "live":
+        case "live": 
           wx.navigateTo({
             url: 'spot_' + markerType + '?id=' + markerId,
           });
+          break;    
+        case "park":
+        case "wash":
+          wx.showActionSheet({
+            itemList: ['导航', '查看详情'],
+            success: function (res) {
+              console.log(res.tapIndex)
+            },
+            fail: function (res) {
+              console.log(res.errMsg)
+            }
+          });        
           break;
       }
 
@@ -712,26 +727,31 @@ Page({
   playVideo:function(event)
   {
     var requestPromisified = util.wxPromisify(wx.getNetworkType);
-
+    var contiuePlay=true;
+    var videoSize=event.currentTarget.dataset.videoSize;
     requestPromisified().then(function (res) {
       // 返回网络类型, 有效值：
       // wifi/2g/3g/4g/unknown(Android下不常见的网络类型)/none(无网络)
       var networkType = res.networkType;
       if (networkType == '2g' || networkType == '3g' || networkType == '4g' )
       {
+        wx.showModal({
+          title: '提示',
+          content: '当前处于移动网络，视频总流量'+'M，是否继续观看视频？',
+          success: function (res) {
+            if (res.cancel) contiuePlay = false;
 
+            if (contiuePlay) {
+              page.videoCtx.requestFullScreen();
+              page.videoCtx.play();
+            }
+          }
+        })
       }
-    }).then(function () {
     })
     .catch(function () {
-    })
-    .finally(function () {
-      wx.hideLoading();
-      console.log(page.data.detail);
+      console.log("error in play video");
     });
-
-    page.videoCtx.requestFullScreen();
-    page.videoCtx.play();
   },
 
   closeVideo: function (event) {

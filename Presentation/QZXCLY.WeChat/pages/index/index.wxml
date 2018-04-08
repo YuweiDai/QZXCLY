@@ -37,7 +37,6 @@
         <view class='choiceness section-item relative'>
           <view class='title'>热门游</view>
           <view class='line'></view>
-          <view class='refresh'><i class='iconfont icon-shuaxin'></i> 换一批</view>
           <view class='content'>  
             <view class='item animated fadeInLeft'>
               <view class='logo'>
@@ -94,8 +93,7 @@
             <cover-image src="http://qzch.qz.gov.cn/qzxcly/resources/images/map/nav.png" ></cover-image>
           </cover-view>          
           <cover-view class='separate'></cover-view>
-        </cover-view>
-              
+        </cover-view>              
         <cover-image class='earthBtn' src='http://qzch.qz.gov.cn/qzxcly/resources/images/earth.png'></cover-image>   
       </map>
     </view>
@@ -118,12 +116,12 @@
           <swiper class="banner" autoplay='true' interval="3000" duration="500" bindchange="photoChange">
             <block wx:for="{{detail.spot.villagePictures}}" wx:key="id">
               <swiper-item>
-                <image mode="aspectFill" data-id="{{index}}" src="{{item.src}}"/>
+                <image mode="aspectFill" data-id="{{index}}" src="{{item.src}}"  catchtap='showImgs'/>
               </swiper-item>
             </block>
           </swiper>
           <view class="tipBg absolute"></view>        
-          <view class='photoTip absolute' catchtap='showImgs'><i class="iconfont icon-picture}}"></i> {{detail.spot.villagePictures.length}}张</view>
+          <view class='photoTip absolute'><i class="iconfont icon-picture}}"></i> {{detail.spot.villagePictures.length}}张</view>
         </view>
         <view class='spot_detail section relative'>
           <view class="name line">
@@ -151,7 +149,7 @@
 
         <view class='spot_videos section relative' >
           <view class='title'>视频</view>
-          <image class='videoLogo' mode='aspectFill' src='{{detail.spot.logo}}' bindtap='playvideo' ></image>
+          <image class='videoLogo' mode='aspectFill' src='{{detail.spot.videoLogo}}' bindtap='playVideo' data-videoSize='{{detail.spot.videoSize}}' ></image>
           <i class='iconfont icon-bofang'></i>
         </view>
 
@@ -215,7 +213,7 @@
         </view>      
       </view>
 
-      <video id='videoPlayer' class='video' src='{{detail.spot.videoUrl}}'>
+      <video id='videoPlayer' class='video' src='{{detail.spot.videoUrl}}' show-fullscreen-btn='false' >
         <cover-view class='mask'></cover-view>      
         <cover-image class='icon' bindtap='closeVideo' src='http://qzch.qz.gov.cn/qzxcly/resources/images/back.png'></cover-image>
       </video>
