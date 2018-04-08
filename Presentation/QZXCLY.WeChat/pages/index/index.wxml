@@ -46,7 +46,9 @@
               <view class='meta'>
                 <view class='name' data-id="4">钱江源</view>
                 <view class='description'>浙江钱江源国家森林公园位于钱塘江的源头——浙江省开化县齐溪镇，与3省（浙、皖、赣）4县相接壤。截至2014年，公园总面积4500公顷，其中山林面积4250公顷，水面220公顷。园内有原始状态的大片天然次生林，林相结构复杂，生物物种丰富，起源古老、区系成分独特，已成为华东地区重要的生态屏障。景区内负氧离子成份最高浓度达到每立方厘米10万多个。</view>
-                <view class='others'>人气:15000</view>
+                <view class='tags'>
+                  <text class='tag'>AAAA级景区</text>
+                </view>
               </view>          
             </view>   
             
@@ -57,7 +59,9 @@
               <view class='meta'>
                 <view class='name' data-id="4">江山耕读</view>
                 <view class='description'>耕读农场坐落在江山市贺村镇耕读村，这方热土历来是人才辈出的钟灵毓秀之地，耕读文化更是历经千年传承的宝贵遗产。村庄内峡口水库西干渠串起农户，海棠湖（湖塘）怡养天地灵秀，五旗山连绵起伏，与对面的大石山遥相呼应，石头成仙，树林绚烂。村口，几人合抱的香枫、古樟如有声韵部，飒飒风响，荫佑着耕读人。漫步在耕读村海棠湖畔，碧波荡漾，绿树掩映，亭台楼阁，错落有致；果树林里，枇杷、杨梅等时令水果挂满枝头，篱笆园里，辣椒、黄瓜等有机蔬菜坠满藤架。游客或惬意信步，或体验采摘，或安然垂钓，或摇橹泛舟。山水相依，宜居养性，好一幅秀美山水画卷。</view>
-                <view class='others'>人气:15000</view>
+                <view class='tags'>
+                  <text class='tag'>AAAA级景区</text>
+                </view>
               </view>          
             </view>  
 
@@ -68,7 +72,9 @@
               <view class='meta'>
                 <view class='name' data-id="5">大陈村</view>
                 <view class='description'>大陈村历史悠久，文化积淀厚重。近年来，大陈村加强文化融入，充分挖掘、传承和发扬“麻糍文化”、“古祠文化”、“崇尚教育”等传统文化，以文化熏陶大陈人，以文化繁荣大陈村，着力打造“文化大陈、幸福乡村”；以“学习、创新、文化、和谐、发展”理念来经营村庄，抓实一系列惠民工程，充分调动村民参与建设主动性，有力提升了村级管理水平。相继完成汪氏宗祠修缮、村道硬化、村庄绿化、亮化工程、户厕改造和污水处理等项目；建立健全卫生长效保洁机制，村容村貌长年整洁。先后荣获衢州市先进基层组织，衢州市全面小康建设示范村，衢州市最具历史文化村庄，江山市先进基层党组织、江山市和谐新农村、江山市首批中国幸福乡村等多项荣誉。</view>
-                <view class='others'>人气:15000</view>
+                <view class='tags'>
+                  <text class='tag'>中国最美古村落</text>
+                </view>
               </view>          
             </view>                                         
           </view>        
@@ -195,7 +201,7 @@
                   </view>              
                   <text class="multi-info">{{item.description}}</text>
                   <text class="multi-info" data-phone="{{item.tel}}" catchtap='makePhoneCall'>联系电话：{{item.tel}}</text>
-                  <text class="multi-info">床位：{{detail.item.bedCount}}</text>
+                  <text class="multi-info">床位：{{detail.item.bedsNumber}}</text>
                 </view>
               </view>      
           </view>                     

@@ -12,7 +12,6 @@ var defaultCallout = {
 };
 var innerAudioContext = null;
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -44,8 +43,8 @@ Page({
       animationData: null,
       drawerMarker: null,
       markerSize: {
-        width: 44,
-        height: 64
+        width: 66,
+        height: 96
       },
       selectedSpot: 0,
       markers: [],
@@ -559,10 +558,9 @@ Page({
         var width = page.data.map.markerSize.width / app.globalData.rpx;
         var height = page.data.map.markerSize.height / app.globalData.rpx;
 
-        if (filterType=="play")
-        {
-           width = 40 * app.globalData.rpx;
-           height = 40 * app.globalData.rpx;          
+        if (filterType == "play") {
+            width = 40 * app.globalData.rpx;
+            height = 40 * app.globalData.rpx;
         }
 
           subMarkers.push({
@@ -750,7 +748,7 @@ Page({
 
       //设置地图控件
     var controls = [
-      { id: "locateBtn", iconPath: '../../resources/images/map/locate.png', position: { left: controlSize / 3, top: windowHeight - 200 / app.globalData.rpx, width: controlSize, height: controlSize }, clickable: true },
+      { id: "locateBtn", iconPath: '../../resources/images/map/locate.png', position: { left: controlSize / 3, top: windowHeight - 250 / app.globalData.rpx, width: controlSize, height: controlSize }, clickable: true },
       { id: "nearByBtn", iconPath: '../../resources/images/map/nearBy.png', position: { left: controlSize / 3, top: controlSize * (1 / 3) + offsetTop, width: controlSize, height: controlSize }, clickable: true },
       { id: "vrBtn", iconPath: '../../resources/images/map/vr.png', position: { left: windowWidth - controlSize * (4 / 3), top: controlSize / 3 + offsetTop, width: controlSize, height: controlSize }, clickable: true },
       { id: "spotBtn", iconPath: '../../resources/images/map/spot_s.png', position: { left: controlSize / 3, top: controlSize * (5 / 3) + offsetTop, width: controlSize, height: controlSize }, clickable: true },
@@ -758,7 +756,7 @@ Page({
       { id: "hotelBtn", iconPath: '../../resources/images/map/hotel.png', position: { left: controlSize / 3, top: controlSize * (11 / 3) + offsetTop, width: controlSize, height: controlSize }, clickable: true },
       { id: "parkBtn", iconPath: '../../resources/images/map/park.png', position: { left: controlSize / 3, top: controlSize * (14 / 3) + offsetTop, width: controlSize, height: controlSize }, clickable: true },
       { id: "washroomBtn", iconPath: '../../resources/images/map/washroom.png', position: { left: controlSize / 3, top: controlSize * (17 / 3) + offsetTop, width: controlSize, height: controlSize }, clickable: true },
-      { id: "labelBtn", iconPath: '../../resources/images/map/switch.png', position: { left: windowWidth - controlSize * (4 / 3), top: windowHeight - 200 / app.globalData.rpx, width: controlSize, height: controlSize }, clickable: true },
+      { id: "labelBtn", iconPath: '../../resources/images/map/switch.png', position: { left: windowWidth - controlSize * (4 / 3), top: windowHeight - 250 / app.globalData.rpx, width: controlSize, height: controlSize }, clickable: true },
     ];
 
     var spotId=options.spotId;

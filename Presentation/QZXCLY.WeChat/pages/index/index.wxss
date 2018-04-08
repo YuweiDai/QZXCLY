@@ -313,31 +313,15 @@
   font-size: 30rpx;  
 }
 
-.detail_section .spot_detail .name .tags
-{
-  line-height: 22rpx;
-}
+
 
 .detail_section .spot_detail .name .vrBtn
 {
   position:absolute;
   top:40rpx;
   right:15rpx;
-
-  color: #27c24c;  
+  color: #27c24c;
 }
-
-.detail_section .spot_detail .name .tags .tag
-{
-  display: inline-block;
-  border:1px solid green;
-  color:green;
-  font-size:24rpx;
-  padding:4rpx 8rpx;
-  border-radius: 8rpx;
-  margin-right: 8rpx;
-}
-
 .detail_section .spot_detail .address,.detail_section .spot_detail .phone,.detail_section .spot_detail .price,.detail_section .spot_detail .opentime,.detail_section .spot_detail .desc_title,.detail_section .spot_detail .bus,.detail_section .spot_detail .route
 {
   font-size: 30rpx;
@@ -361,7 +345,7 @@
   width: 100rpx;
   color: #27c24c;
   text-align: center;
-  border-left: solid #a4dd4a 1px;
+  border-left: solid #27c24c 1px;
 }
 
 .detail_section .spot_detail .desc_title
