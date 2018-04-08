@@ -149,20 +149,17 @@
           <view class='desc' data-title="景区介绍" data-content="{{detail.spot.desc}}" bindtap='showDialog'>{{detail.spot.desc}}</view>
         </view>
 
-        <view class='spot_vedios section relative' wx:if="{{!detail.dialog.visible && detail.spot.videoUrl}}">
+        <view class='spot_videos section relative' >
           <view class='title'>视频</view>
-          <scroll-view scroll-y="true">	   
-            <view class="vedios">     
-              <video class='vedio' src="{{detail.spot.videoUrl}}"></video>
-            </view>
-          </scroll-view>
+          <image class='videoLogo' mode='aspectFill' src='{{detail.spot.logo}}' bindtap='playvideo' ></image>
+          <i class='iconfont icon-bofang'></i>
         </view>
 
         <view class='spot_services' wx:if="{{detail.spot.eats!=null && detail.spot.lives!=null && detail.spot.plays!=null}}">
           <view class='filters'>
             <view class="filter {{detail.filterId==0?'active':''}}" data-id="0" bindtap="detailTapFilter">景点</view>
             <view class="filter {{detail.filterId==1?'active':''}}" data-id="1" bindtap="detailTapFilter">美食</view>  
-            <view class="filter {{detail.filterId==2?'active':''}}" data-id="2" bindtap="detailTapFilter">住宿</view>
+            <view class="filter {{detail.filterId==2?'active':''}}" data-id="2" bindtap="detailTapFilter">民宿</view>
           </view>
           <view hidden="{{detail.filterId!=0}}" class='spot_service_group'>
               <view class="spot_service_item" wx:for="{{detail.spot.plays}}" data-url='spot_play?id={{item.id}}' bindtap='navTo'>
@@ -217,6 +214,11 @@
           <scroll-view scroll-y="true" style='height:{{contentHeight-90/rpx}}px'>{{detail.dialog.content}}</scroll-view>
         </view>      
       </view>
+
+      <video id='videoPlayer' class='video' src='{{detail.spot.videoUrl}}'>
+        <cover-view class='mask'></cover-view>      
+        <cover-image class='icon' bindtap='closeVideo' src='http://qzch.qz.gov.cn/qzxcly/resources/images/back.png'></cover-image>
+      </video>
 
       </scroll-view>        
     </view>

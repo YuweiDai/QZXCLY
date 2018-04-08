@@ -43,9 +43,13 @@ Page({
       animationData: null,
       drawerMarker: null,
       markerSize: {
-        width: 66,
-        height: 96
+        width:44,
+        height: 66
       },
+      spotSize: {
+        width: 20,
+        height: 20
+      },      
       selectedSpot: 0,
       markers: [],
       polylines: [],
@@ -212,7 +216,6 @@ Page({
 
       });
     }).then(function(){
-
     })
     .catch(function(){
       console.log("error in get spot detail");
@@ -303,8 +306,8 @@ Page({
           var spotMarker = {
             id: "spot_" + spot.id,
             title: spot.name,
-            width: 40 * app.globalData.rpx,
-            height: 40 * app.globalData.rpx,
+            width: page.data.map.spotSize.width * app.globalData.rpx,
+            height: page.data.map.spotSize.width * app.globalData.rpx,
             iconPath: "../../resources/images/map/"+spot.icon+".png",
             latitude: spot.latitude,
             longitude: spot.longitude,
@@ -347,7 +350,7 @@ Page({
           {                
             controlls[1].iconPath ="../../resources/images/map/nearBy.png";
             page.setData({
-              'map.currentControls': [controlls[0], controlls[1], controlls[2]]
+              'map.currentControls': [controlls[0], controlls[1], controlls[2], controlls[8]]
             });
           }
           else
@@ -559,8 +562,8 @@ Page({
         var height = page.data.map.markerSize.height / app.globalData.rpx;
 
         if (filterType == "play") {
-            width = 40 * app.globalData.rpx;
-            height = 40 * app.globalData.rpx;
+            width = page.data.map.spotSize.width * app.globalData.rpx;
+            height = page.data.map.spotSize.width * app.globalData.rpx;
         }
 
           subMarkers.push({
@@ -706,6 +709,35 @@ Page({
     })
   },
 
+  playVideo:function(event)
+  {
+    var requestPromisified = util.wxPromisify(wx.getNetworkType);
+
+    requestPromisified().then(function (res) {
+      // 返回网络类型, 有效值：
+      // wifi/2g/3g/4g/unknown(Android下不常见的网络类型)/none(无网络)
+      var networkType = res.networkType;
+      if (networkType == '2g' || networkType == '3g' || networkType == '4g' )
+      {
+
+      }
+    }).then(function () {
+    })
+    .catch(function () {
+    })
+    .finally(function () {
+      wx.hideLoading();
+      console.log(page.data.detail);
+    });
+
+    page.videoCtx.requestFullScreen();
+    page.videoCtx.play();
+  },
+
+  closeVideo: function (event) {
+    page.videoCtx.exitFullScreen();
+  },
+
   //通用方法 结束
 
   /**
@@ -714,6 +746,7 @@ Page({
   onLoad: function (options) {
     page=this;
     page.mapCtx = wx.createMapContext('map');
+    page.videoCtx = wx.createVideoContext('videoPlayer', this);
 
     if (innerAudioContext == null)
       innerAudioContext = wx.createInnerAudioContext();

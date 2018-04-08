@@ -362,20 +362,30 @@
   overflow: hidden;  
 }
 
-.detail_section .spot_vedios scroll-view .vedios
-{
-  height: 100%;
-}
-.detail_section .spot_vedios scroll-view .vedio
-{
-  width: 100%;
-}
-
 .detail_section .spot_services
 {
   margin: 20rpx 0 0 0;
   background: white;
   padding: 20rpx;  
+}
+
+.detail_section .spot_videos .videoLogo
+{
+  width: 100%;
+  height: 300rpx;
+}
+
+.detail_section .spot_videos .iconfont
+{
+  position: absolute;
+  font-size: 80rpx;
+  width: 80rpx;
+  height: 80rpx;
+  left: 50%;
+  top: 50%;
+  margin-left: -40rpx;
+  margin-top: -40rpx;
+  color: white;
 }
 
 .detail_section .spot_services .filters {
@@ -519,4 +529,30 @@
 .overflowhidden
 {
   overflow: hidden;
+}
+
+.video
+{
+  height: 0;
+  position: relative;
+}
+.video .icon
+{
+  position: absolute;
+  left: 20rpx;
+  top: 20rpx;
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.video .mask
+{
+  position:absolute;
+  top:10rpx;
+  left:10rpx;  
+  width: 100rpx;
+  height: 100rpx;
+  background-color: white;
+  opacity: 0.1;
+  border-radius: 50rpx;
 }
