@@ -16,7 +16,7 @@ namespace QZCHY.Data.Mapping.VillageMap
             this.Property(p => p.Title).IsRequired();
 
             this.HasMany(p => p.StrategyPictures).WithRequired(s => s.Strategy);
-            this.HasRequired(p => p.Village).WithMany(v => v.Strategies);
+            //this.HasRequired(p => p.Village).WithMany(v => v.Strategies);
         }
 
       

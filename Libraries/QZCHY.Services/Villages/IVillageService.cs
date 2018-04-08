@@ -28,5 +28,9 @@ namespace QZCHY.Services.Villages
 
         IList<Village> GetVillagesByRegionId(int id);
 
+        IList<Village> GetVillagesByMonth(int month);
+
+        IList<Village> GetHotVillages(int month);
+
     }
 }

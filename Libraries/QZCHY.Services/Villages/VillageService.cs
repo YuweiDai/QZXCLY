@@ -91,5 +91,25 @@ namespace QZCHY.Services.Villages
             return villages;
           
         }
+
+        public IList<Village> GetVillagesByMonth(int month)
+        {
+            var query = from v in _villageRepository.Table
+                        where v.HotMonth.Contains(month.ToString()+";")
+                        select v;
+            var villages = query.ToList();         
+
+            return villages;
+        }
+
+        public IList<Village> GetHotVillages(int month)
+        {
+            var query = from v in _villageRepository.Table
+                        where !v.HotMonth.Contains(month.ToString() + ";")
+                        select v;
+            var villages = query.ToList();
+          
+            return villages;
+        }
     }
 }
