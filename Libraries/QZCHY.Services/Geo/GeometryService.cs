@@ -11,7 +11,7 @@ namespace QZCHY.Services.Geo
     {
         private readonly double EARTH_RADIUS = 6371.0;//km 地球半径 平均值，千米
 
-        public string CalculateDistance(double lon1, double lat1, double lon2, double lat2)
+        public double CalculateDistance(double lon1, double lat1, double lon2, double lat2)
         {
 
 
@@ -19,14 +19,14 @@ namespace QZCHY.Services.Geo
             {
                 var d = Distance(lat1, lon1, lat2, lon2);
 
-                return d <1 ? Math.Round(d * 1000, 2) + "米" : Math.Round(d, 2) + "公里";
+                return  Math.Round(d, 2) ;
             }
             catch (Exception e)
             {
 
             }
 
-            return "null";
+            return 0;
         }
 
 

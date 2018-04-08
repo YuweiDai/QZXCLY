@@ -78,6 +78,6 @@ namespace QZCHY.Core.Domain.Villages
         /// <summary>
         /// 对应的乡村景点
         /// </summary>
-        public Village Village { get; set; }
+        public virtual Village Village { get; set; }
     }
 }

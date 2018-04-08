@@ -31,6 +31,7 @@ namespace QZCHY.API.Models
         public double Longitude { get; set; }
 
         public string Logo { get; set; }
+        public string HotMonth { get; set; }
 
         public string TourRoute { get; set; }
 
@@ -39,6 +40,8 @@ namespace QZCHY.API.Models
         public string VideoUrl { get; set; }
 
         public string Panorama { get; set; }
+
+   
 
         public IList<StrategyModel> Strategies { get; set; }
 
@@ -52,11 +55,23 @@ namespace QZCHY.API.Models
     }
 
 
-    public class VillageSimpleModel {
+    public class VillageSimpleModel: BaseQMEntityModel
+    {
 
         public string Name { get; set; }
 
         public string Logo { get; set; }
+        public double Long { get; set; }
     }
+
+    public class HotVillageListModel {
+
+        public string Name { get; set; }
+        public string Logo { get; set; }
+        public string Tags { get; set; }
+        public string Desc { get; set; }
+
+    }
+
 
 }

@@ -85,6 +85,10 @@ namespace QZCHY.Core.Domain.Villages
 
 
         public Region Region { get; set; }
+        /// <summary>
+        /// 热门月份
+        /// </summary>
+        public string HotMonth { get; set; }
 
         /// <summary>
         /// 坐落位置
