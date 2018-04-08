@@ -41,7 +41,7 @@ namespace QZCHY.Services.Villages
         {
             var plays = new List<VillagePlay>();
             var query = from v in _villagePlayRepository.Table
-                        where v.Village.Id == id
+                        where v.Village.Id == id&&v.Deleted==false
                         select v;
             plays = query.ToList();
             return plays;

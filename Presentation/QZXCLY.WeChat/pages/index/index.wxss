@@ -313,31 +313,15 @@
   font-size: 30rpx;  
 }
 
-.detail_section .spot_detail .name .tags
-{
-  line-height: 22rpx;
-}
+
 
 .detail_section .spot_detail .name .vrBtn
 {
   position:absolute;
   top:40rpx;
   right:15rpx;
-
-  color: #27c24c;  
+  color: #27c24c;
 }
-
-.detail_section .spot_detail .name .tags .tag
-{
-  display: inline-block;
-  border:1px solid green;
-  color:green;
-  font-size:24rpx;
-  padding:4rpx 8rpx;
-  border-radius: 8rpx;
-  margin-right: 8rpx;
-}
-
 .detail_section .spot_detail .address,.detail_section .spot_detail .phone,.detail_section .spot_detail .price,.detail_section .spot_detail .opentime,.detail_section .spot_detail .desc_title,.detail_section .spot_detail .bus,.detail_section .spot_detail .route
 {
   font-size: 30rpx;
@@ -361,7 +345,7 @@
   width: 100rpx;
   color: #27c24c;
   text-align: center;
-  border-left: solid #a4dd4a 1px;
+  border-left: solid #27c24c 1px;
 }
 
 .detail_section .spot_detail .desc_title
@@ -378,20 +362,30 @@
   overflow: hidden;  
 }
 
-.detail_section .spot_vedios scroll-view .vedios
-{
-  height: 100%;
-}
-.detail_section .spot_vedios scroll-view .vedio
-{
-  width: 100%;
-}
-
 .detail_section .spot_services
 {
   margin: 20rpx 0 0 0;
   background: white;
   padding: 20rpx;  
+}
+
+.detail_section .spot_videos .videoLogo
+{
+  width: 100%;
+  height: 300rpx;
+}
+
+.detail_section .spot_videos .iconfont
+{
+  position: absolute;
+  font-size: 80rpx;
+  width: 80rpx;
+  height: 80rpx;
+  left: 50%;
+  top: 50%;
+  margin-left: -40rpx;
+  margin-top: -40rpx;
+  color: white;
 }
 
 .detail_section .spot_services .filters {
@@ -535,4 +529,30 @@
 .overflowhidden
 {
   overflow: hidden;
+}
+
+.video
+{
+  height: 0;
+  position: relative;
+}
+.video .icon
+{
+  position: absolute;
+  left: 20rpx;
+  top: 20rpx;
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.video .mask
+{
+  position:absolute;
+  top:10rpx;
+  left:10rpx;  
+  width: 100rpx;
+  height: 100rpx;
+  background-color: white;
+  opacity: 0.1;
+  border-radius: 50rpx;
 }

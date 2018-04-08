@@ -4,6 +4,7 @@ using QZCHY.Services.Media;
 using QZCHY.Services.Villages;
 using QZCHY.Web.Api.Extensions;
 using QZCHY.Web.Framework.Controllers;
+using QZCHY.Web.Framework.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -314,7 +315,7 @@ namespace QZCHY.API.Controllers
             if (logoPicture != null)
                 villageModel.Logo = _pictureService.GetPictureUrl(logoPicture.Picture);            
 
-            villageModel.Distance = _geometryService.CalculateDistance(lon, lat, villageModel.Longitude, villageModel.Latitude);
+            villageModel.Distance = _geometryService.CalculateDistance(lon, lat, villageModel.Longitude, villageModel.Latitude).ToString();
 
             //遍历各个节点获取logo
             foreach (var service in villageModel.Services)
@@ -361,6 +362,122 @@ namespace QZCHY.API.Controllers
             }
 
             return Ok(villageModel);
+        }
+
+        [HttpGet]
+        [Route("MonthVillage")]
+        public IHttpActionResult GetMonthVillage()
+        {
+
+            var month = DateTime.Now.Month;
+            var villages = _villageService.GetVillagesByMonth(month);
+
+            var MonthVillages = new List<VillageSimpleModel>();
+            foreach (var village in villages) {
+                var logoPicture = village.VillagePictures.Where(vp => vp.IsLogo).FirstOrDefault();
+                var monthVillage = village.ToSimpleModel();
+                monthVillage.Logo = _pictureService.GetPictureUrl(logoPicture.Picture);
+                MonthVillages.Add(monthVillage);
+            }
+        
+
+            return Ok(MonthVillages);
+        }
+
+        [HttpGet]
+        [Route("NearVillage")]
+        public IHttpActionResult GetNearVillage(double lat,double lon) {
+
+            var villages = _villageService.GetAllVillages();
+            var id = 0;
+            var villageModels = new List<VillageSimpleModel>();
+
+         
+          
+            foreach (var village in villages) {
+                
+                var l = _geometryService.CalculateDistance(lon,lat,Convert.ToDouble( village.Location.Longitude),Convert.ToDouble( village.Location.Latitude));
+                var villageModel = village.ToSimpleModel();
+                if (l <= 5) {
+                    villageModel.Long = l;
+                    villageModels.Add(villageModel);
+                }
+
+            }
+
+            if (villageModels.Count() > 0) {
+                var min = villageModels[0].Long;
+                for (int i = 1; i < villageModels.Count(); i++)
+                {
+                    if (min > villageModels[i].Long)
+                    {
+                        min = villageModels[i].Long;
+                        id = villageModels[i].Id;
+                    }
+                }
+            }
+
+
+            return Ok(id);
+
+        }
+
+        [HttpGet]
+        [Route("ListVillage")]
+        public IHttpActionResult GetHotVillage(int pageSize = Int32.MaxValue, int pageIndex = 0)
+        {
+            var month = DateTime.Now.Month;
+            var villages = _villageService.GetHotVillages(month);
+
+            var response = new ListResponse<HotVillageListModel>
+            {
+                Paging = new Paging
+                {
+                    PageIndex = pageIndex,
+                    PageSize = pageSize,
+                    Total = villages.Count,
+                 //   FilterCount = string.IsNullOrEmpty(query) ? properties.TotalCount : properties.Count,
+                },
+                Data = villages.Select(s =>
+                {
+                    var villageModel = s.ToHotListModel();              
+                    return villageModel;
+                })
+            };
+
+            return Ok(response);
+        }
+
+
+
+        [HttpGet]
+        [Route("PlayPicture")]
+        public IHttpActionResult GetPictureUrl()
+        {
+          //  var village = _villageService.GetVillageById(1);
+
+
+            var play = _villagePlayService.GetVillagePlayById(1);
+            var village = play.Village.ToModel();
+
+            //var plays = _villagePlayService.GetVillagePlayByVillageId(2);
+            //var logos =new  List<string>();
+            //foreach (var play in plays)
+            //{
+            //    var playPicture = play.PlayPictures.Where(p => p.IsLogo).FirstOrDefault();
+            //    if (playPicture != null) {
+            //        var logo = _pictureService.GetPictureUrl(playPicture.Picture);
+            //        logos.Add(play.Name+ logo);
+            //    } 
+
+            //}
+
+
+
+
+
+            return Ok(village);
+
         }
 
 

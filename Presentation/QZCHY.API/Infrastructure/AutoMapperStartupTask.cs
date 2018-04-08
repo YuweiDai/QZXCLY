@@ -118,6 +118,8 @@ namespace QZCHY.Web.Api.Infrastructure
 
             Mapper.CreateMap<Strategy, StrategyModel>();
             Mapper.CreateMap<Village, VillageSimpleModel>();
+            Mapper.CreateMap<Village, HotVillageListModel>();
+
         }
     }
 }

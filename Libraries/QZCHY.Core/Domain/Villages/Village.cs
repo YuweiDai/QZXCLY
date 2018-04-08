@@ -83,8 +83,16 @@ namespace QZCHY.Core.Domain.Villages
         /// </summary>
         public string VideoUrl { get; set; }
 
+        /// <summary>
+        /// 视频大小
+        /// </summary>
+        public double VideoSize { get; set; }
 
         public Region Region { get; set; }
+        /// <summary>
+        /// 热门月份
+        /// </summary>
+        public string HotMonth { get; set; }
 
         /// <summary>
         /// 坐落位置

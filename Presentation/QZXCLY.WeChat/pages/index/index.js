@@ -12,7 +12,6 @@ var defaultCallout = {
 };
 var innerAudioContext = null;
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -44,9 +43,13 @@ Page({
       animationData: null,
       drawerMarker: null,
       markerSize: {
-        width: 44,
-        height: 64
+        width:44,
+        height: 66
       },
+      spotSize: {
+        width: 20,
+        height: 20
+      },      
       selectedSpot: 0,
       markers: [],
       polylines: [],
@@ -213,7 +216,6 @@ Page({
 
       });
     }).then(function(){
-
     })
     .catch(function(){
       console.log("error in get spot detail");
@@ -304,8 +306,8 @@ Page({
           var spotMarker = {
             id: "spot_" + spot.id,
             title: spot.name,
-            width: 40 * app.globalData.rpx,
-            height: 40 * app.globalData.rpx,
+            width: page.data.map.spotSize.width * app.globalData.rpx,
+            height: page.data.map.spotSize.width * app.globalData.rpx,
             iconPath: "../../resources/images/map/"+spot.icon+".png",
             latitude: spot.latitude,
             longitude: spot.longitude,
@@ -348,7 +350,7 @@ Page({
           {                
             controlls[1].iconPath ="../../resources/images/map/nearBy.png";
             page.setData({
-              'map.currentControls': [controlls[0], controlls[1], controlls[2]]
+              'map.currentControls': [controlls[0], controlls[1], controlls[2], controlls[8]]
             });
           }
           else
@@ -559,10 +561,9 @@ Page({
         var width = page.data.map.markerSize.width / app.globalData.rpx;
         var height = page.data.map.markerSize.height / app.globalData.rpx;
 
-        if (filterType=="play")
-        {
-           width = 40 * app.globalData.rpx;
-           height = 40 * app.globalData.rpx;          
+        if (filterType == "play") {
+            width = page.data.map.spotSize.width * app.globalData.rpx;
+            height = page.data.map.spotSize.width * app.globalData.rpx;
         }
 
           subMarkers.push({
@@ -708,6 +709,35 @@ Page({
     })
   },
 
+  playVideo:function(event)
+  {
+    var requestPromisified = util.wxPromisify(wx.getNetworkType);
+
+    requestPromisified().then(function (res) {
+      // 返回网络类型, 有效值：
+      // wifi/2g/3g/4g/unknown(Android下不常见的网络类型)/none(无网络)
+      var networkType = res.networkType;
+      if (networkType == '2g' || networkType == '3g' || networkType == '4g' )
+      {
+
+      }
+    }).then(function () {
+    })
+    .catch(function () {
+    })
+    .finally(function () {
+      wx.hideLoading();
+      console.log(page.data.detail);
+    });
+
+    page.videoCtx.requestFullScreen();
+    page.videoCtx.play();
+  },
+
+  closeVideo: function (event) {
+    page.videoCtx.exitFullScreen();
+  },
+
   //通用方法 结束
 
   /**
@@ -716,6 +746,7 @@ Page({
   onLoad: function (options) {
     page=this;
     page.mapCtx = wx.createMapContext('map');
+    page.videoCtx = wx.createVideoContext('videoPlayer', this);
 
     if (innerAudioContext == null)
       innerAudioContext = wx.createInnerAudioContext();
@@ -750,7 +781,7 @@ Page({
 
       //设置地图控件
     var controls = [
-      { id: "locateBtn", iconPath: '../../resources/images/map/locate.png', position: { left: controlSize / 3, top: windowHeight - 200 / app.globalData.rpx, width: controlSize, height: controlSize }, clickable: true },
+      { id: "locateBtn", iconPath: '../../resources/images/map/locate.png', position: { left: controlSize / 3, top: windowHeight - 250 / app.globalData.rpx, width: controlSize, height: controlSize }, clickable: true },
       { id: "nearByBtn", iconPath: '../../resources/images/map/nearBy.png', position: { left: controlSize / 3, top: controlSize * (1 / 3) + offsetTop, width: controlSize, height: controlSize }, clickable: true },
       { id: "vrBtn", iconPath: '../../resources/images/map/vr.png', position: { left: windowWidth - controlSize * (4 / 3), top: controlSize / 3 + offsetTop, width: controlSize, height: controlSize }, clickable: true },
       { id: "spotBtn", iconPath: '../../resources/images/map/spot_s.png', position: { left: controlSize / 3, top: controlSize * (5 / 3) + offsetTop, width: controlSize, height: controlSize }, clickable: true },
@@ -758,7 +789,7 @@ Page({
       { id: "hotelBtn", iconPath: '../../resources/images/map/hotel.png', position: { left: controlSize / 3, top: controlSize * (11 / 3) + offsetTop, width: controlSize, height: controlSize }, clickable: true },
       { id: "parkBtn", iconPath: '../../resources/images/map/park.png', position: { left: controlSize / 3, top: controlSize * (14 / 3) + offsetTop, width: controlSize, height: controlSize }, clickable: true },
       { id: "washroomBtn", iconPath: '../../resources/images/map/washroom.png', position: { left: controlSize / 3, top: controlSize * (17 / 3) + offsetTop, width: controlSize, height: controlSize }, clickable: true },
-      { id: "labelBtn", iconPath: '../../resources/images/map/switch.png', position: { left: windowWidth - controlSize * (4 / 3), top: windowHeight - 200 / app.globalData.rpx, width: controlSize, height: controlSize }, clickable: true },
+      { id: "labelBtn", iconPath: '../../resources/images/map/switch.png', position: { left: windowWidth - controlSize * (4 / 3), top: windowHeight - 250 / app.globalData.rpx, width: controlSize, height: controlSize }, clickable: true },
     ];
 
     var spotId=options.spotId;
