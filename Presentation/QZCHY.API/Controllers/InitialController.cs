@@ -726,6 +726,222 @@ namespace QZCHY.API.Controllers
 
                 #endregion
 
+                #region 七里入库
+
+                #region 基本信息
+                var ql = new Village
+                {
+                    Name = "桃源七里",
+                    Address = "浙江省钱塘江源头的衢州市西北部七里乡",
+                    Desc = "桃源七里风景区东离杭州245公里，西距婺源140公里，南距武夷山270公里，北距黄山300公里。属亚热带季风气候区，常年平均气温在14.3C，四季分明、冬夏长春秋短、气候温和。区内平均海拔650米，面积60.45平方公里，森林覆盖率达98%，总人口5082人.。",
+                    Location = DbGeography.FromText("POINT(118.7620700000   29.1469400000)"),                                     
+                    OpenTime = "全天开发",
+                    Phone = "",
+                    Tags = "AAA级景区;漂流;竹海",
+                    Price = 0,
+                    Icon = "ql",
+                    Triffic = "",
+                    TourRoute = "D1  早晨出发地出发，抵达景区，到杨坞·森林氧吧寻访杨花瀑布、感受森林负离子浴。午餐后，可前往七里·三仙圣地探访古七里的怡然古意，而后在七里排·峡谷漂流进行一次激情漂流嬉戏之旅。晚餐后，可前往游客接待中心文化广场散步纳凉，在游客中心影院内观赏院线大片，结束第一天的旅程。D2  早晨到上村千里岗观景台赏千里岗千峰竞秀、云海日出，到上村·蔬果长廊观赏奇瓜异果，然后到大头·石尖问顶游览乡村风情。午餐后，可往新店·竹海绿道悠然漫步，接着到黄土岭·三叠龙潭观赏龙潭飞瀑、狮子头瀑布的雄壮景观，之后返程。",
+                   // GeoTourRoute = DbGeography.FromText("LINESTRING (119.028514065866 29.1848777616058,119.028726913651 29.1848799086025,119.028907699531 29.1848100607183,119.029056533039 29.1846539077354,119.029188465675 29.1845549105217,119.029302940581 29.1845703910883,119.029483037913 29.1845722035611,119.029579796395 29.1847308326767,119.029974762967 29.1845198088051,119.030286647614 29.1844369492818,119.030715695806 29.1840829353809,119.031093732184 29.1839290691881,119.031569463693 29.1838335018403,119.031881057974 29.1837792829735,119.032028807272 29.1837377648857,119.032193733685 29.1836104180754,119.032123004627 29.1841686684102,119.031989480462 29.1844396494739,119.032151454102 29.184627593673,119.032034968515 29.1848270870913,119.03172215232 29.1850102812681,119.031639484385 29.1850954495793,119.031819044938 29.185154575445,119.031916066533 29.1852845289049,119.032226455162 29.1853592921575,119.032503838625 29.1854623850709,119.032782025484 29.1854794833945,119.032996870064 29.1852666444922,119.033044375309 29.1854391036524,119.033092675789 29.1855255798142,119.03333852249 29.1854993544297,119.033536723807 29.1853150095895,119.033500619801 29.1856729532013,119.033482378996 29.1858734257268,119.033531484247 29.1858739185007,119.034040476507 29.1857213121902,119.034562204398 29.1859558069461,119.03492021389 29.1861886683149,119.035887023115 29.1860978940389,119.036295741644 29.186159257826,119.03655793743 29.1861331770873,119.036604374499 29.1864202761216,119.036929225624 29.1866957854103,119.03713963227 29.1869558417939,119.037252085743 29.1871862593477,119.037530107465 29.1872176570113,119.037875743274 29.1870203951584,119.038057003071 29.1868931783097,119.038430969041 29.1871691525915,119.038362956231 29.1874408025601,119.038262064909 29.1877264580753,119.038440927121 29.1878572082183,119.038623396658 29.1876010044518,119.039084937601 29.1872615423787,119.039547664741 29.1867930801145,119.039944115231 29.1864099684607,119.039835666497 29.1857496234904,119.039741051649 29.1853617293983,119.039599069288 29.1847870529083,119.039403844358 29.184656156073,119.039291000526 29.184468735957,119.039409718801 29.1840255932813,119.039215297911 29.1838087022758,119.03913638447 29.1834926207897,119.039023937295 29.1832622081542,119.039075311166 29.1830190553133,119.039452853724 29.1829080859707,119.039812412785 29.1829689174784,119.040206315367 29.1828580922258,119.040500531415 29.1829039403174)")
+                };
+
+                 images = System.IO.Directory.GetFiles(relativePath + "ql/images/");
+                foreach (var imagePath in images)
+                {
+                    var fileName = System.IO.Path.GetFileNameWithoutExtension(imagePath);
+                    var fileExt = System.IO.Path.GetExtension(imagePath);
+
+                    if (imageExts.Contains(fileExt.ToLower()))
+                    {
+                        var villagePicture = new VillagePicture();
+
+                        var byData = GetPictureData(imagePath);
+
+                        var picture = _pictureService.InsertPicture(byData, "image/jpeg", "", "", "");
+
+                        villagePicture.Picture = picture;
+                        villagePicture.IsLogo = fileName.ToUpper() == "LOGO";
+                        villagePicture.IsRoute = fileName.ToUpper() == "ROUTE";
+
+                        ql.VillagePictures.Add(villagePicture);
+                    }
+                }
+
+                #endregion
+
+                #region 服务设施
+                ql.Services.Add(new Core.Domain.Villages.VillageService() { Name = "停车场", Description = "", Location = DbGeography.FromText("POINT(118.7617785879  29.1489522084)"), Icon = "parking",ServiceType=ServiceType.Park });
+                ql.Services.Add(new Core.Domain.Villages.VillageService() { Name = "厕所", Description = "", Location = DbGeography.FromText("POINT(118.7618483253 29.1486664201)"), Icon = "ticket",ServiceType=ServiceType.WC });
+
+                #region 图片路径
+                service_imagesPath = relativePath + "ch/service_images/";
+
+                foreach (var service in ch.Services)
+                {
+                    var directory = service_imagesPath + service.Name + "/";
+                    if (Directory.Exists(directory))
+                    {
+                        var service_images = System.IO.Directory.GetFiles(directory);
+
+                        bool setLogo = service_images.Length == 1;
+
+                        foreach (var imagePath in service_images)
+                        {
+                            var fileName = System.IO.Path.GetFileNameWithoutExtension(imagePath);
+                            var fileExt = System.IO.Path.GetExtension(imagePath);
+
+                            if (imageExts.Contains(fileExt.ToLower()))
+                            {
+                                var villagePicture = new ServicePicture();
+
+                                var byData = GetPictureData(imagePath);
+
+                                var picture = _pictureService.InsertPicture(byData, "image/jpeg", "", "", "");
+
+                                villagePicture.Picture = picture;
+                                villagePicture.IsLogo = fileName.ToUpper() == "LOGO" || setLogo;
+
+                                service.ServicePictures.Add(villagePicture);
+                            }
+                        }
+                    }
+                }
+                #endregion
+
+                #endregion
+
+                #region 农家乐
+                ql.Eats.Add(new VillageEat() { Name = "笔峰大院", Address = "", Person = "", Description = "", Tel = "", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.75788381538 29.133658759857017)"), Icon = "eat" });
+                ql.Eats.Add(new VillageEat() { Name = "建英农家乐", Address = "", Person = "邱桃英", Description = "", Tel = "13675710824", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.75771887974152 29.134295174896312)"), Icon = "eat" });
+                ql.Eats.Add(new VillageEat() { Name = "桥头农家饭店", Address = "", Person = "赖月春", Description = "", Tel = "13004282200", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.7576988554179 29.133984933261612)"), Icon = "eat" });
+                ql.Eats.Add(new VillageEat() { Name = "拾柴小屋", Address = "", Person = "", Description = "", Tel = "13732505595", ReceptionNumber = 0, Level = 0, Price = 0, Location = DbGeography.FromText("POINT(118.75814873692632 29.13296708964365)"), Icon = "eat" });       
+                #region 图片路径
+                eat_imagesPath = relativePath + "ql/eat_images/";
+
+                foreach (var eat in ql.Eats)
+                {
+                    var directory = eat_imagesPath + eat.Name + "/";
+                    if (Directory.Exists(directory))
+                    {
+                        var eat_images = System.IO.Directory.GetFiles(directory);
+
+                        bool setLogo = eat_images.Length == 1;
+
+                        foreach (var imagePath in eat_images)
+                        {
+                            var fileName = System.IO.Path.GetFileNameWithoutExtension(imagePath);
+                            var fileExt = System.IO.Path.GetExtension(imagePath);
+
+                            if (imageExts.Contains(fileExt.ToLower()))
+                            {
+                                var eatPicture = new EatPicture();
+
+                                var byData = GetPictureData(imagePath);
+
+                                var picture = _pictureService.InsertPicture(byData, "image/jpeg", "", "", "");
+
+                                eatPicture.Picture = picture;
+                                eatPicture.IsLogo = fileName.ToUpper() == "LOGO" || setLogo;
+
+                                eat.EatPictures.Add(eatPicture);
+                            }
+                        }
+                    }
+                }
+                #endregion
+
+                #endregion
+
+                #region 民宿
+
+                ql.Lives.Add(new VillageLive() { Name = "黄土岭民俗宿", Address = "", Person = "", Description = "", Tel = "", BedsNumber = 0, Location = DbGeography.FromText("POINT(118.75796470471964 29.132395660016673)"), Icon = "live" });
+                ql.Lives.Add(new VillageLive() { Name = "龙潭山庄", Address = "", Person = "", Description = "", Tel = "", BedsNumber = 0, Location = DbGeography.FromText("POINT(118.756163018515 29.135326079738665)"), Icon = "live" });
+
+                #region 图片路径
+                live_imagesPath = relativePath + "ql/live_images/";
+
+                foreach (var live in ql.Lives)
+                {
+                    var directory = live_imagesPath + live.Name + "/";
+                    if (Directory.Exists(directory))
+                    {
+                        var live_images = System.IO.Directory.GetFiles(directory);
+
+                        bool setLogo = live_images.Length == 1;
+
+                        foreach (var imagePath in live_images)
+                        {
+                            var fileName = System.IO.Path.GetFileNameWithoutExtension(imagePath);
+                            var fileExt = System.IO.Path.GetExtension(imagePath);
+
+                            if (imageExts.Contains(fileExt.ToLower()))
+                            {
+                                var livePicture = new LivePicture();
+
+                                var byData = GetPictureData(imagePath);
+
+                                var picture = _pictureService.InsertPicture(byData, "image/jpeg", "", "", "");
+
+                                livePicture.Picture = picture;
+                                livePicture.IsLogo = fileName.ToUpper() == "LOGO" || setLogo;
+
+                                live.LivePictures.Add(livePicture);
+                            }
+                        }
+                    }
+                }
+                #endregion
+
+                #endregion
+
+                #region 玩的景点
+                
+                ql.Plays.Add(new VillagePlay { Name = "七里排·香溪漂流", Description = "“浙西生态第一漂”七里香溪峡谷漂流位于七里乡七里排村，整条漂流河道于瀑布、深潭、巨石、密林、清流中蜿蜒2.5公里，首尾落差100多米，水道虽狭急却清浅，让您在有惊无险的刺激中尽享大自然的魅力，感受纵情山水、放飞心灵的惬意。", Location = DbGeography.FromText("POINT(118.7703861377 29.1022933757)"), Icon = "play" });
+                ql.Plays.Add(new VillagePlay { Name = "杨坞·森林氧吧", Description = "位于七里乡杨坞村，由红军烈士墓、杨花瀑布和杨坞农家民居群等景点组成，景区内流水人家，诗情画意，古木参天，郁郁葱葱。位于密林深处的杨花瀑布，其负离子值最高超过每立方厘米8万个，极具保健功能，素有“森林氧吧”之称。", Location = DbGeography.FromText("POINT(118.7801697522 29.1263842422)"), Icon = "play" });
+                ql.Plays.Add(new VillagePlay { Name = "七里·三仙圣地", Description = "地位于七里乡七里村，由三仙桥、七里古道、亲水台和观瀑亭等景点组成。相传有三位神仙下凡济世，为七里山民的淳朴善良所感动，主动为其开路造桥，因此得名三仙桥。七里古道是“衢徽古道”的重要路段，全程皆为山路，以石材铺就，留存至今。 黄土岭·三叠龙潭位于七里乡黄土岭村，七里香溪伴村而过，河道两侧农家乐林立，是桃源七里景区目前接待规模最大的农家乐经营村。", Location = DbGeography.FromText("POINT(118.7560863703 29.1351742486)"), Icon = "play" });
+                ql.Plays.Add(new VillagePlay { Name = "龙潭瀑布", Description = "位于七里乡黄土岭村，七里香溪伴村而过，河道两侧农家乐林立，是桃源七里景区目前接待规模最大的农家乐经营村。景区内有龙潭瀑布、观瀑桥、龙角石、香溪廊桥等多处景点。来到黄土岭，憩于农家，看溪水潺潺；漫行古道，见竹径幽幽，山里人家的风味油然而生。", Location = DbGeography.FromText("POINT(118.7551127285 29.1367064536)"), Icon = "play" });
+                ql.Plays.Add(new VillagePlay { Name = "新店·竹海绿道", Description = "位于七里乡新店村，全长1.7公里，共有罗家新村、新店、大头三个出入口。整条游步道贯穿无垠竹海，置身其内，您看到的是翠竹绵延、浩如烟海的竹林景致；放眼远眺，你可以欣赏到金衢日出、竹海拖云的瑰丽天象；细观脚下，你还可以发现竹笋破土、杜鹃遍野的山野情趣。", Location = DbGeography.FromText("POINT(118.7603167840 29.1454079079)"), Icon = "play" });
+              
+
+                #region 图片路径
+                play_imagesPath = relativePath + "ql/play_images/";
+
+                foreach (var play in ql.Plays)
+                {
+                    var directory = play_imagesPath + play.Name + "/";
+                    if (Directory.Exists(directory))
+                    {
+                        var play_images = System.IO.Directory.GetFiles(directory);
+
+                        bool setLogo = play_images.Length == 1;
+
+                        foreach (var imagePath in play_images)
+                        {
+                            var fileName = System.IO.Path.GetFileNameWithoutExtension(imagePath);
+                            var fileExt = System.IO.Path.GetExtension(imagePath);
+
+                            if (imageExts.Contains(fileExt.ToLower()))
+                            {
+                                var playPicture = new PlayPicture();
+
+                                var byData = GetPictureData(imagePath);
+
+                                var picture = _pictureService.InsertPicture(byData, "image/jpeg", "", "", "");
+
+                                playPicture.Picture = picture;
+                                playPicture.IsLogo = fileName.ToUpper() == "LOGO" || setLogo;
+
+                                play.PlayPictures.Add(playPicture);
+                            }
+                        }
+                    }
+                }
+                #endregion
+
+                #endregion
+
+                #endregion
+
             }
             catch (Exception e)
             {
