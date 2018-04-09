@@ -202,7 +202,7 @@ namespace QZCHY.API.Controllers
 
             var eatModel = eat.ToModel();
             if (eatModel.Panoramaid != 0)
-                eatModel.Panorama = id > 16 ? "ch" : "dp";// eat.Village.Panorama;
+                eatModel.Panorama = eat.Village.Panorama;
             //得到Logo
             var logoPicture = eat.EatPictures.Where(p => p.IsLogo).FirstOrDefault();
             if (logoPicture != null) eatModel.Logo = _pictureService.GetPictureUrl(logoPicture.Picture);
@@ -232,7 +232,7 @@ namespace QZCHY.API.Controllers
 
             var liveModel = live.ToModel();
             if (liveModel.PanoramaId != 0)
-                liveModel.Panorama = id > 13 ? "ch" : "dp"; // live.Village.Panorama;
+                liveModel.Panorama = live.Village.Panorama;
 
             //得到Logo
             var logoPicture = live.LivePictures.Where(p => p.IsLogo).FirstOrDefault();
@@ -263,7 +263,8 @@ namespace QZCHY.API.Controllers
 
             var playModel = play.ToModel();
             if (playModel.PanoramaId != 0)
-                playModel.Panorama = id > 16 ? "ch" : "dp"; // play.Village.Panorama;
+                playModel.Panorama = play.Village.Panorama;
+
             //得到Logo
             var logoPicture = play.PlayPictures.Where(p => p.IsLogo).FirstOrDefault();
             if (logoPicture != null) playModel.Logo = _pictureService.GetPictureUrl(logoPicture.Picture);
@@ -285,6 +286,38 @@ namespace QZCHY.API.Controllers
         }
 
         [HttpGet]
+        [Route("Service/{Id}")]
+        public IHttpActionResult GetVillageServiceById(int id = 0)
+        {
+            var service = _villageServiceService.GetVillageServiceById(id);
+            if (service == null || service.Deleted) return NotFound();
+
+            var serviceModel = service.ToModel();
+
+            if (serviceModel.PanoramaId != 0)
+                serviceModel.Panorama = service.Village.Panorama;
+
+            //得到Logo
+            var logoPicture = service.ServicePictures.Where(p => p.IsLogo).FirstOrDefault();
+            if (logoPicture != null) serviceModel.Logo = _pictureService.GetPictureUrl(logoPicture.Picture);
+
+            //得到图片集
+            var servicePictures = service.ServicePictures.Where(p => p.ServiceId == id).ToList();
+            var servicePicturesModel = new List<ServicePictureModel>();
+            foreach (var picture in servicePictures)
+            {
+                var servicePictureModel = new ServicePictureModel();
+                servicePictureModel.Name = "主题";
+                servicePictureModel.Img = _pictureService.GetPictureUrl(picture.Picture);
+                servicePicturesModel.Add(servicePictureModel);
+            }
+
+            serviceModel.ServicePictures = servicePicturesModel;
+
+            return Ok(serviceModel);
+        }
+
+        [HttpGet]
         [Route("Geo")]
         public IHttpActionResult GetAllVillageInMap()
         {
@@ -303,7 +336,7 @@ namespace QZCHY.API.Controllers
 
         [HttpGet]
         [Route("Geo/{Id}")]
-        public IHttpActionResult GetVillageByIdInMap(int id = 0, double lon = 0, double lat = 0)
+        public IHttpActionResult GetVillageByIdInMap(int id = 0)
         {
             var village = _villageService.GetVillageById(id);
             if (village == null) return NotFound();
@@ -314,9 +347,7 @@ namespace QZCHY.API.Controllers
 
             if (logoPicture != null)
                 villageModel.Logo = _pictureService.GetPictureUrl(logoPicture.Picture);            
-
-            villageModel.Distance = _geometryService.CalculateDistance(lon, lat, villageModel.Longitude, villageModel.Latitude).ToString();
-
+            
             //遍历各个节点获取logo
             foreach (var service in villageModel.Services)
             {

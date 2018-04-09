@@ -180,12 +180,12 @@ namespace QZCHY.API.Controllers
 
                 #region 服务设施
 
-                dp.Services.Add(new Core.Domain.Villages.VillageService() { Name = "山脚停车场", Description = "", Location = DbGeography.FromText("POINT(119.028336339932 29.185065206383)"), Icon = "parking" });
-                dp.Services.Add(new Core.Domain.Villages.VillageService() { Name = "山上停车场", Description = "", Location = DbGeography.FromText("POINT(119.033093070437 29.1872311309559)"), Icon = "parking" });
-                dp.Services.Add(new Core.Domain.Villages.VillageService() { Name = "游客接待中心", Description = "", Location = DbGeography.FromText("POINT(119.032570530284 29.1853340591726)"), Icon = "ticket" });
-                dp.Services.Add(new Core.Domain.Villages.VillageService() { Name = "山脚厕所", Description = "", Location = DbGeography.FromText("POINT(119.028073811557 29.1847519536177)"), Icon = "wc" });
-                dp.Services.Add(new Core.Domain.Villages.VillageService() { Name = "山上厕所", Description = "", Location = DbGeography.FromText("POINT(119.032515188008 29.1852134615949)"), Icon = "wc" });
-                dp.Services.Add(new Core.Domain.Villages.VillageService() { Name = "红芬小卖部", Description = "", Location = DbGeography.FromText("POINT(119.032749318041 29.1854837977747)"), Icon = "wc" });
+                dp.Services.Add(new Core.Domain.Villages.VillageService() { Name = "山脚停车场", Description = "", Location = DbGeography.FromText("POINT(119.028336339932 29.185065206383)"), Icon = "parking", ServiceType= ServiceType.Park });
+                dp.Services.Add(new Core.Domain.Villages.VillageService() { Name = "山上停车场", Description = "", Location = DbGeography.FromText("POINT(119.033093070437 29.1872311309559)"), Icon = "parking", ServiceType = ServiceType.Park });
+                dp.Services.Add(new Core.Domain.Villages.VillageService() { Name = "游客接待中心", Description = "", Location = DbGeography.FromText("POINT(119.032570530284 29.1853340591726)"), Icon = "ticket", ServiceType = ServiceType.Others });
+                dp.Services.Add(new Core.Domain.Villages.VillageService() { Name = "山脚厕所", Description = "", Location = DbGeography.FromText("POINT(119.028073811557 29.1847519536177)"), Icon = "wc", ServiceType = ServiceType.WC });
+                dp.Services.Add(new Core.Domain.Villages.VillageService() { Name = "山上厕所", Description = "", Location = DbGeography.FromText("POINT(119.032515188008 29.1852134615949)"), Icon = "wc", ServiceType = ServiceType.WC });
+                dp.Services.Add(new Core.Domain.Villages.VillageService() { Name = "红芬小卖部", Description = "", Location = DbGeography.FromText("POINT(119.032749318041 29.1854837977747)"), Icon = "wc", ServiceType = ServiceType.WC });
 
                 #region 图片路径
                 var service_imagesPath = relativePath + "dp/service_images/";
@@ -482,14 +482,14 @@ namespace QZCHY.API.Controllers
 
                 #region 服务设施
 
-                ch.Services.Add(new Core.Domain.Villages.VillageService() { Name = "七彩长虹游客服务中心", Description = "", Location = DbGeography.FromText("POINT(118.23096992496347 29.220730023463066)"), Icon = "service" });
-                ch.Services.Add(new Core.Domain.Villages.VillageService() { Name = "台回山游客服务中心", Description = "", Location = DbGeography.FromText("POINT(118.21898247916494 29.276036035563667)"), Icon = "service" });
-                ch.Services.Add(new Core.Domain.Villages.VillageService() { Name = "舒园",Description = "三星级厕所", Location = DbGeography.FromText("POINT(118.23167688702317 29.220346136287962)"), Icon = "wc" });
-                ch.Services.Add(new Core.Domain.Villages.VillageService() { Name = "厕所", Description = "", Location = DbGeography.FromText("POINT(118.21894261979105 29.276819622922055)"), Icon = "wc" });
-                ch.Services.Add(new Core.Domain.Villages.VillageService() { Name = "生态停车场", Description = "大巴停车场，11个车位，", Location = DbGeography.FromText("POINT(118.23174881417336 29.220685323999167)"), Icon = "parking" });
-                ch.Services.Add(new Core.Domain.Villages.VillageService() { Name = "停车场（带充电装）", Description = "12个车位，充电车位5个", Location = DbGeography.FromText("POINT(118.23090200094957 29.220470892812539)"), Icon = "parking" });
-                ch.Services.Add(new Core.Domain.Villages.VillageService() { Name = "停车场", Description = "10个车位", Location = DbGeography.FromText("POINT(118.21853031550714 29.275862482675571)"), Icon = "parking" });
-                ch.Services.Add(new Core.Domain.Villages.VillageService() { Name = "台回山停车场（带充电装）", Description = "30个车位，充电车位5个", Location = DbGeography.FromText("POINT(118.21853031550714 29.275862482675571)"), Icon = "parking" });
+                ch.Services.Add(new Core.Domain.Villages.VillageService() { Name = "七彩长虹游客服务中心", Description = "", Location = DbGeography.FromText("POINT(118.23096992496347 29.220730023463066)"), Icon = "service", ServiceType = ServiceType.Others });
+                ch.Services.Add(new Core.Domain.Villages.VillageService() { Name = "台回山游客服务中心", Description = "", Location = DbGeography.FromText("POINT(118.21898247916494 29.276036035563667)"), Icon = "service", ServiceType = ServiceType.Others });
+                ch.Services.Add(new Core.Domain.Villages.VillageService() { Name = "舒园",Description = "三星级厕所", Location = DbGeography.FromText("POINT(118.23167688702317 29.220346136287962)"), Icon = "wc", ServiceType = ServiceType.WC });
+                ch.Services.Add(new Core.Domain.Villages.VillageService() { Name = "厕所", Description = "", Location = DbGeography.FromText("POINT(118.21894261979105 29.276819622922055)"), Icon = "wc", ServiceType = ServiceType.WC });
+                ch.Services.Add(new Core.Domain.Villages.VillageService() { Name = "生态停车场", Description = "大巴停车场，11个车位，", Location = DbGeography.FromText("POINT(118.23174881417336 29.220685323999167)"), Icon = "parking", ServiceType = ServiceType.Park });
+                ch.Services.Add(new Core.Domain.Villages.VillageService() { Name = "停车场（带充电装）", Description = "12个车位，充电车位5个", Location = DbGeography.FromText("POINT(118.23090200094957 29.220470892812539)"), Icon = "parking", ServiceType = ServiceType.Park });
+                ch.Services.Add(new Core.Domain.Villages.VillageService() { Name = "停车场", Description = "10个车位", Location = DbGeography.FromText("POINT(118.21853031550714 29.275862482675571)"), Icon = "parking", ServiceType = ServiceType.Park });
+                ch.Services.Add(new Core.Domain.Villages.VillageService() { Name = "台回山停车场（带充电装）", Description = "30个车位，充电车位5个", Location = DbGeography.FromText("POINT(118.21853031550714 29.275862482675571)"), Icon = "parking", ServiceType = ServiceType.Park });
 
                 #region 图片路径
                 service_imagesPath = relativePath + "ch/service_images/";

@@ -446,34 +446,26 @@ Page({
             title: '数据加载中...',
           });
 
-          var currentLon = 0, currentLat = 0;
-          wx.getLocation({
-            type: "gcj02",
-            success: function (res) {
-              currentLat = res.latitude
-              currentLon = res.longitude
-            },
-            complete: function () {
-              wx.request({
-                url: app.globalData.apiUrl + 'villages/geo/' + spotId + '?lon=' + currentLon + '&lat=' + currentLat,
-                success: function (response) {
+          wx.request({
+              url: app.globalData.apiUrl + 'villages/geo/' + spotId ,
+              success: function (response) {
                   var spot = response.data;
-                  spot.logo=spot.logo.replace(app.globalData.apiUrl1,app.globalData.picturesUrl);
+                  spot.logo = spot.logo.replace(app.globalData.apiUrl1, app.globalData.picturesUrl);
 
                   if (spot.level > 0) {
-                    var index = 1;
-                    spot.levelTag = "·";
-                    for (var index = 1; index <= spot.level; index++) {
-                      spot.levelTag += "A";
-                    }
-                    spot.levelTag += "级景区";
+                      var index = 1;
+                      spot.levelTag = "·";
+                      for (var index = 1; index <= spot.level; index++) {
+                          spot.levelTag += "A";
+                      }
+                      spot.levelTag += "级景区";
                   }
 
                   //更新空间位置
                   var allControls = page.data.map.allControls;
                   allControls[1].iconPath = "../../resources/images/map/nearBy_s.png";
                   wx.setNavigationBarTitle({
-                    title: spot.name
+                      title: spot.name
                   });
 
                   page.setSubMarkers(spot, page.data.map.filterType);
@@ -483,15 +475,13 @@ Page({
                       'map.showSingelSpot': true,
                       'map.currentControls': allControls
                   });
-                },
-                fail: function (response) {
+              },
+              fail: function (response) {
 
-                },
-                complete: function () {
+              },
+              complete: function () {
                   wx.hideLoading();
-                }
-              });
-            }
+              }
           });
           break;
         case "play":
@@ -506,7 +496,18 @@ Page({
           wx.showActionSheet({
             itemList: ['导航', '查看详情'],
             success: function (res) {
-              console.log(res.tapIndex)
+              switch(res.tapIndex)
+              {
+                  case 0:
+                      console.log(event);
+                      page.viewPath({ currentTarget: { dataset: { lon: event.longitude, lat: event.latitude } } });
+                  break;
+                case 1:
+                    wx.navigateTo({
+                        url: 'spot_service?id=' + markerId,
+                    });
+                  break;
+              }
             },
             fail: function (res) {
               console.log(res.errMsg)
@@ -557,18 +558,25 @@ Page({
       var targetItems = [];
 
       switch (filterType) {
-          case 'service':
-              targetItems = currentSpot.services;
-              break;
-          case 'play':
-              targetItems = currentSpot.plays;
-              break;
-          case 'eat':
-              targetItems = currentSpot.eats;
-              break;
-          case 'live':
-              targetItems = currentSpot.lives;
-              break;
+        case 'wash':
+          currentSpot.services.forEach(function (item) {
+            if (item.serviceType == 0) targetItems.push(item);
+          });
+          break;
+        case 'park':
+          currentSpot.services.forEach(function (item) {
+            if (item.serviceType == 1) targetItems.push(item);
+          });
+          break;
+        case 'play':
+          targetItems = currentSpot.plays;
+          break;
+        case 'eat':
+          targetItems = currentSpot.eats;
+          break;
+        case 'live':
+          targetItems = currentSpot.lives;
+          break;
       }
 
       targetItems.forEach(function (item) {

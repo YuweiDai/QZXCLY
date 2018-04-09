@@ -7,15 +7,12 @@
     <view class='section'>
       <view class='name line relative'>
         {{service.name}}
-        <view class='btns'>          
-        <view class='btn' bindtap='makePhoneCall' title="拨打"data-phone="{{service.tel}}"><i class="iconfont icon-dianhua"></i></view>
-        <view class='btn' hidden='{{service.panoramaId==0}}' bindtap='navToPanorama' title="全景"><i class='iconfont icon-VRshebei'></i></view>        
+      <view class='btns'>               
         <view class='btn' bindtap='navTo' title="导航"><i class='iconfont icon-daohang2'></i></view>       
        </view>
       </view>
-      <view class='line relative'>地址：{{service.address}}</view>
-      <view class='line relative'>设施设备：
-        <view>{{service.facilities}}</view>      
+      <view class='line relative'>其他信息：
+        <view>{{service.description}}</view>      
       </view>                 
     </view>
     <view class='section'>

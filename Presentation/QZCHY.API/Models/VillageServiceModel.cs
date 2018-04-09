@@ -20,6 +20,10 @@ namespace QZCHY.API.Models
         /// </summary>
         public int PanoramaId { get; set; }
 
+        public string Panorama { get; set; }
+
+        public string Logo { get; set; }
+
         /// <summary>
         /// 图标
         /// </summary>

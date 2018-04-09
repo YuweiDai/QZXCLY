@@ -18,5 +18,7 @@ namespace QZCHY.API.Models
         public int VillageService_Id { get; set; }
         public int Picture_Id { get; set; }
 
+        public string Name { get; set; }
+        public string Img { get; set; }
     }
 }

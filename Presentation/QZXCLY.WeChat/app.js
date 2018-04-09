@@ -97,8 +97,8 @@ App({
   },
 
   globalData: {
-    apiUrl: "https://www.luckyday.top/api/",  //1ded3a1f69ed8d58  http://qzghj.free.ngrok.cc/
-    apiUrl1: "http://www.luckyday.top/api/",    
+    apiUrl: "http://qzghj.free.ngrok.cc/",  //1ded3a1f69ed8d58  http://qzghj.free.ngrok.cc/ https://www.luckyday.top/api/
+    apiUrl1: "http://qzghj.free.ngrok.cc/",    
     resourceUrl:"https://www.luckyday.top/resources/",
     picturesUrl:"http://qzch.qz.gov.cn/qzxcly/resources/",
     rpx:2,
