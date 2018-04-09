@@ -88,7 +88,9 @@ namespace QZCHY.Data.Migrations
                         Icon = c.String(),
                         Panorama = c.String(),
                         VideoUrl = c.String(),
+                        VideoSize = c.Double(nullable: false),
                         Region = c.Int(nullable: false),
+                        HotMonth = c.String(),
                         Location = c.Geography(),
                         Deleted = c.Boolean(nullable: false),
                         CreatedOn = c.DateTime(nullable: false),
@@ -229,10 +231,10 @@ namespace QZCHY.Data.Migrations
                         Deleted = c.Boolean(nullable: false),
                         CreatedOn = c.DateTime(nullable: false),
                         UpdatedOn = c.DateTime(nullable: false),
-                        Village_Id = c.Int(nullable: false),
+                        Village_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Village", t => t.Village_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Village", t => t.Village_Id)
                 .Index(t => t.Village_Id);
             
             CreateTable(
