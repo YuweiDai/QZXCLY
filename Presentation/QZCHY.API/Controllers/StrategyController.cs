@@ -18,11 +18,13 @@ namespace QZCHY.API.Controllers
 
         private readonly IStrategyService _strategyService;
         private readonly IPictureService _pictureService;
+        private readonly IVillageService _villageService;
 
-        public StrategyController(IStrategyService strategyService, IPictureService pictureService)
+        public StrategyController(IStrategyService strategyService, IPictureService pictureService, IVillageService villageService)
         {
             _strategyService = strategyService;
             _pictureService = pictureService;
+            _villageService = villageService;
         }
 
         [HttpGet]
@@ -87,6 +89,15 @@ namespace QZCHY.API.Controllers
             return Ok(response);
         }
 
+        [HttpGet]
+        [Route("Village/{villageId}")]
+        public IHttpActionResult GetVillageStrategies(int villageId = 0)
+        {
+            var village = _villageService.GetVillageById(villageId);
+            if (village == null) return NotFound();
 
+            var strategies = village.Strategies.ToList().Select(s => s.ToModel());
+            return Ok(strategies);
+        }
     }
 }
