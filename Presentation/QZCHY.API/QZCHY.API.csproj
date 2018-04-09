@@ -280,7 +280,6 @@
     <Content Include="Content\images\thumbs\0000073_0.jpeg" />
     <Content Include="Content\images\thumbs\0000074_0.jpeg" />
     <Content Include="Content\images\thumbs\0000075_0.jpeg" />
-    <Content Include="Content\Site.css" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
