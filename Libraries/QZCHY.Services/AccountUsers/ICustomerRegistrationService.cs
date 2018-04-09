@@ -22,7 +22,7 @@ namespace QZCHY.Services.AccountUsers
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
-        Task<AccountUser> ValidateWechatAppAccountUserAsync(string code);
+        Task<AccountUser> ValidateWechatAppAccountUserAsync(string code,string ivAndEncryptedData);
 
         /// <summary>
         /// 用户名可以是手机、邮件以及用户名

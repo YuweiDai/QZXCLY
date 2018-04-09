@@ -198,6 +198,21 @@ namespace QZCHY.Services.AccountUsers
             return accountUser;
         }
 
+        public virtual AccountUser GetAccountUserByWechatOpenId(string openid)
+        {
+            if (string.IsNullOrEmpty(openid))
+                return null;
+
+            var query = from c in _accountUserRepository.Table
+                        orderby c.Id
+                        where c.WechatOpenId == openid && !c.Deleted
+                        select c;
+
+            var accountUser = query.FirstOrDefault();
+            return accountUser;
+        }
+        
+
         /// <summary>
         /// 新增客户
         /// </summary>

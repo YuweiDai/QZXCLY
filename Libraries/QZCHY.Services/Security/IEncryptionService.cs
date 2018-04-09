@@ -39,5 +39,14 @@ namespace QZCHY.Services.Security
         /// <param name="encryptionPrivateKey">Encryption private key</param>
         /// <returns>Decrypted text</returns>
         string DecryptText(string cipherText, string encryptionPrivateKey = "");
+
+        /// <summary>  
+        /// 微信小程序AES解密  
+        /// </summary>  
+        /// <param name="inputdata">输入的数据encryptedData</param>  
+        /// <param name="aesKey">key</param>  
+        /// <param name="aesIV">向量128</param>  
+        /// <returns name="result">解密后的字符串</returns>  
+        string AESDecrypt(string inputdata, string aesKey, string aesIV);
     }
 }

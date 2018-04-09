@@ -5,6 +5,7 @@ using System;
 using System.Configuration;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace QZCHY.Services.AccountUsers
@@ -78,57 +79,66 @@ namespace QZCHY.Services.AccountUsers
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
-        public Task<AccountUser> ValidateWechatAppAccountUserAsync(string code)
+        public Task<AccountUser> ValidateWechatAppAccountUserAsync(string code, string ivAndEncryptedData)
         {
-            // appid:"wxf1fe2ec4f67ca88d",
-            // secret:"89d07bfc96a63e8f4e56bbeeb76bc829",
-            //code: res.code,
-            // grant_type:"authorization_code"
-            var authUrl = ConfigurationManager.AppSettings["url"];
+            var authUrl = ConfigurationManager.AppSettings["authUrl"];
             var appid=  ConfigurationManager.AppSettings["appid"];
             var secret =  ConfigurationManager.AppSettings["secret"];
 
             string url = "{0}?appid={1}&secret={2}&js_code={3}&grant_type=authorization_code";
-            HttpRequestMessage hrm = new HttpRequestMessage();
-            hrm.Method = HttpMethod.Get;
-            var responese = hrm.CreateResponse(url);
-            var result = responese.Content.ToString();
+            var result = string.Empty;
+            url = string.Format(url, authUrl, appid, secret,code);
+            System.Net.WebRequest wReq = System.Net.WebRequest.Create(url);
+            // Get the response instance.  
+            System.Net.WebResponse wResp = wReq.GetResponse();
+            System.IO.Stream respStream = wResp.GetResponseStream();
+            using (System.IO.StreamReader reader = new System.IO.StreamReader(respStream, Encoding.GetEncoding("utf-8")))
+            {
+                result = reader.ReadToEnd();
+            }
+
+            var wechatAuthorizeResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<WechatAuthorizeResponse>(result);
+            if(!string.IsNullOrEmpty(wechatAuthorizeResponse.openid))
+            {
+                var accountUser = _customerService.GetAccountUserByWechatOpenId(wechatAuthorizeResponse.openid);
+
+                var encryptedData= ivAndEncryptedData.Split(';')[0];
+                var iv = ivAndEncryptedData.Split(';')[1];
+
+                if (accountUser == null)
+                {
+                    var wechatUserInfoString = _encryptionService.AESDecrypt(encryptedData, wechatAuthorizeResponse.session_key, iv);
+
+                    var wechatUserInfo = Newtonsoft.Json.JsonConvert.DeserializeObject<WechatUserInfo>(wechatUserInfoString);
+
+                    accountUser = new AccountUser
+                    {
+                        Active = true,
+                        AccountUserGuid = Guid.NewGuid(),
+                        AvatarUrl = wechatUserInfo.avatarUrl,
+                        City = wechatUserInfo.city,
+                        Country = wechatUserInfo.country,
+                        Gender = wechatUserInfo.gender,
+                        IsSystemAccount = false,
+                        PasswordFormat = PasswordFormat.Clear,
+                        Province = wechatUserInfo.province,
+                        UnionId = wechatUserInfo.unionId,
+                        WechatOpenId = wechatUserInfo.openId,
+                        UserName = wechatUserInfo.nickName
+                    };
+
+                    var role = _customerService.GetAccountUserRoleBySystemName(SystemAccountUserRoleNames.Registered);
+                    if (role != null)
+                        accountUser.AccountUserRoles.Add(role);
+
+                    _customerService.InsertAccountUser(accountUser);
+                }
+
+                return Task.FromResult(accountUser);
+            }
+ 
 
             return Task.FromResult<AccountUser>(null); ;
-
-
-            //    //设置HttpClientHandler的AutomaticDecompression
-
-            //    var handler = new HttpClientHandler() { AutomaticDecompression = DecompressionMethods.GZip };
-
-
-            //    //创建HttpClient（注意传入HttpClientHandler）
-
-            //    using (var http = new HttpClient())
-
-            //    {
-
-            //        //使用FormUrlEncodedContent做HttpContent
-
-            //        var content = new FormUrlEncodedContent(new Dictionary<string, string>()
-
-            //{
-
-            //    {"id", userId},
-
-            //    {"force_gzip", "1"}
-
-            //});
-
-            //        //await异步等待回应
-
-            //        var response = await http.PostAsync(url, content);
-
-            //        //await异步读取最后的JSON（注意此时gzip已经被自动解压缩了，因为上面的AutomaticDecompression = DecompressionMethods.GZip）
-
-            //        Console.WriteLine(await response.Content.ReadAsStringAsync());
-
-            //    }
         }
 
 

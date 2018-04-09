@@ -21,7 +21,7 @@ namespace QZCHY.Web.Framework.Security.Authorization
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
             var customerRegistrationService = EngineContext.Current.Resolve<IAccountUserRegistrationService>();
-            var user = await customerRegistrationService.ValidateAccountUserAsync(context.UserName, context.Password);
+            var user = await customerRegistrationService.ValidateWechatAppAccountUserAsync(context.UserName, context.Password);
             if (user == null)
             {
                 context.SetError("无效授权", "用户名或密码错误");

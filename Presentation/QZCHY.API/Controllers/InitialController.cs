@@ -80,6 +80,38 @@ namespace QZCHY.API.Controllers
         }
 
         [HttpGet]
+        [Route("SetRoles")]
+        public IHttpActionResult SetRoles()
+        {
+            #region 用户角色创建
+
+            var roleNames = new List<string> {
+                SystemAccountUserRoleNames.Administrators,
+                SystemAccountUserRoleNames.Registered
+            };
+
+            foreach (var roleName in roleNames)
+            {
+                var role = _accountUserService.GetAccountUserRoleBySystemName(roleName);
+                if (role == null)
+                {
+                    role = new AccountUserRole
+                    {
+                        Name = roleName,
+                        Active = true,
+                        IsSystemRole = true,
+                        SystemName = roleName
+                    };
+
+                    _accountUserService.InsertAccountUserRole(role);
+                }
+            }
+            #endregion
+
+            return Ok("角色配置完成");
+        }
+
+        [HttpGet]
         [Route("Settings")]
         public  IHttpActionResult Settings()
         {
@@ -1020,6 +1052,7 @@ namespace QZCHY.API.Controllers
             //var ths = ch.Plays.Where(v => v.Id == 17).SingleOrDefault();
 
             //if (qngd != null) qngd.AudioUrl = "https://www.luckyday.top/resources/audios/ch001.mp3";
+            
 
             return Ok("");
         }

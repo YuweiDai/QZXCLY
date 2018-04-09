@@ -337,59 +337,59 @@ Page({
     });
 
     //获取景区点
-    wx.request({
-      url: app.globalData.apiUrl + 'Villages/geo',
-      success: function (response) {
-        if (response.statusCode != 200) return;
-        var spots = response.data;
+    var sucess = function (response) {
+      if (response.statusCode != 200) return;
+      var spots = response.data;
 
-        for (var index in spots) {
-          var spot = spots[index];
-          points.push({ latitude: spot.latitude, longitude: spot.longitude });
+      for (var index in spots) {
+        var spot = spots[index];
+        points.push({ latitude: spot.latitude, longitude: spot.longitude });
 
-          var callout = {
-            content: spot.name,
-            padding: defaultCallout.padding,
-            color: defaultCallout.color,
-            bgColor: defaultCallout.bgColor,
-            textAlign: defaultCallout.textAlign,
-            display: defaultCallout.display,
-            borderRadius: defaultCallout.borderRadius,
-          };
-          var spotMarker = {
-            id: "spot_" + spot.id,
-            title: spot.name,
-            width: page.data.map.spotSize.width * app.globalData.rpx,
-            height: page.data.map.spotSize.width * app.globalData.rpx,
-            iconPath: "../../resources/images/map/"+spot.icon+".png",
-            latitude: spot.latitude,
-            longitude: spot.longitude,
-            callout: callout
-          };
-          console.log(spotMarker);
-          spotMarkers.push(spotMarker);
-        }
-        page.mapCtx.includePoints({
-          padding: [50,50,50,50],
-          points: points
-        });
+        var callout = {
+          content: spot.name,
+          padding: defaultCallout.padding,
+          color: defaultCallout.color,
+          bgColor: defaultCallout.bgColor,
+          textAlign: defaultCallout.textAlign,
+          display: defaultCallout.display,
+          borderRadius: defaultCallout.borderRadius,
+        };
+        var spotMarker = {
+          id: "spot_" + spot.id,
+          title: spot.name,
+          width: page.data.map.spotSize.width * app.globalData.rpx,
+          height: page.data.map.spotSize.width * app.globalData.rpx,
+          iconPath: "../../resources/images/map/" + spot.icon + ".png",
+          latitude: spot.latitude,
+          longitude: spot.longitude,
+          callout: callout
+        };
+        console.log(spotMarker);
+        spotMarkers.push(spotMarker);
+      }
+      page.mapCtx.includePoints({
+        padding: [50, 50, 50, 50],
+        points: points
+      });
 
-        //设置数据
-        page.setData({
-          'map.markers': spotMarkers,
-          'map.currentRegionPoints': points,
-        });
-      },
-      fail: function (response) {
+      //设置数据
+      page.setData({
+        'map.markers': spotMarkers,
+        'map.currentRegionPoints': points,
+      });
+    }
+
+      var fail = function (response) {
         wx.showToast({
           title: '加载地图点位错误',
-          icon:"none"
+          icon: "none"
         });
-      },
-      complete: function () {
+      };
+      var complete = function () {
         wx.hideLoading();
-      }
-    });
+      };
+    app.request(app.globalData.apiUrl + 'Villages/geo','get',null,sucess,fail,complete);
+ 
   },
 
     //控件事件实现

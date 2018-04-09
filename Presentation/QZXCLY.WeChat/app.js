@@ -1,50 +1,94 @@
 //app.js
 App({
 
-  onLaunch: function () {
-    var that=this;
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs);
-
-    if(wx.getStorageSync('loginSessionKey')) return;
+  wechatLogin:function(){
+    var that = this;
 
     // 登录
     wx.login({
       success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        wx.request({
-          url: that.globalData.apiUrl+'token',
-          data: "grant_type=password&password=000&userName="+res.code,
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          method:"POST",         
-          success:function(res){
-            console.log(res);
-          } 
+        //获取用户信息
+        wx.getUserInfo({
+          withCredentials: true,
+          lang: "zh_CN",
+          success: function (userInfo) {
+            console.log(userInfo);
+            // 发送 res.code 到后台换取 openId, sessionKey, unionId
+            wx.request({
+              url: that.globalData.apiUrl + 'token',
+              data: "grant_type=password&password=" + userInfo.encryptedData + ";" + userInfo.iv + "&userName=" + res.code,
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+              method: "POST",
+              success: function (res) {
+                var authroziationData = { token: res.data.access_token, userName: res.data.userName, refreshToken: res.data.refresh_token };
+                wx.setStorageSync('authroziationData', authroziationData);
+              },
+              fail: function (res) {
+                console.log(res);
+              }
+            });
+          }
         });
       }
     })
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              // 可以将 res 发送给后台解码出 unionId
-              this.globalData.userInfo = res.userInfo
+  },
 
-              // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-              // 所以此处加入 callback 以防止这种情况
-              if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
-              }
-            }
-          })
+  //刷新token
+  refreshToken:function(){
+     
+    var authroziationData = wx.getStorageSync('authroziationData');
+
+    if (authroziationData) {
+      var data = "grant_type=refresh_token&refresh_token=" + authroziationData.refreshToken + "&client_id=";
+
+      wx.request({
+        url: that.globalData.apiUrl + 'token',
+        data: data,
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        method: "POST",
+        success: function (res) {
+          var authroziationData = { token: res.data.access_token, userName: res.data.userName, refreshToken: res.data.refresh_token };
+          wx.setStorageSync('authroziationData', authroziationData);
+        },
+        fail: function (res) {
+          console.log(res);
+        }
+      });
+    }
+
+    return deferred.promise;
+  },
+
+  request: function (url, method,data, doSuccess, doFail, doComplete){    
+    var authroziationData = wx.getStorageSync('authroziationData');
+    var header = { };
+    if(authroziationData)
+      header = { Authorization: 'Bearer ' + authroziationData.token };
+    wx.request({
+      url: url,
+      data: data,
+      header: header,
+      method: method,
+      success: function (res) {
+        if (typeof doSuccess == "function") {
+          doSuccess(res);
+        }
+      },
+      fail: function () {
+        if (typeof doFail == "function") {
+          doFail();
+        }
+      },
+      complete: function () {
+        if (typeof doComplete == "function") {
+          doComplete();
         }
       }
     });
+  },
+
+  onLaunch: function () {
+    if (!wx.getStorageSync('authroziationData')) this.wechatLogin();
 
     //获取手机信息
     wx.getSystemInfo({
@@ -56,6 +100,7 @@ App({
       }
     });   
   },
+
   onHide: function () {
     // Do something when hide.
   },

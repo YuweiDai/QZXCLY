@@ -14,7 +14,7 @@ using System.Web.Http;
 namespace QZCHY.API.Controllers
 {
     [RoutePrefix("Villages")]
-    public class VillageController : ApiController
+    public class VillageController : BaseAdminApiController
     {
 
         private readonly IVillageService _villageService;

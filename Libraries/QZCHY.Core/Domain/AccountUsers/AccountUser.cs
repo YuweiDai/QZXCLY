@@ -45,6 +45,15 @@ namespace QZCHY.Core.Domain.AccountUsers
 
         public string Remark { get; set; }
 
+        public string WechatOpenId { get; set; }
+        
+        public string Gender { get; set; }
+        public string City { get; set; }
+        public string Province { get; set; }
+        public string Country { get; set; }
+        public string AvatarUrl { get; set; }
+        public string UnionId { get; set; }
+
         /// <summary>
         /// Gets or sets the customer roles
         /// </summary>

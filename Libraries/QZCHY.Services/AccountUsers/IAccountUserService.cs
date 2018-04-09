@@ -50,6 +50,8 @@ namespace QZCHY.Services.AccountUsers
         /// <returns>AccountUser</returns>
         AccountUser GetAccountUserByUsername(string username);
 
+        AccountUser GetAccountUserByWechatOpenId(string openid);
+
         /// <summary>
         /// 获取所有的用户账号
         /// </summary>
