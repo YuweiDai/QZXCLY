@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using QZCHY.Core.Domain.Villages;
 using QZCHY.Core.Data;
 using QZCHY.Services.Events;
+using QZCHY.Core;
 
 namespace QZCHY.Services.Villages
 {
@@ -102,14 +103,16 @@ namespace QZCHY.Services.Villages
             return villages;
         }
 
-        public IList<Village> GetHotVillages(int month)
+        public IList<Village> GetHotVillages(int month,int pageSize, int pageIndex)
         {
             var query = from v in _villageRepository.Table
                         where !v.HotMonth.Contains(month.ToString() + ";")
                         select v;
             var villages = query.ToList();
-          
-            return villages;
+           
+            var result = new PagedList<Village>(villages, pageIndex, pageSize);
+
+            return result;
         }
     }
 }

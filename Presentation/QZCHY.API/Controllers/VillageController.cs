@@ -458,7 +458,7 @@ namespace QZCHY.API.Controllers
         public IHttpActionResult GetHotVillage(int pageSize = Int32.MaxValue, int pageIndex = 0)
         {
             var month = DateTime.Now.Month;
-            var villages = _villageService.GetHotVillages(month);
+            var villages = _villageService.GetHotVillages(month, pageSize, pageIndex);
 
             var response = new ListResponse<HotVillageListModel>
             {

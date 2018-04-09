@@ -22,6 +22,8 @@ namespace QZCHY.Services.Villages
         IList<Strategy> GetAllStrategy();
 
         Strategy GetStrategyById(int id);
+
+        IList<Strategy> GetListStrategys(int pageIndex,int pageSize);
              
     }
 }

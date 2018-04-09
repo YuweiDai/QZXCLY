@@ -67,7 +67,7 @@ namespace QZCHY.API.Controllers
 
             //}
 
-            var strategys = _strategyService.GetAllStrategy();
+            var strategys = _strategyService.GetListStrategys(pageIndex ,pageSize);
 
             var response = new ListResponse<StrategyModel>
             {

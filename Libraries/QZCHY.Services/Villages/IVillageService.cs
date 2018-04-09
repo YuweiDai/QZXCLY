@@ -30,7 +30,7 @@ namespace QZCHY.Services.Villages
 
         IList<Village> GetVillagesByMonth(int month);
 
-        IList<Village> GetHotVillages(int month);
+        IList<Village> GetHotVillages(int month,int pageSize,int pageIndex);
 
     }
 }

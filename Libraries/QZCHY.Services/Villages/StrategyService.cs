@@ -1,4 +1,5 @@
-﻿using QZCHY.Core.Data;
+﻿using QZCHY.Core;
+using QZCHY.Core.Data;
 using QZCHY.Core.Domain.Villages;
 using QZCHY.Services.Events;
 using System;
@@ -80,6 +81,18 @@ namespace QZCHY.Services.Villages
                         where s.Id == id
                         select s;
             return query.FirstOrDefault();
+        }
+
+        public IList<Strategy> GetListStrategys(int pageIndex, int pageSize)
+        {
+            var query = from s in _strategyRepository.Table
+                        select s;
+
+          var  result = query.ToList();
+
+          var  strategys = new PagedList<Strategy>(result, pageIndex, pageSize);
+
+            return strategys;
         }
     }
 }
