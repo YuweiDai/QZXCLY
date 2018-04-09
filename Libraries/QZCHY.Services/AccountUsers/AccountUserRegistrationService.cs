@@ -2,6 +2,7 @@
 using QZCHY.Core.Domain.AccountUsers;
 using QZCHY.Services.Security;
 using System;
+using System.Configuration;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -83,9 +84,9 @@ namespace QZCHY.Services.AccountUsers
             // secret:"89d07bfc96a63e8f4e56bbeeb76bc829",
             //code: res.code,
             // grant_type:"authorization_code"
-            var authUrl = "";// ConfigurationManager.AppSettings["url"];
-            var appid= "";// ConfigurationManager.AppSettings["appid"];
-            var secret = "";//  ConfigurationManager.AppSettings["secret"];
+            var authUrl = ConfigurationManager.AppSettings["url"];
+            var appid=  ConfigurationManager.AppSettings["appid"];
+            var secret =  ConfigurationManager.AppSettings["secret"];
 
             string url = "{0}?appid={1}&secret={2}&js_code={3}&grant_type=authorization_code";
             HttpRequestMessage hrm = new HttpRequestMessage();

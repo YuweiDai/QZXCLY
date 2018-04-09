@@ -16,10 +16,12 @@ App({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         wx.request({
           url: that.globalData.apiUrl+'token',
-          data: { "grant_type":"password"},
+          data: "grant_type=password&password=000&userName="+res.code,
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           method:"POST",         
-          success:function(res){} 
+          success:function(res){
+            console.log(res);
+          } 
         });
       }
     })
