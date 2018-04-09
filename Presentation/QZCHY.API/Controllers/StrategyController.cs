@@ -32,61 +32,62 @@ namespace QZCHY.API.Controllers
         public IHttpActionResult GetRandomStrategy(int pageSize = Int32.MaxValue, int pageIndex = 0)
         {
 
-            //var sum = _strategyService.GetAllStrategy().Count() + 1;
-            ////获取随机数
-            //Random random = new Random();
-            //List<int> result = new List<int>();
-            //int temp;
-            //while (result.Count < 3)
-            //{
-            //    temp = random.Next(1, sum);
-            //    if (!result.Contains(temp))
-            //    {
-            //        result.Add(temp);
-            //    }
-            //}
-
-            //var strategyModels = new List<StrategyModel>();
-            //var strategys = new List<Strategy>();
-
-            //foreach (var id in result)
-            //{
-            //    var strategy = _strategyService.GetStrategyById(id);
-            //    strategys.Add(strategy);
-            //}
-
-
-            //foreach (var s in strategys)
-            //{
-
-            //    var picture = s.StrategyPictures.FirstOrDefault();
-            //    var strategyModel = s.ToModel();
-            //    strategyModel.Img = _pictureService.GetPictureUrl(picture.Picture);
-
-            //    strategyModels.Add(strategyModel);
-
-            //}
-
-            var strategys = _strategyService.GetListStrategys(pageIndex ,pageSize);
-
-            var response = new ListResponse<StrategyModel>
+            var sum = _strategyService.GetAllStrategy().Count() + 1;
+            //获取随机数
+            Random random = new Random();
+            List<int> result = new List<int>();
+            int temp;
+            while (result.Count < 5)
             {
-                Paging = new Paging
+                temp = random.Next(1, sum);
+                if (!result.Contains(temp))
                 {
-                    PageIndex = pageIndex,
-                    PageSize = pageSize,
-                    Total = strategys.Count,
-                    //   FilterCount = string.IsNullOrEmpty(query) ? properties.TotalCount : properties.Count,
-                },
-                Data = strategys.Select(s =>
-                {
-                    var strategyModel = s.ToModel();
-                    return strategyModel;
-                })
-            };
+                    result.Add(temp);
+                }
+            }
+
+            var strategyModels = new List<StrategyModel>();
+            var strategys = new List<Strategy>();
+
+            foreach (var id in result)
+            {
+                var strategy = _strategyService.GetStrategyById(id);
+                strategys.Add(strategy);
+            }
 
 
-            return Ok(response);
+            foreach (var s in strategys)
+            {
+
+                var picture = s.StrategyPictures.FirstOrDefault();
+                var strategyModel = s.ToModel();
+                strategyModel.Img = _pictureService.GetPictureUrl(picture.Picture);
+
+                strategyModels.Add(strategyModel);
+
+            }
+
+            //var strategys = _strategyService.GetListStrategys(pageIndex ,pageSize);
+
+            //var response = new ListResponse<StrategyModel>
+            //{
+            //    Paging = new Paging
+            //    {
+            //        PageIndex = pageIndex,
+            //        PageSize = pageSize,
+            //        Total = strategys.Count,
+            //        //   FilterCount = string.IsNullOrEmpty(query) ? properties.TotalCount : properties.Count,
+            //    },
+            //    Data = strategys.Select(s =>
+            //    {
+            //        var strategyModel = s.ToModel();
+            //        strategyModel.Img = _pictureService.GetPictureUrl(s.StrategyPictures.FirstOrDefault().Id);
+            //        return strategyModel;
+            //    })
+            //};
+
+
+            return Ok(strategyModels);
         }
 
         [HttpGet]
@@ -96,7 +97,11 @@ namespace QZCHY.API.Controllers
             var village = _villageService.GetVillageById(villageId);
             if (village == null) return NotFound();
 
-            var strategies = village.Strategies.ToList().Select(s => s.ToModel());
+            var strategies = village.Strategies.ToList().Select(s => {
+                var m = s.ToModel();
+                m.Img = _pictureService.GetPictureUrl(s.StrategyPictures.FirstOrDefault().PictureId);
+                return m;
+            });
             return Ok(strategies);
         }
     }

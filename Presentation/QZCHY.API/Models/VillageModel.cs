@@ -39,6 +39,8 @@ namespace QZCHY.API.Models
 
         public string VideoUrl { get; set; }
 
+        public double VideoSize { get; set; }
+
         public string Panorama { get; set; }
 
    

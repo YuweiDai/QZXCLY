@@ -12,7 +12,8 @@
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#4A5767",
     "navigationBarTitleText": "衢州市乡村旅游地图",
-    "navigationBarTextStyle":"white"
+    "navigationBarTextStyle":"white",
+    "enablePullDownRefresh":true
   },
 
   "networkTimeout": {

@@ -65,7 +65,10 @@ Page({
       allControls: []          
     },
     strategies:[],
-    strategiesPage:0,
+    strategiesPage:{
+      size:5,
+      index:-1
+    },
     //景区详情
     detail:{
       dialog: {
@@ -80,6 +83,7 @@ Page({
         current: ""
       },
       urls: [],
+      strategies:[]
     },
     currentTab:"0", // -1 0 1  
     contentHeight:0,
@@ -100,7 +104,9 @@ Page({
         });
         break;
       case "1":
-        page.refreshStrategies();
+        if (page.data.map.currentSpot == null)
+          page.refreshStrategies();
+        else page.getStrategiesByVillage();
         break;
       case "2":
         var currentSpot=page.data.detail.spot;
@@ -234,12 +240,12 @@ Page({
   refreshStrategies:function(reset)
   {
     var requestPromisified = util.wxPromisify(wx.request);
-    var pageSize = page.data.strategiesPage;
-    pageSize++;
-    if (reset) pageSize=1;
+    var pageIndex = page.data.strategiesPage.index;
+    pageIndex++;
+    if (reset) pageIndex = 0;
 
     requestPromisified({
-      url: app.globalData.apiUrl + 'Strategy/Random?pageSize=' + pageSize,
+      url: app.globalData.apiUrl + 'Strategy/Random',
     }).then(function (response) {
       var strategies = response.data;
 
@@ -249,7 +255,7 @@ Page({
       });
       page.setData({
         strategies: strategies,
-        strategiesPage: pageSize
+        'strategiesPage.index': pageIndex
       });
     }).catch(function (response) {
       console.log(response);
@@ -257,6 +263,44 @@ Page({
         title: response//'获取数据失败...',
       })
     });    
+  },
+
+  //获取景区相关的攻略
+  getStrategiesByVillage:function()
+  {
+    if (page.data.map.currentSpot == null || page.data.map.currentSpot == undefined) return;
+    var spotId = page.data.map.currentSpot.id;
+    if (page.data.detail.strategies == null || page.data.detail.strategies.length != 0) {
+      page.setData({
+        'strategies': page.data.detail.strategies
+      });
+    }
+    else
+    {
+      var requestPromisified = util.wxPromisify(wx.request);
+
+      requestPromisified({
+        url: app.globalData.apiUrl + 'Strategy/village/' + spotId,
+      }).then(function (response) {
+        var strategies = response.data;
+
+        strategies.forEach(function (item) {
+          item.img = item.img.replace(app.globalData.apiUrl, app.globalData.picturesUrl);
+          item.src = app.globalData.resourceUrl + "strategies/" + item.src;
+        });
+        page.setData({
+          'strategies': strategies,
+          'detail.strategies': strategies
+        });
+      }).catch(function (response) {
+        console.log(response);
+        wx.showToast({
+          title: response.errMsg//'获取数据失败...',
+        })
+      });  
+    }
+
+  
   },
 
   showInMap:function(event){
@@ -296,6 +340,7 @@ Page({
     wx.request({
       url: app.globalData.apiUrl + 'Villages/geo',
       success: function (response) {
+        if (response.statusCode != 200) return;
         var spots = response.data;
 
         for (var index in spots) {
@@ -338,7 +383,8 @@ Page({
       fail: function (response) {
         wx.showToast({
           title: '加载地图点位错误',
-        })
+          icon:"none"
+        });
       },
       complete: function () {
         wx.hideLoading();
@@ -741,7 +787,7 @@ Page({
   {
     var requestPromisified = util.wxPromisify(wx.getNetworkType);
     var contiuePlay=true;
-    var videoSize=event.currentTarget.dataset.videoSize;
+    var videoSize=parseInt(event.currentTarget.dataset.videoSize/1024);
     requestPromisified().then(function (res) {
       // 返回网络类型, 有效值：
       // wifi/2g/3g/4g/unknown(Android下不常见的网络类型)/none(无网络)
@@ -750,7 +796,7 @@ Page({
       {
         wx.showModal({
           title: '提示',
-          content: '当前处于移动网络，视频总流量'+'M，是否继续观看视频？',
+          content: '当前处于移动网络，视频总流量约' + videoSize + 'M，是否继续观看视频？',
           success: function (res) {
             if (res.cancel) contiuePlay = false;
 
@@ -879,16 +925,26 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    if (page.dataset.currentTab == "1") {
-      page.refreshStrategies();
-    }
+    wx.showToast({
+      title: 'onPullDownRefresh',
+      icon: 'success',
+      duration: 2000
+    });
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+    // console.log("onPullDownRefresh");
+    // if (page.dataset.currentTab == "1") {
+    //   page.refreshStrategies();
+    // }
+    wx.showToast({
+      title: 'onReachBottom',
+      icon: 'success',
+      duration: 2000
+    })    
   },
 
   /**

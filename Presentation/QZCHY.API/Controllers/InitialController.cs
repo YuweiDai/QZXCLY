@@ -122,7 +122,7 @@ namespace QZCHY.API.Controllers
         [Route("Import")]
         public IHttpActionResult ImportData()
         {
-            //return Ok("closed");
+            return Ok("closed");
             var relativePath = System.Web.Hosting.HostingEnvironment.MapPath("~/Resources/Imports/");
             var imageExts = new List<string>
             {
