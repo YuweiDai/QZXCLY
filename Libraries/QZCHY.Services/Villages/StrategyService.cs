@@ -67,6 +67,7 @@ namespace QZCHY.Services.Villages
             var response = new List<Strategy>();
             var query = from s in _strategyRepository.Table
                         where s.Deleted ==false
+                        orderby s.Date
                         select s;
 
             response = query.ToList();

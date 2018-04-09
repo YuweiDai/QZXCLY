@@ -22,19 +22,19 @@ Page({
           id: 3,
           img: 'http://qzch.qz.gov.cn/qzxcly/resources/images/index/b1.gif',
           url: '',
-          name: '康养衢江·隐柿东坪'
+          name: ''
         },
         {
           id: 1,
           img: 'http://qzch.qz.gov.cn/qzxcly/resources/images/index/b2.gif',
           url: '',
-          name: '告别午高峰'
+          name: ''
         },
         {
           id: 2,
           img: 'http://qzch.qz.gov.cn/qzxcly/resources/images/index/b3.gif',
           url: '',
-          name: '金牌好店'
+          name: ''
         }
       ],
     },
@@ -65,6 +65,7 @@ Page({
       allControls: []          
     },
     strategies:[],
+    strategiesPage:0,
     //景区详情
     detail:{
       dialog: {
@@ -230,12 +231,15 @@ Page({
   },
 
     //刷新获取攻略
-  refreshStrategies:function(event)
+  refreshStrategies:function(reset)
   {
     var requestPromisified = util.wxPromisify(wx.request);
+    var pageSize = page.data.strategiesPage;
+    pageSize++;
+    if (reset) pageSize=1;
 
     requestPromisified({
-      url: app.globalData.apiUrl + 'Strategy/Random',
+      url: app.globalData.apiUrl + 'Strategy/Random?pageSize=' + pageSize,
     }).then(function (response) {
       var strategies = response.data;
 
@@ -245,6 +249,7 @@ Page({
       });
       page.setData({
         strategies: strategies,
+        strategiesPage: pageSize
       });
     }).catch(function (response) {
       console.log(response);

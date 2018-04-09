@@ -94,10 +94,6 @@
     <Compile Include="Mapping\VillageMap\VillagePictureMap.cs" />
     <Compile Include="Mapping\VillageMap\VillagePlayMap.cs" />
     <Compile Include="Mapping\VillageMap\VillageServiceMap.cs" />
-    <Compile Include="Migrations\201804040142343_initialCreate.cs" />
-    <Compile Include="Migrations\201804040142343_initialCreate.Designer.cs">
-      <DependentUpon>201804040142343_initialCreate.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QZCHYObjectContext.cs" />
@@ -115,11 +111,6 @@
       <Project>{2ff95af7-9ef1-4fe2-9f93-9a16c60de366}</Project>
       <Name>QZCHY.Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201804040142343_initialCreate.resx">
-      <DependentUpon>201804040142343_initialCreate.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
