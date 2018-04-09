@@ -1,0 +1,29 @@
+<!--pages/index/spot_service.wxml-->
+<view class="container">
+  <scroll-view scroll-y="true" class='spot_service'>
+    <view class='banner'>
+     <image src="{{service.logo}}"></image>
+    </view>
+    <view class='section'>
+      <view class='name line relative'>
+        {{service.name}}
+      <view class='btns'>               
+        <view class='btn' bindtap='navTo' title="导航"><i class='iconfont icon-daohang2'></i></view>       
+       </view>
+      </view>
+      <view class='line relative'>其他信息：
+        <view>{{service.description}}</view>      
+      </view>                 
+    </view>
+    <view class='section'>
+      <view class='title relative'>服务设施图片</view>    
+      <view class='photos'>
+        <view class='photo' bindtap='previewImage' wx:for="{{service.servicePictures}}" wx:for-item="photo" data-url="{{photo.img}}" data-index="{{index}}" >      
+          <image src="{{photo.img}}"  mode='aspectFill' />
+          <view class='title'>{{photo.name}}</view>  
+        </view>      
+      </view>
+
+    </view>
+  </scroll-view>
+</view>

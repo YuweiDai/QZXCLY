@@ -234,3 +234,19 @@
   font-size:30rpx;
 }
 /* 景点 玩吃住通用 结束*/
+
+.tags
+{
+  line-height: 22rpx;
+}
+
+.tags .tag
+{
+  display: inline-block;
+  border:1px solid #27c24c;
+  color:#27c24c;
+  font-size:24rpx;
+  padding:4rpx 8rpx;
+  border-radius: 8rpx;
+  margin-right: 8rpx;
+}

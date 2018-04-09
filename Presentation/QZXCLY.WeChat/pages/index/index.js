@@ -12,7 +12,6 @@ var defaultCallout = {
 };
 var innerAudioContext = null;
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -44,9 +43,13 @@ Page({
       animationData: null,
       drawerMarker: null,
       markerSize: {
-        width: 44,
-        height: 64
+        width:44,
+        height: 66
       },
+      spotSize: {
+        width: 20,
+        height: 20
+      },      
       selectedSpot: 0,
       markers: [],
       polylines: [],
@@ -137,6 +140,9 @@ Page({
         item.src = item.src.replace(app.globalData.apiUrl1, app.globalData.picturesUrl);
       });
 
+      //设置视频封面
+      spot.videoLogo = spot.videoUrl.replace("mp4", "jpg");
+
       spot.logo = spot.logo.replace(app.globalData.apiUrl1, app.globalData.picturesUrl);
       spot.routePicutre = spot.routePicutre.replace(app.globalData.apiUrl1, app.globalData.picturesUrl);     
       console.log(spot);
@@ -213,7 +219,6 @@ Page({
 
       });
     }).then(function(){
-
     })
     .catch(function(){
       console.log("error in get spot detail");
@@ -304,8 +309,8 @@ Page({
           var spotMarker = {
             id: "spot_" + spot.id,
             title: spot.name,
-            width: 40 * app.globalData.rpx,
-            height: 40 * app.globalData.rpx,
+            width: page.data.map.spotSize.width * app.globalData.rpx,
+            height: page.data.map.spotSize.width * app.globalData.rpx,
             iconPath: "../../resources/images/map/"+spot.icon+".png",
             latitude: spot.latitude,
             longitude: spot.longitude,
@@ -348,7 +353,7 @@ Page({
           {                
             controlls[1].iconPath ="../../resources/images/map/nearBy.png";
             page.setData({
-              'map.currentControls': [controlls[0], controlls[1], controlls[2]]
+              'map.currentControls': [controlls[0], controlls[1], controlls[2], controlls[8]]
             });
           }
           else
@@ -441,34 +446,26 @@ Page({
             title: '数据加载中...',
           });
 
-          var currentLon = 0, currentLat = 0;
-          wx.getLocation({
-            type: "gcj02",
-            success: function (res) {
-              currentLat = res.latitude
-              currentLon = res.longitude
-            },
-            complete: function () {
-              wx.request({
-                url: app.globalData.apiUrl + 'villages/geo/' + spotId + '?lon=' + currentLon + '&lat=' + currentLat,
-                success: function (response) {
+          wx.request({
+              url: app.globalData.apiUrl + 'villages/geo/' + spotId ,
+              success: function (response) {
                   var spot = response.data;
-                  spot.logo=spot.logo.replace(app.globalData.apiUrl1,app.globalData.picturesUrl);
+                  spot.logo = spot.logo.replace(app.globalData.apiUrl1, app.globalData.picturesUrl);
 
                   if (spot.level > 0) {
-                    var index = 1;
-                    spot.levelTag = "·";
-                    for (var index = 1; index <= spot.level; index++) {
-                      spot.levelTag += "A";
-                    }
-                    spot.levelTag += "级景区";
+                      var index = 1;
+                      spot.levelTag = "·";
+                      for (var index = 1; index <= spot.level; index++) {
+                          spot.levelTag += "A";
+                      }
+                      spot.levelTag += "级景区";
                   }
 
                   //更新空间位置
                   var allControls = page.data.map.allControls;
                   allControls[1].iconPath = "../../resources/images/map/nearBy_s.png";
                   wx.setNavigationBarTitle({
-                    title: spot.name
+                      title: spot.name
                   });
 
                   page.setSubMarkers(spot, page.data.map.filterType);
@@ -478,23 +475,44 @@ Page({
                       'map.showSingelSpot': true,
                       'map.currentControls': allControls
                   });
-                },
-                fail: function (response) {
+              },
+              fail: function (response) {
 
-                },
-                complete: function () {
+              },
+              complete: function () {
                   wx.hideLoading();
-                }
-              });
-            }
+              }
           });
           break;
         case "play":
         case "eat":
-        case "live":
+        case "live": 
           wx.navigateTo({
             url: 'spot_' + markerType + '?id=' + markerId,
           });
+          break;    
+        case "park":
+        case "wash":
+          wx.showActionSheet({
+            itemList: ['导航', '查看详情'],
+            success: function (res) {
+              switch(res.tapIndex)
+              {
+                  case 0:
+                      console.log(event);
+                      page.viewPath({ currentTarget: { dataset: { lon: event.longitude, lat: event.latitude } } });
+                  break;
+                case 1:
+                    wx.navigateTo({
+                        url: 'spot_service?id=' + markerId,
+                    });
+                  break;
+              }
+            },
+            fail: function (res) {
+              console.log(res.errMsg)
+            }
+          });        
           break;
       }
 
@@ -540,18 +558,25 @@ Page({
       var targetItems = [];
 
       switch (filterType) {
-          case 'service':
-              targetItems = currentSpot.services;
-              break;
-          case 'play':
-              targetItems = currentSpot.plays;
-              break;
-          case 'eat':
-              targetItems = currentSpot.eats;
-              break;
-          case 'live':
-              targetItems = currentSpot.lives;
-              break;
+        case 'wash':
+          currentSpot.services.forEach(function (item) {
+            if (item.serviceType == 0) targetItems.push(item);
+          });
+          break;
+        case 'park':
+          currentSpot.services.forEach(function (item) {
+            if (item.serviceType == 1) targetItems.push(item);
+          });
+          break;
+        case 'play':
+          targetItems = currentSpot.plays;
+          break;
+        case 'eat':
+          targetItems = currentSpot.eats;
+          break;
+        case 'live':
+          targetItems = currentSpot.lives;
+          break;
       }
 
       targetItems.forEach(function (item) {
@@ -559,10 +584,9 @@ Page({
         var width = page.data.map.markerSize.width / app.globalData.rpx;
         var height = page.data.map.markerSize.height / app.globalData.rpx;
 
-        if (filterType=="play")
-        {
-           width = 40 * app.globalData.rpx;
-           height = 40 * app.globalData.rpx;          
+        if (filterType == "play") {
+            width = page.data.map.spotSize.width * app.globalData.rpx;
+            height = page.data.map.spotSize.width * app.globalData.rpx;
         }
 
           subMarkers.push({
@@ -708,6 +732,40 @@ Page({
     })
   },
 
+  playVideo:function(event)
+  {
+    var requestPromisified = util.wxPromisify(wx.getNetworkType);
+    var contiuePlay=true;
+    var videoSize=event.currentTarget.dataset.videoSize;
+    requestPromisified().then(function (res) {
+      // 返回网络类型, 有效值：
+      // wifi/2g/3g/4g/unknown(Android下不常见的网络类型)/none(无网络)
+      var networkType = res.networkType;
+      if (networkType == '2g' || networkType == '3g' || networkType == '4g' )
+      {
+        wx.showModal({
+          title: '提示',
+          content: '当前处于移动网络，视频总流量'+'M，是否继续观看视频？',
+          success: function (res) {
+            if (res.cancel) contiuePlay = false;
+
+            if (contiuePlay) {
+              page.videoCtx.requestFullScreen();
+              page.videoCtx.play();
+            }
+          }
+        })
+      }
+    })
+    .catch(function () {
+      console.log("error in play video");
+    });
+  },
+
+  closeVideo: function (event) {
+    page.videoCtx.exitFullScreen();
+  },
+
   //通用方法 结束
 
   /**
@@ -716,6 +774,7 @@ Page({
   onLoad: function (options) {
     page=this;
     page.mapCtx = wx.createMapContext('map');
+    page.videoCtx = wx.createVideoContext('videoPlayer', this);
 
     if (innerAudioContext == null)
       innerAudioContext = wx.createInnerAudioContext();
@@ -750,7 +809,7 @@ Page({
 
       //设置地图控件
     var controls = [
-      { id: "locateBtn", iconPath: '../../resources/images/map/locate.png', position: { left: controlSize / 3, top: windowHeight - 200 / app.globalData.rpx, width: controlSize, height: controlSize }, clickable: true },
+      { id: "locateBtn", iconPath: '../../resources/images/map/locate.png', position: { left: controlSize / 3, top: windowHeight - 250 / app.globalData.rpx, width: controlSize, height: controlSize }, clickable: true },
       { id: "nearByBtn", iconPath: '../../resources/images/map/nearBy.png', position: { left: controlSize / 3, top: controlSize * (1 / 3) + offsetTop, width: controlSize, height: controlSize }, clickable: true },
       { id: "vrBtn", iconPath: '../../resources/images/map/vr.png', position: { left: windowWidth - controlSize * (4 / 3), top: controlSize / 3 + offsetTop, width: controlSize, height: controlSize }, clickable: true },
       { id: "spotBtn", iconPath: '../../resources/images/map/spot_s.png', position: { left: controlSize / 3, top: controlSize * (5 / 3) + offsetTop, width: controlSize, height: controlSize }, clickable: true },
@@ -758,7 +817,7 @@ Page({
       { id: "hotelBtn", iconPath: '../../resources/images/map/hotel.png', position: { left: controlSize / 3, top: controlSize * (11 / 3) + offsetTop, width: controlSize, height: controlSize }, clickable: true },
       { id: "parkBtn", iconPath: '../../resources/images/map/park.png', position: { left: controlSize / 3, top: controlSize * (14 / 3) + offsetTop, width: controlSize, height: controlSize }, clickable: true },
       { id: "washroomBtn", iconPath: '../../resources/images/map/washroom.png', position: { left: controlSize / 3, top: controlSize * (17 / 3) + offsetTop, width: controlSize, height: controlSize }, clickable: true },
-      { id: "labelBtn", iconPath: '../../resources/images/map/switch.png', position: { left: windowWidth - controlSize * (4 / 3), top: windowHeight - 200 / app.globalData.rpx, width: controlSize, height: controlSize }, clickable: true },
+      { id: "labelBtn", iconPath: '../../resources/images/map/switch.png', position: { left: windowWidth - controlSize * (4 / 3), top: windowHeight - 250 / app.globalData.rpx, width: controlSize, height: controlSize }, clickable: true },
     ];
 
     var spotId=options.spotId;
